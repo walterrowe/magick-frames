@@ -1,5 +1,3 @@
-[[_TOC_]]
-
 # magick-frames
 
 magick-frames is a combination of a macOS/Linux shell script [frame_it](frame_it) and a macOS AppleScript [frame_it.applescript](frame_it.applescript) wrapper. The frame_it shell script uses the ImageMagick image manipulation package to apply a professional looking decoration to an image file.
