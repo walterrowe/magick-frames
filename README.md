@@ -1,0 +1,154 @@
+[[_TOC_]]
+
+# magick-frames
+
+magick-frames is a combination of a macOS/Linux shell script [frame_it](frame_it) and a macOS AppleScript [frame_it.applescript](frame_it.applescript) wrapper. The frame_it shell script uses the ImageMagick image manipulation package to apply a professional looking decoration to an image file.
+
+By default the `frame_it` shell script preserves your source images and creates new files for the decorated versions. The new files will have `-frame` inserted into their name before the file extension. For example, a source image named `my-image.jpg` will result in an output file named `my-image-frame.jpg`. Use command line option `-o` or `--overwrite` to tell the script to write the output back to the source image file.
+
+The AppleScript app can be used as a stand alone macOS Finder droplet where you drag-n-drop files selected in Finder onto the droplet and it decorates them, or as an "Open With" app in export settings of your favorite image editing tool such as Capture One Pro.
+
+With Capture One Pro it works like this.
+
+1. Add the Finder droplet to the Open With field of an Export Recipe
+1. Export your selected files with your configured Export Recipe
+
+What really happens is this:
+
+1. The Export Recipe writes your desired output files
+1. The Export Recipe passes each output filename to the droplet
+1. The droplet passes your options and output filename to the frame_it shell script
+1. The frame_it shell script decorates your output file using your chosen frame_it options
+
+While this may look complicated it works quickly and invisibly. If you have your output folder open in Finder in Icon view as your images are exported, you can watch the undecorated files appear in the folder, and then see their icons change as they become decorated.
+
+The AppleScript droplet only works on macOS. The frame_it shell script should work on macOS and Linux.
+
+The frame_it shell script offers numerous options to tailor the style of the decoration. See the command line options section near the bottom for a detailed descriptione of these options.
+
+# Installation
+
+Installation and use of this package requires saving AppleScript scripts as macOS droplet apps, installing the open source ImageMagick software using a tool such as [Home Brew](https://brew.sh/), and using a macOS Terminal or Linux shell window to copy a script to your system's /usr/local/bin directory.
+
+- Install the [ImageMagick](https://imagemagick.org/) software package on your system (e.g. `brew install imagemagick`)
+- Edit [frame_it](frame_it) shell script to set default label text (`label1`, `label2`) and logo file (`watermark`)
+- Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder
+- (macOS) Open [frame_it.applescript](frame_it.applescript), set `frame_it_options`, and save as a droplet app.
+
+# Creating The AppleScript App
+
+1. Open frame_it.applescript script in macOS AppleScript Editor
+1. Look for `frame_it_options` and set your desired options
+1. Go to File > Export, choose type Application, and save a droplet where you can run it
+
+You can choose different `frame_it_options` and save the AppleScript as different names to make different styles available via macOS Finder droplet or for use in image editing software export configurations.
+
+NOTE: These are the default `frame_it_options` distributed with the package.
+
+- OVERWRITE the source files (`--overwrite` or `-o`)
+- apply a thin picture frame (`--picture` or `-p`)
+- center your logo BELOW the image (`--logo` or`-l`)
+
+Look at the comments inside the frame_it AppleScript code to see where to change the options passed to the frame_it shell script. Look inside the frame_it shell script to see all of the available options. Some other example configurations are:
+
+- set `frame_it_options` to `—o -l —p` and save as application frame\_it
+  - `-o` overwrites the named source file
+  - `-l` applies a logo below the image
+  - `-p` adds a thin surrounding picture frame
+- set `frame_it_options` to `—o —t —p` and save as application label\_it
+  - `-o` overwrites the named source file
+  - `-t` applies two-row text below the image
+  - `-p` adds a thin surrounding picture frame
+- set `frame_it_options` to `—o -p —g=southeast —w=~/Pictures/watermark_white.png` and save as application watermark\_it
+  - `-o` overwrites the named source file
+  - `-p` adds a thin surrounding picture frame
+  - `-g` applies logo on image at this edge
+  - `-w` specifies the logo to apply to the image
+
+See the command line section below for a description of all the supported style options.
+
+# How To Use
+
+## With macOS Finder
+
+The droplet app included with this package works like any other macOS application that lets you drag-n-drop items onto the application.
+
+1. Use macOS Finder to select the images you want to decorate
+2. Drag-n-drop the selected images onto your droplet app
+
+The frame_it shell script options you specified in `frame_it_options` in the droplet app control how the images files you drop onto the droplet are decorated.
+
+## With Capture One Export Recipes
+
+The droplet included with this package works like any other macOS application you can configure into a Capture One Pro Export Recipe.
+
+1. Go to `Open With` field in a Capture One Export Recipe
+1. Choose `Other` from the `Open With` drop-down menu
+1. Navigate to and select your droplet application
+1. Select and check the configured Export Recipe
+1. Select images to process and press `CMD+D` to export
+
+The frame_it shell script options you specified in `frame_it_options` in the droplet app control how the images files you drop onto the droplet are decorated.
+
+## With The Command Line
+
+The [frame_it](frame_it) shell script also can be used from the command line on macOS and Linux if you are comfortable with that.
+
+Place the [frame_it](frame_it) shell script in /usr/local/bin and run it with no options to see a usage message showing all of the available styling options.
+
+```text
+usage: frame_it [ OPTIONS ] image [ .. ]
+
+OPTIONS:
+
+-d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
+                          the default that centers the image in an all-edges shadow
+
+-o | --overwrite          specifies to overwrite the original files vs the default
+                          of keeping them and writing new files with "-frame" inserted
+                          before the suffix
+
+-p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
+
+-t | --text               specifies to use a two-line text logo underneath the image
+
+-l | --logo               specifies to use an image file as a logo / watermark
+                          this is the default style
+
+-w=your_logo |            specifies the image file to use as the watermark logo that
+--watermark=your_logo     that is placed on or below the image.
+
+-g=placement |            for logo watermarks this specifies to overlay the watermark
+--gravity=placement       on the image rather than below, and indicates where on the
+                          image the logo / watermark should be placed.
+
+                          example:
+                              % frame_it --bottomright my_image.jpg
+                              % frame_it --southeast my_image.jpg
+
+                          would overlay the logo on the image, centered on the bottom edge.
+
+                          topleft             top                 topright
+                          left                middle              right
+                          bottomleft          bottom              bottomright
+
+                          northwest           north               northeast
+                          west                center              east
+                          southwest           south               southeast
+
+```
+
+# Recommendation
+
+Make test copies of output files and use the shell script from the command line to experiment with how different styling options look. This will help you determine which options you want to use in your droplet application(s).
+
+# Origins
+
+The frame_it shell script originates from Apple’s Recursive Image File Processing Droplet template. You can read more about it in the [Mac Automation Scripting Guide to Process Dropped Files and Folders](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/ProcessDroppedFilesandFolders.html).
+
+1. Open Apple ScriptEditor
+2. Navigate to menu option File > New from Template > Droplets > Recursive Image File Processing Droplet
+
+The frame_it AppleScript executes the `frame_it` shell script to decorate the selected image files.
+
+The frame_it shell script uses the [ImageMagick](https://imagemagick.org/) image manipulation tool set with specific options to decorate your image files.

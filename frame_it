@@ -1,0 +1,308 @@
+#!/bin/zsh
+#
+# author: walter rowe <walter@walterrowe.com>
+# copyright 2022 walter rowe
+#
+####
+#
+# usage: PROGRAM [ OPTIONS ] image [ .. ]
+#
+# OPTIONS:
+#
+# -d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
+#                           the default that centers the image in an all-edges shadow
+#
+# -o | --overwrite          specifies to overwrite the original files vs the default
+#                           of keeping them and writing new files with "-frame" inserted
+#                           before the suffix
+#
+# -p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
+#
+# -t | --text               specifies to use a two-line text logo underneath the image
+#
+# -l | --logo               specifies to use an image file as a logo / watermark
+#                           this is the default style
+#
+# -w=your_logo |            specifies the image file to use as the watermark logo that
+# --watermark=your_logo     that is placed on or below the image.
+#
+# -g=placement |            for logo watermarks this specifies to overlay the watermark
+# --gravity=placement       on the image rather than below, and indicates where on the
+#                           image the logo / watermark should be placed.
+#
+#                           example:
+#                               % frame_it --bottomright my_image.jpg
+#                               % frame_it --southeast my_image.jpg
+#
+#                           would overlay the logo on the image, centered on the bottom edge.
+#
+#                           topleft             top                 topright
+#                           left                middle              right
+#                           bottomleft          bottom              bottomright
+#
+#                           northwest           north               northeast
+#                           west                center              east
+#                           southwest           south               southeast
+#
+###
+
+# text option - two text label lines
+label1="W  A  L  T  E  R     R  O  W  E     P  H  O  T  O  G  R  A  P  H  Y"
+label2="w w w . w a l t e r r o w e . c o m"
+
+# default logo watermark file - graphic watermark (my logo watermark is 900wx250h pixels w/ transparent background)
+watermark=~/Pictures/watermark.png
+
+# usage
+usage()
+{
+    sed >&2 -e "1,/^####/d;  /^###/g;  /^#/!q;  s/^#//;  s/PROGRAM/${program_base}/;  s/^ //;  4,\$p" "$program_full"
+}
+
+# allow specifying logo placement by common terms or imagemagick terms
+# e.g. a person can specify --bottom or --south and it is translated to -gravity south
+declare -A logo_gravity=(
+    [topleft]=northwest
+    [top]=north
+    [topright]=northeast
+    [left]=west
+    [middle]=center
+    [right]=east
+    [bottomleft]=southwest
+    [bottom]=south
+    [bottomright]=southeast
+)
+
+# make an egrep expression for the keys and values
+logo_gravity_keys=$(echo ${(k)logo_gravity} | sed -e 's; ;|;g')
+logo_gravity_vals=$(echo ${(v)logo_gravity} | sed -e 's; ;|;g')
+
+
+# get name of script
+eval program_base=$(basename $0)
+eval program_full=$(which $0)
+# must provide at least one file
+if [ $# -lt 1 ]; then
+    usage
+    exit 1
+fi
+
+# defaults
+style='logo'
+overwrite='false'
+dropshadow='false'
+picture='false'
+inner="0x0"
+outer="0x0"
+
+# process command line options
+for opt in "$@"; do
+    case ${opt} in
+        -d|--dropshadow)
+            dropshadow='true'
+            shift
+            ;;
+        -o|--overwrite)
+            # do not overwrite the original files
+            overwrite='true'
+            shift
+            ;;
+        -p|--picture)
+            inner="1x1"
+            outer="10x10"
+            picture='true'
+            shift
+            ;;
+        -t|--text)
+            style='text'
+            shift
+            ;;
+        -l|--logo)
+            style='logo'
+            shift
+            ;;
+        -w=*|--watermark=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            # evaluate watermark=your_logo to expand special chars like ~
+            eval watermark=${opt}
+            # make sure watermark really exists
+            if [ ! -f ${watermark} ]; then
+                echo "${program}: watermark file '${watermark}' not found."
+                usage
+                exit 1
+            fi
+            shift
+            ;;
+        -g=*|--gravity=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            # validate gravity location
+            echo ${opt} | egrep -wq "${logo_gravity_keys}|${logo_gravity_vals}"
+            if [ $? -ne 0 ]; then
+                usage
+                exit 1
+            fi
+            echo ${opt} | egrep -wq "${logo_gravity_keys}"
+            if [ $? -eq 0 ]; then
+                # gravity specified as top, bottomleft, etc
+                logo_gravity="${logo_gravity[${opt}]}"
+            else
+                # gravity specified as north, southwest, etc
+                logo_gravity=${opt}
+            fi
+            style='overlay'
+            shift
+            ;;
+        -*)
+            usage
+            exit 1
+            ;;
+    esac
+done
+
+# must provide at least one file
+if [ $# -lt 1 ]; then
+    usage
+    exit 1
+fi
+
+# cycle through the list of provided images
+for filename in "$@" ; do
+
+    # source file parts - use eval to ensure expansion of ~, et al
+    eval filepath=$(dirname "${filename}")
+    eval filetype=$(basename "${filename}" | awk -F. '{ print $NF }')
+    eval filebase=$(basename "${filename}" .${filetype})
+
+    # source file
+    source="${filename}"
+
+    # target file
+    if [ ${overwrite} = true ]; then
+        target="${source}"
+    else
+        target="${filepath}/${filebase}-frame.${filetype}"
+    fi
+
+    # extract image file width and height
+    file_wide=$(identify -format %w "${source}")
+    file_high=$(identify -format %h "${source}")
+
+    # defaults based on 3000wx2400h source and 900wx250h logo
+    #   - no dropshadow w/ 100% opacity and 20-pixel feather
+    #   - pad left/top edges w/ 10 pixels
+    #   - center so equal shadow on all edges
+
+    # convert 5x4 aspect ratio scaling to file's aspect ratio
+    if [ ${file_wide} -gt ${file_high} ]; then
+        scale_wide=$(expr 3000 \* ${file_wide} / ${file_high})
+        scale_high=$(expr 2400 \* ${file_wide} / ${file_high})
+    fi
+    if [ ${file_high} -gt ${file_wide} ]; then
+        scale_wide=$(expr 2400 \* ${file_high} / ${file_wide})
+        scale_high=$(expr 3000 \* ${file_high} / ${file_wide})
+    fi
+    if [ ${file_high} -eq ${file_wide} ]; then
+        scale_wide=$(expr 3000 \* ${file_high} / ${file_wide})
+        scale_high=$(expr 3000 \* ${file_high} / ${file_wide})
+    fi
+
+    # scale font size (64 pts looks good on 2048wx1638h images)
+    font_pnts=$(expr 64 \* $file_high / $scale_high)
+
+    # scale logo for other images sizes
+    logo_wide=$(identify -format %w "${watermark}")
+    logo_high=$(identify -format %h "${watermark}")
+    scaled_logo_wide=$(expr ${logo_wide} \* ${file_wide} / ${scale_wide})
+    scaled_logo_high=$(expr ${logo_high} \* ${file_high} / ${scale_high})
+
+    # scale padding, borders, shadow, logo placement
+    if [ ${dropshadow} = false ]; then
+        padded_high=$(expr 10 \* ${file_high} / ${scale_high})
+        padded_wide=$(expr 10 \* ${file_wide} / ${scale_wide})
+        shaded_area=$(expr 20 \* ${file_wide} / ${scale_wide})
+        border_high=$(expr 20 \* ${file_high} / ${scale_high})
+        border_wide=$(expr 20 \* ${file_wide} / ${scale_wide})
+        border="${padded_wide}x0"
+        toppad="0x${padded_high}"
+        shadow="100x${shaded_area}"
+        offset='+0+0'
+        scaled_logo_lift=$(expr 10 \* ${file_high} / ${scale_high})
+    else
+        # shift drop shadow layer down and right by 20 pixels, pad left/top edges w/ 40/30 pixels
+        padded_high=$(expr 30 \* ${file_high} / ${scale_high})
+        padded_wide=$(expr 40 \* ${file_wide} / ${scale_wide})
+        shaded_area=$(expr 20 \* ${file_wide} / ${scale_wide})
+        border_high=$(expr 20 \* ${file_high} / ${scale_high})
+        border_wide=$(expr 20 \* ${file_wide} / ${scale_wide})
+        border="${padded_wide}x0"
+        toppad="0x${padded_high}"
+        shadow="100x${shaded_area}"
+        offset="+${shaded_area}+${shaded_area}"
+        scaled_logo_lift=$(expr 30 \* ${file_high} / ${scale_high})
+    fi
+
+    # inset overlay logos from the nearest edge
+    if [ ${style} = overlay ]; then
+        case ${log_gravity} in
+            center)
+                logo_inset="+0+0"
+                ;;
+            west|east)
+                logo_inset="+${scaled_logo_lift}+0"
+                ;;
+            north|south)
+                logo_inset="+0+${scaled_logo_lift}"
+                ;;
+            *)
+                logo_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
+                ;;
+        esac
+    fi
+
+    # decorate image file
+    case ${style} in
+        text)
+            # convert source file into decorated target file
+            magick "${source}" \
+              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
+              \( +clone -background black -shadow ${shadow}${offset} \) \
+              +swap -background white -layers merge +repage \
+              -bordercolor white -border ${border_wide}x${border_high} -gravity north -background white -splice ${toppad} \
+              -bordercolor white -border ${border_wide}x${border_high} -gravity west -background white -splice ${border} \
+              -bordercolor white -border 20x20 -gravity south -background white -splice ${toppad} \
+              -background white -fill '#383838' -font 'Copperplate' -pointsize ${font_pnts} label:"${label1}" -gravity South -append \
+              -background white -fill '#383838' -font 'Copperplate' -pointsize ${font_pnts} label:"${label2}" -gravity South -append \
+              -bordercolor white -border 20x20 -gravity south -background white -splice ${toppad} \
+              "${target}"
+            ;;
+
+        logo)
+            # convert source file into decorated target file
+            magick "${source}" \
+              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
+              \( +clone -background black -shadow ${shadow}${offset} \) \
+              +swap -background white -layers merge +repage \
+              -bordercolor white -border ${border_wide}x${border_high} -gravity north -background white -splice ${toppad} \
+              -bordercolor white -border ${border_wide}x${border_high} -gravity west -background white -splice ${border} \
+              -bordercolor white -border 20x20 -gravity south -background white -splice 0x${scaled_logo_high} \
+              \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity south -geometry +0+${scaled_logo_lift} \) -composite \
+              -mattecolor white -frame ${border_wide}x${border_high} \
+              "${target}"
+            ;;
+
+        overlay)
+            # convert source file into decorated target file
+            magick "${source}" \
+              \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry ${logo_inset} \) -composite \
+              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
+              \( +clone -background black -shadow ${shadow}${offset} \) \
+              +swap -background white -layers merge +repage \
+              -bordercolor white -border ${border_wide}x${border_high} -gravity north -background white -splice ${toppad} \
+              -bordercolor white -border ${border_wide}x${border_high} -gravity west -background white -splice ${border} \
+              -mattecolor white -frame 20x20 \
+              "${target}"
+            ;;
+
+    esac
+
+done
