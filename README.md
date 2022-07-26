@@ -7,11 +7,14 @@ Magick Frames applies a decorative border and shadow around an image, and places
 Options for decorating the border of your image and applying text or a logo include:
 
 - shadow around all the edges or a drop shadow bottom right
-- add picture frame of 1-pixel black border + 10-pixels white border
-- place a two-row text label or an image-based logo below the image
-- place an image-based logo inside the image near a specified edge
+- add picture frame of 1-pixel black + 10-pixels white border
+- place a two-row text label inside or below below the image
+- place an image-based logo watermark inside or below the image
+- specify which edge or corner to place the text or logo image
 - set a default logo watermark file and label text inside the script
 - specify an alternate logo watermark file on the command line
+
+When no options are provided, the default behavior is to center the image on a shadowed background and place an image-based logo beneath the image, and to write the output to a separate file.
 
 # What Is Magick Frames
 
@@ -127,15 +130,20 @@ OPTIONS:
 
 -t | --text               specifies to use a two-line text logo underneath the image
 
--l | --logo               specifies to use an image file as a logo / watermark
-                          this is the default style
+-ot | --overlaytext       specifies to use a two-line text logo inside the image
 
--w=your_logo |            specifies the image file to use as the watermark logo that
---watermark=your_logo     that is placed on or below the image.
+-l | --logo               specifies to place an image-based logo underneath the image
+                          DEFAULT style when no options are specified
 
--g=placement |            places a logo watermark inside the image at the specified
---gravity=placement       edge location (gravity). The following are accepted values
-                          for placement. Logos are inset from their nearest edge(es).
+-ol | --overlaylogo       specifies to place an image-based logo inside the image
+
+-w=your_logo |            specifies the image-based logo to use as the watermark that
+--watermark=your_logo     that is placed below or inside the image.
+
+-g=placement |            specifies which inside edge of the image to place the logo
+--gravity=placement       or text. The following are accepted values for placement.
+                          Logo or text is inset from the specified edge or corner.
+                          DEFAULT edge is south/bottom.
 
                             +----------------------------------------------------+
                             | topleft               top                 topright |
