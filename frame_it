@@ -271,10 +271,10 @@ for filename in "$@" ; do
               +swap -background white -layers merge +repage \
               -bordercolor white -border ${border_wide}x${border_high} -gravity north -background white -splice ${toppad} \
               -bordercolor white -border ${border_wide}x${border_high} -gravity west -background white -splice ${border} \
-              -bordercolor white -border 20x20 -gravity south -background white -splice ${toppad} \
+              -bordercolor white -border 10x10 -gravity south -background white -splice ${toppad} \
               -background white -fill '#383838' -font 'Copperplate' -pointsize ${font_pnts} label:"${label1}" -gravity South -append \
               -background white -fill '#383838' -font 'Copperplate' -pointsize ${font_pnts} label:"${label2}" -gravity South -append \
-              -bordercolor white -border 20x20 -gravity south -background white -splice ${toppad} \
+              -bordercolor white -border 10x10 -gravity south -background white -splice ${toppad} \
               "${target}"
             ;;
 
