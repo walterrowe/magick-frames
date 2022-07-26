@@ -20,15 +20,20 @@
 #
 # -t | --text               specifies to use a two-line text logo underneath the image
 #
-# -l | --logo               specifies to use an image file as a logo / watermark
-#                           this is the default style
+# -ot | --overlaytext       specifies to use a two-line text logo inside the image
 #
-# -w=your_logo |            specifies the image file to use as the watermark logo that
-# --watermark=your_logo     that is placed on or below the image.
+# -l | --logo               specifies to place an image-based logo underneath the image
+#                           DEFAULT style when no options are specified
 #
-# -g=placement |            places a logo watermark inside the image at the specified
-# --gravity=placement       edge location (gravity). The following are accepted values
-#                           for placement. Logos are inset from their nearest edge(es).
+# -ol | --overlaylogo       specifies to place an image-based logo inside the image
+#
+# -w=your_logo |            specifies the image-based logo to use as the watermark that
+# --watermark=your_logo     that is placed below or inside the image.
+#
+# -g=placement |            specifies which inside edge of the image to place the logo
+# --gravity=placement       or text. The following are accepted values for placement.
+#                           Logo or text is inset from the specified edge or corner.
+#                           DEFAULT edge is south/bottom.
 #
 #                             +----------------------------------------------------+
 #                             | topleft               top                 topright |
@@ -63,7 +68,7 @@ usage()
 
 # allow specifying logo placement by common terms or imagemagick terms
 # e.g. a person can specify --bottom or --south and it is translated to -gravity south
-declare -A logo_gravity=(
+declare -A logo_gravity_opts=(
     [topleft]=northwest
     [top]=north
     [topright]=northeast
@@ -76,8 +81,8 @@ declare -A logo_gravity=(
 )
 
 # make an egrep expression for the keys and values
-logo_gravity_keys=$(echo ${(k)logo_gravity} | sed -e 's; ;|;g')
-logo_gravity_vals=$(echo ${(v)logo_gravity} | sed -e 's; ;|;g')
+logo_gravity_keys=$(echo ${(k)logo_gravity_opts} | sed -e 's; ;|;g')
+logo_gravity_vals=$(echo ${(v)logo_gravity_opts} | sed -e 's; ;|;g')
 
 
 # get name of script
@@ -96,6 +101,7 @@ dropshadow='false'
 picture='false'
 inner="0x0"
 outer="0x0"
+logo_gravity='south'
 
 # process command line options
 for opt in "$@"; do
@@ -119,8 +125,16 @@ for opt in "$@"; do
             style='text'
             shift
             ;;
+        -ot|--overlaytext)
+            style='overlay_text'
+            shift
+            ;;
         -l|--logo)
             style='logo'
+            shift
+            ;;
+        -ol|--overlaylogo)
+            style='overlay_logo'
             shift
             ;;
         -w=*|--watermark=*)
@@ -146,12 +160,11 @@ for opt in "$@"; do
             echo ${opt} | egrep -wq "${logo_gravity_keys}"
             if [ $? -eq 0 ]; then
                 # gravity specified as top, bottomleft, etc
-                logo_gravity="${logo_gravity[${opt}]}"
+                logo_gravity="${logo_gravity_opts[${opt}]}"
             else
                 # gravity specified as north, southwest, etc
                 logo_gravity=${opt}
             fi
-            style='overlay'
             shift
             ;;
         -*)
@@ -176,13 +189,13 @@ for filename in "$@" ; do
     eval filebase=$(basename "${filename}" .${filetype})
 
     # source file
-    source="${filename}"
+    eval source="${filename}"
 
     # target file
     if [ ${overwrite} = true ]; then
-        target="${source}"
+        eval target="${source}"
     else
-        target="${filepath}/${filebase}-frame.${filetype}"
+        eval target="${filepath}/${filebase}-frame.${filetype}"
     fi
 
     # extract image file width and height
@@ -244,19 +257,40 @@ for filename in "$@" ; do
     fi
 
     # inset overlay logos from the nearest edge
-    if [ ${style} = overlay ]; then
-        case ${log_gravity} in
+    if [[ ${style} = overlay_text ]] || [[ ${style} = overlay_logo ]]; then
+        case ${logo_gravity} in
+            north)
+                logo_inset="+0+${scaled_logo_lift}"
+                label1_inset="+0+${scaled_logo_lift}"
+                label2_inset="+0+$(expr ${font_pnts} + ${scaled_logo_lift})"
+                ;;
+            northwest|northeast)
+                logo_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
+                label1_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
+                label2_inset="+${scaled_logo_lift}+$(expr ${font_pnts} + ${scaled_logo_lift})"
+                ;;
             center)
                 logo_inset="+0+0"
+                label1_inset="+0-$(expr ${font_pnts} / 2)"
+                label2_inset="+0+$(expr ${font_pnts} / 2)"
                 ;;
             west|east)
                 logo_inset="+${scaled_logo_lift}+0"
+                label1_inset="+${scaled_logo_lift}-$(expr ${font_pnts} / 2)"
+                label2_inset="+${scaled_logo_lift}+$(expr ${font_pnts} / 2)"
                 ;;
-            north|south)
+            south)
                 logo_inset="+0+${scaled_logo_lift}"
+                label1_inset="+0+$(expr ${font_pnts} + ${scaled_logo_lift})"
+                label2_inset="+0+${scaled_logo_lift}"
+                ;;
+            southwest|southeast)
+                logo_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
+                label1_inset="+${scaled_logo_lift}+$(expr ${font_pnts} + ${scaled_logo_lift})"
+                label2_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
                 ;;
             *)
-                logo_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
+                echo "ERROR !!! WE SHOULD NEVER GET HERE !!!"
                 ;;
         esac
     fi
@@ -277,6 +311,20 @@ for filename in "$@" ; do
               "${target}"
             ;;
 
+        overlay_text)
+            # convert source file into decorated target file
+            magick "${source}" \
+              -background transparent -fill '#E0E0E0' -font 'Copperplate' -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} -geometry ${label1_inset} -composite \
+              -background transparent -fill '#E0E0E0' -font 'Copperplate' -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -geometry ${label2_inset} -composite \
+              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
+              \( +clone -background black -shadow ${shadow}${offset} \) \
+              +swap -background white -layers merge +repage \
+              -bordercolor white -border x${border_high} -gravity north -background white -splice ${toppad} \
+              -bordercolor white -border ${border_wide}x -gravity west -background white -splice ${border} \
+              -bordercolor white -border 20x20 -gravity south -background white -splice ${toppad} \
+              "${target}"
+            ;;
+
         logo)
             # convert source file into decorated target file
             magick "${source}" \
@@ -291,7 +339,7 @@ for filename in "$@" ; do
               "${target}"
             ;;
 
-        overlay)
+        overlay_logo)
             # convert source file into decorated target file
             magick "${source}" \
               \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry ${logo_inset} \) -composite \
