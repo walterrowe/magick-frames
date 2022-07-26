@@ -11,9 +11,9 @@
   WARNING: the default configuration below OVERWRITES the source files sent to it.
 
   Modifying The Frame Style:
-  * Look for the variable "frame_it_options" to change the command line options
+  * Look below for the variable "frame_it_options" to change the command line options
   * Look in the frame_it shell script to see the options available styling your images
-  * Remove the "--no-keep" option to create NEW files with "-frame" inserted before extension.
+  * Remove the "-o" option to create NEW files with "-frame" inserted before extension.
     * example: my_image.jpg -> my_image-frame.jpg
 
   You can set different options and export this as different applications. I have three
@@ -40,62 +40,57 @@
 *)
 
 (* TO FILTER FOR IMAGE FILES, LOOK FOR QUICKTIME SUPPORTED IMAGE FORMATS *)
-property type_list : {"JPEG", "TIFF", "PNGf", "8BPS", "BMPf", "GIFf", "PDF ", "PICT"}
-property extension_list : {"jpg", "jpeg", "tif", "tiff", "png", "psd", "bmp", "gif", "jp2", "pdf", "pict", "pct", "sgi", "tga"}
-property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.photoshop-image", "com.microsoft.bmp", "com.compuserve.gif", "public.jpeg-2000", "com.adobe.pdf", "com.apple.pict", "com.sgi.sgi-image", "com.truevision.tga-image"}
+property type_list : { "JPEG", "TIFF", "PNGf", "8BPS", "BMPf", "GIFf" }
+property extension_list : { "jpg", "jpeg", "tif", "tiff", "png", "psd", "bmp", "gif" }
+property typeIDs_list : { "public.jpeg", "public.tiff", "public.png", "com.adobe.photoshop-image", "com.microsoft.bmp", "com.compuserve.gif", "com.adobe.pdf", "com.apple.pict" }
 
 (*
-  FRAME_IT_OPTIONS: options for the frame_it script
-
-  -d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
-                            the default that centers the image in an all-edges shadow
-
-  -o | --overwrite          specifies to overwrite the original files vs the default
-                            of keeping them and writing new files with "-frame" inserted
-                            before the suffix
-
-  -p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
-
-  -t | --text               specifies to use a two-line text logo underneath the image
-
-  -ot | --overlaytext       specifies to use a two-line text logo inside the image
-
-  -l | --logo               specifies to place an image-based logo underneath the image
-                            DEFAULT style when no options are specified
-
-  -ol | --overlaylogo       specifies to place an image-based logo inside the image
-
-  -w=your_logo |            specifies the image-based logo to use as the watermark that
-  --watermark=your_logo     that is placed below or inside the image.
-
-  -g=placement |            specifies which inside edge or corner of the image the logo
-  --gravity=placement       or text should be nearest. The following are accepted values.
-                            The logo or text is inset from the specified edge or corner.
-                            DEFAULT edge is south/bottom.
-
-                            +----------------------------------------------------+
-                            | topleft               top                 topright |
-                            |                                                    |
-                            | left                 middle                  right |
-                            |                                                    |
-                            | bottomleft           bottom            bottomright |
-                            +----------------------------------------------------+
-
-                            +----------------------------------------------------+
-                            | northwest            north               northeast |
-                            |                                                    |
-                            | west                 center                   east |
-                            |                                                    |
-                            | southwest            south               southeast |
-                            +----------------------------------------------------+
-
-  examples:
-  property frame_it_options : "-o -t"            (* overwrite source file, place text-based labels BELOW the image *)
-  property frame_it_options : "-o -g=bottom"    (* overwrite source, place image-based logo bottom center ON image *)
-  property frame_it_options : "-l"              (* don't overwrite source, place image-based logo BELOW the image *)
-
-  default: -o (overwrite original files), -l (center logo below image), -p (add a thin picture frame)
+  -- FRAME_IT_OPTIONS: options for the frame_it script
+  --
+  -- -d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
+  --                           the default that centers the image in an all-edges shadow
+  --
+  -- -o | --overwrite          specifies to overwrite the original files vs the default
+  --                           of keeping them and writing new files with "-frame" inserted
+  --                           before the suffix
+  --
+  -- -p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
+  --
+  -- -t | --text               specifies to use a two-line text logo underneath the image
+  --
+  -- -ot | --overlaytext       specifies to use a two-line text logo inside the image
+  --
+  -- -l | --logo               specifies to place an image-based logo underneath the image
+  --                           DEFAULT style when no options are specified
+  --
+  -- -ol | --overlaylogo       specifies to place an image-based logo inside the image
+  --
+  -- -w=your_logo |            specifies the image-based logo to use as the watermark that
+  -- --watermark=your_logo     that is placed below or inside the image.
+  --
+  -- -g=placement |            specifies which inside edge or corner of the image the logo
+  -- --gravity=placement       or text should be nearest. The following are accepted values.
+  --                           The logo or text is inset from the specified edge or corner.
+  --                           DEFAULT edge is south/bottom.
+  --
+  --                           +----------------------------------------------------+
+  --                           | topleft               top                 topright |
+  --                           |                                                    |
+  --                           | left                 middle                  right |
+  --                           |                                                    |
+  --                           | bottomleft           bottom            bottomright |
+  --                           +----------------------------------------------------+
+  --
+  --                           +----------------------------------------------------+
+  --                           | northwest            north               northeast |
+  --                           |                                                    |
+  --                           | west                 center                   east |
+  --                           |                                                    |
+  --                           | southwest            south               southeast |
+  --                           +----------------------------------------------------+
 *)
+
+-- DEFAULT: -o (overwrite original files), -l (center logo below image), -p (add a thin picture frame)
 property frame_it_options : "-o -l -p"
 
 on open these_items
@@ -103,47 +98,46 @@ on open these_items
 		
 		set item_info to info for this_item
 		
-		(* get the name of the current file we are processing *)
+		-- get the name of the current file we are processing
 		try
 			set this_filename to name of item_info
 		on error
 			set this_filename to ""
 		end try
 		
-		(* get the extension of the current file we are processing *)
+		-- get the extension of the current file we are processing
 		try
 			set this_extension to name extension of item_info
 		on error
 			set this_extension to ""
 		end try
 		
-		(* get the type of the current file we are processing *)
+		-- get the type of the current file we are processing
 		try
 			set this_filetype to file type of item_info
 		on error
 			set this_filetype to ""
 		end try
 		
-		(* get the type ID of the current file we are processing *)
+		-- get the type ID of the current file we are processing
 		try
 			set this_typeID to type identifier of item_info
 		on error
 			set this_typeID to ""
 		end try
 		
-		(* get the POSIX path of the current file we are processing *)
+		-- get the POSIX path of the current file we are processing
 		set this_path to quoted form of POSIX path of this_item
 		
 		
-		(* build the frame.sh command line *)
+		-- build the frame.sh command line
 		set frame_it to "eval $(/usr/libexec/path_helper -s); frame_it " & frame_it_options & " " & this_path
 		
-		(* only process if we support the image type *)
+		-- only process if we support the image type
 		if ((this_filetype is in type_list) or (this_extension is in extension_list) or (this_typeID is in typeIDs_list)) then
+			-- run frame.sh on the named file
 			try
-				(* run frame.sh on the named file  *)
 				do shell script frame_it
-				
 			on error errStr number errorNumber
 				display dialog "Droplet ERROR: " & errStr & ": " & (errorNumber as text) & "on file " & this_filename
 			end try
