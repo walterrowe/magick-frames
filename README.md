@@ -14,8 +14,6 @@ Options for decorating the border of your image and applying text or a logo incl
 - set a default logo watermark file and label text inside the script
 - specify an alternate logo watermark file on the command line
 
-When no options are provided, the default behavior is to center the image on a shadowed background and place an image-based logo beneath the image, and to write the output to a separate file.
-
 # What Is Magick Frames
 
 Magick Frames is a combination of a macOS/Linux shell script [frame_it](frame_it) and a macOS AppleScript [frame_it.applescript](frame_it.applescript) Droplet. The frame_it shell script uses the [ImageMagick](https://imagemagick.org/) image manipulation package to apply a professional looking decoration to a selection of image files.
@@ -114,6 +112,8 @@ The [frame_it](frame_it) shell script also can be used from the command line on 
 
 Place the [frame_it](frame_it) shell script in /usr/local/bin and run it with no options to see a usage message showing all of the available styling options.
 
+DEFAULTS: When no options are provided, the default behavior is to center the image over a shadowed background, place an image-based logo beneath the image, and write the output to a separate file.
+
 ```text
 usage: frame_it [ OPTIONS ] image [ .. ]
 
@@ -140,9 +140,9 @@ OPTIONS:
 -w=your_logo |            specifies the image-based logo to use as the watermark that
 --watermark=your_logo     that is placed below or inside the image.
 
--g=placement |            specifies which inside edge of the image to place the logo
---gravity=placement       or text. The following are accepted values for placement.
-                          Logo or text is inset from the specified edge or corner.
+-g=placement |            specifies which inside edge or corner of the image the logo
+--gravity=placement       or text should be nearest. The following are accepted values.
+                          The logo or text is inset from the specified edge or corner.
                           DEFAULT edge is south/bottom.
 
                             +----------------------------------------------------+
