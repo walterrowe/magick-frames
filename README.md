@@ -110,9 +110,14 @@ The frame_it shell script options you specified in `frame_it_options` in the Dro
 
 The [frame_it](frame_it) shell script also can be used from the command line on macOS and Linux if you are comfortable with that.
 
-Place the [frame_it](frame_it) shell script in /usr/local/bin and run it with no options to see a usage message showing all of the available styling options.
+DEFAULTS: When no options are provided, the default behavior is:
 
-DEFAULTS: When no options are provided, the default behavior is to center the image over a shadowed background, place an image-based logo beneath the image, and write the output to a separate file.
+- center the image over a shadowed background
+- do not apply a picture frame to the image
+- place an image-based logo beneath the image
+- write the decorated output to a separate file
+
+Place the [frame_it](frame_it) shell script in /usr/local/bin and run it with no options to see a usage message showing all of the available styling options.
 
 ```text
 usage: frame_it [ OPTIONS ] image [ .. ]
