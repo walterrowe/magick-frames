@@ -13,9 +13,11 @@ Options for decorating the border of your image and applying text or a logo incl
 
 # What Is Magick Frames
 
-magick-frames is a combination of a macOS/Linux shell script [frame_it](frame_it) and a macOS AppleScript [frame_it.applescript](frame_it.applescript) wrapper. The frame_it shell script uses the ImageMagick image manipulation package to apply a professional looking decoration to an image file.
+Magick Frames is a combination of a macOS/Linux shell script [frame_it](frame_it) and a macOS AppleScript [frame_it.applescript](frame_it.applescript) Droplet. The frame_it shell script uses the [ImageMagick](https://imagemagick.org/) image manipulation package to apply a professional looking decoration to a selection of image files.
 
-By default the `frame_it` shell script preserves your source images and creates new files for the decorated versions. The new files will have `-frame` inserted into their name before the file extension. For example, a source image named `my-image.jpg` will result in an output file named `my-image-frame.jpg`. Use command line option `-o` or `--overwrite` to tell the script to write the output back to the source image file.
+By default the `frame_it` shell script preserves your input files and creates new output files as the decorated versions. The text `-frame` is inserted into the output filenames before the extension. For example, an input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is written to the same folder as the input file.
+
+You can choose instead to overwrite your input file by providing the option `-o` or `--overwrite`.
 
 The AppleScript app can be used as a stand alone macOS Droplet where you drag-n-drop files selected in Finder onto the Droplet and it decorates them, or as an "Open With" app in export settings of your favorite image editing tool such as Capture One Pro.
 
@@ -39,7 +41,7 @@ The frame_it shell script offers numerous options to tailor the style of the dec
 
 # Installation
 
-Installation and use of this package requires saving AppleScript scripts as macOS Droplets, installing the open source ImageMagick software using a tool such as [Home Brew](https://brew.sh/), and using a macOS Terminal or Linux shell window to copy a script to your system's /usr/local/bin directory.
+Installation and use of this package requires saving AppleScript scripts as macOS Droplets, installing the open source [ImageMagick](https://imagemagick.org/) software using a tool such as [Home Brew](https://brew.sh/), and using a macOS Terminal or Linux shell window to copy a script to your system's /usr/local/bin directory.
 
 - Install the [ImageMagick](https://imagemagick.org/) software package on your system (e.g. `brew install imagemagick`)
 - Edit [frame_it](frame_it) shell script to set default label text (`label1`, `label2`) and logo file (`watermark`)
