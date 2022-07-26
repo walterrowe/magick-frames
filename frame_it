@@ -30,9 +30,9 @@
 # -w=your_logo |            specifies the image-based logo to use as the watermark that
 # --watermark=your_logo     that is placed below or inside the image.
 #
-# -g=placement |            specifies which inside edge of the image to place the logo
-# --gravity=placement       or text. The following are accepted values for placement.
-#                           Logo or text is inset from the specified edge or corner.
+# -g=placement |            specifies which inside edge or corner of the image the logo
+# --gravity=placement       or text should be nearest. The following are accepted values.
+#                           The logo or text is inset from the specified edge or corner.
 #                           DEFAULT edge is south/bottom.
 #
 #                             +----------------------------------------------------+
