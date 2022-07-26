@@ -269,12 +269,11 @@ for filename in "$@" ; do
               -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
               \( +clone -background black -shadow ${shadow}${offset} \) \
               +swap -background white -layers merge +repage \
-              -bordercolor white -border ${border_wide}x${border_high} -gravity north -background white -splice ${toppad} \
-              -bordercolor white -border ${border_wide}x${border_high} -gravity west -background white -splice ${border} \
-              -bordercolor white -border 10x10 -gravity south -background white -splice ${toppad} \
+              -bordercolor white -border x${border_high} -gravity north -background white -splice ${toppad} \
+              -bordercolor white -border ${border_wide}x -gravity west -background white -splice ${border} \
               -background white -fill '#383838' -font 'Copperplate' -pointsize ${font_pnts} label:"${label1}" -gravity South -append \
               -background white -fill '#383838' -font 'Copperplate' -pointsize ${font_pnts} label:"${label2}" -gravity South -append \
-              -bordercolor white -border 10x10 -gravity south -background white -splice ${toppad} \
+              -bordercolor white -border 20x20 -gravity south -background white -splice ${toppad} \
               "${target}"
             ;;
 
@@ -284,8 +283,8 @@ for filename in "$@" ; do
               -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
               \( +clone -background black -shadow ${shadow}${offset} \) \
               +swap -background white -layers merge +repage \
-              -bordercolor white -border ${border_wide}x${border_high} -gravity north -background white -splice ${toppad} \
-              -bordercolor white -border ${border_wide}x${border_high} -gravity west -background white -splice ${border} \
+              -bordercolor white -border x${border_high} -gravity north -background white -splice ${toppad} \
+              -bordercolor white -border ${border_wide}x -gravity west -background white -splice ${border} \
               -bordercolor white -border 20x20 -gravity south -background white -splice 0x${scaled_logo_high} \
               \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity south -geometry +0+${scaled_logo_lift} \) -composite \
               -mattecolor white -frame ${border_wide}x${border_high} \
@@ -299,8 +298,8 @@ for filename in "$@" ; do
               -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
               \( +clone -background black -shadow ${shadow}${offset} \) \
               +swap -background white -layers merge +repage \
-              -bordercolor white -border ${border_wide}x${border_high} -gravity north -background white -splice ${toppad} \
-              -bordercolor white -border ${border_wide}x${border_high} -gravity west -background white -splice ${border} \
+              -bordercolor white -border x${border_high} -gravity north -background white -splice ${toppad} \
+              -bordercolor white -border ${border_wide}x -gravity west -background white -splice ${border} \
               -mattecolor white -frame 20x20 \
               "${target}"
             ;;
