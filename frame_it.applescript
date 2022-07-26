@@ -54,58 +54,58 @@ property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.
 
   default: -o (overwrite original files), -l (center logo below image), -picture (add a thin picture frame)
 *)
-property frame_it_options : "-o -l -p"
+property frame_it_options : "-o -g=southeast -w=~/Pictures/watermark_white.png"
 
 on open these_items
-  repeat with this_item in these_items
-
-    set item_info to info for this_item
-
-    (* get the name of the current file we are processing *)
-    try
-      set this_filename to name of item_info
-    on error
-      set this_filename to ""
-    end try
-
-    (* get the extension of the current file we are processing *)
-    try
-      set this_extension to name extension of item_info
-    on error
-      set this_extension to ""
-    end try
-
-    (* get the type of the current file we are processing *)
-    try
-      set this_filetype to file type of item_info
-    on error
-      set this_filetype to ""
-    end try
-
-    (* get the type ID of the current file we are processing *)
-    try
-      set this_typeID to type identifier of item_info
-    on error
-      set this_typeID to ""
-    end try
-
-    (* get the POSIX path of the current file we are processing *)
-    set this_path to quoted form of POSIX path of this_item
-
-
-    (* build the frame.sh command line *)
-    set frame_it to "eval $(/usr/libexec/path_helper -s); frame_it " & frame_it_options & " " & this_path
-
-    (* only process if we support the image type *)
-    if ((this_filetype is in type_list) or (this_extension is in extension_list) or (this_typeID is in typeIDs_list)) then
-      try
-        (* run frame.sh on the named file  *)
-        do shell script frame_it
-
-      on error errStr number errorNumber
-        display dialog "Droplet ERROR: " & errStr & ": " & (errorNumber as text) & "on file " & this_filename
-      end try
-
-    end if
-  end repeat
+	repeat with this_item in these_items
+		
+		set item_info to info for this_item
+		
+		(* get the name of the current file we are processing *)
+		try
+			set this_filename to name of item_info
+		on error
+			set this_filename to ""
+		end try
+		
+		(* get the extension of the current file we are processing *)
+		try
+			set this_extension to name extension of item_info
+		on error
+			set this_extension to ""
+		end try
+		
+		(* get the type of the current file we are processing *)
+		try
+			set this_filetype to file type of item_info
+		on error
+			set this_filetype to ""
+		end try
+		
+		(* get the type ID of the current file we are processing *)
+		try
+			set this_typeID to type identifier of item_info
+		on error
+			set this_typeID to ""
+		end try
+		
+		(* get the POSIX path of the current file we are processing *)
+		set this_path to quoted form of POSIX path of this_item
+		
+		
+		(* build the frame.sh command line *)
+		set frame_it to "eval $(/usr/libexec/path_helper -s); frame_it " & frame_it_options & " " & this_path
+		
+		(* only process if we support the image type *)
+		if ((this_filetype is in type_list) or (this_extension is in extension_list) or (this_typeID is in typeIDs_list)) then
+			try
+				(* run frame.sh on the named file  *)
+				do shell script frame_it
+				
+			on error errStr number errorNumber
+				display dialog "Droplet ERROR: " & errStr & ": " & (errorNumber as text) & "on file " & this_filename
+			end try
+			
+		end if
+	end repeat
 end open
