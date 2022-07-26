@@ -1,14 +1,17 @@
-# magick-frames
+# Magick Frames
 
-magick frames applies a decorative border and shadow effect, and a logo or text to image files. The logo or text can appear below the image. A logo can be applied on top of the image at a specified edge. Options for decorating the image include:
+Magick Frames applies a decorative border and shadow around an image, and places logo or text below the image or places a logo inside the image at a specified edge. One of the significant features of Magick Frames is that it scales and positions your logo or text automatically based on your image dimensions, aspect ratio, and orientation. Square, vertical, and horizontal images all look as expected. The script has been tested on images as small as 300 pixels and as large as full size 45MP images with over 8000 pixels on the long edge.
 
-- shadow on all edges or drop shadow bottom right
-- add a 1-pixel black border + 10-pixel white border frame
-- place a text or image-based logo below the image
-- place an image-based logo on the image at a designated location
-- set a default watermark file and label text inside the script
-- specify an alternate watermark file on the command line
-- creates a white matte all the way around the final image
+Options for decorating the border of your image and applying text or a logo include:
+
+- shadow around all the edges or a drop shadow bottom right
+- add picture frame of 1-pixel black border + 10-pixels white border
+- place a two-row text label or an image-based logo below the image
+- place an image-based logo inside the image near a specified edge
+- set a default logo watermark file and label text inside the script
+- specify an alternate logo watermark file on the command line
+
+# What Is Magick Frames
 
 magick-frames is a combination of a macOS/Linux shell script [frame_it](frame_it) and a macOS AppleScript [frame_it.applescript](frame_it.applescript) wrapper. The frame_it shell script uses the ImageMagick image manipulation package to apply a professional looking decoration to an image file.
 
@@ -126,24 +129,25 @@ OPTIONS:
 -w=your_logo |            specifies the image file to use as the watermark logo that
 --watermark=your_logo     that is placed on or below the image.
 
--g=placement |            for logo watermarks this specifies to overlay the watermark
---gravity=placement       on the image rather than below, and indicates where on the
-                          image the logo / watermark should be placed.
+-g=placement |            places a logo watermark inside the image at the specified
+--gravity=placement       edge location (gravity). The following are accepted values
+                          for placement. Logos are inset from their nearest edge(es).
 
-                          example:
-                              % frame_it --bottomright my_image.jpg
-                              % frame_it --southeast my_image.jpg
+                            +----------------------------------------------------+
+                            | topleft               top                 topright |
+                            |                                                    |
+                            | left                 middle                  right |
+                            |                                                    |
+                            | bottomleft           bottom            bottomright |
+                            +----------------------------------------------------+
 
-                          would overlay the logo on the image, centered on the bottom edge.
-
-                          topleft             top                 topright
-                          left                middle              right
-                          bottomleft          bottom              bottomright
-
-                          northwest           north               northeast
-                          west                center              east
-                          southwest           south               southeast
-
+                            +----------------------------------------------------+
+                            | northwest            north               northeast |
+                            |                                                    |
+                            | west                 center                   east |
+                            |                                                    |
+                            | southwest            south               southeast |
+                            +----------------------------------------------------+
 ```
 
 # Recommendation

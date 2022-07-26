@@ -26,23 +26,25 @@
 # -w=your_logo |            specifies the image file to use as the watermark logo that
 # --watermark=your_logo     that is placed on or below the image.
 #
-# -g=placement |            for logo watermarks this specifies to overlay the watermark
-# --gravity=placement       on the image rather than below, and indicates where on the
-#                           image the logo / watermark should be placed.
+# -g=placement |            places a logo watermark inside the image at the specified
+# --gravity=placement       edge location (gravity). The following are accepted values
+#                           for placement. Logos are inset from their nearest edge(es).
 #
-#                           example:
-#                               % frame_it --bottomright my_image.jpg
-#                               % frame_it --southeast my_image.jpg
+#                             +----------------------------------------------------+
+#                             | topleft               top                 topright |
+#                             |                                                    |
+#                             | left                 middle                  right |
+#                             |                                                    |
+#                             | bottomleft           bottom            bottomright |
+#                             +----------------------------------------------------+
 #
-#                           would overlay the logo on the image, centered on the bottom edge.
-#
-#                           topleft             top                 topright
-#                           left                middle              right
-#                           bottomleft          bottom              bottomright
-#
-#                           northwest           north               northeast
-#                           west                center              east
-#                           southwest           south               southeast
+#                             +----------------------------------------------------+
+#                             | northwest            north               northeast |
+#                             |                                                    |
+#                             | west                 center                   east |
+#                             |                                                    |
+#                             | southwest            south               southeast |
+#                             +----------------------------------------------------+
 #
 ###
 
@@ -51,7 +53,7 @@ label1="W  A  L  T  E  R     R  O  W  E     P  H  O  T  O  G  R  A  P  H  Y"
 label2="w w w . w a l t e r r o w e . c o m"
 
 # default logo watermark file - graphic watermark (my logo watermark is 900wx250h pixels w/ transparent background)
-watermark=~/Pictures/watermark.png
+watermark=~/Pictures/watermark_gray.png
 
 # usage
 usage()
