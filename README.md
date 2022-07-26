@@ -138,7 +138,7 @@ OPTIONS:
 
 # Recommendation
 
-Make test copies of output files and use the shell script from the command line to experiment with how different styling options look. This will help you determine which options you want to use in your Dropletlication(s).
+Make test copies of output files and use the shell script from the command line to experiment with how different styling options look. This will help you determine which options you want to use in your Droplet(s).
 
 # Origins
 
