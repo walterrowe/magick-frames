@@ -1,5 +1,15 @@
 # magick-frames
 
+magick frames applies a decorative border and shadow effect, and a logo or text to image files. The logo or text can appear below the image. A logo can be applied on top of the image at a specified edge. Options for decorating the image include:
+
+- shadow on all edges or drop shadow bottom right
+- add a 1-pixel black border + 10-pixel white border frame
+- place a text or image-based logo below the image
+- place an image-based logo on the image at a designated location
+- set a default watermark file and label text inside the script
+- specify an alternate watermark file on the command line
+- creates a white matte all the way around the final image
+
 magick-frames is a combination of a macOS/Linux shell script [frame_it](frame_it) and a macOS AppleScript [frame_it.applescript](frame_it.applescript) wrapper. The frame_it shell script uses the ImageMagick image manipulation package to apply a professional looking decoration to an image file.
 
 By default the `frame_it` shell script preserves your source images and creates new files for the decorated versions. The new files will have `-frame` inserted into their name before the file extension. For example, a source image named `my-image.jpg` will result in an output file named `my-image-frame.jpg`. Use command line option `-o` or `--overwrite` to tell the script to write the output back to the source image file.
