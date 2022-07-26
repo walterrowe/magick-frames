@@ -47,14 +47,56 @@ property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.
 (*
   FRAME_IT_OPTIONS: options for the frame_it script
 
+  -d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
+                            the default that centers the image in an all-edges shadow
+
+  -o | --overwrite          specifies to overwrite the original files vs the default
+                            of keeping them and writing new files with "-frame" inserted
+                            before the suffix
+
+  -p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
+
+  -t | --text               specifies to use a two-line text logo underneath the image
+
+  -ot | --overlaytext       specifies to use a two-line text logo inside the image
+
+  -l | --logo               specifies to place an image-based logo underneath the image
+                            DEFAULT style when no options are specified
+
+  -ol | --overlaylogo       specifies to place an image-based logo inside the image
+
+  -w=your_logo |            specifies the image-based logo to use as the watermark that
+  --watermark=your_logo     that is placed below or inside the image.
+
+  -g=placement |            specifies which inside edge or corner of the image the logo
+  --gravity=placement       or text should be nearest. The following are accepted values.
+                            The logo or text is inset from the specified edge or corner.
+                            DEFAULT edge is south/bottom.
+
+                            +----------------------------------------------------+
+                            | topleft               top                 topright |
+                            |                                                    |
+                            | left                 middle                  right |
+                            |                                                    |
+                            | bottomleft           bottom            bottomright |
+                            +----------------------------------------------------+
+
+                            +----------------------------------------------------+
+                            | northwest            north               northeast |
+                            |                                                    |
+                            | west                 center                   east |
+                            |                                                    |
+                            | southwest            south               southeast |
+                            +----------------------------------------------------+
+
   examples:
   property frame_it_options : "-o -t"            (* overwrite source file, place text-based labels BELOW the image *)
   property frame_it_options : "-o -g=bottom"    (* overwrite source, place image-based logo bottom center ON image *)
   property frame_it_options : "-l"              (* don't overwrite source, place image-based logo BELOW the image *)
 
-  default: -o (overwrite original files), -l (center logo below image), -picture (add a thin picture frame)
+  default: -o (overwrite original files), -l (center logo below image), -p (add a thin picture frame)
 *)
-property frame_it_options : "-o -g=southeast -w=~/Pictures/watermark_white.png"
+property frame_it_options : "-o -l -p"
 
 on open these_items
 	repeat with this_item in these_items
