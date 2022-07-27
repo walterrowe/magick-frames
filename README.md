@@ -11,7 +11,9 @@ Options for decorating the border of your image and applying text or a logo incl
 - apply a two-row text-based label or image-based logo to the image
 - place the text label or logo either inside or below the image
 - specify which inside edge or corner to place the text or logo image
-- set a default logo watermark file and label text inside the script
+- specify the color of the background to use for the output file
+- specify the color of the text-based label text for the output file
+- set a default logo file and two-row label text inside the script
 - specify an alternate logo watermark file on the command line
 
 # What Is Magick Frames
@@ -138,10 +140,16 @@ OPTIONS:
 
 -ot | --overlaytext       specifies to use a two-line text logo inside the image
 
+-tc=color |               specifies the color of the two-line text logo
+--textcolor=color         default #383838 below image, #E0E0E0 inside image
+
 -l | --logo               specifies to place an image-based logo underneath the image
                           DEFAULT style when no options are specified
 
 -ol | --overlaylogo       specifies to place an image-based logo inside the image
+
+-mc=color |               specifies the color of the matte background (default white)
+--mattecolor=color
 
 -w=your_logo |            specifies the image-based logo to use as the watermark that
 --watermark=your_logo     that is placed below or inside the image.

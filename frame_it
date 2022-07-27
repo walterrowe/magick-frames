@@ -21,10 +21,16 @@
 #
 # -ot | --overlaytext       specifies to use a two-line text logo inside the image
 #
+# -tc=color |               specifies the color of the two-line text logo
+# --textcolor=color         default #383838 below image, #E0E0E0 inside image
+#
 # -l | --logo               specifies to place an image-based logo underneath the image
 #                           DEFAULT style when no options are specified
 #
 # -ol | --overlaylogo       specifies to place an image-based logo inside the image
+#
+# -mc=color |               specifies the color of the matte background (default white)
+# --mattecolor=color
 #
 # -w=your_logo |            specifies the image-based logo to use as the watermark that
 # --watermark=your_logo     that is placed below or inside the image.
@@ -108,6 +114,9 @@ picture='false'
 inner="0x0"
 outer="0x0"
 logo_gravity='south'
+mattecolor='white'
+textcolor='#383838'
+overlaytextcolor='#E0E0E0'
 
 # process command line options
 for opt in "$@"; do
@@ -131,6 +140,12 @@ for opt in "$@"; do
             style='text'
             shift
             ;;
+        -tc=*|--textcolor=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            textcolor="${opt}"
+            overlaytextcolor="${opt}"
+            shift
+            ;;
         -ot|--overlaytext)
             style='overlay_text'
             shift
@@ -141,6 +156,11 @@ for opt in "$@"; do
             ;;
         -ol|--overlaylogo)
             style='overlay_logo'
+            shift
+            ;;
+        -mc=*|--mattecolor=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            mattecolor="${opt}"
             shift
             ;;
         -w=*|--watermark=*)
@@ -307,26 +327,26 @@ for filename in "$@" ; do
             magick "${source}" \
               -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
               \( +clone -background black -shadow ${shadow}${offset} \) \
-              +swap -background white -layers merge +repage \
-              -bordercolor white -border x${border_high} -gravity north -background white -splice ${toppad} \
-              -bordercolor white -border ${border_wide}x -gravity west -background white -splice ${border} \
-              -background white -fill '#383838' -font 'Copperplate' -pointsize ${font_pnts} label:"${label1}" -gravity South -append \
-              -background white -fill '#383838' -font 'Copperplate' -pointsize ${font_pnts} label:"${label2}" -gravity South -append \
-              -bordercolor white -border 20x20 -gravity south -background white -splice ${toppad} \
+              +swap -background ${mattecolor} -layers merge +repage \
+              -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
+              -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
+              -background ${mattecolor} -fill "${textcolor}" -font 'Copperplate' -pointsize ${font_pnts} label:"${label1}" -gravity South -append \
+              -background ${mattecolor} -fill "${textcolor}" -font 'Copperplate' -pointsize ${font_pnts} label:"${label2}" -gravity South -append \
+              -bordercolor ${mattecolor} -border 20x20 -gravity south -background ${mattecolor} -splice ${toppad} \
               "${target}"
             ;;
 
         overlay_text)
             # convert source file into decorated target file
             magick "${source}" \
-              -background transparent -fill '#E0E0E0' -font 'Copperplate' -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} -geometry ${label1_inset} -composite \
-              -background transparent -fill '#E0E0E0' -font 'Copperplate' -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -geometry ${label2_inset} -composite \
+              -background transparent -fill "${overlaytextcolor}" -font 'Copperplate' -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} -geometry ${label1_inset} -composite \
+              -background transparent -fill "${overlaytextcolor}" -font 'Copperplate' -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -geometry ${label2_inset} -composite \
               -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
               \( +clone -background black -shadow ${shadow}${offset} \) \
-              +swap -background white -layers merge +repage \
-              -bordercolor white -border x${border_high} -gravity north -background white -splice ${toppad} \
-              -bordercolor white -border ${border_wide}x -gravity west -background white -splice ${border} \
-              -bordercolor white -border 20x20 -gravity south -background white -splice ${toppad} \
+              +swap -background ${mattecolor} -layers merge +repage \
+              -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
+              -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
+              -bordercolor ${mattecolor} -border 20x20 -gravity south -background ${mattecolor} -splice ${toppad} \
               "${target}"
             ;;
 
@@ -335,12 +355,12 @@ for filename in "$@" ; do
             magick "${source}" \
               -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
               \( +clone -background black -shadow ${shadow}${offset} \) \
-              +swap -background white -layers merge +repage \
-              -bordercolor white -border x${border_high} -gravity north -background white -splice ${toppad} \
-              -bordercolor white -border ${border_wide}x -gravity west -background white -splice ${border} \
-              -bordercolor white -border 20x20 -gravity south -background white -splice 0x${scaled_logo_high} \
+              +swap -background ${mattecolor} -layers merge +repage \
+              -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
+              -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
+              -bordercolor ${mattecolor} -border 20x20 -gravity south -background ${mattecolor} -splice 0x${scaled_logo_high} \
               \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity south -geometry +0+${scaled_logo_lift} \) -composite \
-              -mattecolor white -frame ${border_wide}x${border_high} \
+              -mattecolor ${mattecolor} -frame ${border_wide}x${border_high} \
               "${target}"
             ;;
 
@@ -350,10 +370,10 @@ for filename in "$@" ; do
               \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry ${logo_inset} \) -composite \
               -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
               \( +clone -background black -shadow ${shadow}${offset} \) \
-              +swap -background white -layers merge +repage \
-              -bordercolor white -border x${border_high} -gravity north -background white -splice ${toppad} \
-              -bordercolor white -border ${border_wide}x -gravity west -background white -splice ${border} \
-              -mattecolor white -frame 20x20 \
+              +swap -background ${mattecolor} -layers merge +repage \
+              -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
+              -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
+              -mattecolor ${mattecolor} -frame 20x20 \
               "${target}"
             ;;
 
