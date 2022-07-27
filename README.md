@@ -8,9 +8,9 @@ Options for decorating the border of your image and applying text or a logo incl
 
 - shadow around all the edges or a drop shadow bottom right
 - add picture frame of 1-pixel black + 10-pixels white border
-- place a two-row text label inside or below below the image
-- place an image-based logo watermark inside or below the image
-- specify which edge or corner to place the text or logo image
+- apply a two-row text-based label or image-based logo to the image
+- place the text label or logo either inside or below the image
+- specify which inside edge or corner to place the text or logo image
 - set a default logo watermark file and label text inside the script
 - specify an alternate logo watermark file on the command line
 
