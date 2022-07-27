@@ -67,18 +67,19 @@ NOTE: These are the default `frame_it_options` distributed with the package.
 
 Look at the comments inside the frame_it AppleScript script to see where to change the options passed to the frame_it shell script. Look inside the frame_it shell script to see all of the available options. Some other example configurations are:
 
-- set `frame_it_options` to `—o -l —p` and save as application frame\_it
+- set `frame_it_options` to `—o -l —p` and save as application logo\_below
     - `-o` overwrites the named source file
     - `-l` applies a logo below the image
     - `-p` adds a thin surrounding picture frame
-- set `frame_it_options` to `—o —t —p` and save as application label\_it
+- set `frame_it_options` to `—o —t —p` and save as application text\_below
     - `-o` overwrites the named source file
     - `-t` applies two-row text below the image
     - `-p` adds a thin surrounding picture frame
-- set `frame_it_options` to `—o -p —g=southeast —w=~/Pictures/watermark_white.png` and save as application watermark\_it
+- set `frame_it_options` to `—o -p -ol —g=southeast —w=~/Pictures/watermark_white.png` and save as application logo\_overlay
     - `-o` overwrites the named source file
     - `-p` adds a thin surrounding picture frame
-    - `-g` applies logo on image at this edge
+    - `-ol` applies a logo inside the image
+    - `-g` says which edge or corner to place the logo
     - `-w` specifies the logo to apply to the image
 
 See the command line section below for a description of all the supported style options.
