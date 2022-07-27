@@ -4,7 +4,6 @@
 # copyright 2022 walter rowe
 #
 ####
-#
 # usage: PROGRAM [ OPTIONS ] image [ .. ]
 #
 # OPTIONS:
@@ -50,7 +49,6 @@
 #                             |                                                    |
 #                             | southwest            south               southeast |
 #                             +----------------------------------------------------+
-#
 ###
 
 # text option - two text label lines
@@ -63,6 +61,13 @@ watermark=~/Pictures/watermark_gray.png
 # usage
 usage()
 {
+    echo ""
+    if [ $# -gt 0 ]; then
+        echo error: $@
+    fi
+    echo ""
+    echo "command: ${program_base} ${program_args}"
+    echo ""
     sed >&2 -e "1,/^####/d;  /^###/g;  /^#/!q;  s/^#//;  s/PROGRAM/${program_base}/;  s/^ //;  4,\$p" "$program_full"
 }
 
@@ -88,9 +93,10 @@ logo_gravity_vals=$(echo ${(v)logo_gravity_opts} | sed -e 's; ;|;g')
 # get name of script
 eval program_base=$(basename $0)
 eval program_full=$(which $0)
+declare -a program_args=($@)
 # must provide at least one file
 if [ $# -lt 1 ]; then
-    usage
+    usage must provide at least one image file name
     exit 1
 fi
 
@@ -143,8 +149,7 @@ for opt in "$@"; do
             eval watermark=${opt}
             # make sure watermark really exists
             if [ ! -f ${watermark} ]; then
-                echo "${program}: watermark file '${watermark}' not found."
-                usage
+                usage watermark file \'${watermark}\' not found
                 exit 1
             fi
             shift
@@ -154,7 +159,7 @@ for opt in "$@"; do
             # validate gravity location
             echo ${opt} | egrep -wq "${logo_gravity_keys}|${logo_gravity_vals}"
             if [ $? -ne 0 ]; then
-                usage
+                usage invalid gravity placement \'${opt}\' specified
                 exit 1
             fi
             echo ${opt} | egrep -wq "${logo_gravity_keys}"
@@ -168,7 +173,7 @@ for opt in "$@"; do
             shift
             ;;
         -*)
-            usage
+            usage invalid option \'${opt}\' specified
             exit 1
             ;;
     esac
@@ -176,7 +181,7 @@ done
 
 # must provide at least one file
 if [ $# -lt 1 ]; then
-    usage
+    usage must provide at least one image file name
     exit 1
 fi
 
