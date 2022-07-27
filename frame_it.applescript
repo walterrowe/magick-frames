@@ -46,6 +46,9 @@ property typeIDs_list : { "public.jpeg", "public.tiff", "public.png", "com.adobe
 
 (*
   -- FRAME_IT_OPTIONS: options for the frame_it script
+  -- usage: frame_it [ OPTIONS ] image [ .. ]
+  --
+  -- OPTIONS:
   --
   -- -d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
   --                           the default that centers the image in an all-edges shadow
@@ -60,10 +63,16 @@ property typeIDs_list : { "public.jpeg", "public.tiff", "public.png", "com.adobe
   --
   -- -ot | --overlaytext       specifies to use a two-line text logo inside the image
   --
+  -- -tc=color |               specifies the color of the two-line text logo
+  -- --textcolor=color         default #383838 below image, #E0E0E0 inside image
+  --
   -- -l | --logo               specifies to place an image-based logo underneath the image
   --                           DEFAULT style when no options are specified
   --
   -- -ol | --overlaylogo       specifies to place an image-based logo inside the image
+  --
+  -- -mc=color |               specifies the color of the matte background (default white)
+  -- --mattecolor=color
   --
   -- -w=your_logo |            specifies the image-based logo to use as the watermark that
   -- --watermark=your_logo     that is placed below or inside the image.
@@ -73,21 +82,22 @@ property typeIDs_list : { "public.jpeg", "public.tiff", "public.png", "com.adobe
   --                           The logo or text is inset from the specified edge or corner.
   --                           DEFAULT edge is south/bottom.
   --
-  --                           +----------------------------------------------------+
-  --                           | topleft               top                 topright |
-  --                           |                                                    |
-  --                           | left                 middle                  right |
-  --                           |                                                    |
-  --                           | bottomleft           bottom            bottomright |
-  --                           +----------------------------------------------------+
+  --                             +----------------------------------------------------+
+  --                             | topleft               top                 topright |
+  --                             |                                                    |
+  --                             | left                 middle                  right |
+  --                             |                                                    |
+  --                             | bottomleft           bottom            bottomright |
+  --                             +----------------------------------------------------+
   --
-  --                           +----------------------------------------------------+
-  --                           | northwest            north               northeast |
-  --                           |                                                    |
-  --                           | west                 center                   east |
-  --                           |                                                    |
-  --                           | southwest            south               southeast |
-  --                           +----------------------------------------------------+
+  --                             +----------------------------------------------------+
+  --                             | northwest            north               northeast |
+  --                             |                                                    |
+  --                             | west                 center                   east |
+  --                             |                                                    |
+  --                             | southwest            south               southeast |
+  --                             +----------------------------------------------------+
+  --
 *)
 
 -- DEFAULT: -o (overwrite original files), -l (center logo below image), -p (add a thin picture frame)
