@@ -129,11 +129,11 @@ on open these_items
 		-- only process if we support the image type
 		if ((this_filetype is in type_list) or (this_extension is in extension_list) or (this_typeID is in typeIDs_list)) then
 		
-  		-- get the POSIX path of the current file we are processing
-	  	set this_path to quoted form of POSIX path of this_item
+  		  	-- get the POSIX path of the current file we are processing
+	  	  	set this_path to quoted form of POSIX path of this_item
 				
-		  -- build the frame_it command line
-		  set frame_it to "eval $(/usr/libexec/path_helper -s); frame_it " & frame_it_options & " " & this_path
+		  	-- build the frame_it command line
+		  	set frame_it to "eval $(/usr/libexec/path_helper -s); frame_it " & frame_it_options & " " & this_path
 
 			-- run frame_it on the named file
 			try
