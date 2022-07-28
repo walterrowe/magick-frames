@@ -17,6 +17,11 @@ Options for decorating the border of your image and applying text or a logo incl
 - specify a default logo file and two-row label text in the script
 - specify an alternate logo watermark file on the command line
 
+Options for the macOS AppleScript droplet include:
+
+- drag-n-dropping files onto the droplet using Finder will decorate the selected files
+- double-clicking the droplet will open a file chooser and decorate the selected files
+
 # What Is Magick Frames
 
 Magick Frames is a combination of a macOS/Linux shell script [frame_it](frame_it) and a macOS AppleScript [frame_it.applescript](frame_it.applescript) Droplet. The frame_it shell script uses the [ImageMagick](https://imagemagick.org/) image manipulation package to apply a professional looking decoration to a selection of image files.
