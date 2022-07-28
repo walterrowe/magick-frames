@@ -59,6 +59,9 @@ property typeIDs_list : { "public.jpeg", "public.tiff", "public.png", "com.adobe
   --
   -- -p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
   --
+  -- -f=font |                 specify the font to use for the two-row label text logo
+  -- --font=font
+  --
   -- -t | --text               specifies to use a two-line text logo underneath the image
   --
   -- -ot | --overlaytext       specifies to use a two-line text logo inside the image
