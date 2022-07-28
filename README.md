@@ -6,15 +6,15 @@ Magick Frames applies a decorative border and shadow around an image, and places
 
 Options for decorating the border of your image and applying text or a logo include:
 
-- shadow around all the edges or a drop shadow bottom right
+- add a shadow around all the edges or a drop shadow bottom right
 - add picture frame of 1-pixel black + 10-pixels white border
-- apply a two-row text-based label or image-based logo to the image
+- apply either a two-row text-based label or an image-based logo
 - place the text label or logo either inside or below the image
-- specify which inside edge or corner to place the text or logo image
+- specify where inside the image to place the text or logo image
 - specify the color of the background to use for the output file
-- specify the color of the text-based label text for the output file
-- specify the font of the text-based label text for the output file
-- set a default logo file and two-row label text inside the script
+- specify the color of the text-based label for the output file
+- specify the font of the text-based label for the output file
+- specify a default logo file and two-row label text in the script
 - specify an alternate logo watermark file on the command line
 
 # What Is Magick Frames
