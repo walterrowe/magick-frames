@@ -8,6 +8,8 @@
 #
 # OPTIONS:
 #
+# -h | --help               display a usage message with option descriptions
+#
 # -d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
 #                           the default that centers the image in an all-edges shadow
 #
@@ -125,6 +127,10 @@ textfont='Copperplate'
 # process command line options
 for opt in "$@"; do
     case ${opt} in
+        -h|--help)
+            usage
+            exit 0
+            ;;
         -d|--dropshadow)
             dropshadow='true'
             shift
