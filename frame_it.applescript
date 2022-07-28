@@ -40,9 +40,9 @@
 *)
 
 (* TO FILTER FOR IMAGE FILES, LOOK FOR QUICKTIME SUPPORTED IMAGE FORMATS *)
-property type_list : { "JPEG", "TIFF", "PNGf", "8BPS", "BMPf", "GIFf" }
-property extension_list : { "jpg", "jpeg", "tif", "tiff", "png", "psd", "bmp", "gif" }
-property typeIDs_list : { "public.jpeg", "public.tiff", "public.png", "com.adobe.photoshop-image", "com.microsoft.bmp", "com.compuserve.gif", "com.adobe.pdf", "com.apple.pict" }
+property type_list : {"JPEG", "TIFF", "PNGf", "8BPS", "BMPf", "GIFf"}
+property extension_list : {"jpg", "jpeg", "tif", "tiff", "png", "psd", "bmp", "gif"}
+property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.photoshop-image", "com.microsoft.bmp", "com.compuserve.gif", "com.adobe.pdf", "com.apple.pict"}
 
 (*
   -- FRAME_IT_OPTIONS: options for the frame_it script
@@ -106,8 +106,20 @@ property typeIDs_list : { "public.jpeg", "public.tiff", "public.png", "com.adobe
 -- DEFAULT: -o (overwrite original files), -l (center logo below image), -p (add a thin picture frame)
 property frame_it_options : "-o -l -p"
 
-on open these_items
-	repeat with this_item in these_items
+-- on run executes when the user double-clicks the app
+-- it opens a file chooser and processes the selected files
+on run
+	set selected_items to choose file with prompt "Select the images to decorate:" of type {"public.image"} with multiple selections allowed
+	process_items(selected_items)
+end run
+
+-- on open processes dropped items
+on open dropped_items
+	process_items(dropped_items)
+end open
+
+on process_items(the_items)
+	repeat with this_item in the_items
 		
 		set item_info to info for this_item
 		
@@ -141,13 +153,13 @@ on open these_items
 		
 		-- only process if we support the image type
 		if ((this_filetype is in type_list) or (this_extension is in extension_list) or (this_typeID is in typeIDs_list)) then
-		
-  		-- get the POSIX path of the current file we are processing
-	  	set this_path to quoted form of POSIX path of this_item
-				
-		  -- build the frame_it command line
-		  set frame_it to "eval $(/usr/libexec/path_helper -s); frame_it " & frame_it_options & " " & this_path
-
+			
+			-- get the POSIX path of the current file we are processing
+			set this_path to quoted form of POSIX path of this_item
+			
+			-- build the frame_it command line
+			set frame_it to "eval $(/usr/libexec/path_helper -s); frame_it " & frame_it_options & " " & this_path
+			
 			-- run frame_it on the named file
 			try
 				do shell script frame_it
@@ -157,4 +169,4 @@ on open these_items
 			
 		end if
 	end repeat
-end open
+end process_items

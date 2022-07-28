@@ -104,7 +104,9 @@ logo_gravity_vals=$(echo ${(v)logo_gravity_opts} | sed -e 's; ;|;g')
 # get name of script
 eval program_base=$(basename $0)
 eval program_full=$(which $0)
-declare -a program_args=($@)
+program_args=($@)
+
+
 # must provide at least one file
 if [ $# -lt 1 ]; then
     usage must provide at least one image file name
@@ -224,18 +226,18 @@ fi
 for filename in "$@" ; do
 
     # source file parts - use eval to ensure expansion of ~, et al
-    eval filepath=$(dirname "${filename}")
-    eval filetype=$(basename "${filename}" | awk -F. '{ print $NF }')
-    eval filebase=$(basename "${filename}" .${filetype})
+    eval filepath=$(dirname "${filename:q}")
+    eval filetype=$(basename "${filename:q}" | awk -F. '{ print $NF }')
+    eval filebase=$(basename "${filename:q}" .${filetype})
 
     # source file
-    eval source="${filename}"
+    eval source="${filename:q}"
 
     # target file
     if [ ${overwrite} = true ]; then
-        eval target="${source}"
+        eval target="${source:q}"
     else
-        eval target="${filepath}/${filebase}-frame.${filetype}"
+        eval target="${filepath:q}/${filebase:q}-frame.${filetype}"
     fi
 
     # extract image file width and height
