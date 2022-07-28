@@ -96,10 +96,10 @@ See the command line section below for a description of all the supported style 
 
 ## In macOS Finder
 
-The Droplet included with this package works like any other macOS application that lets you drag-n-drop items onto the application.
+The Droplet included with this package works like any other macOS application. It lets you drag-n-drop items onto the application or opens a file chooser dialog.
 
-1. Use macOS Finder to select the images you want to decorate
-2. Drag-n-drop the selected images onto your Droplet
+1. Drag-n-dropping files onto the droplet using Finder will decorate the selected files
+1. Double-clicking the droplet will open a file chooser and decorate the selected files
 
 The frame_it shell script options you specified in `frame_it_options` in the Droplet control how the images files you drop onto the Droplet are decorated.
 
