@@ -104,7 +104,48 @@ property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.
 *)
 
 -- DEFAULT: -o (overwrite original files), -l (center logo below image), -p (add a thin picture frame)
-property frame_it_options : "-o -l -p"
+-- comment this out with double-dashes and uncomment another one below for more predefined combinations
+property frame_it_options : "-o -l -p -mc=#ffffff -w=~/Pictures/watermark_gray.png"
+
+-- property frame_it_options : "-o -ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"
+-- property frame_it_options : "-o -ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"
+-- property frame_it_options : "-o -ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"
+-- property frame_it_options : "-o -ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"
+
+-- property frame_it_options : "-o -ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"
+-- property frame_it_options : "-o -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"
+-- property frame_it_options : "-o -ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"
+-- property frame_it_options : "-o -ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"
+
+-- property frame_it_options : "-o -l -mc=#ffffff -w=~/Pictures/watermark_gray.png"
+-- property frame_it_options : "-o -l -d -mc=#ffffff -w=~/Pictures/watermark_gray.png"
+-- property frame_it_options : "-o -l -p -mc=#ffffff -w=~/Pictures/watermark_gray.png"
+-- property frame_it_options : "-o -l -d -p -mc=#ffffff -w=~/Pictures/watermark_gray.png"
+
+-- property frame_it_options : "-o -l -mc=#383838 -w=~/Pictures/watermark_white.png"
+-- property frame_it_options : "-o -l -d -mc=#383838 -w=~/Pictures/watermark_white.png"
+-- property frame_it_options : "-o -l -p -mc=#383838 -w=~/Pictures/watermark_white.png"
+-- property frame_it_options : "-o -l -d -p -mc=#383838 -w=~/Pictures/watermark_white.png"
+
+-- property frame_it_options : "-o -ot -mc=#ffffff -g=south -d -tc=#E0E0E0"
+-- property frame_it_options : "-o -ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0"
+-- property frame_it_options : "-o -ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0"
+-- property frame_it_options : "-o -ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0"
+
+-- property frame_it_options : "-o -ot -mc=#383838 -g=south -d -tc=#E0E0E0"
+-- property frame_it_options : "-o -ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"
+-- property frame_it_options : "-o -ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"
+-- property frame_it_options : "-o -ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"
+
+-- property frame_it_options : "-o -t -mc=#ffffff -tc=#383838"
+-- property frame_it_options : "-o -t -d -mc=#ffffff -tc=#383838"
+-- property frame_it_options : "-o -t -p -mc=#ffffff -tc=#383838"
+-- property frame_it_options : "-o -t -d -p -mc=#ffffff -tc=#383838"
+
+-- property frame_it_options : "-o -t -mc=#383838 -tc=#E0E0E0"
+-- property frame_it_options : "-o -t -d -mc=#383838 -tc=#E0E0E0"
+-- property frame_it_options : "-o -t -p -mc=#383838 -tc=#E0E0E0"
+-- property frame_it_options : "-o -t -d -p -mc=#383838 -tc=#E0E0E0"
 
 -- on run executes when the user double-clicks the app
 -- it opens a file chooser and processes the selected files
