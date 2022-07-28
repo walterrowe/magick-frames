@@ -17,6 +17,9 @@
 #
 # -p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
 #
+# -f=font |                 specify the font to use for the two-row label text logo
+# --font=font
+#
 # -t | --text               specifies to use a two-line text logo underneath the image
 #
 # -ot | --overlaytext       specifies to use a two-line text logo inside the image
@@ -117,6 +120,7 @@ logo_gravity='south'
 mattecolor='white'
 textcolor='#383838'
 overlaytextcolor='#E0E0E0'
+textfont='Copperplate'
 
 # process command line options
 for opt in "$@"; do
@@ -144,6 +148,11 @@ for opt in "$@"; do
             opt=$(echo ${opt} | cut -d= -f2)
             textcolor="${opt}"
             overlaytextcolor="${opt}"
+            shift
+            ;;
+        -f=*|--font=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            textfont="${opt}"
             shift
             ;;
         -ot|--overlaytext)
@@ -330,8 +339,8 @@ for filename in "$@" ; do
               +swap -background ${mattecolor} -layers merge +repage \
               -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
               -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
-              -background ${mattecolor} -fill "${textcolor}" -font 'Copperplate' -pointsize ${font_pnts} label:"${label1}" -gravity South -append \
-              -background ${mattecolor} -fill "${textcolor}" -font 'Copperplate' -pointsize ${font_pnts} label:"${label2}" -gravity South -append \
+              -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity South -append \
+              -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity South -append \
               -bordercolor ${mattecolor} -border 20x20 -gravity south -background ${mattecolor} -splice ${toppad} \
               "${target}"
             ;;
@@ -339,8 +348,8 @@ for filename in "$@" ; do
         overlay_text)
             # convert source file into decorated target file
             magick "${source}" \
-              -background transparent -fill "${overlaytextcolor}" -font 'Copperplate' -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} -geometry ${label1_inset} -composite \
-              -background transparent -fill "${overlaytextcolor}" -font 'Copperplate' -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -geometry ${label2_inset} -composite \
+              -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} -geometry ${label1_inset} -composite \
+              -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -geometry ${label2_inset} -composite \
               -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
               \( +clone -background black -shadow ${shadow}${offset} \) \
               +swap -background ${mattecolor} -layers merge +repage \

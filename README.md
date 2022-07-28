@@ -13,6 +13,7 @@ Options for decorating the border of your image and applying text or a logo incl
 - specify which inside edge or corner to place the text or logo image
 - specify the color of the background to use for the output file
 - specify the color of the text-based label text for the output file
+- specify the font of the text-based label text for the output file
 - set a default logo file and two-row label text inside the script
 - specify an alternate logo watermark file on the command line
 
