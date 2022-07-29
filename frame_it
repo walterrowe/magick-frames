@@ -71,7 +71,7 @@ watermark=~/Pictures/watermark_gray.png
 
 # homebrew on the Apple ARM platform installs apps in /opt/homebrew/bin
 if [ -x /opt/homebrew/bin/brew ]; then
-    eval $(/opt/homebew/bin/brew shellenv)
+    eval $(/opt/homebrew/bin/brew shellenv)
 fi
 
 # homebrew on the Apple Intel platform installs apps in /usr/local/bin
