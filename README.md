@@ -62,7 +62,9 @@ Installation and use of this package requires saving AppleScript scripts as macO
 
 # Creating The AppleScript Droplet
 
-The AppleScript script is distributed as "[logo_white_pic.applescript](logo_white_pic.applescript)". This is one of the predefined styles. The script has a list of predefined styles in a property called  `optionsList`. Save the script as an app with one of the predefined style names, and images will be decorated with the options associated with that named style. Save with different predefined names to have multiple droplets available.
+The AppleScript script is distributed as "[logo_white_pic.applescript](logo_white_pic.applescript)". This is one of the predefined styles. The script has a list of predefined styles in a property called  `optionsList`. Save the script as an app with one of the predefined style names, and images will be decorated with the options associated with that named style. Save with different predefined names to have multiple droplets available. 
+
+SPEED TIP: Once you have saved one app, you can copy-n-paste that app and rename the copies to other defined styles rather than exporting multiple times from the AppleScript Script Editor.
 
 1. Open [logo_white_pic.applescript](logo_white_pic.applescript) script in the macOS AppleScript Editor
 1. Look at the `optionsList` property of predefined styles and their associated options
