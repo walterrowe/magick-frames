@@ -115,45 +115,45 @@ property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.
 --
 -- CRITICAL -- continued lines must end with ampersand plus OPT+RETURN
 property optionsList : {formatting:"filler"} & Â
-	{logo_over_white:"-o -ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"} & Â
-	{logo_over_white_drop:"-o -ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"} & Â
-	{logo_over_white_pic:"-o -ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"} & Â
-	{logo_over_white_drop_pic:"-o -ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"} & Â
+	{logo_over_white:"-ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"} & Â
+	{logo_over_white_drop:"-ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"} & Â
+	{logo_over_white_pic:"-ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"} & Â
+	{logo_over_white_drop_pic:"-ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"} & Â
 	{formatting:"filler"} & Â
-	{logo_over_gray:"-o -ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"} & Â
-	{logo_over_gray_drop:"-o -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"} & Â
-	{logo_over_gray_pic:"-o -ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"} & Â
-	{logo_over_gray_drop_pic:"-o -ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"} & Â
+	{logo_over_gray:"-ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"} & Â
+	{logo_over_gray_drop:"-ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"} & Â
+	{logo_over_gray_pic:"-ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"} & Â
+	{logo_over_gray_drop_pic:"-ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"} & Â
 	{formatting:"filler"} & Â
-	{logo_white:"-o -l -mc=#ffffff -w=~/Pictures/watermark_gray.png"} & Â
-	{logo_white_drop:"-o -l -d -mc=#ffffff -w=~/Pictures/watermark_gray.png"} & Â
-	{logo_white_pic:"-o -l -p -mc=#ffffff -w=~/Pictures/watermark_gray.png"} & Â
-	{logo_white_drop_pic:"-o -l -d -p -mc=#ffffff -w=~/Pictures/watermark_gray.png"} & Â
+	{logo_white:"-l -mc=#ffffff -w=~/Pictures/watermark_gray.png"} & Â
+	{logo_white_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermark_gray.png"} & Â
+	{logo_white_pic:"-l -p -mc=#ffffff -w=~/Pictures/watermark_gray.png"} & Â
+	{logo_white_drop_pic:"-l -d -p -mc=#ffffff -w=~/Pictures/watermark_gray.png"} & Â
 	{formatting:"filler"} & Â
-	{logo_gray:"-o -l -mc=#383838 -w=~/Pictures/watermark_white.png"} & Â
-	{logo_gray_drop:"-o -l -d -mc=#383838 -w=~/Pictures/watermark_white.png"} & Â
-	{logo_gray_pic:"-o -l -p -mc=#383838 -w=~/Pictures/watermark_white.png"} & Â
-	{logo_gray_drop_pic:"-o -l -d -p -mc=#383838 -w=~/Pictures/watermark_white.png"} & Â
+	{logo_gray:"-l -mc=#383838 -w=~/Pictures/watermark_white.png"} & Â
+	{logo_gray_drop:"-l -d -mc=#383838 -w=~/Pictures/watermark_white.png"} & Â
+	{logo_gray_pic:"-l -p -mc=#383838 -w=~/Pictures/watermark_white.png"} & Â
+	{logo_gray_drop_pic:"-l -d -p -mc=#383838 -w=~/Pictures/watermark_white.png"} & Â
 	{formatting:"filler"} & Â
-	{text_over_white:"-o -ot -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
-	{text_over_white_drop:"-o -ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
-	{text_over_white_pic:"-o -ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
-	{text_over_white_drop_pic:"-o -ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_white:"-ot -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_white_drop:"-ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_white_pic:"-ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_white_drop_pic:"-ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
 	{formatting:"filler"} & Â
-	{text_over_gray:"-o -ot -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_over_gray_drop:"-o -ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_over_gray_pic:"-o -ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_over_gray_drop_pic:"-o -ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_gray:"-ot -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_gray_drop:"-ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_gray_pic:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_gray_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{formatting:"filler"} & Â
-	{text_white:"-o -t -mc=#ffffff -tc=#383838"} & Â
-	{text_white_drop:"-o -t -d -mc=#ffffff -tc=#383838"} & Â
-	{text_white_pic:"-o -t -p -mc=#ffffff -tc=#383838"} & Â
-	{text_white_drop_pic:"-o -t -d -p -mc=#ffffff -tc=#383838"} & Â
+	{text_white:"-t -mc=#ffffff -tc=#383838"} & Â
+	{text_white_drop:"-t -d -mc=#ffffff -tc=#383838"} & Â
+	{text_white_pic:"-t -p -mc=#ffffff -tc=#383838"} & Â
+	{text_white_drop_pic:"-t -d -p -mc=#ffffff -tc=#383838"} & Â
 	{formatting:"filler"} & Â
-	{text_gray:"-o -t -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_gray_drop:"-o -t -d -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_gray_pic:"-o -t -p -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_gray_drop_pic:"-o -t -d -p -mc=#383838 -tc=#E0E0E0"}
+	{text_gray:"-t -mc=#383838 -tc=#E0E0E0"} & Â
+	{text_gray_drop:"-t -d -mc=#383838 -tc=#E0E0E0"} & Â
+	{text_gray_pic:"-t -p -mc=#383838 -tc=#E0E0E0"} & Â
+	{text_gray_drop_pic:"-t -d -p -mc=#383838 -tc=#E0E0E0"}
 
 on get_options(appName)
 	set optionsData to my (NSDictionary's dictionaryWithDictionary:optionsList)
