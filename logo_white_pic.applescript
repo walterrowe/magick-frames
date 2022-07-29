@@ -175,7 +175,7 @@ end splitText
 
 -- on run event executes when the user double-clicks the app in Finder
 on run
-	-- convert "path:to:me.app:" into "me" (note the trailing colon this -2 below)
+	-- convert "path:to:me.app:" into "me" (apps are folders so note the trailing colon thus the -2 below)
 	set appPath to path to me as string
 	set appName to item -2 of splitText(appPath, ":")
 	set appBase to item 1 of splitText(appName, ".")
