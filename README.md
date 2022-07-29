@@ -21,6 +21,7 @@ Options for the macOS AppleScript droplet include:
 
 - drag-n-dropping files onto the droplet using Finder will decorate the selected files
 - double-clicking the droplet will open a file chooser and decorate the selected files
+- referencing in an export recipe of an image editing tool to decorate images on export
 
 # What Is Magick Frames
 
@@ -61,36 +62,77 @@ Installation and use of this package requires saving AppleScript scripts as macO
 
 # Creating The AppleScript Droplet
 
-1. Open frame_it.applescript script in macOS AppleScript Editor
-1. Look for `frame_it_options` and set your desired options
-1. Go to File > Export, choose type Application, and save a Droplet where you can run it
+The AppleScript script has been updated to make it even easier. The script has a predefined list of named styles in a property called  `optionsList`. Save the script as an app with one of the predefined style names and images will be decorated with the options associated with that named style.
 
-You can choose different `frame_it_options` and save the AppleScript as different names to make different styles available via macOS Droplet or for use in image editing software export configurations.
+1. Open frame_it.applescript script in the macOS AppleScript Editor
+1. Look at the `optionsList` property of predefined styles and their associated options
+1. Use File > Export, choose type Application, and save a Droplet as each of your desired style names
 
-NOTE: These are the default `frame_it_options` distributed with the package.
+If you feel comfortable with AppleScript Script Editor, you can add your own custom styles to the style list. Carefully follow the instructions inside the script. Save the script as an app with your custom style name(s) and you will get the same behavior for your custom styles as you get with the predefined styles distributed with the package.
 
-- OVERWRITE the source files (`--overwrite` or `-o`)
-- apply a thin picture frame (`--picture` or `-p`)
-- center your logo BELOW the image (`--logo` or`-l`)
+Saving the script as an app provides you a macOS Droplet, a click-able app that opens a file chooser, and an app that can be opened by image editing software for each file that is exported.
 
-Look at the comments inside the frame_it AppleScript script to see where to change the options passed to the frame_it shell script. Look inside the frame_it shell script to see all of the available options. Some other example configurations are:
+## Predefined Styles
 
-- set `frame_it_options` to `—o -l —p` and save as application logo\_below
-    - `-o` overwrites the named source file
-    - `-l` applies a logo below the image
-    - `-p` adds a thin surrounding picture frame
-- set `frame_it_options` to `—o —t —p` and save as application text\_below
-    - `-o` overwrites the named source file
-    - `-t` applies two-row text below the image
-    - `-p` adds a thin surrounding picture frame
-- set `frame_it_options` to `—o -p -ol —g=southeast —w=~/Pictures/watermark_white.png` and save as application logo\_overlay
-    - `-o` overwrites the named source file
-    - `-p` adds a thin surrounding picture frame
-    - `-ol` applies a logo inside the image
-    - `-g` says which edge or corner to place the logo
-    - `-w` specifies the logo to apply to the image
+See the command line section at the bottom for a description of all the supported options.
 
-See the command line section below for a description of all the supported style options.
+NOTE - ALL PREDEFINED STYLES OVERWRITE THE SOURCE IMAGE (option `-o` or `--overwrite`)
+
+### Logo Inside Image, White Background
+
+- logo_over_white: -o -ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png
+- logo_over_white_drop: -o -ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png
+- logo_over_white_pic: -o -ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png
+- logo_over_white_drop_pic: -o -ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png
+
+### Logo Inside Image, Gray Background
+
+- logo_over_gray: -o -ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png
+- logo_over_gray_drop: -o -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png
+- logo_over_gray_pic: -o -ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png
+- logo_over_gray_drop_pic: -o -ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png
+
+### Logo Below Image, White Background
+
+- logo_white: -o -l -mc=#ffffff -w=~/Pictures/watermark_gray.png
+- logo_white_drop: -o -l -d -mc=#ffffff -w=~/Pictures/watermark_gray.png
+- logo_white_pic: -o -l -p -mc=#ffffff -w=~/Pictures/watermark_gray.png
+- logo_white_drop_pic: -o -l -d -p -mc=#ffffff -w=~/Pictures/watermark_gray.png
+
+### Logo Below Image, Gray Background
+
+- logo_gray: -o -l -mc=#383838 -w=~/Pictures/watermark_white.png
+- logo_gray_drop: -o -l -d -mc=#383838 -w=~/Pictures/watermark_white.png
+- logo_gray_pic: -o -l -p -mc=#383838 -w=~/Pictures/watermark_white.png
+- logo_gray_drop_pic: -o -l -d -p -mc=#383838 -w=~/Pictures/watermark_white.png
+
+### Text Inside Image, White Background
+
+- text_over_white: -o -ot -mc=#ffffff -g=south -d -tc=#E0E0E0
+- text_over_white_drop: -o -ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0
+- text_over_white_pic: -o -ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0
+- text_over_white_drop_pic: -o -ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0
+
+### Text Inside Image, Gray Background
+
+- text_over_gray: -o -ot -mc=#383838 -g=south -d -tc=#E0E0E0
+- text_over_gray_drop: -o -ot -d -mc=#383838 -g=south -d -tc=#E0E0E0
+- text_over_gray_pic: -o -ot -p -mc=#383838 -g=south -d -tc=#E0E0E0
+- text_over_gray_drop_pic: -o -ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0
+
+### Text Below Image, White Background
+
+- text_white: -o -t -mc=#ffffff -tc=#383838
+- text_white_drop: -o -t -d -mc=#ffffff -tc=#383838
+- text_white_pic: -o -t -p -mc=#ffffff -tc=#383838
+- text_white_drop_pic: -o -t -d -p -mc=#ffffff -tc=#383838
+
+### Text Below Image, Gray Background
+
+- text_gray: -o -t -mc=#383838 -tc=#E0E0E0
+- text_gray_drop: -o -t -d -mc=#383838 -tc=#E0E0E0
+- text_gray_pic: -o -t -p -mc=#383838 -tc=#E0E0E0
+- text_gray_drop_pic: -o -t -d -p -mc=#383838 -tc=#E0E0E0
 
 # How To Use
 
