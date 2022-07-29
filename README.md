@@ -25,7 +25,7 @@ Options for the macOS AppleScript droplet include:
 
 # What Is Magick Frames
 
-Magick Frames is a combination of a macOS/Linux shell script [frame_it](frame_it) and a macOS AppleScript [frame_it.applescript](frame_it.applescript) Droplet. The frame_it shell script uses the [ImageMagick](https://imagemagick.org/) image manipulation package to apply a professional looking decoration to a selection of image files.
+Magick Frames is a combination of a macOS/Linux shell script [frame_it](frame_it) and a macOS AppleScript [logo_white_pic.applescript](logo_white_pic.applescript) Droplet. The frame_it shell script uses the [ImageMagick](https://imagemagick.org/) image manipulation package to apply a professional looking decoration to a selection of image files.
 
 By default the `frame_it` shell script preserves your input files and creates new output files as the decorated versions. The text `-frame` is inserted into the output filenames before the extension. For example, an input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is written to the same folder as the input file.
 
@@ -58,19 +58,19 @@ Installation and use of this package requires saving AppleScript scripts as macO
 - Install the [ImageMagick](https://imagemagick.org/) software package on your system (e.g. `brew install imagemagick`)
 - Edit [frame_it](frame_it) shell script to set default label text (`label1`, `label2`) and logo file (`watermark`)
 - Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder
-- (macOS) Open [frame_it.applescript](frame_it.applescript), and save as a Droplet named after one of the styles in the `optionsList` property list.
+- (macOS) Open [logo_white_pic.applescript](logo_white_pic.applescript), and save as a Droplet named after one of the styles in the `optionsList` property list.
 
 # Creating The AppleScript Droplet
 
-The AppleScript script has been updated to make it even easier. The script has a predefined list of named styles in a property called  `optionsList`. Save the script as an app with one of the predefined style names and images will be decorated with the options associated with that named style.
+The AppleScript script is distributed as "[logo_white_pic.applescript](logo_white_pic.applescript)". This is one of the predefined styles. The script has a list of predefined styles in a property called  `optionsList`. Save the script as an app with one of the predefined style names, and images will be decorated with the options associated with that named style. Save with different predefined names to have multiple droplets available.
 
-1. Open frame_it.applescript script in the macOS AppleScript Editor
+1. Open [logo_white_pic.applescript](logo_white_pic.applescript) script in the macOS AppleScript Editor
 1. Look at the `optionsList` property of predefined styles and their associated options
 1. Use File > Export, choose type Application, and save a Droplet as each of your desired style names
 
-If you feel comfortable with AppleScript Script Editor, you can add your own custom styles to the style list. Carefully follow the instructions inside the script. Save the script as an app with your custom style name(s) and you will get the same behavior for your custom styles as you get with the predefined styles distributed with the package.
-
 Save the script as an app with one of predefined style names and you get a macOS Droplet, a click-able app that opens a file chooser, and an app that can be opened by image editing software for each file that is exported.
+
+If you feel comfortable with AppleScript Script Editor, you can add your own custom styles to the style list. Carefully follow the instructions inside the script above the style list. Save the script as an app with your custom style name(s) and you will get the same behavior for your custom styles as you get with the predefined styles distributed in the script.
 
 ## Predefined Styles
 
@@ -135,6 +135,8 @@ NOTE - ALL PREDEFINED STYLES OVERWRITE THE SOURCE IMAGE (option `-o` or `--overw
 - text_gray_drop_pic: -o -t -d -p -mc=#383838 -tc=#E0E0E0
 
 # How To Use
+
+The scaling and placement of logos and text were developed using an image with dimensions 3000 wide by 2400 tall, a font of 64 points, and an image logo with dimensions 900 wide by 250 tall pixels. When creating your logo you may want one with dark text for light backgrounds and one with white text for dark backgrounds.
 
 ## In macOS Finder
 
@@ -225,6 +227,15 @@ OPTIONS:
                             |                                                    |
                             | southwest            south               southeast |
                             +----------------------------------------------------+
+```
+
+# Troubleshooting
+
+If you get an error that the `frame_it` script cannot find the `identify` command, this indicates that the folder where ImageMagick binaries are installed is not in the environment path. Find the directory where the ImageMagick binaries such as `identify` and `magick` are installed. You can edit the script `frame_it` and add that directory to the path. Look for these lines in the `frame_it` script.
+
+```
+# ADD IMAGEMAGICK BINARY PATH HERE and uncomment
+# export PATH=/path/to/your/imagemagick:$PATH
 ```
 
 # Recommendation
