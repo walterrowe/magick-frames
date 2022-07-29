@@ -109,7 +109,7 @@ property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.
 *)
 
 --
--- save this script as an app named one an item below (ig "logo_white_pic") it will use the selected options for frame_it
+-- save this script as an app named one of the items below (ig "logo_white_pic") it will use the selected options for frame_it
 --
 -- you can add your own app names and options, and save as your new app name to use your chosen options
 --
