@@ -58,7 +58,7 @@ Installation and use of this package requires saving AppleScript scripts as macO
 - Install the [ImageMagick](https://imagemagick.org/) software package on your system (e.g. `brew install imagemagick`)
 - Edit [frame_it](frame_it) shell script to set default label text (`label1`, `label2`) and logo file (`watermark`)
 - Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder
-- (macOS) Open [frame_it.applescript](frame_it.applescript), set `frame_it_options`, and save as a Droplet.
+- (macOS) Open [frame_it.applescript](frame_it.applescript), and save as a Droplet named after one of the styles in the `optionsList` property list.
 
 # Creating The AppleScript Droplet
 
@@ -70,7 +70,7 @@ The AppleScript script has been updated to make it even easier. The script has a
 
 If you feel comfortable with AppleScript Script Editor, you can add your own custom styles to the style list. Carefully follow the instructions inside the script. Save the script as an app with your custom style name(s) and you will get the same behavior for your custom styles as you get with the predefined styles distributed with the package.
 
-Saving the script as an app provides you a macOS Droplet, a click-able app that opens a file chooser, and an app that can be opened by image editing software for each file that is exported.
+Save the script as an app with one of predefined style names and you get a macOS Droplet, a click-able app that opens a file chooser, and an app that can be opened by image editing software for each file that is exported.
 
 ## Predefined Styles
 
@@ -140,10 +140,10 @@ NOTE - ALL PREDEFINED STYLES OVERWRITE THE SOURCE IMAGE (option `-o` or `--overw
 
 The Droplet included with this package works like any other macOS application. It lets you drag-n-drop items onto the application or opens a file chooser dialog.
 
-1. Drag-n-dropping files onto the droplet using Finder will decorate the selected files
-1. Double-clicking the droplet will open a file chooser and decorate the selected files
+1. Drag-n-drop files onto the droplet using Finder to decorate the selected files
+1. Double-click the droplet to open a file chooser and decorate the selected files
 
-The frame_it shell script options you specified in `frame_it_options` in the Droplet control how the images files you drop onto the Droplet are decorated.
+The droplet name will control how the images you drop or select are decorated.
 
 ## In Capture One Export Recipes
 
