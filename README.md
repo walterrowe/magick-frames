@@ -6,79 +6,70 @@ Magick Frames applies a decorative border and shadow around an image, and places
 
 Options for decorating the border of your image and applying text or a logo include:
 
-- add a shadow around all the edges or a drop shadow bottom right
-- add picture frame of 1-pixel black + 10-pixels white border
-- apply either a two-row text-based label or an image-based logo
-- place the text label or logo either inside or below the image
-- specify where inside the image to place the text or logo image
-- specify the color of the background to use for the output file
-- specify the color of the text-based label for the output file
-- specify the font of the text-based label for the output file
-- specify a default logo file and two-row label text in the script
-- specify an alternate logo watermark file on the command line
+- optionally add a picture frame of 1-pixel black + 10-pixels white
+- choose a shadow around all the edges or a drop shadow bottom right
+- choose either a two-row text-based label or an image-based logo
+- choose whether the text label or logo are inside or below the image
+- choose where inside the image to place the text or logo image
+- choose the color of the background to use for the output file
+- choose the color of the text-based label for the output file
+- choose the font of the text-based label for the output file
+- choose a default logo file and two-row label text in the script
+- choose an alternate logo watermark file on the command line
 
 Options for the macOS AppleScript droplet include:
 
-- drag-n-dropping files onto the droplet using Finder will decorate the selected files
-- double-clicking the droplet will open a file chooser and decorate the selected files
-- referencing in an export recipe of an image editing tool to decorate images on export
+- drag-n-drop files onto the droplet using Finder will decorate the selected files
+- double-click the droplet will open a file chooser and decorate the selected files
+- name in an export recipe of an image editing tool to decorate images on export
 
 # What Is Magick Frames
 
-Magick Frames is a combination of a macOS/Linux shell script [frame_it](frame_it) and a macOS AppleScript [logo_white_pic.applescript](logo_white_pic.applescript) Droplet. The frame_it shell script uses the [ImageMagick](https://imagemagick.org/) image manipulation package to apply a professional looking decoration to a selection of image files.
+Magick Frames is a combination of a macOS/Linux shell script and a macOS AppleScript droplet. The shell script uses the [ImageMagick](https://imagemagick.org/) image manipulation package to apply a professional looking decoration to a selection of image files.
 
-By default the `frame_it` shell script preserves your input files and creates new output files as the decorated versions. The text `-frame` is inserted into the output filenames before the extension. For example, an input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is written to the same folder as the input file.
+By default the `frame_it` shell script preserves your input files by creating new output files with `-frame` is inserted  before the extension in the output filename. An input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is always placed in the same folder as the input file.You can tell the shell script to overwrite your input file by adding the `-o` or `--overwrite` option.
 
-You can choose instead to overwrite your input file by providing the option `-o` or `--overwrite`.
+The AppleScript droplet only works on macOS. The frame\_it shell script should work on macOS and Linux.
 
-The AppleScript app can be used as a stand alone macOS Droplet where you drag-n-drop files selected in Finder onto the Droplet and it decorates them, or as an "Open With" app in export settings of your favorite image editing tool such as Capture One Pro.
-
-With Capture One Pro it works like this.
-
-1. Add the Finder Droplet to the Open With field of an Export Recipe
-1. Export your selected files with your configured Export Recipe
-
-What really happens is this:
-
-1. The Export Recipe writes your desired output files
-1. The Export Recipe passes each output filename to the Droplet
-1. The Droplet passes your options and output filename to the frame_it shell script
-1. The frame_it shell script decorates your output file using your chosen frame_it options
-
-While this may look complicated it works quickly and invisibly. If you have your output folder open in Finder in Icon view as your images are exported, you can watch the undecorated files appear in the folder, and then see their icons change as they become decorated.
-
-The AppleScript Droplet only works on macOS. The frame_it shell script should work on macOS and Linux.
-
-The frame_it shell script offers numerous options to tailor the style of the decoration. See the command line options section near the bottom for a detailed descriptione of these options.
+The frame\_it shell script offers numerous options to tailor the style of the decoration. See the command line options section near the bottom for a detailed descriptione of these options.
 
 # Installation
 
-Installation and use of this package requires saving AppleScript scripts as macOS Droplets, installing the open source [ImageMagick](https://imagemagick.org/) software using a tool such as [Home Brew](https://brew.sh/), and using a macOS Terminal or Linux shell window to copy a script to your system's /usr/local/bin directory.
+Installation and use of this package requires saving AppleScript scripts as macOS droplets, installing the open source [ImageMagick](https://imagemagick.org/) software using a tool such as [Home Brew](https://brew.sh/), and using a macOS Terminal or Linux shell window to copy a script to your system's /usr/local/bin directory.
 
 - Install the [ImageMagick](https://imagemagick.org/) software package on your system (e.g. `brew install imagemagick`)
-- Edit [frame_it](frame_it) shell script to set default label text (`label1`, `label2`) and logo file (`watermark`)
+- Edit [frame_it](frame_it) shell script to set default label text (`label1`, `label2`) and your logo file (`watermark`)
 - Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder
-- (macOS) Open [logo_white_pic.applescript](logo_white_pic.applescript), and save as a Droplet named after one of the styles in the `optionsList` property list.
+- (macOS) Open [logo_white_pic.applescript](logo_white_pic.applescript), and save as a droplet named one of the styles in the `optionsList` property list.
+
+Use a Terminal command line to test the `frame_it` script to ensure it can access the ImageMagick tools. If the `frame_it` script says it cannot find the `identify` or `magick` command, this indicates that the folder containing the ImageMagick tools is not in the script’s environment path. Locate the directory where the ImageMagick tools are installed.
+
+Edit the `frame_it` script and look for these lines.
+
+```
+# ADD IMAGEMAGICK BINARY PATH HERE and uncomment
+# export PATH=/path/to/your/imagemagick:$PATH
+```
+
+In the line containing `export`, replace `/path/to/your/imagemagick` with the folder where your ImageMagick tools reside, uncomment the line (remove the `# ` at the beginning), and save the file.
 
 # Creating The AppleScript Droplet
 
-The AppleScript script is distributed as "[logo_white_pic.applescript](logo_white_pic.applescript)". This is one of the predefined styles. The script has a list of predefined styles in a property called  `optionsList`. Save the script as an app with one of the predefined style names, and images will be decorated with the options associated with that named style. Save with different predefined names to have multiple droplets available. 
-
-SPEED TIP: Once you have saved one app, you can copy-n-paste that app and rename the copies to other defined styles rather than exporting multiple times from the AppleScript Script Editor.
+The AppleScript script is distributed as "[logo_white_pic.applescript](logo_white_pic.applescript)". This is the name of one of the included styles. See the names of all the included styles in a property called `optionsList`. Save the script as an app named one of these included styles and images will be decorated with the options associated with the named style. Save the AppleScript as multiple different included style names to make multiple droplets for use.
 
 1. Open [logo_white_pic.applescript](logo_white_pic.applescript) script in the macOS AppleScript Editor
 1. Look at the `optionsList` property of predefined styles and their associated options
 1. Use File > Export, choose type Application, and save a Droplet as each of your desired style names
 
-Save the script as an app with one of predefined style names and you get a macOS Droplet, a click-able app that opens a file chooser, and an app that can be opened by image editing software for each file that is exported.
+SPEED TIP: Once you create one droplet, use Finder to copy-n-paste as names of other defined styles. This is faster than exporting the script multiple times from the AppleScript Script Editor.
 
-If you feel comfortable with AppleScript Script Editor, you can add your own custom styles to the style list. Carefully follow the instructions inside the script above the style list. Save the script as an app with your custom style name(s) and you will get the same behavior for your custom styles as you get with the predefined styles distributed in the script.
+If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list. Carefully follow the instructions above the `optionsList` style list inside the script. Save the script as a droplet with your custom style name(s) and test it. You should get the same behavior with your custom style as you get with the included styles.
 
-## Predefined Styles
+The AppleScript droplet originates from Apple’s Recursive Image File Processing Droplet template. Find more information in the [Mac Automation Scripting Guide to Process Dropped Files and Folders](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/ProcessDroppedFilesandFolders.html).
 
-See the command line section at the bottom for a description of all the supported options.
+Below is a list of all the styles included in the script and their options. See the command line section at the bottom for a complete description of all the supported options.
 
-NOTE - the predefined styles DO NOT overwrite the source image. Add option `-o` or `--overwrite` to overwrite the source.
+**NOTE**: the predefined styles preserve the source image. Add option `-o` or `--overwrite` to overwrite the source.
 
 ### Logo Inside Image, White Background
 
@@ -138,32 +129,42 @@ NOTE - the predefined styles DO NOT overwrite the source image. Add option `-o` 
 
 # How To Use
 
-The scaling and placement of logos and text were developed using an image with dimensions 3000 wide by 2400 tall, a font of 64 points, and an image logo with dimensions 900 wide by 250 tall pixels. When creating your logo you may want one with dark text for light backgrounds and one with white text for dark backgrounds.
+The scaling and placement of logos and text were developed using an image with dimensions 3000 wide by 2400 high pixels, a font of 64 points, and an image logo with dimensions 900 wide by 250 high pixels. When creating your own logo make one with dark text for light backgrounds and another with light text for dark backgrounds.
 
 ## In macOS Finder
 
-The Droplet included with this package works like any other macOS application. It lets you drag-n-drop items onto the application or opens a file chooser dialog.
+The AppleScript droplet included with this package works like any other macOS application.
 
-1. Drag-n-drop files onto the droplet using Finder to decorate the selected files
-1. Double-click the droplet to open a file chooser and decorate the selected files
+- drag-n-drop files onto the droplet using Finder to decorate the selected files
+- double-click the droplet to open a file chooser and decorate the selected files
+- add to an export recipe of an image editing tool to decorate images on export
 
-The droplet name will control how the images you drop or select are decorated.
+The droplet name controls how the selected images are decorated as described above.
 
 ## In Capture One Export Recipes
 
-The Droplet included with this package works like any other macOS application you can configure into a Capture One Pro Export Recipe.
+The droplet included with this package can configured into a Capture One Pro Export Recipe like any other application.
 
 1. Go to `Open With` field in a Capture One Export Recipe
 1. Choose `Other` from the `Open With` drop-down menu
-1. Navigate to and select your Dropletlication
+1. Navigate to and select one of your droplet applications
 1. Select and check the configured Export Recipe
-1. Select images to process and press `CMD+D` to export
+1. Select images to export and press `CMD + D` or the Export button
 
-The frame_it shell script options you specified in `frame_it_options` in the Droplet control how the images files you drop onto the Droplet are decorated.
+The droplet name controls how the exported images are decorated.
+
+This is what really happens is on export.
+
+1. The Export Recipe exports your selected images to your designated folder
+1. The Export Recipe passes each output filename to the droplet named in "Open with"
+1. The droplet passes the correct options and output filename to the frame\_it shell script
+1. The frame\_it shell script decorates your output file using the chosen frame\_it options
+
+This process may seem complicated, but it works quickly and invisibly. Open your output folder in Finder icon view before you export, then watch as the exported files appear in the folder and then notice the previews change as they are decorated by frame\_it.
 
 ## At The Command Line
 
-The [frame_it](frame_it) shell script also can be used from the command line on macOS and Linux if you are comfortable with that.
+The [frame_it](frame_it) shell script can be used from the command line on macOS and Linux.
 
 DEFAULTS: When no options are provided, the default behavior is:
 
@@ -231,26 +232,4 @@ OPTIONS:
                             +----------------------------------------------------+
 ```
 
-# Troubleshooting
-
-If you get an error that the `frame_it` script cannot find the `identify` command, this indicates that the folder where ImageMagick binaries are installed is not in the environment path. Find the directory where the ImageMagick binaries such as `identify` and `magick` are installed. You can edit the script `frame_it` and add that directory to the path. Look for these lines in the `frame_it` script.
-
-```
-# ADD IMAGEMAGICK BINARY PATH HERE and uncomment
-# export PATH=/path/to/your/imagemagick:$PATH
-```
-
-# Recommendation
-
-Make test copies of output files and use the shell script from the command line to experiment with how different styling options look. This will help you determine which options you want to use in your Droplet(s).
-
-# Origins
-
-The frame_it shell script originates from Apple’s Recursive Image File Processing Droplet template. You can read more about it in the [Mac Automation Scripting Guide to Process Dropped Files and Folders](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/ProcessDroppedFilesandFolders.html).
-
-1. Open Apple ScriptEditor
-2. Navigate to menu option File > New from Template > Droplets > Recursive Image File Processing Droplet
-
-The frame_it AppleScript executes the `frame_it` shell script to decorate the selected image files.
-
-The frame_it shell script uses the [ImageMagick](https://imagemagick.org/) image manipulation tool set with specific options to decorate your image files.
+Make test copies of image files and use the shell script from the command line to experiment with how different styles decorate your test images. This will help you choose which options you want to use in your droplet(s).
