@@ -15,10 +15,10 @@ use framework "Foundation"
 -- CRITICAL -- continued lines must end with ampersand plus OPT+RETURN
 --
 property styleDroplets : {formatting:"filler"} & Â
-	{logo_over_light:"-ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_dark.png"} & Â
-	{logo_over_light_drop:"-ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_dark.png"} & Â
-	{logo_over_light_pic:"-ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_dark.png"} & Â
-	{logo_over_light_drop_pic:"-ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_dark.png"} & Â
+	{logo_over_light:"-ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_over_light_drop:"-ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_over_light_pic:"-ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_over_light_drop_pic:"-ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & Â
 	{formatting:"filler"} & Â
 	{logo_over_dark:"-ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
 	{logo_over_dark_drop:"-ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
