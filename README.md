@@ -20,9 +20,9 @@ You can name a default logo file and enter the two-row label text in the script.
 
 Options for the macOS AppleScript droplet include:
 
-- drag-n-drop files onto the droplet using Finder will decorate the selected files
-- double-click the droplet will open a file chooser and decorate the selected files
-- name in an export recipe of an image editing tool to decorate images on export
+- drag-n-drop files onto the droplet using Finder to decorate the selected files
+- double-click the droplet to open a file chooser and decorate the selected files
+- name a droplet in an export recipe of an image editing tool to decorate images during export
 
 # What Is Magick Frames
 
