@@ -22,7 +22,7 @@ Options for the macOS AppleScript droplet include:
 
 - drag-n-drop files onto the droplet using Finder to decorate the selected files
 - double-click the droplet to open a file chooser and decorate the selected files
-- name a droplet in an export recipe of an image editing tool to decorate images during export
+- add to an export recipe of an image editing tool to decorate images on export
 
 # What Is Magick Frames
 
@@ -56,7 +56,7 @@ In the line containing `export`, replace `/path/to/your/imagemagick` with the fo
 
 # Creating The AppleScript Droplet
 
-The AppleScript script is distributed as "[logo_white_pic.applescript](logo_white_pic.applescript)". This is the name of one of the included styles. See the names of all the included styles in a property called `optionsList`. Save the script as an app named one of these included styles and images will be decorated with the options associated with the named style. Save the AppleScript as multiple different included style names to make multiple droplets for use.
+The AppleScript script is distributed as "[logo_white_pic.applescript](logo_white_pic.applescript)". This is the name of one of the included styles. See the names of all the included styles in a property called `optionsList`. Save the script as an app named one of these included styles and images will be decorated with the options associated with the named style. Save the AppleScript as multiple different included style names to create multiple droplets for use.
 
 1. Open [logo_white_pic.applescript](logo_white_pic.applescript) script in the macOS AppleScript Editor
 1. Look at the `optionsList` property of predefined styles and their associated options
@@ -161,7 +161,7 @@ This is what really happens is on export.
 1. The droplet passes the correct options and output filename to the frame\_it shell script
 1. The frame\_it shell script decorates your output file using the chosen frame\_it options
 
-This process may seem complicated, but it works quickly and invisibly. Open your output folder in Finder icon view before you export, then watch as the exported files appear in the folder and then notice the previews change as they are decorated by frame\_it.
+This process may seem complicated, but it works quickly and invisibly. Open your output folder in Finder icon view before you export, watch as the exported files appear in the folder, and then notice the previews change as they are decorated by frame\_it.
 
 ## At The Command Line
 
