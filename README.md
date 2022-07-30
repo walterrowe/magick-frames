@@ -41,7 +41,7 @@ Installation and use of this package requires saving AppleScript scripts as macO
 - Install the [ImageMagick](https://imagemagick.org/) software package on your system (e.g. `brew install imagemagick`)
 - Edit [frame_it](frame_it) shell script to set default label text (`label1`, `label2`) and your logo file (`watermark`)
 - Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder
-- (macOS) Open [logo_white_pic.applescript](logo_white_pic.applescript), and save as a droplet named one of the styles in the `optionsList` property list.
+- (macOS) Open [logo_light_pic.applescript](logo_light_pic.applescript), and save as a droplet named one of the styles in the `styleDroplets` property list.
 
 Use a Terminal command line to test the `frame_it` script to ensure it can access the ImageMagick tools. If the `frame_it` script says it cannot find the `identify` or `magick` command, this indicates that the folder containing the ImageMagick tools is not in the script’s environment path. Locate the directory where the ImageMagick tools are installed.
 
@@ -56,77 +56,91 @@ In the line containing `export`, replace `/path/to/your/imagemagick` with the fo
 
 # Creating The AppleScript Droplet
 
-The AppleScript script is distributed as "[logo_white_pic.applescript](logo_white_pic.applescript)". This is the name of one of the included styles. See the names of all the included styles in a property called `optionsList`. Save the script as an app named one of these included styles and images will be decorated with the options associated with the named style. Save the AppleScript as multiple different included style names to create multiple droplets for use.
+The [StyleDroplet](StyleDroplet.applescript) AppleScript is a style droplet that uses the `frame_it` script to decorate your image files. It includes a list of predefined styles. See the names of the included styles in a property called `styleDroplets`. Save the script as an app named for one of the included styles. When the saved droplet runs it looks for its own name in the styles list and uses the options associated with its name. Save as different included style names to create multiple droplets that decorate in different styles.
 
-1. Open [logo_white_pic.applescript](logo_white_pic.applescript) script in the macOS AppleScript Editor
-1. Look at the `optionsList` property of predefined styles and their associated options
+1. Open [StyleDroplet](StyleDroplet.applescript) script in the macOS AppleScript Editor
+1. Look at the `styleDroplets` property of included styles and their associated options
 1. Use File > Export, choose type Application, and save a Droplet as each of your desired style names
 
 SPEED TIP: Once you create one droplet, use Finder to copy-n-paste as names of other defined styles. This is faster than exporting the script multiple times from the AppleScript Script Editor.
 
-If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list. Carefully follow the instructions above the `optionsList` style list inside the script. Save the script as a droplet with your custom style name(s) and test it. You should get the same behavior with your custom style as you get with the included styles.
+SPEED TIP: Use the [CreateStyleDroplets](CreateStyleDroplets.applescript) AppleScript. It lets you select the folder where you want your droplets to be created and creates a droplet for each of the included styles. When it is finished it opens the selected folder in Finder so you can see all the droplets.
+
+If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list. Carefully follow the instructions above the `styleDroplets` style list inside the script. Save the script as a droplet with your custom style name(s) and test it. You should get the same behavior with your custom style as you get with the included styles.
 
 The AppleScript droplet originates from Apple’s Recursive Image File Processing Droplet template. Find more information in the [Mac Automation Scripting Guide to Process Dropped Files and Folders](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/ProcessDroppedFilesandFolders.html).
 
+# Included Styles
+
 Below is a list of all the styles included in the script and their options. See the command line section at the bottom for a complete description of all the supported options.
 
-**NOTE**: the predefined styles preserve the source image. Add option `-o` or `--overwrite` to overwrite the source.
+**NOTE**: the included styles preserve the source image. Edit the StyleDroplet AppleScript and add option `-o` or `--overwrite` to overwrite the source.
+
+- styles with `text` in the name use the two-row text-based labels for watermarking
+- styles with `logo` in the name use the image-based logo for watermarking (logo-based is the default)
+- styles with `over` in the name place the text or logo "over" (inside) the image (below the image is the default)
+- styles with `drop` in the name use a drop-shadow vs shadow on all edges (all edges is the default)
+- styles with `pic` in the name add the picture frame to the images (no picture frame is the default)
+- styles with `white` in the name use a white background (matte color) (white matte color is the default)
+- styles with `gray` in the name use a gray background (matte color)
+- styles with a `watermark_light.png` use a transparent watermark with light logo for dark backgrounds
+- styles with a `watermark_dark.png` use a transparent watermark with dark logo for light backgrounds
 
 ### Logo Inside Image, White Background
 
-- logo_over_white: -ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png
-- logo_over_white_drop: -ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png
-- logo_over_white_pic: -ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png
-- logo_over_white_drop_pic: -ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png
+- logo_over_light: -ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_dark.png
+- logo_over_light_drop: -ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_dark.png
+- logo_over_light_pic: -ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_dark.png
+- logo_over_light_drop_pic: -ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_dark.png
 
 ### Logo Inside Image, Gray Background
 
-- logo_over_gray: -ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png
-- logo_over_gray_drop: -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png
-- logo_over_gray_pic: -ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png
-- logo_over_gray_drop_pic: -ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png
+- logo_over_dark: -ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
+- logo_over_dark_drop: -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
+- logo_over_dark_pic: -ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
+- logo_over_dark_drop_pic: -ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
 
 ### Logo Below Image, White Background
 
-- logo_white: -l -mc=#ffffff -w=~/Pictures/watermark_gray.png
-- logo_white_drop: -l -d -mc=#ffffff -w=~/Pictures/watermark_gray.png
-- logo_white_pic: -l -p -mc=#ffffff -w=~/Pictures/watermark_gray.png
-- logo_white_drop_pic: -l -d -p -mc=#ffffff -w=~/Pictures/watermark_gray.png
+- logo_light: -l -mc=#ffffff -w=~/Pictures/watermark_dark.png
+- logo_light_drop: -l -d -mc=#ffffff -w=~/Pictures/watermark_dark.png
+- logo_light_pic: -l -p -mc=#ffffff -w=~/Pictures/watermark_dark.png
+- logo_light_drop_pic: -l -d -p -mc=#ffffff -w=~/Pictures/watermark_dark.png
 
 ### Logo Below Image, Gray Background
 
-- logo_gray: -l -mc=#383838 -w=~/Pictures/watermark_white.png
-- logo_gray_drop: -l -d -mc=#383838 -w=~/Pictures/watermark_white.png
-- logo_gray_pic: -l -p -mc=#383838 -w=~/Pictures/watermark_white.png
-- logo_gray_drop_pic: -l -d -p -mc=#383838 -w=~/Pictures/watermark_white.png
+- logo_dark: -l -mc=#383838 -w=~/Pictures/watermark_light.png
+- logo_dark_drop: -l -d -mc=#383838 -w=~/Pictures/watermark_light.png
+- logo_dark_pic: -l -p -mc=#383838 -w=~/Pictures/watermark_light.png
+- logo_dark_drop_pic: -l -d -p -mc=#383838 -w=~/Pictures/watermark_light.png
 
 ### Text Inside Image, White Background
 
-- text_over_white: -ot -mc=#ffffff -g=south -d -tc=#E0E0E0
-- text_over_white_drop: -ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0
-- text_over_white_pic: -ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0
-- text_over_white_drop_pic: -ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0
+- text_over_light: -ot -mc=#ffffff -g=south -d -tc=#E0E0E0
+- text_over_light_drop: -ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0
+- text_over_light_pic: -ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0
+- text_over_light_drop_pic: -ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0
 
 ### Text Inside Image, Gray Background
 
-- text_over_gray: -ot -mc=#383838 -g=south -d -tc=#E0E0E0
-- text_over_gray_drop: -ot -d -mc=#383838 -g=south -d -tc=#E0E0E0
-- text_over_gray_pic: -ot -p -mc=#383838 -g=south -d -tc=#E0E0E0
-- text_over_gray_drop_pic: -ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0
+- text_over_dark: -ot -mc=#383838 -g=south -d -tc=#E0E0E0
+- text_over_dark_drop: -ot -d -mc=#383838 -g=south -d -tc=#E0E0E0
+- text_over_dark_pic: -ot -p -mc=#383838 -g=south -d -tc=#E0E0E0
+- text_over_dark_drop_pic: -ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0
 
 ### Text Below Image, White Background
 
-- text_white: -t -mc=#ffffff -tc=#383838
-- text_white_drop: -t -d -mc=#ffffff -tc=#383838
-- text_white_pic: -t -p -mc=#ffffff -tc=#383838
-- text_white_drop_pic: -t -d -p -mc=#ffffff -tc=#383838
+- text_light: -t -mc=#ffffff -tc=#383838
+- text_light_drop: -t -d -mc=#ffffff -tc=#383838
+- text_light_pic: -t -p -mc=#ffffff -tc=#383838
+- text_light_drop_pic: -t -d -p -mc=#ffffff -tc=#383838
 
 ### Text Below Image, Gray Background
 
-- text_gray: -t -mc=#383838 -tc=#E0E0E0
-- text_gray_drop: -t -d -mc=#383838 -tc=#E0E0E0
-- text_gray_pic: -t -p -mc=#383838 -tc=#E0E0E0
-- text_gray_drop_pic: -t -d -p -mc=#383838 -tc=#E0E0E0
+- text_dark: -t -mc=#383838 -tc=#E0E0E0
+- text_dark_drop: -t -d -mc=#383838 -tc=#E0E0E0
+- text_dark_pic: -t -p -mc=#383838 -tc=#E0E0E0
+- text_dark_drop_pic: -t -d -p -mc=#383838 -tc=#E0E0E0
 
 # How To Use
 
