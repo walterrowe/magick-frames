@@ -86,56 +86,56 @@ Below is a list of all the styles included in the script and their options. See 
 - styles with a `watermark_light.png` use a transparent watermark with light logo for dark backgrounds
 - styles with a `watermark_dark.png` use a transparent watermark with dark logo for light backgrounds
 
-### Logo Inside Image, White Background
+### Logo Inside Image, White Background, Light Logo (assumes logo goes in dark image area)
 
-- logo_over_light: -ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_dark.png
-- logo_over_light_drop: -ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_dark.png
-- logo_over_light_pic: -ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_dark.png
-- logo_over_light_drop_pic: -ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_dark.png
+- logo_over_light: -ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png
+- logo_over_light_drop: -ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png
+- logo_over_light_pic: -ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png
+- logo_over_light_drop_pic: -ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png
 
-### Logo Inside Image, Gray Background
+### Logo Inside Image, Gray Background, Light Logo (assumes logo goes in dark image area)
 
 - logo_over_dark: -ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
 - logo_over_dark_drop: -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
 - logo_over_dark_pic: -ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
 - logo_over_dark_drop_pic: -ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
 
-### Logo Below Image, White Background
+### Logo Below Image, White Background, Dark Logo (for light matte color below image)
 
 - logo_light: -l -mc=#ffffff -w=~/Pictures/watermark_dark.png
 - logo_light_drop: -l -d -mc=#ffffff -w=~/Pictures/watermark_dark.png
 - logo_light_pic: -l -p -mc=#ffffff -w=~/Pictures/watermark_dark.png
 - logo_light_drop_pic: -l -d -p -mc=#ffffff -w=~/Pictures/watermark_dark.png
 
-### Logo Below Image, Gray Background
+### Logo Below Image, Gray Background, Light Logo (for dark matte color below image)
 
 - logo_dark: -l -mc=#383838 -w=~/Pictures/watermark_light.png
 - logo_dark_drop: -l -d -mc=#383838 -w=~/Pictures/watermark_light.png
 - logo_dark_pic: -l -p -mc=#383838 -w=~/Pictures/watermark_light.png
 - logo_dark_drop_pic: -l -d -p -mc=#383838 -w=~/Pictures/watermark_light.png
 
-### Text Inside Image, White Background
+### Text Inside Image, White Background, Light Text (assumes text goes in dark image area)
 
 - text_over_light: -ot -mc=#ffffff -g=south -d -tc=#E0E0E0
 - text_over_light_drop: -ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0
 - text_over_light_pic: -ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0
 - text_over_light_drop_pic: -ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0
 
-### Text Inside Image, Gray Background
+### Text Inside Image, Gray Background, Light Text (assumes text goes in dark image area)
 
 - text_over_dark: -ot -mc=#383838 -g=south -d -tc=#E0E0E0
 - text_over_dark_drop: -ot -d -mc=#383838 -g=south -d -tc=#E0E0E0
 - text_over_dark_pic: -ot -p -mc=#383838 -g=south -d -tc=#E0E0E0
 - text_over_dark_drop_pic: -ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0
 
-### Text Below Image, White Background
+### Text Below Image, White Background, Dark Text (for light matte color below image)
 
 - text_light: -t -mc=#ffffff -tc=#383838
 - text_light_drop: -t -d -mc=#ffffff -tc=#383838
 - text_light_pic: -t -p -mc=#ffffff -tc=#383838
 - text_light_drop_pic: -t -d -p -mc=#ffffff -tc=#383838
 
-### Text Below Image, Gray Background
+### Text Below Image, Gray Background, Light Text (for dark matte color below image)
 
 - text_dark: -t -mc=#383838 -tc=#E0E0E0
 - text_dark_drop: -t -d -mc=#383838 -tc=#E0E0E0
