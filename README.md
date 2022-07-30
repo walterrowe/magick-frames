@@ -2,20 +2,21 @@
 
 # Magick Frames
 
-Magick Frames applies a decorative border and shadow around an image, and places logo or text below the image or places a logo inside the image at a specified edge. One of the significant features of Magick Frames is that it scales and positions your logo or text automatically based on your image dimensions, aspect ratio, and orientation. Square, vertical, and horizontal images all look as expected. The script has been tested on images as small as 300 pixels and as large as full size 45MP images with over 8000 pixels on the long edge.
+Magick Frames applies a decorative border and shadow around an image, and places logo or text or logo below the image or inside the image at a specified edge. A significant feature of Magick Frames is that it scales and positions your text or logo based on your image dimensions, aspect ratio, and orientation. Square, vertical, and horizontal images all look as expected. The script has been tested on images from as small as 300 pixels to as large as full size 45MP with over 8000 pixels on the long edge.
 
-Options for decorating the border of your image and applying text or a logo include:
+Options for decorating your image and applying text or a logo include:
 
-- optionally add a picture frame of 1-pixel black + 10-pixels white
-- choose a shadow around all the edges or a drop shadow bottom right
+- optionally add a picture frame of 1-pixel dark + 10-pixels light
+- choose either a shadow on all the edges or a drop shadow bottom right
 - choose either a two-row text-based label or an image-based logo
-- choose whether the text label or logo are inside or below the image
-- choose where inside the image to place the text or logo image
-- choose the color of the background to use for the output file
-- choose the color of the text-based label for the output file
-- choose the font of the text-based label for the output file
-- choose a default logo file and two-row label text in the script
+- choose whether to place the text label or logo inside or below the image
+- choose where inside the image to place the text or image logo
+- choose the matte color of the background to use for the output file
+- choose the text color of the text-based label added to the output file
+- choose the font of the text-based label added to the output file
 - choose an alternate logo watermark file on the command line
+
+You can name a default logo file and enter the two-row label text in the script. An alternate logo file can be named on the command line. The two-row label text cannot be overridden on the command line at this time.
 
 Options for the macOS AppleScript droplet include:
 
