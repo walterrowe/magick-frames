@@ -1,14 +1,9 @@
 (*
   Original: Walter Rowe in 2022
 
-  2017: ported to latest Capture One and macOS version, modified border styling
-  2022: copied to 'frame_it' and modified to use frame_it (script that uses the ImageMagick Suite vs sips)
-
   The application you create from this AppleScript can be used directly in Finder via drag-n-drop.
   Select a number of image files, and drag-n-drop them on the application. It will decorate the
   dropped files.
-
-  WARNING: the default configuration below OVERWRITES the source files sent to it.
 
   Modifying The Frame Style:
   * Look below for the variable "frame_it_options" to change the command line options
