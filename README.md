@@ -30,12 +30,13 @@ The `frame_it` shell script offers numerous options to tailor the style of the d
 
 # Installation and Configuration
 
+## Install ImageMagick
+
 Installation and use of this package requires saving AppleScript scripts as macOS droplets, installing the open source [ImageMagick](https://imagemagick.org/) software using a tool such as [Home Brew](https://brew.sh/), and using a macOS Terminal or Linux shell window to copy a script to your system's /usr/local/bin directory.
 
-- Install the [ImageMagick](https://imagemagick.org/) software package on your system (e.g. `brew install imagemagick`)
-- Edit the [frame_it](frame_it) shell script and set default label text (`label1`, `label2`) and logo file (`watermark`)
-- Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder
-- (macOS) Open [logo_light_pic.applescript](logo_light_pic.applescript), and save as a droplet named one of the styles in the `styleDroplets` property list.
+## Configure and Copy `frame_it` Shell Script
+
+Edit the [frame_it](frame_it) shell script and set default label text (`label1`, `label2`) and logo file (`watermark`). Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder.
 
 Use a Terminal command line to test the `frame_it` script to ensure it can access the ImageMagick tools. If the `frame_it` script says it cannot find the `identify` or `magick` command, this indicates that the folder containing the ImageMagick tools is not in the script’s environment path. Locate the directory where the ImageMagick tools are installed.
 
@@ -48,7 +49,7 @@ Edit the `frame_it` script and look for these lines.
 
 In the line containing `export`, replace `/path/to/your/imagemagick` with the folder where your ImageMagick tools reside, uncomment the line (remove the `# ` at the beginning), and save the file.
 
-# Creating macOS Droplets
+## Create macOS Droplets
 
 The macOS droplet included with this package creates an app that lets you:
 
@@ -70,7 +71,7 @@ If you feel comfortable with the AppleScript Script Editor, you can add your own
 
 The AppleScript droplet originates from Apple’s Recursive Image File Processing Droplet template. Find more information in the [Mac Automation Scripting Guide to Process Dropped Files and Folders](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/ProcessDroppedFilesandFolders.html).
 
-# Logo Watermarks
+## Create Logo Watermarks
 
 Make your logo watermark image files with these specifications:
 
