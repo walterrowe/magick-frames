@@ -67,7 +67,7 @@ label1="W  A  L  T  E  R     R  O  W  E     P  H  O  T  O  G  R  A  P  H  Y"
 label2="w w w . w a l t e r r o w e . c o m"
 
 # default logo watermark file - graphic watermark (my logo watermark is 900wx250h pixels w/ transparent background)
-watermark=~/Pictures/watermark_gray.png
+watermark=~/Pictures/watermark_dark.png
 
 # homebrew on the Apple ARM platform installs apps in /opt/homebrew/bin
 if [ -x /opt/homebrew/bin/brew ]; then
