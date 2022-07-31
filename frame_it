@@ -354,7 +354,7 @@ for filename in "$@" ; do
     case ${style} in
         text)
             # convert source file into decorated target file
-            magick "${source}" \
+            magick "${source}" -auto-orient \
               -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
               \( +clone -background black -shadow ${shadow}${offset} \) \
               +swap -background ${mattecolor} -layers merge +repage \
@@ -368,7 +368,7 @@ for filename in "$@" ; do
 
         overlay_text)
             # convert source file into decorated target file
-            magick "${source}" \
+            magick "${source}" -auto-orient \
               -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} -geometry ${label1_inset} -composite \
               -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -geometry ${label2_inset} -composite \
               -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
@@ -382,7 +382,7 @@ for filename in "$@" ; do
 
         logo)
             # convert source file into decorated target file
-            magick "${source}" \
+            magick "${source}" -auto-orient \
               -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
               \( +clone -background black -shadow ${shadow}${offset} \) \
               +swap -background ${mattecolor} -layers merge +repage \
@@ -396,7 +396,7 @@ for filename in "$@" ; do
 
         overlay_logo)
             # convert source file into decorated target file
-            magick "${source}" \
+            magick "${source}" -auto-orient \
               \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry ${logo_inset} \) -composite \
               -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
               \( +clone -background black -shadow ${shadow}${offset} \) \
