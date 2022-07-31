@@ -78,11 +78,12 @@ Below is a list of all the styles included in the script and their options. See 
 
 - styles with `text` in the name use the two-row text-based labels for watermarking
 - styles with `logo` in the name use the image-based logo for watermarking (logo-based is the default)
-- styles with `over` in the name place the text or logo "over" (inside) the image (below the image is the default)
+- styles with `over` in the name place the text or logo "over" (inside) the image (centered below is the default)
 - styles with `drop` in the name use a drop-shadow vs shadow on all edges (all edges is the default)
 - styles with `pic` in the name add the picture frame to the images (no picture frame is the default)
 - styles with `white` in the name use a white background (matte color) (white matte color is the default)
 - styles with `gray` in the name use a gray background (matte color)
+- styles with `-g` use this option to specify placement inside them image (see `gravity` in command line options)
 - styles with a `watermark_light.png` use a transparent watermark with light logo for dark backgrounds
 - styles with a `watermark_dark.png` use a transparent watermark with dark logo for light backgrounds
 
