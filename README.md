@@ -30,6 +30,17 @@ The `frame_it` shell script offers numerous options to tailor the style of the d
 
 # Installation and Configuration
 
+## Create Logo Watermarks
+
+Make your logo watermark image files with these specifications:
+
+- 900 pixels wide and 250 pixels tall
+- use a transparent background
+- save your logo image files as PNG files
+- place your logos in your Pictures folder
+- make a light colored logo for dark mattes and image areas (`watermark_light.png`)
+- make a dark colored logo for light mattes and image areas (`watermark_dark.png`)
+
 ## Install ImageMagick
 
 Installation and use of this package requires saving AppleScript scripts as macOS droplets, installing the open source [ImageMagick](https://imagemagick.org/) software using a tool such as [Home Brew](https://brew.sh/), and using a macOS Terminal or Linux shell window to copy a script to your system's /usr/local/bin directory.
@@ -70,17 +81,6 @@ SPEED TIP: Use the [CreateStyleDroplets](CreateStyleDroplets.applescript) AppleS
 If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list. Carefully follow the instructions above the `styleDroplets` style list inside the script. Save the script as a droplet with your custom style name(s) and test it. You should get the same behavior with your custom style as you get with the included styles.
 
 The AppleScript droplet originates from Apple’s Recursive Image File Processing Droplet template. Find more information in the [Mac Automation Scripting Guide to Process Dropped Files and Folders](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/ProcessDroppedFilesandFolders.html).
-
-## Create Logo Watermarks
-
-Make your logo watermark image files with these specifications:
-
-- 900 pixels wide and 250 pixels tall
-- use a transparent background
-- save your logo image files as PNG files
-- place your logos in your Pictures folder
-- make a light colored logo for dark mattes and image areas (`watermark_light.png`)
-- make a dark colored logo for light mattes and image areas (`watermark_dark.png`)
 
 # Included Styles
 
