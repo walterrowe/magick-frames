@@ -74,10 +74,13 @@ The AppleScript droplet originates from Apple’s Recursive Image File Processin
 
 Below is a list of all the styles included in the script and their options. See the command line section at the bottom for a complete description of all the supported options.
 
-RECOMMENDATION: make two watermark image files on transparent background and place in your Pictures folder:
+RECOMMENDATION: make two watermark image files:
 
-- watermark_light.png (light colored logo for dark matte colors and image areas)
-- watermark_dark.png (dark colored logo for light matte colors and image areas)
+- make them 900 pixels wide and 250 pixel tall
+- make them on transparent background
+- place them in your Pictures folder
+- make a `watermark_light.png` (light colored logo for dark matte colors and image areas)
+- make a `watermark_dark.png` (dark colored logo for light matte colors and image areas)
 
 **NOTE**: the included styles preserve the source image. Edit the StyleDroplet AppleScript and add option `-o` or `--overwrite` to overwrite the source.
 
