@@ -18,6 +18,10 @@ Options for decorating your image and applying text or a logo include:
 
 You must name a default logo file and enter the two-row label text in the `frame_it` shell script. You can specify an alternate logo file on the command line or in different macOS droplet styles. The two-row label text cannot be overridden on the command line at this time.
 
+# Requirements / Assumptions
+
+This package is not a simple click-to-install package. It requires some comfort with using a Terminal window to type in commands at a command prompt. You have to install an open source software package (ImageMagick), edit and copy a shell script, and for macOS users you may want to run one of the included AppleScript scripts. If these are unfamiliar terms, you may need assistance or you may choose to not use this package.
+
 # What Is Magick Frames
 
 Magick Frames is a combination of a macOS/Linux shell script and a macOS AppleScript droplet. The shell script uses the [ImageMagick](https://imagemagick.org/) image manipulation package to apply a professional looking decoration to a selection of image files.
@@ -27,6 +31,10 @@ The style droplet only works on macOS. The `frame_it` shell script should work o
 By default the `frame_it` shell script preserves your input files by creating new output files with `-frame` inserted  before the extension in the output filename. An input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is always placed in the same folder as the input file. You can tell the shell script to overwrite your input file by adding the `-o` or `--overwrite` option.
 
 The `frame_it` shell script offers numerous options to tailor the style of the decoration. See the command line options section near the bottom for a detailed descriptione of these options.
+
+# Donations and Support
+
+This package was written in my free time. It will require my free time to maintain it. If you would like to make a donation to help fund ongoing support and development of this package, you can buy me a coffee at my [Buy Me A Coffee](https://buymeacoffee.com/walterrowe) page. You can donate as many coffees as you like. I really like coffee!!!
 
 # Installation and Configuration
 
