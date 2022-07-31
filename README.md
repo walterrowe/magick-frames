@@ -54,7 +54,7 @@ Use a Terminal command line to test the `frame_it` script to ensure it can acces
 
 Edit the `frame_it` script and look for these lines.
 
-```
+```shell
 # ADD IMAGEMAGICK BINARY PATH HERE and uncomment
 # export PATH=/path/to/your/imagemagick:$PATH
 ```
@@ -175,11 +175,11 @@ If you feel comfortable with the AppleScript Script Editor, you can add your own
 
 The property list uses `key:value` pairs where the style name is the key and the `frame_it` style options is the value. Use `frame_it` from the command line to test different options and develop your own custom style settings. Run `frame_it` with NO options to see a complete list of style options. Once you have an options set you like, add a new entry to the property list with unique name and the options you choose, and export a new droplet named for your custom style(s).
 
-```
+```applescript
 	{your_style_name:"-your -style -options"} & ¬
 ```
 
-Suppose your drop files onto or double-click the `logo_over_dark_drop` droplet. The droplet will construct a separate shell command line for each image file as follows:
+When you drop files onto or double-click the `logo_over_dark_drop` droplet, the droplet will construct a separate shell command line for each image file as follows:
 
 ```text
 frame_it -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png <your image file>
@@ -187,7 +187,7 @@ frame_it -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png <your
 
 This is the `styleDroplets` property list included with `StyleDroplet` and `CreateStyleDroplets` scripts that represent all of the included styles described above.
 
-```
+```applescript
 property styleDroplets : {formatting:"filler"} & ¬
 	{logo_over_light:"-ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
 	{logo_over_light_drop:"-ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
