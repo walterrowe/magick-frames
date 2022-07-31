@@ -29,28 +29,9 @@ By default the `frame_it` shell script preserves your input files by creating ne
 The `frame_it` shell script offers numerous options to tailor the style of the decoration. See the command line options section near the bottom for a detailed descriptione of these options.
 
 # Installation and Configuration
-<<<<<<< HEAD
 
 ## Create Logo Watermarks
 
-Make your logo watermark image files with these specifications:
-
-- 900 pixels wide and 250 pixels tall
-- use a transparent background
-- save your logo image files as PNG files
-- make a light colored logo for dark mattes and image areas (`watermark_light.png`)
-- make a dark colored logo for light mattes and image areas (`watermark_dark.png`)
-- place your logos in your Pictures folder
-- DEFAULT: the default watermark logo filename in `frame_it` is `~/Pictures/watermark_dark.png`
-
-## Install ImageMagick
-=======
->>>>>>> develop
-
-## Create Logo Watermarks
-
-<<<<<<< HEAD
-=======
 My logo image file is made with these specifications based on a 3000w x 2400h pixel image file:
 
 - 900 pixels wide and 250 pixels tall
@@ -65,7 +46,6 @@ My logo image file is made with these specifications based on a 3000w x 2400h pi
 
 Installation and use of this package requires saving AppleScript scripts as macOS droplets, installing the open source [ImageMagick](https://imagemagick.org/) software using a tool such as [HomeBrew](https://brew.sh/), and using a macOS Terminal or Linux shell window to copy a script to your system's /usr/local/bin directory.
 
->>>>>>> develop
 ## Install The Shell Script
 
 Edit the [frame_it](frame_it) shell script and set default label text (`label1`, `label2`) and logo file (`watermark`). Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder.
@@ -110,11 +90,7 @@ SPEED TIP: Once you create one droplet, use Finder to copy-n-paste as names of o
 
 ### Create All Style Droplets
 
-<<<<<<< HEAD
-Use the [CreateStyleDroplets](CreateStyleDroplets.applescript) AppleScript to create style droplets for all of the styles in the `styleDroplets` property list.. It lets you select the folder where you want your droplets to be created and creates a droplet for each of the included styles. When it is finished it opens the selected folder in Finder so you can see all the droplets.
-=======
 Use the [CreateStyleDroplets](CreateStyleDroplets.applescript) AppleScript to create style droplets for all of the styles in the `styleDroplets` property list. It lets you select the folder where you want your droplets to be created and creates a droplet for each of the included styles. When it is finished it opens the selected folder in Finder so you can see all the droplets.
->>>>>>> develop
 
 The AppleScript droplet originates from Apple’s Recursive Image File Processing Droplet template. Find more information in the [Mac Automation Scripting Guide to Process Dropped Files and Folders](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/ProcessDroppedFilesandFolders.html).
 
