@@ -169,9 +169,60 @@ Below is a list of all the styles included in the script and their options. See 
 
 ### Create Custom Styles
 
-If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list.
+**WARNING**: You MUST use Script Editor to add custom styles. The `styleDroplets` property list uses OPT+[RETURN] to continue the list across multiple lines. Other code editing tools such as Visual Studio Code and Atom are unable to insert this special form of line continuation.
 
-**WARNING**: You MUST use Script Editor to add custom styles. The `styleDroplets` property list uses OPT+[RETURN] to continue the list across multiple lines.
+If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list. You will see entries for "formatting". These are simply fillers to make it easier to read and group together the defined styles with similar looks.
+
+The property list uses `key:value` pairs where the style name is the key and the `frame_it` style options is the value. Use `frame_it` from the command line to test different options and develop your own custom style settings. Run `frame_it` with NO options to see a complete list of style options. Once you have an options set you like, add a new entry to the property list with unique name and the options you choose, and export a new droplet named for your custom style(s).
+
+```
+	{your_style_name:"-your -style -options"} & ¬
+```
+
+Below is the `styleDroplets` property list included with package that represents the included styles described above.
+
+```
+property styleDroplets : {formatting:"filler"} & ¬
+	{logo_over_light:"-ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_over_light_drop:"-ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_over_light_pic:"-ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_over_light_drop_pic:"-ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{formatting:"filler"} & ¬
+	{logo_over_dark:"-ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_over_dark_drop:"-ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_over_dark_pic:"-ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_over_dark_drop_pic:"-ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{formatting:"filler"} & ¬
+	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & ¬
+	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & ¬
+	{logo_light_pic:"-l -p -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & ¬
+	{logo_light_drop_pic:"-l -d -p -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & ¬
+	{formatting:"filler"} & ¬
+	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_dark_pic:"-l -p -mc=#383838 -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_dark_drop_pic:"-l -d -p -mc=#383838 -w=~/Pictures/watermark_light.png"} & ¬
+	{formatting:"filler"} & ¬
+	{text_over_light:"-ot -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
+	{text_over_light_drop:"-ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
+	{text_over_light_pic:"-ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
+	{text_over_light_drop_pic:"-ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
+	{formatting:"filler"} & ¬
+	{text_over_dark:"-ot -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
+	{text_over_dark_drop:"-ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
+	{text_over_dark_pic:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
+	{text_over_dark_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
+	{formatting:"filler"} & ¬
+	{text_light:"-t -mc=#ffffff -tc=#383838"} & ¬
+	{text_light_drop:"-t -d -mc=#ffffff -tc=#383838"} & ¬
+	{text_light_pic:"-t -p -mc=#ffffff -tc=#383838"} & ¬
+	{text_light_drop_pic:"-t -d -p -mc=#ffffff -tc=#383838"} & ¬
+	{formatting:"filler"} & ¬
+	{text_dark:"-t -mc=#383838 -tc=#E0E0E0"} & ¬
+	{text_dark_drop:"-t -d -mc=#383838 -tc=#E0E0E0"} & ¬
+	{text_dark_pic:"-t -p -mc=#383838 -tc=#E0E0E0"} & ¬
+	{text_dark_drop_pic:"-t -d -p -mc=#383838 -tc=#E0E0E0"}
+```
 
 Carefully follow the instructions above the `styleDroplets` style list inside both the StyleDroplet and CreateStyleDroplets scripts. Use the instructions above to create droplets for individual styles for all the styles including your own custom styles. Custom style droplets should produce the same behavior as the included styles.
 
