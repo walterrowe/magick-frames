@@ -2,7 +2,9 @@
 
 # Donations and Support
 
-This package was written in my free time. It will require my free time to maintain it. If you would like to make a donation to help fund ongoing support and development of this package, you can buy me a coffee at my [Buy Me A Coffee](https://buymeacoffee.com/walterrowe) page. You can donate as many coffees as you like. I really like coffee!!!
+This package was written in my free time. It will require my free time to maintain it. If you would like to make a donation to help fund ongoing support and development of this package, you can buy me a coffee. You can donate as many coffees as you like. I really like coffee!!!
+
+[Buy Me A Coffee](https://buymeacoffee.com/walterrowe)
 
 # Magick Frames
 
