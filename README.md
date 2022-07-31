@@ -1,5 +1,9 @@
 ![Magick Frames](assets/magick-frames.png)
 
+# Donations and Support
+
+This package was written in my free time. It will require my free time to maintain it. If you would like to make a donation to help fund ongoing support and development of this package, you can buy me a coffee at my [Buy Me A Coffee](https://buymeacoffee.com/walterrowe) page. You can donate as many coffees as you like. I really like coffee!!!
+
 # Magick Frames
 
 Magick Frames applies a decorative border and shadow around an image, and places text or an image logo either below the image or inside the image at a specified edge. A significant feature of Magick Frames is that it scales and positions your text or logo based on your image dimensions, aspect ratio, and orientation. Square, vertical, and horizontal images all look as expected. The script has been tested on images from as small as 300 pixels to as large as full size 45MP with over 8000 pixels on the long edge.
@@ -31,10 +35,6 @@ The style droplet only works on macOS. The `frame_it` shell script should work o
 By default the `frame_it` shell script preserves your input files by creating new output files with `-frame` inserted  before the extension in the output filename. An input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is always placed in the same folder as the input file. You can tell the shell script to overwrite your input file by adding the `-o` or `--overwrite` option.
 
 The `frame_it` shell script offers numerous options to tailor the style of the decoration. See the command line options section near the bottom for a detailed descriptione of these options.
-
-# Donations and Support
-
-This package was written in my free time. It will require my free time to maintain it. If you would like to make a donation to help fund ongoing support and development of this package, you can buy me a coffee at my [Buy Me A Coffee](https://buymeacoffee.com/walterrowe) page. You can donate as many coffees as you like. I really like coffee!!!
 
 # Installation and Configuration
 
