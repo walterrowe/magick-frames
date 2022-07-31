@@ -179,7 +179,13 @@ The property list uses `key:value` pairs where the style name is the key and the
 	{your_style_name:"-your -style -options"} & ¬
 ```
 
-Below is the `styleDroplets` property list included with package that represents the included styles described above.
+Suppose your drop files onto or double-click the `logo_over_dark_drop` droplet. The droplet will construct a separate shell command line for each image file as follows:
+
+```text
+frame_it -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png <your image file>
+```
+
+This is the `styleDroplets` property list included with `StyleDroplet` and `CreateStyleDroplets` scripts that represent all of the included styles described above.
 
 ```
 property styleDroplets : {formatting:"filler"} & ¬
