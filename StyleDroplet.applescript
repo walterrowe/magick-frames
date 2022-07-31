@@ -1,42 +1,21 @@
 (*
+
   Original: Walter Rowe in 2022
 
-  2017: ported to latest Capture One and macOS version, modified border styling
-  2022: copied to 'frame_it' and modified to use frame_it (script that uses the ImageMagick Suite vs sips)
+  The droplet you create from this AppleScript can be used via drag-n-drop in Finder, as a
+  double-clicked app to choose files to decorate, and as a named app in an export
+  configuration in image editing tools.
 
-  The application you create from this AppleScript can be used directly in Finder via drag-n-drop.
-  Select a number of image files, and drag-n-drop them on the application. It will decorate the
-  dropped files.
+  Modifying The Styles List:
+  * Look below for the property "styleDroplets" to create additional styles for droplets
+  * Read the frame_it shell script to see the options available for styling your images
+  * The included styles create NEW files with "-frame" inserted before extension
+    * example: my-image.jpg -> my-image-frame.jpg
 
-  WARNING: the default configuration below OVERWRITES the source files sent to it.
+  Use the CreateStyleDroplets script to create droplets for all the included styles.
 
-  Modifying The Frame Style:
-  * Look below for the variable "frame_it_options" to change the command line options
-  * Look in the frame_it shell script to see the options available styling your images
-  * Remove the "-o" option to create NEW files with "-frame" inserted before extension.
-    * example: my_image.jpg -> my_image-frame.jpg
+  See the README.md markdown file for detailed instructions on installation and use
 
-  You can set different options and export this as different applications. I have three
-  different exported versions of this. One creates a text-based label, one creates a logo
-  based label, and another applies a watermark ON the image itself.
-
-  Package Requirements:
-  * The frame_it shell script only supports macOS and Linux
-  * The frame_it AppleScript only supports macOS
-  * Install ImageMagick using Home Brew or Linux package manager
-  * Copy the frame_it shell script into your /usr/local/bin directory
-  * Edit the frame_it shell script and set the value for "logo" to your logo file
-  * Edit the frame_it shell script and set the value for "label1" and "label2"
-
-  Droplet App Installation:
-  * Open this in AppleScript Editor and File > Export as an Application
-  * OPTION: Add the application to the Open With field of a Capture One Export Recipe
-
-  To see the origins of this script
-  1) open Script Editor
-  2) File > New from Template > Droplets > Recursive Image File Processing Droplet
-
-  https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/ProcessDroppedFilesandFolders.html
 *)
 
 use AppleScript version "2.7"
@@ -114,49 +93,50 @@ property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.
 -- you can add your own app names and options, and save as your new app name to use your chosen options
 --
 -- CRITICAL -- continued lines must end with ampersand plus OPT+RETURN
-property optionsList : {formatting:"filler"} & Â
-	{logo_over_white:"-ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"} & Â
-	{logo_over_white_drop:"-ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"} & Â
-	{logo_over_white_pic:"-ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"} & Â
-	{logo_over_white_drop_pic:"-ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_white.png"} & Â
+--
+property styleDroplets : {formatting:"filler"} & Â
+	{logo_over_light:"-ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_over_light_drop:"-ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_over_light_pic:"-ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_over_light_drop_pic:"-ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & Â
 	{formatting:"filler"} & Â
-	{logo_over_gray:"-ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"} & Â
-	{logo_over_gray_drop:"-ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"} & Â
-	{logo_over_gray_pic:"-ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"} & Â
-	{logo_over_gray_drop_pic:"-ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_white.png"} & Â
+	{logo_over_dark:"-ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_over_dark_drop:"-ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_over_dark_pic:"-ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_over_dark_drop_pic:"-ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
 	{formatting:"filler"} & Â
-	{logo_white:"-l -mc=#ffffff -w=~/Pictures/watermark_gray.png"} & Â
-	{logo_white_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermark_gray.png"} & Â
-	{logo_white_pic:"-l -p -mc=#ffffff -w=~/Pictures/watermark_gray.png"} & Â
-	{logo_white_drop_pic:"-l -d -p -mc=#ffffff -w=~/Pictures/watermark_gray.png"} & Â
+	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
+	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
+	{logo_light_pic:"-l -p -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
+	{logo_light_drop_pic:"-l -d -p -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
 	{formatting:"filler"} & Â
-	{logo_gray:"-l -mc=#383838 -w=~/Pictures/watermark_white.png"} & Â
-	{logo_gray_drop:"-l -d -mc=#383838 -w=~/Pictures/watermark_white.png"} & Â
-	{logo_gray_pic:"-l -p -mc=#383838 -w=~/Pictures/watermark_white.png"} & Â
-	{logo_gray_drop_pic:"-l -d -p -mc=#383838 -w=~/Pictures/watermark_white.png"} & Â
+	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermark_light.png"} & Â
+	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermark_light.png"} & Â
+	{logo_dark_pic:"-l -p -mc=#383838 -w=~/Pictures/watermark_light.png"} & Â
+	{logo_dark_drop_pic:"-l -d -p -mc=#383838 -w=~/Pictures/watermark_light.png"} & Â
 	{formatting:"filler"} & Â
-	{text_over_white:"-ot -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
-	{text_over_white_drop:"-ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
-	{text_over_white_pic:"-ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
-	{text_over_white_drop_pic:"-ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_light:"-ot -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_light_drop:"-ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_light_pic:"-ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_light_drop_pic:"-ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
 	{formatting:"filler"} & Â
-	{text_over_gray:"-ot -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_over_gray_drop:"-ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_over_gray_pic:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_over_gray_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_dark:"-ot -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_dark_drop:"-ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_dark_pic:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
+	{text_over_dark_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{formatting:"filler"} & Â
-	{text_white:"-t -mc=#ffffff -tc=#383838"} & Â
-	{text_white_drop:"-t -d -mc=#ffffff -tc=#383838"} & Â
-	{text_white_pic:"-t -p -mc=#ffffff -tc=#383838"} & Â
-	{text_white_drop_pic:"-t -d -p -mc=#ffffff -tc=#383838"} & Â
+	{text_light:"-t -mc=#ffffff -tc=#383838"} & Â
+	{text_light_drop:"-t -d -mc=#ffffff -tc=#383838"} & Â
+	{text_light_pic:"-t -p -mc=#ffffff -tc=#383838"} & Â
+	{text_light_drop_pic:"-t -d -p -mc=#ffffff -tc=#383838"} & Â
 	{formatting:"filler"} & Â
-	{text_gray:"-t -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_gray_drop:"-t -d -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_gray_pic:"-t -p -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_gray_drop_pic:"-t -d -p -mc=#383838 -tc=#E0E0E0"}
+	{text_dark:"-t -mc=#383838 -tc=#E0E0E0"} & Â
+	{text_dark_drop:"-t -d -mc=#383838 -tc=#E0E0E0"} & Â
+	{text_dark_pic:"-t -p -mc=#383838 -tc=#E0E0E0"} & Â
+	{text_dark_drop_pic:"-t -d -p -mc=#383838 -tc=#E0E0E0"}
 
 on get_options(appName)
-	set optionsData to my (NSDictionary's dictionaryWithDictionary:optionsList)
+	set optionsData to my (NSDictionary's dictionaryWithDictionary:styleDroplets)
 	set optionsKeys to optionsData's allKeys() as list
 	if optionsKeys contains appName then
 		set appOptions to optionsData's valueForKey:(appName as text)
@@ -177,7 +157,8 @@ end splitText
 on run
 	-- convert "path:to:me.app:" into "me" (apps are folders so note the trailing colon thus the -2 below)
 	set appPath to path to me as string
-	set appName to item -2 of splitText(appPath, ":")
+	set appName to item -1 of splitText(appPath, ":")
+	if appName is "" then set appName to item -2 of splitText(appPath, ":")
 	set appBase to item 1 of splitText(appName, ".")
 	
 	-- get desired frame_it options based on invoked app name
@@ -186,20 +167,28 @@ on run
 	-- app was run from Finder via double-click so pop up file chooser
 	set selected_items to choose file with prompt "Select the images to decorate:" of type {"public.image"} with multiple selections allowed
 	
-	process_items(selected_items, frame_it_options)
+	if frame_it_options is false then
+		display alert "No defined style '" & appBase & "'"
+	else
+		process_items(selected_items, frame_it_options)
+	end if
 end run
 
 -- on open event processes items dropped onto it or sent to it via open app with parameters
 on open dropped_items
 	-- convert "path:to:me.app:" into "me" (note the trailing colon this -2 below)
 	set appPath to path to me as string
-	set appName to item -2 of splitText(appPath, ":")
+	set appName to item -1 of splitText(appPath, ":")
+	if appName is "" then set appName to item -2 of splitText(appPath, ":")
 	set appBase to item 1 of splitText(appName, ".")
 	
 	-- get desired frame_it options based on invoked app name
 	set frame_it_options to get_options(appBase)
-	
-	process_items(dropped_items, frame_it_options)
+	if frame_it_options is false then
+		display alert "No defined style '" & appBase & "'"
+	else
+		process_items(dropped_items, frame_it_options)
+	end if
 end open
 
 on process_items(the_items, frame_it_options)
