@@ -24,7 +24,7 @@ Magick Frames is a combination of a macOS/Linux shell script and a macOS AppleSc
 
 The style droplet only works on macOS. The `frame_it` shell script should work on macOS and Linux.
 
-By default the `frame_it` shell script preserves your input files by creating new output files with `-frame` is inserted  before the extension in the output filename. An input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is always placed in the same folder as the input file.You can tell the shell script to overwrite your input file by adding the `-o` or `--overwrite` option.
+By default the `frame_it` shell script preserves your input files by creating new output files with `-frame` inserted  before the extension in the output filename. An input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is always placed in the same folder as the input file. You can tell the shell script to overwrite your input file by adding the `-o` or `--overwrite` option.
 
 The `frame_it` shell script offers numerous options to tailor the style of the decoration. See the command line options section near the bottom for a detailed descriptione of these options.
 
@@ -37,15 +37,16 @@ Make your logo watermark image files with these specifications:
 - 900 pixels wide and 250 pixels tall
 - use a transparent background
 - save your logo image files as PNG files
-- place your logos in your Pictures folder
 - make a light colored logo for dark mattes and image areas (`watermark_light.png`)
 - make a dark colored logo for light mattes and image areas (`watermark_dark.png`)
+- place your logos in your Pictures folder
+- DEFAULT: the default watermark logo filename in `frame_it` is `~/Pictures/watermark_dark.png`
 
 ## Install ImageMagick
 
 Installation and use of this package requires saving AppleScript scripts as macOS droplets, installing the open source [ImageMagick](https://imagemagick.org/) software using a tool such as [Home Brew](https://brew.sh/), and using a macOS Terminal or Linux shell window to copy a script to your system's /usr/local/bin directory.
 
-## Configure and Copy `frame_it` Shell Script
+## Install The Shell Script
 
 Edit the [frame_it](frame_it) shell script and set default label text (`label1`, `label2`) and logo file (`watermark`). Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder.
 
@@ -60,15 +61,26 @@ Edit the `frame_it` script and look for these lines.
 
 In the line containing `export`, replace `/path/to/your/imagemagick` with the folder where your ImageMagick tools reside, uncomment the line (remove the `# ` at the beginning), and save the file.
 
-## Create macOS Droplets
+## Create The Style Droplets
 
-The macOS droplet included with this package creates an app that lets you:
+The Style Droplets work on macOS only. Each Style Droplet you create becomes a macOS app that lets you:
 
 - drag-n-drop files onto the droplet using Finder to decorate the selected files
 - double-click the droplet to open a file chooser and decorate the selected files
 - add to an export recipe of an image editing tool to decorate images on export
 
-The [StyleDroplet](StyleDroplet.applescript) AppleScript is a style droplet that uses the `frame_it` script to decorate your image files. It includes a list of predefined styles. See the names of the included styles in a property called `styleDroplets`. Save the script as an app named for one of the included styles. When the saved droplet runs it looks for its own name in the styles list and uses the options associated with its name. Save as different included style names to create multiple droplets that decorate in different styles.
+There are two ways to create the droplets for macOS.
+
+1. Open the StyleDroplet AppleScript file in Script Editor and export as an app.
+1. Open the CreateStyleDroplets AppleScript file in ScriptEditor and run it.
+
+The [StyleDroplet](StyleDroplet.applescript) AppleScript is a style droplet runs the `frame_it` script to decorate your image files. The StyleDroplet AppleScript includes a set of predefined styles. The names of these included styles are in a property list called `styleDroplets`. Export the script in Script Editor as an app named for one of the included styles. 
+
+When the exported droplet runs it looks for its name in the styles property list and runs the `frame_it` script to decorate selected or dropped image files with the associated options for that style. Export the StyleDroplet as different style names from the `styleDroplets` list to create multiple droplets that decorate your images in different styles.
+
+### Export Individual Style Droplets
+
+You can create individual style droplets for only the styles you want to use.
 
 1. Open [StyleDroplet](StyleDroplet.applescript) script in the macOS AppleScript Editor
 1. Look at the `styleDroplets` property of included styles and their associated options
@@ -76,13 +88,13 @@ The [StyleDroplet](StyleDroplet.applescript) AppleScript is a style droplet that
 
 SPEED TIP: Once you create one droplet, use Finder to copy-n-paste as names of other defined styles. This is faster than exporting the script multiple times from the AppleScript Script Editor.
 
-SPEED TIP: Use the [CreateStyleDroplets](CreateStyleDroplets.applescript) AppleScript. It lets you select the folder where you want your droplets to be created and creates a droplet for each of the included styles. When it is finished it opens the selected folder in Finder so you can see all the droplets.
+### Create All Style Droplets
 
-If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list. Carefully follow the instructions above the `styleDroplets` style list inside the script. Save the script as a droplet with your custom style name(s) and test it. You should get the same behavior with your custom style as you get with the included styles.
+Use the [CreateStyleDroplets](CreateStyleDroplets.applescript) AppleScript to create style droplets for all of the styles in the `styleDroplets` property list.. It lets you select the folder where you want your droplets to be created and creates a droplet for each of the included styles. When it is finished it opens the selected folder in Finder so you can see all the droplets.
 
 The AppleScript droplet originates from Apple’s Recursive Image File Processing Droplet template. Find more information in the [Mac Automation Scripting Guide to Process Dropped Files and Folders](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/ProcessDroppedFilesandFolders.html).
 
-# Included Styles
+### Included Styles
 
 Below is a list of all the styles included in the script and their options. See the command line section at the bottom for a complete description of all the supported options.
 
@@ -154,6 +166,14 @@ Below is a list of all the styles included in the script and their options. See 
 - text_dark_drop: -t -d -mc=#383838 -tc=#E0E0E0
 - text_dark_pic: -t -p -mc=#383838 -tc=#E0E0E0
 - text_dark_drop_pic: -t -d -p -mc=#383838 -tc=#E0E0E0
+
+### Create Custom Styles
+
+If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list.
+
+**WARNING**: You MUST use Script Editor to add custom styles. The `styleDroplets` property list uses OPT+[RETURN] to continue the list across multiple lines.
+
+Carefully follow the instructions above the `styleDroplets` style list inside both the StyleDroplet and CreateStyleDroplets scripts. Use the instructions above to create droplets for individual styles for all the styles including your own custom styles. Custom style droplets should produce the same behavior as the included styles.
 
 # How To Use
 
