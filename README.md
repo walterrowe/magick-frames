@@ -54,7 +54,7 @@ Edit the `frame_it` script and look for these lines.
 
 In the line containing `export`, replace `/path/to/your/imagemagick` with the folder where your ImageMagick tools reside, uncomment the line (remove the `# ` at the beginning), and save the file.
 
-# Creating The AppleScript Droplet
+# Creating macOS Droplets
 
 The [StyleDroplet](StyleDroplet.applescript) AppleScript is a style droplet that uses the `frame_it` script to decorate your image files. It includes a list of predefined styles. See the names of the included styles in a property called `styleDroplets`. Save the script as an app named for one of the included styles. When the saved droplet runs it looks for its own name in the styles list and uses the options associated with its name. Save as different included style names to create multiple droplets that decorate in different styles.
 
@@ -70,17 +70,20 @@ If you feel comfortable with the AppleScript Script Editor, you can add your own
 
 The AppleScript droplet originates from Apple’s Recursive Image File Processing Droplet template. Find more information in the [Mac Automation Scripting Guide to Process Dropped Files and Folders](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/ProcessDroppedFilesandFolders.html).
 
+# Logo Watermarks
+
+Make your logo watermark image files with these specifications:
+
+- 900 pixels wide and 250 pixels tall
+- use a transparent background
+- save your logo image files as PNG files
+- place your logos in your Pictures folder
+- make a light colored logo for dark mattes and image areas (`watermark_light.png`)
+- make a dark colored logo for light mattes and image areas (`watermark_dark.png`)
+
 # Included Styles
 
 Below is a list of all the styles included in the script and their options. See the command line section at the bottom for a complete description of all the supported options.
-
-RECOMMENDATION: make two watermark image files:
-
-- make them 900 pixels wide and 250 pixel tall
-- make them on transparent background
-- place them in your Pictures folder
-- make a `watermark_light.png` (light colored logo for dark matte colors and image areas)
-- make a `watermark_dark.png` (dark colored logo for light matte colors and image areas)
 
 **NOTE**: the included styles preserve the source image. Edit the StyleDroplet AppleScript and add option `-o` or `--overwrite` to overwrite the source.
 
@@ -95,56 +98,56 @@ RECOMMENDATION: make two watermark image files:
 - styles with a `watermark_light.png` use a transparent watermark with light logo for dark backgrounds
 - styles with a `watermark_dark.png` use a transparent watermark with dark logo for light backgrounds
 
-### Logo Inside Image, White Background, Light Logo (assumes logo goes in dark image area)
+**Logo Inside Image, White Background, Light Logo (assumes logo goes in dark image area)**
 
 - logo_over_light: -ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png
 - logo_over_light_drop: -ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png
 - logo_over_light_pic: -ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png
 - logo_over_light_drop_pic: -ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png
 
-### Logo Inside Image, Gray Background, Light Logo (assumes logo goes in dark image area)
+**Logo Inside Image, Gray Background, Light Logo (assumes logo goes in dark image area)**
 
 - logo_over_dark: -ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
 - logo_over_dark_drop: -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
 - logo_over_dark_pic: -ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
 - logo_over_dark_drop_pic: -ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
 
-### Logo Below Image, White Background, Dark Logo (for light matte color below image)
+**Logo Below Image, White Background, Dark Logo (for light matte color below image)**
 
 - logo_light: -l -mc=#ffffff -w=~/Pictures/watermark_dark.png
 - logo_light_drop: -l -d -mc=#ffffff -w=~/Pictures/watermark_dark.png
 - logo_light_pic: -l -p -mc=#ffffff -w=~/Pictures/watermark_dark.png
 - logo_light_drop_pic: -l -d -p -mc=#ffffff -w=~/Pictures/watermark_dark.png
 
-### Logo Below Image, Gray Background, Light Logo (for dark matte color below image)
+**Logo Below Image, Gray Background, Light Logo (for dark matte color below image)**
 
 - logo_dark: -l -mc=#383838 -w=~/Pictures/watermark_light.png
 - logo_dark_drop: -l -d -mc=#383838 -w=~/Pictures/watermark_light.png
 - logo_dark_pic: -l -p -mc=#383838 -w=~/Pictures/watermark_light.png
 - logo_dark_drop_pic: -l -d -p -mc=#383838 -w=~/Pictures/watermark_light.png
 
-### Text Inside Image, White Background, Light Text (assumes text goes in dark image area)
+**Text Inside Image, White Background, Light Text (assumes text goes in dark image area)**
 
 - text_over_light: -ot -mc=#ffffff -g=south -d -tc=#E0E0E0
 - text_over_light_drop: -ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0
 - text_over_light_pic: -ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0
 - text_over_light_drop_pic: -ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0
 
-### Text Inside Image, Gray Background, Light Text (assumes text goes in dark image area)
+**Text Inside Image, Gray Background, Light Text (assumes text goes in dark image area)**
 
 - text_over_dark: -ot -mc=#383838 -g=south -d -tc=#E0E0E0
 - text_over_dark_drop: -ot -d -mc=#383838 -g=south -d -tc=#E0E0E0
 - text_over_dark_pic: -ot -p -mc=#383838 -g=south -d -tc=#E0E0E0
 - text_over_dark_drop_pic: -ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0
 
-### Text Below Image, White Background, Dark Text (for light matte color below image)
+**Text Below Image, White Background, Dark Text (for light matte color below image)**
 
 - text_light: -t -mc=#ffffff -tc=#383838
 - text_light_drop: -t -d -mc=#ffffff -tc=#383838
 - text_light_pic: -t -p -mc=#ffffff -tc=#383838
 - text_light_drop_pic: -t -d -p -mc=#ffffff -tc=#383838
 
-### Text Below Image, Gray Background, Light Text (for dark matte color below image)
+**Text Below Image, Gray Background, Light Text (for dark matte color below image)**
 
 - text_dark: -t -mc=#383838 -tc=#E0E0E0
 - text_dark_drop: -t -d -mc=#383838 -tc=#E0E0E0
