@@ -18,12 +18,6 @@ Options for decorating your image and applying text or a logo include:
 
 You can name a default logo file and enter the two-row label text in the script. An alternate logo file can be named on the command line. The two-row label text cannot be overridden on the command line at this time.
 
-Options for the macOS AppleScript droplet include:
-
-- drag-n-drop files onto the droplet using Finder to decorate the selected files
-- double-click the droplet to open a file chooser and decorate the selected files
-- add to an export recipe of an image editing tool to decorate images on export
-
 # What Is Magick Frames
 
 Magick Frames is a combination of a macOS/Linux shell script and a macOS AppleScript droplet. The shell script uses the [ImageMagick](https://imagemagick.org/) image manipulation package to apply a professional looking decoration to a selection of image files.
@@ -55,6 +49,12 @@ Edit the `frame_it` script and look for these lines.
 In the line containing `export`, replace `/path/to/your/imagemagick` with the folder where your ImageMagick tools reside, uncomment the line (remove the `# ` at the beginning), and save the file.
 
 # Creating macOS Droplets
+
+The macOS droplet included with this package creates an app that lets you:
+
+- drag-n-drop files onto the droplet using Finder to decorate the selected files
+- double-click the droplet to open a file chooser and decorate the selected files
+- add to an export recipe of an image editing tool to decorate images on export
 
 The [StyleDroplet](StyleDroplet.applescript) AppleScript is a style droplet that uses the `frame_it` script to decorate your image files. It includes a list of predefined styles. See the names of the included styles in a property called `styleDroplets`. Save the script as an app named for one of the included styles. When the saved droplet runs it looks for its own name in the styles list and uses the options associated with its name. Save as different included style names to create multiple droplets that decorate in different styles.
 
