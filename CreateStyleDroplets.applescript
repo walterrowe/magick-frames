@@ -53,7 +53,8 @@ property styleDroplets : {formatting:"filler"} & Â
 	{text_dark:"-t -mc=#383838 -tc=#E0E0E0"} & Â
 	{text_dark_drop:"-t -d -mc=#383838 -tc=#E0E0E0"} & Â
 	{text_dark_pic:"-t -p -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_dark_drop_pic:"-t -d -p -mc=#383838 -tc=#E0E0E0"}
+	{text_dark_drop_pic:"-t -d -p -mc=#383838 -tc=#E0E0E0"} & Â
+	{formatting:"filler"}
 
 on sortList(theList)
 	set theIndexList to {}
