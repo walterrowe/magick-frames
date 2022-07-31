@@ -2,7 +2,7 @@
 
 # Donations and Support
 
-This package required time to develop and will require time to maintain. If you like this and would like to make a donation to help fund ongoing support and development, you can buy me a coffee - you can donate as many coffees as you like. I really like coffee!!!
+This package required time to develop and will require time to maintain. If you like this and would like to make a donation to help fund ongoing support and development, you can buy me a coffee - as many coffees as you like! I really like coffee!!!
 
 [Buy Me A Coffee](https://buymeacoffee.com/walterrowe)
 
