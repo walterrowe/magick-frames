@@ -81,7 +81,7 @@ end sortList
 
 on run
 	set filler to "formatting"
-	set dropletSource to "logo_light_pic.applescript"
+	set dropletSource to "StyleDroplet.applescript"
 
 	set optionsData to my (NSDictionary's dictionaryWithDictionary:styleDroplets)
 	set styleNames to optionsData's allKeys() as list
@@ -109,7 +109,7 @@ on run
 
 	-- select the droplet folder and droplet script with Finder 
 	set dropletFolder to POSIX path of (choose folder with prompt "Select the folder for your Magick Frames droplets:")
-	set dropletSource to the quoted form of (POSIX path of (choose file with prompt "Select the Magick Frames StyleDroplet script"))
+	set dropletSource to the quoted form of (POSIX path of (choose file with prompt "Select the Magick Frames StyleDroplet script" default location posix path of (path to me))) 
 
 	-- set the initial progress bar information
 	set dropletCount to length of styleNames
