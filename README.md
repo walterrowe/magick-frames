@@ -237,7 +237,8 @@ property styleDroplets : {formatting:"filler"} & ¬
 	{text_dark:"-t -mc=#383838 -tc=#E0E0E0"} & ¬
 	{text_dark_drop:"-t -d -mc=#383838 -tc=#E0E0E0"} & ¬
 	{text_dark_pic:"-t -p -mc=#383838 -tc=#E0E0E0"} & ¬
-	{text_dark_drop_pic:"-t -d -p -mc=#383838 -tc=#E0E0E0"}
+	{text_dark_drop_pic:"-t -d -p -mc=#383838 -tc=#E0E0E0"} & ¬
+	{formatting:"filler"}
 ```
 
 Carefully follow the instructions above the `styleDroplets` style list inside both the StyleDroplet and CreateStyleDroplets scripts. Use the instructions above to create droplets for individual styles for all the styles including your own custom styles. Custom style droplets should produce the same behavior as the included styles.
