@@ -94,9 +94,11 @@ There are two ways to create the droplets for macOS.
 1. Open the StyleDroplet AppleScript file in Script Editor and export as an app.
 1. Open the CreateStyleDroplets AppleScript file in ScriptEditor and run it.
 
-The [StyleDroplet](StyleDroplet.applescript) AppleScript is a style droplet runs the `frame_it` script to decorate your image files. The StyleDroplet AppleScript includes a set of predefined styles. The names of these included styles are in a property list called `styleDroplets`. Export the script in Script Editor as an app named for one of the included styles. 
+The [StyleDroplet](StyleDroplet.applescript) AppleScript is a style droplet runs the `frame_it` script to decorate your image files. The StyleDroplet AppleScript includes a set of predefined styles. The names of these included styles are in a property list called `styleDroplets`. Export the script in Script Editor as an app named for one of the included styles.
 
-When the exported droplet runs it looks for its name in the styles property list and runs the `frame_it` script to decorate selected or dropped image files with the associated options for that style. Export the StyleDroplet as different style names from the `styleDroplets` list to create multiple droplets that decorate your images in different styles.
+The [CreateStyleDroplets](CreateStyleDroplets.applescript) AppleScript creates style droplets for all the predefined styles in the StyleDroplet script.
+
+When a style droplet runs it looks for it's own name in the styles property list and runs the `frame_it` script with the associated options for that style to decorate the selected or dropped images. If you export the StyleDroplet as logo_dark, when it runs it will look for logo_dark in the style list and use the frame_it options for logo_dark to decorate your image. Export the StyleDroplet as different style names from the `styleDroplets` list to create multiple droplets that decorate your images in different styles.
 
 ### Export Individual Style Droplets
 
