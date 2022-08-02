@@ -58,7 +58,7 @@ My logo image file is made with these specifications based on a 3000w x 2400h pi
 
 ## Install ImageMagick
 
-Installation and use of this package requires saving AppleScript scripts as macOS droplets, installing the open source [ImageMagick](https://imagemagick.org/) software using a tool such as [HomeBrew](https://brew.sh/), and using a macOS Terminal or Linux shell window to copy a script to your system's /usr/local/bin directory.
+Use the installation instructions on the [ImageMagick](https://imagemagick.org/) website. The package is available for macOS and many distributions of Linux.
 
 ## Install The Shell Script
 
