@@ -41,15 +41,22 @@ The Magick Frames package also includes an AppleScript script called "StyleDropl
 ```mermaid
 graph LR
 
-dropped[Dropped Files]
-selected[Files Selected In Finder]
-exported[Exported Images]
+classDef RED fill:#f99,color:#900,stroke:#b22;
+classDef GRN fill:#9f9,color:#090,stroke:#2b2;
+classDef BLU fill:#acf,color:#009,stroke:#22b;
+classDef LAV fill:#d3c3f3,color:#916060,stroke:#916060;
 
-droplets[Style Droplets]
+style Finder fill:#9f9,color:#090,stroke:#292,stroke-width:1.5pt;
 
-frameit[frame_it script]
+subgraph Finder[macOS Finder]
+    dropped[Files Dropped in Finder]:::BLU
+    selected[Files Chosen in Finder]:::BLU
+end
+exported[Files Exported from Image Editor]:::BLU
 
-output[Decorated Image]
+droplets[Style Droplets]:::LAV
+frameit[frame_it script]:::RED
+output[Decorated Image]:::GRN
 
 dropped --> droplets
 selected --> droplets
