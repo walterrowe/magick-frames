@@ -34,7 +34,7 @@ If these are unfamiliar terms, ask me for assistance. You can use the [Buy Me A 
 
 # What Is Magick Frames
 
-Magick Frames applies a professional looking decoration to a selection of image files. It adds a pleasing outer edge shadow, a logo or text below or inside the image, and a light or dark matte around the edges. The included Unix shell script run [ImageMagick](https://imagemagick.org/) commands to decorate your image. The included StyleDroplet AppleScript simply runs the Unix shell script with different predefined options.
+Magick Frames applies a professional looking decoration to a selection of image files. It adds a pleasing outer edge shadow, a logo or text below or inside the image, and a light or dark matte around the edges. The included Unix shell script run [ImageMagick](https://imagemagick.org/) commands to decorate your image. The included StyleDroplet AppleScript simply runs the Unix shell script with different predefined options that I created. There are instructions later in this document for adding your own styles.
 
 The StyleDroplet AppleScript only runs on macOS. The ImageMagick tools and `frame_it` Unix shell script run on macOS and Linux.
 
