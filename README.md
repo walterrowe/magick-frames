@@ -34,9 +34,11 @@ If these are unfamiliar terms, ask me for assistance. You can use the [Buy Me A 
 
 # How Magick Frames Works
 
-The Magick Frames package includes a shell script called "frame_it" that uses a free software tool called [ImageMagick](https://imagemagick.org/) to add a pleasing outer shadow, a logo or text below or at a specified inside edge of the image, and adds a light or dark matte around all the edges for a professional presentation of your photography. This script hides all of the complexities of ImageMagick so you don't have to learn them. This script is where all the "magick" happens.
+The Magick Frames package includes a shell script I wrote called "frame_it". This shell script uses a free software suite called [ImageMagick](https://imagemagick.org/) to add a picture frame, add a pleasing outer shadow, place a logo or text below or at a specified inside edge of the image, and add a light or dark matte all the way around the edges to create a professional presentation for your photography. This "frame_it" script hides the complexities of using ImageMagick so you don't have to learn them. This script is where all the "**magick**" happens. You can use this script directly from a command prompt on macOS and Linux. All of the script options are described at the bottom of this page and are displayed if you run "frame_it" script with no options.
 
-The Magick Frames package also includes an AppleScript script called "StyleDroplet" that simply runs the "frame_it" shell script with different sets of options that I created. This provides an even easier way for macOS users to use the "frame_it" script by creating a "droplet" that can be used like any other macOS app. This AppleScript includes a list of style names and associated "frame_it" script options.
+The Magick Frames package also includes an AppleScript called "StyleDroplet". This script makes it easy for macOS users to use the "frame_it" script by creating a macOS app called a "droplet". The StyleDroplet AppleScript contains a list of "styles" I created for different predefined looks. The style list includes style names and their corresponding command line options for the "frame_it" script. Instructions further down describe how to save the StyleDroplet script as an app named for one of these styles using Script Editor. When one of these style-named apps runs it looks for its name in the style list and runs the "frame_it" shell script with corresponding set of "frame_it" script options. The style-named droplets work like any other macOS application. You can drag-n-drop image files into them, double-click them and choose files, or name them in export settings of image editing tools that support opening exported images with other applications.
+
+This diagram illustrates what Magick Frames is doing, but users of the droplets won't see all if this. They will simply drag-n-drop files onto the droplet or double-click the droplet and choose files. The droplet will handle everything else that this diagram illustrates. 
 
 ```mermaid
 graph LR
@@ -46,16 +48,13 @@ classDef GRN fill:#9f9,color:#090,stroke:#2b2;
 classDef BLU fill:#acf,color:#009,stroke:#22b;
 classDef LAV fill:#d3c3f3,color:#916060,stroke:#916060;
 
-style StyleDroplet fill:#9f9,color:#090,stroke:#292,stroke-width:1.5pt;
+dropped[drag-n-drop my-image.jpg<br>onto droplet using Finder]:::BLU
+selected[launch the droplet<br>and choose my-image.jpg]:::BLU
+exported[send exported my-image.jpg<br>from Image Editor to droplet]:::BLU
 
-subgraph StyleDroplet[StyleDroplet]
-    dropped[my-image.jpg dragged using Finder]:::BLU
-    selected[my-image.jpg chosen in Finder]:::BLU
-    exported[my-image.jpg exported from Image Editor]:::BLU
-    droplets[StyleDroplet creates frame_it command<br>frame_it -options my-image.jpg]:::LAV
-end
+droplets[style-named droplet eg logo_dark<br><br>look for logo_dark in style list<br>get frame_it options for logo_dark<br><br>frame_it -logo_dark options my-image.jpg]:::BLU
 
-frameit[frame_it script runs ImageMagick commands<br>magick my-image.jpg -options my-image-frame.jpg]:::RED
+frameit[frame_it script runs ImageMagick commands<br><br>magick my-image.jpg -options my-image-frame.jpg]:::RED
 output[your decorated my-image-frame.jpg]:::GRN
 
 dropped --> droplets
