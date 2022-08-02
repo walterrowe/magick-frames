@@ -1,10 +1,12 @@
 ![Magick Frames](assets/magick-frames.png)
 
-# Donations and Support
+# Donations
 
-This package required time to develop and will require time to maintain. If you like this and would like to make a donation to help fund ongoing support and development, you can buy me a coffee - as many coffees as you like! I really like coffee!!!
+If you like this package and would like to donate to support it, buy me a coffee - as many coffees as you like! I really like coffee!!!
 
 [Buy Me A Coffee](https://buymeacoffee.com/walterrowe)
+
+Look at the [Buy Me A Coffee Extras](https://buymeacoffee.com/walterrowe/extras) page to get one-on-one help setting this up and using it.
 
 # Magick Frames
 
