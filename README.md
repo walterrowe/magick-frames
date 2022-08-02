@@ -10,7 +10,7 @@ Use the [Buy Me A Coffee Extras](https://buymeacoffee.com/walterrowe/extras) pag
 
 # Magick Frames
 
-Magick Frames adds a pleasing outer shadow, a logo or text below or at a specified inside edge of the image, and adds a light or dark matte around all the edges for a professional presentation of your photography. A significant feature of Magick Frames is that it scales and positions your text or logo based on your image dimensions, aspect ratio, and orientation. Square, vertical, and horizontal images all look as expected. The script has been tested on images from as small as 300 pixels to as large as full size 45MP with over 8000 pixels on the long edge.
+Magick Frames adds a pleasing outer shadow, a logo or text below or at a specified inside edge of the image, and adds a light or dark matte around all the edges for a professional presentation of your photography as illustrated above. A significant feature of Magick Frames is that it scales and positions your text or logo based on your image dimensions, aspect ratio, and orientation. Square, vertical, and horizontal images all look as expected. The script has been tested on images from as small as 300 pixels to as large as full size 45MP with over 8000 pixels on the long edge.
 
 Options for decorating your image and applying text or a logo include:
 
@@ -46,17 +46,17 @@ classDef GRN fill:#9f9,color:#090,stroke:#2b2;
 classDef BLU fill:#acf,color:#009,stroke:#22b;
 classDef LAV fill:#d3c3f3,color:#916060,stroke:#916060;
 
-style Finder fill:#9f9,color:#090,stroke:#292,stroke-width:1.5pt;
+style StyleDroplet fill:#9f9,color:#090,stroke:#292,stroke-width:1.5pt;
 
-subgraph Finder[macOS Finder]
-    dropped[Files Dropped in Finder]:::BLU
-    selected[Files Chosen in Finder]:::BLU
+subgraph StyleDroplet[StyleDroplet]
+    dropped[my-image.jpg dragged using Finder]:::BLU
+    selected[my-image.jpg chosen in Finder]:::BLU
+    exported[my-image.jpg exported from Image Editor]:::BLU
+    droplets[StyleDroplet creates frame_it command<br>frame_it -options my-image.jpg]:::LAV
 end
-exported[Files Exported from Image Editor]:::BLU
 
-droplets[Style Droplets]:::LAV
-frameit[frame_it script]:::RED
-output[Decorated Image]:::GRN
+frameit[frame_it script runs ImageMagick commands<br>magick my-image.jpg -options my-image-frame.jpg]:::RED
+output[your decorated my-image-frame.jpg]:::GRN
 
 dropped --> droplets
 selected --> droplets
