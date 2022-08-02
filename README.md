@@ -6,7 +6,7 @@ If you like this package and would like to donate to support it, buy me a coffee
 
 [Buy Me A Coffee](https://buymeacoffee.com/walterrowe)
 
-Look at the [Buy Me A Coffee Extras](https://buymeacoffee.com/walterrowe/extras) page to get one-on-one help setting this up and using it.
+Use the [Buy Me A Coffee Extras](https://buymeacoffee.com/walterrowe/extras) page to schedule one-on-one assistance with setting up and using this package.
 
 # Magick Frames
 
