@@ -6,7 +6,7 @@ If you like this package and would like to donate to support it, buy me a coffee
 
 [Buy Me A Coffee](https://buymeacoffee.com/walterrowe)
 
-Use the [Buy Me A Coffee Extras](https://buymeacoffee.com/walterrowe/extras) page to schedule one-on-one assistance with setting up and using this package.
+Use the [Buy Me A Coffee 1-on-1 Assistance](https://buymeacoffee.com/walterrowe/extras) page to schedule one-on-one assistance with setting up and using this package.
 
 # Magick Frames
 
@@ -24,19 +24,19 @@ Options for decorating your image and applying text or a logo include:
 - choose the font of the text-based label added to the output file
 - choose an alternate logo watermark file on the command line
 
-You must name a default logo file and enter the two-row label text in the `frame_it` shell script. You can specify an alternate logo file on the command line or in different macOS droplet styles. The two-row label text cannot be overridden on the command line at this time.
+You must name a default logo file and enter the two-row label text in the “frame\_it” shell script. You can specify an alternate logo file on the command line or in different macOS droplet styles. The two-row label text cannot be overridden on the command line at this time.
 
 # Assumptions
 
-This is not a simple click-install utility. Installation and configuration requires using a Terminal window to type in commands at a command prompt. You have to install the ImageMagick open source software suite, and edit and copy a Unix shell script. macOS users also will want to run an included AppleScript.
+This is not a one-click installable tool. Installation and configuration requires using a Terminal window to type in commands at a command prompt. You have to install the ImageMagick open source software suite, and edit and copy a Unix shell script. macOS users also will want to run an included AppleScript.
 
-If these are unfamiliar terms, ask me for assistance. You can use the [Buy Me A Coffee](https://buymeacoffee.com/walterrowe/extras) page to contact me and schedule one-on-one online video call. I have decades of experience with macOS and Unix and can help.
+If these are unfamiliar terms, ask me for assistance. You can use my [Buy Me A Coffee 1-on-1 Assistance](https://buymeacoffee.com/walterrowe/extras) page to contact me and schedule one-on-one online video call. I have decades of experience with macOS and Unix and can help.
 
 # How Magick Frames Works
 
-The Magick Frames package includes a shell script I wrote called "frame_it". This shell script uses a free software suite called [ImageMagick](https://imagemagick.org/) to add a picture frame, add a pleasing outer shadow, place a logo or text below or at a specified inside edge of the image, and add a light or dark matte all the way around the edges to create a professional presentation for your photography. This "frame_it" script hides the complexities of using ImageMagick so you don't have to learn them. This script is where all the "**magick**" happens. You can use this script directly from a command prompt on macOS and Linux. All of the script options are described at the bottom of this page and are displayed if you run "frame_it" script with no options.
+The Magick Frames package includes a shell script I wrote called "frame\_it". This shell script uses a free software suite called [ImageMagick](https://imagemagick.org/) to add a picture frame, add a pleasing outer shadow, place a logo or text below or at a specified inside edge of the image, and add a light or dark matte all the way around the edges to create a professional presentation for your photography. This "frame\_it" script hides the complexities of using ImageMagick so you don't have to learn them. This script is where all the "**magick**" happens. You can use this script directly from a command prompt on macOS and Linux. All of the script options are described at the bottom of this page and are displayed if you run "frame\_it" script with no options.
 
-The Magick Frames package also includes an AppleScript called "StyleDroplet". This script makes it easy for macOS users to use the "frame_it" script by creating a macOS app called a "droplet". The StyleDroplet AppleScript contains a list of "styles" I created for different predefined looks. The style list includes style names and their corresponding command line options for the "frame_it" script. Instructions further down describe how to save the StyleDroplet script as an app named for one of these styles using Script Editor. When one of these style-named apps runs it looks for its name in the style list and runs the "frame_it" shell script with corresponding set of "frame_it" script options. The style-named droplets work like any other macOS application. You can drag-n-drop image files into them, double-click them and choose files, or name them in export settings of image editing tools that support opening exported images with other applications.
+The Magick Frames package also includes an AppleScript called "StyleDroplet". This script makes it easy for macOS users to use the "frame\_it" script by creating a macOS app called a "droplet". The StyleDroplet AppleScript contains a list of "styles" I created for different predefined looks. The style list includes style names and their corresponding command line options for the "frame\_it" script. Instructions further down describe how to save the StyleDroplet script as an app named for one of these styles using Script Editor. When one of these style-named apps runs it looks for its name in the style list and runs the "frame\_it" shell script with corresponding set of "frame\_it" script options. The style-named droplets work like any other macOS application. You can drag-n-drop image files into them, double-click them and choose files, or name them in export settings of image editing tools that support opening exported images with other applications.
 
 This diagram illustrates what Magick Frames is doing, but users of the droplets won't see all if this. They will simply drag-n-drop files onto the droplet or double-click the droplet and choose files. The droplet will handle everything else that this diagram illustrates. 
 
@@ -64,11 +64,11 @@ exported --> droplets
 droplets --> frameit --> output
 ```
 
-The StyleDroplet AppleScript only runs on macOS. The ImageMagick tools and `frame_it` Unix shell script run on macOS and Linux.
+The StyleDroplet AppleScript only runs on macOS. The ImageMagick tools and “frame\_it” Unix shell script run on macOS and Linux.
 
-By default the `frame_it` Unix shell script preserves your input file by saving the decorated image to a new output file with `-frame` inserted  before the extension in the output filename. An input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is always placed in the same folder as the input file. You can tell the shell script to overwrite your input file by adding the `-o` or `--overwrite` option.
+By default the “frame\_it” Unix shell script preserves your input file by saving the decorated image to a new output file with “-frame” inserted  before the extension in the output filename. An input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is always placed in the same folder as the input file. You can tell the shell script to overwrite your input file by adding the `-o` or `--overwrite` option.
 
-The `frame_it` shell script offers numerous options to tailor the style of decoration around your images. The StyleDroplet AppleScript includes a list of predefined options documented below. See the command line options section at the end for a detailed description of these options.
+The “frame\_it” shell script offers numerous options to tailor the style of decoration around your images. The StyleDroplet AppleScript includes a list of predefined options documented below. See the command line options section at the end for a detailed description of these options.
 
 # Installation and Configuration
 
@@ -92,7 +92,7 @@ Use the installation instructions on the [ImageMagick](https://imagemagick.org/)
 
 First you need to edit the [frame_it](frame_it) shell script to set default label text (`label1`, `label2`) and the logo file (`watermark`) you created. Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder.
 
-After installing ImageMagick and copying `frame_it` to /usr/local/bin, you need to test `frame_it`. You will need a test image to use for this. Open a Terminal window to test the `frame_it` script to ensure it can access the ImageMagick tools.
+After installing ImageMagick and copying “frame\_it” to /usr/local/bin, you need to test “frame\_it”. You will need a test image to use for this. Open a Terminal window to test the “frame\_it” script to ensure it can access the ImageMagick tools.
 
 ```shell
 % frame_it my-image.jpg
@@ -100,7 +100,7 @@ After installing ImageMagick and copying `frame_it` to /usr/local/bin, you need 
 
 You should see an output file such as `my-image-frame.jpg` in the folder containing your test image.
 
-If the `frame_it` script says it cannot find the `identify` or `magick` command, this indicates that the folder containing the ImageMagick tools is not in the script’s environment path. Locate the directory containing the ImageMagick tools, then edit the `frame_it` script and look for these lines. Here you will add the folder containing the ImageMagic tools so the script can find them.
+If the “frame\_it” script says it cannot find the `identify` or `magick` command, this indicates that the folder containing the ImageMagick tools is not in the script’s environment path. Locate the directory containing the ImageMagick tools, then edit the “frame\_it” script and look for these lines. Here you will add the folder containing the ImageMagic tools so the script can find them.
 
 ```shell
 # ADD IMAGEMAGICK BINARY PATH HERE and uncomment
@@ -122,11 +122,11 @@ There are two ways to create the droplets for macOS.
 1. Open the StyleDroplet AppleScript file in Script Editor and export as an app.
 1. Open the CreateStyleDroplets AppleScript file in ScriptEditor and run it.
 
-The [StyleDroplet](StyleDroplet.applescript) AppleScript is a style droplet runs the `frame_it` script to decorate your image files. The StyleDroplet AppleScript includes a set of predefined styles. The names of these included styles are in a property list called `styleDroplets`. Export the script in Script Editor as an app named for one of the included styles.
+The [StyleDroplet](StyleDroplet.applescript) AppleScript is a style droplet runs the “frame\_it” script to decorate your image files. The StyleDroplet AppleScript includes a set of predefined styles. The names of these included styles are in a property list called `styleDroplets`. Export the script in Script Editor as an app named for one of the included styles.
 
 The [CreateStyleDroplets](CreateStyleDroplets.applescript) AppleScript creates style droplets for all the predefined styles in the StyleDroplet script.
 
-When a style droplet runs it looks for it's own name in the styles property list and runs the `frame_it` script with the associated options for that style to decorate the selected or dropped images. If you export the StyleDroplet as logo_dark, when it runs it will look for logo_dark in the style list and use the frame_it options for logo_dark to decorate your image. Export the StyleDroplet as different style names from the `styleDroplets` list to create multiple droplets that decorate your images in different styles.
+When a style droplet runs it looks for it's own name in the styles property list and runs the “frame\_it” script with the associated options for that style to decorate the selected or dropped images. If you export the StyleDroplet as logo_dark, when it runs it will look for logo_dark in the style list and use the frame_it options for logo_dark to decorate your image. Export the StyleDroplet as different style names from the `styleDroplets` list to create multiple droplets that decorate your images in different styles.
 
 ### Export Individual Style Droplets
 
@@ -223,7 +223,7 @@ Below is a list of all the styles included in the script and their options. See 
 
 If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list. You will see entries for "formatting". These are simply fillers to make it easier to read and group together the defined styles with similar looks.
 
-The property list uses `key:value` pairs where the style name is the key and the `frame_it` style options is the value. Use `frame_it` from the command line to test different options and develop your own custom style settings. Run `frame_it` with NO options to see a complete list of style options. Once you have an options set you like, add a new entry to the property list with unique name and the options you choose, and export a new droplet named for your custom style(s).
+The property list uses `key:value` pairs where the style name is the key and the “frame\_it” style options is the value. Use “frame\_it” from the command line to test different options and develop your own custom style settings. Run “frame\_it” with NO options to see a complete list of style options. Once you have an options set you like, add a new entry to the property list with unique name and the options you choose, and export a new droplet named for your custom style(s).
 
 ```applescript
 	{your_style_name:"-your -style -options"} & ¬
@@ -313,10 +313,10 @@ This is what really happens is on export.
 
 1. The Export Recipe exports your selected images to your designated folder
 1. The Export Recipe passes each output filename to the droplet named in "Open with"
-1. The droplet passes the correct options and output filename to the frame\_it shell script
-1. The frame\_it shell script decorates your output file using the chosen frame\_it options
+1. The droplet passes the correct options and output filename to the “frame\_it” shell script
+1. The “frame\_it” shell script decorates your output file using the chosen “frame\_it” options
 
-This process may seem complicated, but it works quickly and invisibly. Open your output folder in Finder icon view before you export, watch as the exported files appear in the folder, and then notice the previews change as they are decorated by frame\_it.
+This process may seem complicated, but it works quickly and invisibly. Open your output folder in Finder icon view before you export, watch as the exported files appear in the folder, and then notice the previews change as they are decorated by “frame\_it”.
 
 ## At The Command Line
 
