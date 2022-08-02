@@ -10,7 +10,7 @@ Use the [Buy Me A Coffee Extras](https://buymeacoffee.com/walterrowe/extras) pag
 
 # Magick Frames
 
-Magick Frames applies a decorative border and shadow around an image, and places text or an image logo either below the image or inside the image at a specified edge. A significant feature of Magick Frames is that it scales and positions your text or logo based on your image dimensions, aspect ratio, and orientation. Square, vertical, and horizontal images all look as expected. The script has been tested on images from as small as 300 pixels to as large as full size 45MP with over 8000 pixels on the long edge.
+Magick Frames adds a pleasing outer shadow, a logo or text below or at a specified inside edge of the image, and adds a light or dark matte around all the edges for a professional presentation of your photography. A significant feature of Magick Frames is that it scales and positions your text or logo based on your image dimensions, aspect ratio, and orientation. Square, vertical, and horizontal images all look as expected. The script has been tested on images from as small as 300 pixels to as large as full size 45MP with over 8000 pixels on the long edge.
 
 Options for decorating your image and applying text or a logo include:
 
@@ -32,9 +32,31 @@ This is not a simple click-install utility. Installation and configuration requi
 
 If these are unfamiliar terms, ask me for assistance. You can use the [Buy Me A Coffee](https://buymeacoffee.com/walterrowe/extras) page to contact me and schedule one-on-one online video call. I have decades of experience with macOS and Unix and can help.
 
-# What Is Magick Frames
+# How Magick Frames Works
 
-Magick Frames applies a professional looking decoration to a selection of image files. It adds a pleasing outer edge shadow, a logo or text below or inside the image, and a light or dark matte around the edges. The included Unix shell script run [ImageMagick](https://imagemagick.org/) commands to decorate your image. The included StyleDroplet AppleScript simply runs the Unix shell script with different predefined options that I created. There are instructions later in this document for adding your own styles.
+The Magick Frames package includes a shell script called "frame_it" that uses a free software tool called [ImageMagick](https://imagemagick.org/) to add a pleasing outer shadow, a logo or text below or at a specified inside edge of the image, and adds a light or dark matte around all the edges for a professional presentation of your photography. This script hides all of the complexities of ImageMagick so you don't have to learn them. This script is where all the "magick" happens.
+
+The Magick Frames package also includes an AppleScript script called "StyleDroplet" that simply runs the "frame_it" shell script with different sets of options that I created. This provides an even easier way for macOS users to use the "frame_it" script by creating a "droplet" that can be used like any other macOS app. This AppleScript includes a list of style names and associated "frame_it" script options.
+
+```mermaid
+graph LR
+
+dropped[Dropped Files]
+selected[Files Selected In Finder]
+exported[Exported Images]
+
+droplets[Style Droplets]
+
+frameit[frame_it script]
+
+output[Decorated Image]
+
+dropped --> droplets
+selected --> droplets
+exported --> droplets
+
+droplets --> frameit --> output
+```
 
 The StyleDroplet AppleScript only runs on macOS. The ImageMagick tools and `frame_it` Unix shell script run on macOS and Linux.
 
