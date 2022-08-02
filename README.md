@@ -26,19 +26,21 @@ Options for decorating your image and applying text or a logo include:
 
 You must name a default logo file and enter the two-row label text in the `frame_it` shell script. You can specify an alternate logo file on the command line or in different macOS droplet styles. The two-row label text cannot be overridden on the command line at this time.
 
-# Requirements / Assumptions
+# Assumptions
 
-This package is not a simple click-to-install package. It requires some comfort with using a Terminal window to type in commands at a command prompt. You have to install an open source software package (ImageMagick), edit and copy a shell script, and for macOS users you may want to run one of the included AppleScript scripts. If these are unfamiliar terms, you may need assistance or you may choose to not use this package.
+This is not a simple click-install utility. Installation and configuration requires using a Terminal window to type in commands at a command prompt. You have to install the ImageMagick open source software suite, and edit and copy a Unix shell script. macOS users also will want to run an included AppleScript.
+
+If these are unfamiliar terms, ask me for assistance. You can use the [Buy Me A Coffee](https://buymeacoffee.com/walterrowe/extras) page to contact me and schedule one-on-one online video call. I have decades of experience with macOS and Unix and can help.
 
 # What Is Magick Frames
 
-Magick Frames is a combination of a macOS/Linux shell script and a macOS AppleScript droplet. The shell script uses the [ImageMagick](https://imagemagick.org/) image manipulation package to apply a professional looking decoration to a selection of image files.
+Magick Frames applies a professional looking decoration to a selection of image files. It adds a pleasing outer edge shadow, a logo or text below or inside the image, and a light or dark matte around the edges. The included Unix shell script run [ImageMagick](https://imagemagick.org/) commands to decorate your image. The included StyleDroplet AppleScript simply runs the Unix shell script with different predefined options.
 
-The style droplet only works on macOS. The `frame_it` shell script should work on macOS and Linux.
+The StyleDroplet AppleScript only runs on macOS. The ImageMagick tools and `frame_it` Unix shell script run on macOS and Linux.
 
-By default the `frame_it` shell script preserves your input files by creating new output files with `-frame` inserted  before the extension in the output filename. An input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is always placed in the same folder as the input file. You can tell the shell script to overwrite your input file by adding the `-o` or `--overwrite` option.
+By default the `frame_it` Unix shell script preserves your input file by saving the decorated image to a new output file with `-frame` inserted  before the extension in the output filename. An input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is always placed in the same folder as the input file. You can tell the shell script to overwrite your input file by adding the `-o` or `--overwrite` option.
 
-The `frame_it` shell script offers numerous options to tailor the style of the decoration. See the command line options section near the bottom for a detailed descriptione of these options.
+The `frame_it` shell script offers numerous options to tailor the style of decoration around your images. The StyleDroplet AppleScript includes a list of predefined options documented below. See the command line options section at the end for a detailed descriptione of these options.
 
 # Installation and Configuration
 
@@ -60,18 +62,24 @@ Installation and use of this package requires saving AppleScript scripts as macO
 
 ## Install The Shell Script
 
-Edit the [frame_it](frame_it) shell script and set default label text (`label1`, `label2`) and logo file (`watermark`). Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder.
+First you need to edit the [frame_it](frame_it) shell script to set default label text (`label1`, `label2`) and the logo file (`watermark`) you created. Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder.
 
-Use a Terminal command line to test the `frame_it` script to ensure it can access the ImageMagick tools. If the `frame_it` script says it cannot find the `identify` or `magick` command, this indicates that the folder containing the ImageMagick tools is not in the script’s environment path. Locate the directory where the ImageMagick tools are installed.
+After installing ImageMagick and copying `frame_it` to /usr/local/bin, you need to test `frame_it`. You will need a test image to use for this. Open a Terminal window to test the `frame_it` script to ensure it can access the ImageMagick tools.
 
-Edit the `frame_it` script and look for these lines.
+```shell
+% frame_it my-image.jpg
+```
+
+You should see an output file such as `my-image-frame.jpg` in the folder containing your test image.
+
+If the `frame_it` script says it cannot find the `identify` or `magick` command, this indicates that the folder containing the ImageMagick tools is not in the script’s environment path. Locate the directory containing the ImageMagick tools, then edit the `frame_it` script and look for these lines. Here you will add the folder containing the ImageMagic tools so the script can find them.
 
 ```shell
 # ADD IMAGEMAGICK BINARY PATH HERE and uncomment
 # export PATH=/path/to/your/imagemagick:$PATH
 ```
 
-In the line containing `export`, replace `/path/to/your/imagemagick` with the folder where your ImageMagick tools reside, uncomment the line (remove the `# ` at the beginning), and save the file.
+In the line above containing `export`, replace `/path/to/your/imagemagick` with the folder containing the ImageMagick tools, uncomment the line (remove the `# ` at the beginning), and re-save the file. You will need to re-copy the script to the /usr/local/bin folder.
 
 ## Create The Style Droplets
 
