@@ -40,7 +40,7 @@ The StyleDroplet AppleScript only runs on macOS. The ImageMagick tools and `fram
 
 By default the `frame_it` Unix shell script preserves your input file by saving the decorated image to a new output file with `-frame` inserted  before the extension in the output filename. An input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is always placed in the same folder as the input file. You can tell the shell script to overwrite your input file by adding the `-o` or `--overwrite` option.
 
-The `frame_it` shell script offers numerous options to tailor the style of decoration around your images. The StyleDroplet AppleScript includes a list of predefined options documented below. See the command line options section at the end for a detailed descriptione of these options.
+The `frame_it` shell script offers numerous options to tailor the style of decoration around your images. The StyleDroplet AppleScript includes a list of predefined options documented below. See the command line options section at the end for a detailed description of these options.
 
 # Installation and Configuration
 
