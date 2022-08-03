@@ -250,7 +250,7 @@ for filename in "$@" ; do
     if [ ${overwrite} = true ]; then
         eval target="${source:q}"
     else
-        eval target="${filepath:q}/${filebase:q}-frame.${filetype}"
+        eval target="${filepath:q}/${filebase:q}-framed.${filetype}"
     fi
 
     # extract image file width and height

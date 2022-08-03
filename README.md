@@ -54,8 +54,8 @@ exported[send exported my-image.jpg<br>from Image Editor to droplet]:::BLU
 
 droplets[style-named droplet eg logo_dark<br><br>look for logo_dark in style list<br>get frame_it options for logo_dark<br><br>frame_it -logo_dark options my-image.jpg]:::BLU
 
-frameit[frame_it script runs ImageMagick commands<br><br>magick my-image.jpg -options my-image-frame.jpg]:::RED
-output[your decorated my-image-frame.jpg]:::GRN
+frameit[frame_it script runs ImageMagick commands<br><br>magick my-image.jpg -options my-image-framed.jpg]:::RED
+output[your decorated my-image-framed.jpg]:::GRN
 
 dropped --> droplets
 selected --> droplets
@@ -66,7 +66,7 @@ droplets --> frameit --> output
 
 The StyleDroplet AppleScript only runs on macOS. The ImageMagick tools and “frame\_it” Unix shell script run on macOS and Linux.
 
-By default the “frame\_it” Unix shell script preserves your input file by saving the decorated image to a new output file with “-frame” inserted  before the extension in the output filename. An input file named `my-image.jpg` will have an output a file named `my-image-frame.jpg`. The output file is always placed in the same folder as the input file. You can tell the shell script to overwrite your input file by adding the `-o` or `--overwrite` option.
+By default the “frame\_it” Unix shell script preserves your input file by saving the decorated image to a new output file with “-framed” inserted  before the extension in the output filename. An input file named `my-image.jpg` will have an output a file named `my-image-framed.jpg`. The output file is always placed in the same folder as the input file. You can tell the shell script to overwrite your input file by adding the `-o` or `--overwrite` option.
 
 The “frame\_it” shell script offers numerous options to tailor the style of decoration around your images. The StyleDroplet AppleScript includes a list of predefined options documented below. See the command line options section at the end for a detailed description of these options.
 
@@ -98,7 +98,7 @@ After installing ImageMagick and copying “frame\_it” to /usr/local/bin, you 
 % frame_it my-image.jpg
 ```
 
-You should see an output file such as `my-image-frame.jpg` in the folder containing your test image.
+You should see an output file such as `my-image-framed.jpg` in the folder containing your test image.
 
 If the “frame\_it” script says it cannot find the `identify` or `magick` command, this indicates that the folder containing the ImageMagick tools is not in the script’s environment path. Locate the directory containing the ImageMagick tools, then edit the “frame\_it” script and look for these lines. Here you will add the folder containing the ImageMagic tools so the script can find them.
 
@@ -340,7 +340,7 @@ OPTIONS:
                           the default that centers the image in an all-edges shadow
 
 -o | --overwrite          specifies to overwrite the original files vs the default
-                          of keeping them and writing new files with "-frame" inserted
+                          of keeping them and writing new files with "-framed" inserted
                           before the suffix
 
 -p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
