@@ -14,7 +14,7 @@
 #                           the default that centers the image in an all-edges shadow
 #
 # -o | --overwrite          specifies to overwrite the original files vs the default
-#                           of keeping them and writing new files with "-frame" inserted
+#                           of keeping them and writing new files with "-framed" inserted
 #                           before the suffix
 #
 # -p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
