@@ -232,7 +232,7 @@ The property list uses `key:value` pairs where the style name is the key and the
 When you drop files onto or double-click the `logo_over_dark_drop` droplet, the droplet will construct a separate shell command line for each image file as follows:
 
 ```text
-frame_it -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png <your image file>
+% frame_it -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png <your image file>
 ```
 
 This is the `styleDroplets` property list included with `StyleDroplet` and `CreateStyleDroplets` scripts that represent all of the included styles described above.
@@ -324,8 +324,8 @@ The [frame_it](frame_it) shell script can be used from the command line on macOS
 
 DEFAULTS: When no options are provided, the default behavior is:
 
-- center the image over a shadowed background
-- do not apply a picture frame to the image
+- center the image over a shadow on light background
+- do not apply a picture frame around the image
 - place an image-based logo beneath the image
 - write the decorated output to a separate file
 
@@ -389,3 +389,26 @@ OPTIONS:
 ```
 
 Make test copies of image files and use the shell script from the command line to experiment with how different styles decorate your test images. This will help you choose which options you want to use in your droplet(s).
+
+You can see the names of fonts from which to choose for text-based labels using this command. In the output you will see lines beginning with "Font"
+
+```text
+% magick -list font
+
+... lots of output
+  Font: Academy-Engraved-LET-Plain:1.0
+    family: Academy Engraved LET
+    style: Normal
+    stretch: Normal
+    weight: 400
+    glyphs: /System/Library/Fonts/Supplemental/Academy Engraved LET Fonts.ttf
+...
+```
+
+If you want to use font "Academy Engraved LET" for a text-based logo then you would specify it as follows on the command line.
+
+```
+frame_it -t -f=Academy-Engraved-LET-Plain:1.0 my-image.jpg
+```
+
+Note the `-t` option to specify a text-based logo.
