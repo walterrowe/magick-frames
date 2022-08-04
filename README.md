@@ -90,7 +90,20 @@ Use the installation instructions on the [ImageMagick](https://imagemagick.org/)
 
 ## Install The Shell Script
 
-First you need to edit the [frame_it](frame_it) shell script to set default label text (`label1`, `label2`) and the logo file (`watermark`) you created. Copy the edited [frame_it](frame_it) shell script into your system's /usr/local/bin folder.
+First you need to edit the [frame_it](frame_it) shell script to set default label text (`label1`, `label2`) and the logo file (`watermark`) you created. Look for these lines in the “frame_it” shell script.
+
+Change value after the “=“ sign for “label1” and “label2” to your desired text. Change the value after the “=“ for “watermark” to the folder and filename for your default logo image file.
+
+```shell
+# text option - two text label lines
+label1=“W  A  L  T  E  R     R  O  W  E     P  H  O  T  O  G  R  A  P  H  Y”
+label2=“w w w . w a l t e r r o w e . c o m”
+
+# default logo watermark file - graphic watermark (my logo watermark is 900wx250h pixels w/ transparent background)
+watermark=~/Pictures/watermark_dark.png
+```
+
+Copy the edited [frame_it](frame_it) shell script into your system’s /usr/local/bin folder.
 
 After installing ImageMagick and copying “frame\_it” to /usr/local/bin, you need to test “frame\_it”. You will need a test image to use for this. Open a Terminal window to test the “frame\_it” script to ensure it can access the ImageMagick tools.
 
