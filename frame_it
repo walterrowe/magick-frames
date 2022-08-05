@@ -296,7 +296,7 @@ for filename in "$@" ; do
         toppad="0x${padded_high}"
         shadow="100x${shaded_area}"
         offset='+0+0'
-        scaled_logo_lift=$(expr 10 \* ${file_high} / ${scale_high})
+        scaled_logo_lift=$(expr 30 \* ${file_high} / ${scale_high})
     else
         # shift drop shadow layer down and right by 20 pixels, pad left/top edges w/ 40/30 pixels
         padded_high=$(expr 30 \* ${file_high} / ${scale_high})
