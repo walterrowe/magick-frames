@@ -299,7 +299,7 @@ for filename in "$@" ; do
         scaled_logo_lift=$(expr 30 \* ${file_high} / ${scale_high})
     else
         # shift drop shadow layer down and right by 20 pixels, pad left/top edges w/ 40/30 pixels
-        padded_high=$(expr 30 \* ${file_high} / ${scale_high})
+        padded_high=$(expr 40 \* ${file_high} / ${scale_high})
         padded_wide=$(expr 40 \* ${file_wide} / ${scale_wide})
         shaded_area=$(expr 25 \* ${file_wide} / ${scale_wide})
         border_high=$(expr 20 \* ${file_high} / ${scale_high})
