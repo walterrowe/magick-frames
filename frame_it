@@ -289,7 +289,7 @@ for filename in "$@" ; do
     if [ ${dropshadow} = false ]; then
         padded_high=$(expr 10 \* ${file_high} / ${scale_high})
         padded_wide=$(expr 10 \* ${file_wide} / ${scale_wide})
-        shaded_area=$(expr 20 \* ${file_wide} / ${scale_wide})
+        shaded_area=$(expr 25 \* ${file_wide} / ${scale_wide})
         border_high=$(expr 20 \* ${file_high} / ${scale_high})
         border_wide=$(expr 20 \* ${file_wide} / ${scale_wide})
         border="${padded_wide}x0"
@@ -301,7 +301,7 @@ for filename in "$@" ; do
         # shift drop shadow layer down and right by 20 pixels, pad left/top edges w/ 40/30 pixels
         padded_high=$(expr 30 \* ${file_high} / ${scale_high})
         padded_wide=$(expr 40 \* ${file_wide} / ${scale_wide})
-        shaded_area=$(expr 20 \* ${file_wide} / ${scale_wide})
+        shaded_area=$(expr 25 \* ${file_wide} / ${scale_wide})
         border_high=$(expr 20 \* ${file_high} / ${scale_high})
         border_wide=$(expr 20 \* ${file_wide} / ${scale_wide})
         border="${padded_wide}x0"
@@ -355,7 +355,7 @@ for filename in "$@" ; do
         text)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
+              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} -mattecolor black -frame 1x1 \
               \( +clone -background black -shadow ${shadow}${offset} \) \
               +swap -background ${mattecolor} -layers merge +repage \
               -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
@@ -371,7 +371,7 @@ for filename in "$@" ; do
             magick "${source}" -auto-orient \
               -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} -geometry ${label1_inset} -composite \
               -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -geometry ${label2_inset} -composite \
-              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
+              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} -mattecolor black -frame 1x1 \
               \( +clone -background black -shadow ${shadow}${offset} \) \
               +swap -background ${mattecolor} -layers merge +repage \
               -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
@@ -383,7 +383,7 @@ for filename in "$@" ; do
         logo)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
+              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} -mattecolor black -frame 1x1 \
               \( +clone -background black -shadow ${shadow}${offset} \) \
               +swap -background ${mattecolor} -layers merge +repage \
               -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
@@ -398,7 +398,7 @@ for filename in "$@" ; do
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
               \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry ${logo_inset} \) -composite \
-              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} \
+              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} -mattecolor black -frame 1x1 \
               \( +clone -background black -shadow ${shadow}${offset} \) \
               +swap -background ${mattecolor} -layers merge +repage \
               -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
