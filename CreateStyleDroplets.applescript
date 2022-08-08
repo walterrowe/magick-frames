@@ -85,13 +85,20 @@ on get_styles(styleList)
 	return optionsKeys
 end get_styles
 
+on splitText(theText, theDelimiter)
+	set AppleScript's text item delimiters to theDelimiter
+	set theTextItems to every text item of theText
+	set AppleScript's text item delimiters to ""
+	return theTextItems
+end splitText
+
 on run
 	set filler to "formatting"
 	set dropletSource to "StyleDroplet.applescript"
-
+	
 	set styleNames to get_styles(styleDroplets)
 	set styleNames to sortList(styleNames)
-
+	
 	if styleNames contains filler then
 		set formatting to 0
 		repeat with position from 1 to count of styleNames
@@ -99,7 +106,7 @@ on run
 				set formatting to position
 			end if
 		end repeat
-
+		
 		if formatting is 1 then
 			set styleNames to items 2 thru (count of styleNames) of styleNames
 		end if
@@ -110,45 +117,53 @@ on run
 			set styleNames to items 1 thru (formatting - 1) of styleNames & items (formatting + 1) thru (count of styleNames) of styleNames
 		end if
 	end if
-
+	
 	-- select the droplet folder and droplet script with Finder 
 	set dropletFolder to POSIX path of (choose folder with prompt "Select the folder for your Magick Frames droplets:")
-	set dropletSource to the quoted form of (POSIX path of (choose file with prompt "Select the Magick Frames StyleDroplet script" default location posix path of (path to me))) 
-
+	set dropletChoice to choose file with prompt "Select the Magick Frames StyleDroplet script" default location POSIX path of (path to me)
+	set dropletSource to the quoted form of (POSIX path of dropletChoice)
+	
+	-- add style droplet source as a non-styled droplet
+	set unStyled to dropletChoice as string
+	set styleName to item -1 of splitText(unStyled, ":")
+	if styleName is "" then set styleName to item -2 of splitText(unStyled, ":")
+	set styleName to item 1 of splitText(styleName, ".")
+	copy styleName to the end of styleNames
+	
 	-- set the initial progress bar information
 	set dropletCount to length of styleNames
 	set progress total steps to dropletCount
 	set progress completed steps to 0
 	set progress description to "Creating droplets..."
 	set progress additional description to "Preparing to process."
-
+	
 	repeat with dropletNum from 1 to count of styleNames
 		-- set destination droplet name
 		set dropletName to item dropletNum of styleNames
 		set droplet to "'" & dropletFolder & dropletName & ".app'"
-
+		
 		-- set shell command to create the droplet
 		set createDroplet to "osacompile -x -o " & droplet & " " & dropletSource
-
+		
 		-- Update the progress detail
 		set progress additional description to "Creating droplet " & dropletNum & " of " & dropletCount
-
+		
 		-- execute the shell command to build the droplet
 		try
 			do shell script createDroplet
 		on error errStr number errorNumber
 			display dialog "Droplet ERROR: " & errStr & ": " & (errorNumber as text) & "on file " & droplet
 		end try
-
+		
 		-- Increment the progress
 		set progress completed steps to dropletNum
-
+		
 	end repeat
 	display dialog "Created " & ((count of styleNames) as string) & " droplets in:
 
 " & dropletFolder
-
+	
 	-- tell the user how many droplets were created, where they were created, and their names
 	do shell script "open " & ("'" & dropletFolder & "'")
-
+	
 end run
