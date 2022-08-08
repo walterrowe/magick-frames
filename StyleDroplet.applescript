@@ -134,6 +134,8 @@ property styleDroplets : {formatting:"filler"} & Â
 	{text_dark_over_drop:"-ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{text_dark_over_pic:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{text_dark_over_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
+	{formatting:"filler"} & Â
+	{text_dark_academy:"-t -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0"} & Â
 	{formatting:"filler"}
 
 on get_styles(styleList)
