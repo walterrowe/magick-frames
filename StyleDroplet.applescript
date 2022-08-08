@@ -216,6 +216,7 @@ on run
 		end if
 	end if
 	
+	set styleList to {} as list
 	if styleNames contains appBase then
 		-- if run as a style-named droplet, use that style name
 		set styleList to appBase as list
@@ -224,14 +225,17 @@ on run
 		set styleList to choose from list styleNames with multiple selections allowed
 	end if
 	
-	-- app was run from Finder via double-click so pop up file chooser
-	set selected_items to choose file with prompt "Select the images to decorate:" of type {"public.image"} with multiple selections allowed
-	
-	repeat with styleName in styleList
-		-- get desired frame_it options based on invoked app name
-		set frame_it_options to get_options(styleName)
-		process_items(selected_items, frame_it_options, styleName)
-	end repeat
+	-- styleList will be false if 'Cancel' pressed on choose from list
+	if styleList is not false then
+		-- styleList will be false if 'Cancel' pressed on choose from list
+		set selected_items to choose file with prompt "Select the images to decorate:" of type {"public.image"} with multiple selections allowed
+		
+		repeat with styleName in styleList
+			-- get desired frame_it options based on invoked app name
+			set frame_it_options to get_options(styleName)
+			process_items(selected_items, frame_it_options, styleName)
+		end repeat
+	end if
 end run
 
 -- on open event processes items dropped onto it or sent to it via open app with parameters
@@ -275,11 +279,14 @@ on open dropped_items
 		set styleList to choose from list styleNames with multiple selections allowed
 	end if
 	
-	repeat with styleName in styleList
-		-- get desired frame_it options based on invoked app name
-		set frame_it_options to get_options(styleName)
-		process_items(dropped_items, frame_it_options, styleName)
-	end repeat
+	-- styleList will be false if 'Cancel' pressed on choose from list
+	if styleList is not false then
+		repeat with styleName in styleList
+			-- get desired frame_it options based on invoked app name
+			set frame_it_options to get_options(styleName)
+			process_items(dropped_items, frame_it_options, styleName)
+		end repeat
+	end if
 end open
 
 on process_items(the_items, frame_it_options, styleName)
