@@ -135,7 +135,10 @@ property styleDroplets : {formatting:"filler"} & Â
 	{text_dark_over_pic:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{text_dark_over_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{formatting:"filler"} & Â
+	{text_light_academy:"-t -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & Â
+	{text_light_pic_academy:"-t -p -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & Â
 	{text_dark_academy:"-t -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0"} & Â
+	{text_dark_pic_academy:"-t -p -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0"} & Â
 	{formatting:"filler"}
 
 on get_styles(styleList)
