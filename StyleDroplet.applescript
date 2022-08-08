@@ -136,6 +136,12 @@ property styleDroplets : {formatting:"filler"} & Â
 	{text_dark_over_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{formatting:"filler"}
 
+on get_styles(styleList)
+	set optionsData to my (NSDictionary's dictionaryWithDictionary:styleList)
+	set optionsKeys to optionsData's allKeys() as list
+	return optionsKeys
+end get_styles
+
 on get_options(appName)
 	set optionsData to my (NSDictionary's dictionaryWithDictionary:styleDroplets)
 	set optionsKeys to optionsData's allKeys() as list
@@ -154,45 +160,129 @@ on splitText(theText, theDelimiter)
 	return theTextItems
 end splitText
 
+on sortList(theList)
+	set theIndexList to {}
+	set theSortedList to {}
+	repeat (length of theList) times
+		set theLowItem to ""
+		repeat with a from 1 to (length of theList)
+			if a is not in theIndexList then
+				set theCurrentItem to item a of theList as text
+				if theLowItem is "" then
+					set theLowItem to theCurrentItem
+					set theLowItemIndex to a
+				else if theCurrentItem comes before theLowItem then
+					set theLowItem to theCurrentItem
+					set theLowItemIndex to a
+				end if
+			end if
+		end repeat
+		set end of theSortedList to theLowItem
+		set end of theIndexList to theLowItemIndex
+	end repeat
+	return theSortedList
+end sortList
+
 -- on run event executes when the user double-clicks the app in Finder
 on run
+	set filler to "formatting"
+	
 	-- convert "path:to:me.app:" into "me" (apps are folders so note the trailing colon thus the -2 below)
 	set appPath to path to me as string
 	set appName to item -1 of splitText(appPath, ":")
 	if appName is "" then set appName to item -2 of splitText(appPath, ":")
 	set appBase to item 1 of splitText(appName, ".")
 	
-	-- get desired frame_it options based on invoked app name
-	set frame_it_options to get_options(appBase)
+	-- either run a style-named droplet or choose from list of styles
+	set styleNames to get_styles(styleDroplets)
+	set styleNames to sortList(styleNames)
+	
+	if styleNames contains filler then
+		set formatting to 0
+		repeat with position from 1 to count of styleNames
+			if item position of styleNames is filler then
+				set formatting to position
+			end if
+		end repeat
+		
+		if formatting is 1 then
+			set styleNames to items 2 thru (count of styleNames) of styleNames
+		end if
+		if formatting is (count of styleNames) then
+			set styleNames to items 1 thru -2 of styleNames
+		end if
+		if formatting is greater than 1 and formatting is less than (count of styleNames) then
+			set styleNames to items 1 thru (formatting - 1) of styleNames & items (formatting + 1) thru (count of styleNames) of styleNames
+		end if
+	end if
+	
+	if styleNames contains appBase then
+		-- if run as a style-named droplet, use that style name
+		set styleList to appBase as list
+	else
+		-- if run from Script Editor, choose from list of known styles
+		set styleList to choose from list styleNames with multiple selections allowed
+	end if
 	
 	-- app was run from Finder via double-click so pop up file chooser
 	set selected_items to choose file with prompt "Select the images to decorate:" of type {"public.image"} with multiple selections allowed
 	
-	if frame_it_options is false then
-		display alert "No defined style '" & appBase & "'"
-	else
-		process_items(selected_items, frame_it_options)
-	end if
+	repeat with styleName in styleList
+		-- get desired frame_it options based on invoked app name
+		set frame_it_options to get_options(styleName)
+		process_items(selected_items, frame_it_options, styleName)
+	end repeat
 end run
 
 -- on open event processes items dropped onto it or sent to it via open app with parameters
 on open dropped_items
+	set filler to "formatting"
+	
 	-- convert "path:to:me.app:" into "me" (note the trailing colon this -2 below)
 	set appPath to path to me as string
 	set appName to item -1 of splitText(appPath, ":")
 	if appName is "" then set appName to item -2 of splitText(appPath, ":")
 	set appBase to item 1 of splitText(appName, ".")
 	
-	-- get desired frame_it options based on invoked app name
-	set frame_it_options to get_options(appBase)
-	if frame_it_options is false then
-		display alert "No defined style '" & appBase & "'"
-	else
-		process_items(dropped_items, frame_it_options)
+	-- either run a style-named droplet or choose from list of styles
+	set styleNames to get_styles(styleDroplets)
+	set styleNames to sortList(styleNames)
+	
+	if styleNames contains filler then
+		set formatting to 0
+		repeat with position from 1 to count of styleNames
+			if item position of styleNames is filler then
+				set formatting to position
+			end if
+		end repeat
+		
+		if formatting is 1 then
+			set styleNames to items 2 thru (count of styleNames) of styleNames
+		end if
+		if formatting is (count of styleNames) then
+			set styleNames to items 1 thru -2 of styleNames
+		end if
+		if formatting is greater than 1 and formatting is less than (count of styleNames) then
+			set styleNames to items 1 thru (formatting - 1) of styleNames & items (formatting + 1) thru (count of styleNames) of styleNames
+		end if
 	end if
+	
+	if styleNames contains appBase then
+		-- if run as a style-named droplet, use that style name
+		set styleList to appBase as list
+	else
+		-- if run from Script Editor, choose from list of known styles
+		set styleList to choose from list styleNames with multiple selections allowed
+	end if
+	
+	repeat with styleName in styleList
+		-- get desired frame_it options based on invoked app name
+		set frame_it_options to get_options(styleName)
+		process_items(dropped_items, frame_it_options, styleName)
+	end repeat
 end open
 
-on process_items(the_items, frame_it_options)
+on process_items(the_items, frame_it_options, styleName)
 	
 	repeat with this_item in the_items
 		
@@ -233,7 +323,7 @@ on process_items(the_items, frame_it_options)
 			set this_path to quoted form of POSIX path of this_item
 			
 			-- build the frame_it command line
-			set frame_it to "eval $(/usr/libexec/path_helper -s); frame_it " & frame_it_options & " " & this_path
+			set frame_it to "eval $(/usr/libexec/path_helper -s); frame_it " & frame_it_options & " -s=" & styleName & " " & this_path
 			
 			-- run frame_it on the named file
 			try
