@@ -79,13 +79,17 @@ on sortList(theList)
 	return theSortedList
 end sortList
 
+on get_styles(styleList)
+	set optionsData to my (NSDictionary's dictionaryWithDictionary:styleList)
+	set optionsKeys to optionsData's allKeys() as list
+	return optionsKeys
+end get_styles
+
 on run
 	set filler to "formatting"
 	set dropletSource to "StyleDroplet.applescript"
 
-	set optionsData to my (NSDictionary's dictionaryWithDictionary:styleDroplets)
-	set styleNames to optionsData's allKeys() as list
-
+	set styleNames to get_styles(styleDroplets)
 	set styleNames to sortList(styleNames)
 
 	if styleNames contains filler then

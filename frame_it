@@ -10,17 +10,12 @@
 #
 # -h | --help               display a usage message with option descriptions
 #
-# -d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
-#                           the default that centers the image in an all-edges shadow
-#
 # -o | --overwrite          specifies to overwrite the original files vs the default
 #                           of keeping them and writing new files with "-framed" inserted
 #                           before the suffix
 #
-# -p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
-#
-# -f=font |                 specify the font to use for the two-row label text logo
-# --font=font
+# -s=suffix |               suffix to append to decorated file names (default: "-framed")
+# --suffix=suffix
 #
 # -t | --text               specifies to use a two-line text logo underneath the image
 #
@@ -34,6 +29,14 @@
 #
 # -ol | --overlaylogo       specifies to place an image-based logo inside the image
 #
+#
+# -d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
+#                           the default that centers the image in an all-edges shadow
+#
+# -p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
+#
+# -f=font |                 specify the font to use for the two-row label text logo
+# --font=font
 # -mc=color |               specifies the color of the matte background (default white)
 # --mattecolor=color
 #
@@ -127,6 +130,7 @@ if [ $# -lt 1 ]; then
 fi
 
 # defaults
+suffix="framed"
 style='logo'
 overwrite='false'
 dropshadow='false'
@@ -188,6 +192,11 @@ for opt in "$@"; do
             style='overlay_logo'
             shift
             ;;
+        -s=*|--suffix=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            suffix="${opt}"
+            shift
+            ;;
         -mc=*|--mattecolor=*)
             opt=$(echo ${opt} | cut -d= -f2)
             mattecolor="${opt}"
@@ -237,6 +246,11 @@ fi
 
 # cycle through the list of provided images
 for filename in "$@" ; do
+    # skip over source files that do not exist
+    if [ ! -f "${filename}" ]; then
+        echo "File does not exist: '${filename}'"
+        continue
+    fi
 
     # source file parts - use eval to ensure expansion of ~, et al
     eval filepath=$(dirname "${filename:q}")
@@ -250,7 +264,7 @@ for filename in "$@" ; do
     if [ ${overwrite} = true ]; then
         eval target="${source:q}"
     else
-        eval target="${filepath:q}/${filebase:q}-framed.${filetype}"
+        eval target="${filepath:q}/${filebase:q}-${suffix}.${filetype}"
     fi
 
     # extract image file width and height
