@@ -26,6 +26,8 @@ Options for decorating your image and applying text or a logo include:
 
 You must name a default logo file and enter the two-row label text in the “frame\_it” shell script. You can specify an alternate logo file on the command line or in different macOS droplet styles. The two-row label text cannot be overridden on the command line at this time.
 
+macOS users also get an AppleScript "droplet" that lets you create a macOS app for running the "frame\_it" script with a set of predefined styles that I include in the script. This droplet behaves like any other macOS app. You can double-click it, or you can drag-n-drop files into it. You also can name it in a Capture One Export Recipe in the "Open with" field to have image decorated automatically after export.
+
 # Assumptions
 
 This is not a one-click installable tool. Installation and configuration requires using a Terminal window to type in commands at a command prompt. You have to install the ImageMagick open source software suite, and edit and copy a Unix shell script. macOS users also will want to run an included AppleScript.
@@ -149,7 +151,9 @@ You can create individual style droplets for only the styles you want to use.
 1. Look at the `styleDroplets` property of included styles and their associated options
 1. Use File > Export, choose type Application, and save a Droplet as each of your desired style names
 
-When you drop images onto or double-click a droplet named for one of the included styles, it decorates the images in that named style. If you save the StyleDroplet as any name other than one of the styles included in the script and you drop images onto or double-click it, then it will open a style chooser for you to select one or more styles before choosing the images to decorate. This is useful if you want to decorate a set of images in multiple styles. The style chooser based droplet also works in Capture One Export Recipes. If you add the droplet NOT named for an included style to the "Open with" field of an Export Recipe, it works the same as having dropped the exported image into it. It will pop open the style chooser where you can then select multiple styles. When you use the style dropets, it always creates a separate decorated image file for each selected style with the style name inserted into the output file before the file extension.
+When you drop images onto or double-click a droplet named for one of the included styles, it decorates the images in that named style.
+
+STYLE TIP: If you save the StyleDroplet as any name other than one of the styles included in the script and you drop images onto or double-click it, then it will open a style chooser for you to select one or more styles before choosing the images to decorate. This is useful if you want to decorate a set of images in multiple styles. The style chooser based droplet also works in Capture One Export Recipes. If you add the droplet NOT named for an included style to the "Open with" field of an Export Recipe, it works the same as having dropped the exported image into it. It will pop open the style chooser where you can then select multiple styles. When you use the style dropets, it always creates a separate decorated image file for each selected style with the style name inserted into the output file before the file extension.
 
 SPEED TIP: Once you create one droplet, use Finder to copy-n-paste as names of other defined styles. This is faster than exporting the script multiple times from the AppleScript Script Editor.
 
