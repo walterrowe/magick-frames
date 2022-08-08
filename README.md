@@ -26,7 +26,7 @@ Options for decorating your image and applying text or a logo include:
 
 You must name a default logo file and enter the two-row label text in the “frame\_it” shell script. You can specify an alternate logo file on the command line or in different macOS droplet styles. The two-row label text cannot be overridden on the command line at this time.
 
-macOS users also get an AppleScript "droplet" that lets you create a macOS app for running the "frame\_it" script with a set of predefined styles that I include in the script. This droplet behaves like any other macOS app. You can double-click it, or you can drag-n-drop files into it. You also can name it in a Capture One Export Recipe in the "Open with" field to have image decorated automatically after export.
+macOS users also get an AppleScript "droplet" that lets you create a macOS app for running the "frame\_it" script with a set of predefined styles that I include in the script. This droplet behaves like any other macOS app. You can double-click it, or you can drag-n-drop files into it. You also can name it in a Capture One Export Recipe in the "Open with" field to have images decorated automatically after export.
 
 # Assumptions
 
