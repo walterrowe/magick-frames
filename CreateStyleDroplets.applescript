@@ -1,19 +1,39 @@
---
--- Original: Walter Rowe in 2022
---
--- Create all the style droplets for every defined style in styleDroplets
---
+(*
+
+  Original: Walter Rowe in 2022
+
+  The droplets created from this AppleScript work like any other macOS app. You
+  can drag-n-drop onto them in Finder,  double-click them to choose files to decorate,
+  and as a named app in an export configuration in image editing tools.
+
+  Modifying The Styles List:
+  * Look below for the property "styleDroplets" to create your own styles for droplets
+  * Read the frame_it shell script to see the options available for styling your images
+  * The included styles create NEW files with "-" and the style name inserted before
+   the extension.
+      * example: my-image.jpg -> my-image-logo_light.jpg
+
+  Use the CreateStyleDroplets script to create droplets for all the included styles.
+
+  See the README.md markdown file for detailed instructions on installation and use
+
+*)
 
 use AppleScript version "2.7"
 use scripting additions
 use framework "Foundation"
 
+(* TO FILTER FOR IMAGE FILES, LOOK FOR QUICKTIME SUPPORTED IMAGE FORMATS *)
+property type_list : {"JPEG", "TIFF", "PNGf", "8BPS", "BMPf", "GIFf"}
+property extension_list : {"jpg", "jpeg", "tif", "tiff", "png", "psd", "bmp", "gif"}
+property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.photoshop-image", "com.microsoft.bmp", "com.compuserve.gif", "com.adobe.pdf", "com.apple.pict"}
+
+-- save this script as an app named one of the items below (ig "logo_white_pic") it will use the selected options for frame_it
 --
--- run this script to create style droplets for all of the defined styles
--- add your own styles and re-run this script to recreate all the droplets
+-- you can add your own styles names and options, and save as a new app named for your style to use your chosen options
 --
 -- CRITICAL -- continued lines must end with ampersand plus OPT+RETURN
---
+
 property styleDroplets : {formatting:"filler"} & Â
 	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
 	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
@@ -61,6 +81,34 @@ property styleDroplets : {formatting:"filler"} & Â
 	{text_dark_pic_academy:"-t -p -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0"} & Â
 	{formatting:"filler"}
 
+-- get the list of style names
+on get_styles(styleList)
+	set optionsData to my (NSDictionary's dictionaryWithDictionary:styleList)
+	set optionsKeys to optionsData's allKeys() as list
+	return optionsKeys
+end get_styles
+
+-- get the options for a specific style
+on get_options(appName)
+	set optionsData to my (NSDictionary's dictionaryWithDictionary:styleDroplets)
+	set optionsKeys to optionsData's allKeys() as list
+	if optionsKeys contains appName then
+		set appOptions to optionsData's valueForKey:(appName as text)
+	else
+		set appOptions to false
+	end if
+	return appOptions
+end get_options
+
+-- split a string based on a specific delimiter
+on splitText(theText, theDelimiter)
+	set AppleScript's text item delimiters to theDelimiter
+	set theTextItems to every text item of theText
+	set AppleScript's text item delimiters to ""
+	return theTextItems
+end splitText
+
+-- sort a list
 on sortList(theList)
 	set theIndexList to {}
 	set theSortedList to {}
@@ -84,22 +132,177 @@ on sortList(theList)
 	return theSortedList
 end sortList
 
-on get_styles(styleList)
-	set optionsData to my (NSDictionary's dictionaryWithDictionary:styleList)
-	set optionsKeys to optionsData's allKeys() as list
-	return optionsKeys
-end get_styles
-
-on splitText(theText, theDelimiter)
-	set AppleScript's text item delimiters to theDelimiter
-	set theTextItems to every text item of theText
-	set AppleScript's text item delimiters to ""
-	return theTextItems
-end splitText
-
+-- "on run" executes when you double-click a droplet in Finder
 on run
 	set filler to "formatting"
-	set dropletSource to "StyleDroplet.applescript"
+	set createStyleDroplets to "CreateStyleDroplets"
+	
+	-- convert "path:to:me.app:" into "me" (apps are folders so note the trailing colon thus the -2 below)
+	set appPath to path to me as string
+	set appName to item -1 of splitText(appPath, ":")
+	if appName is "" then set appName to item -2 of splitText(appPath, ":")
+	set appBase to item 1 of splitText(appName, ".")
+	
+	-- if we are running as the name "CreateStyleDroplets", create a droplet for all the known styles
+	if appBase is createStyleDroplets then
+		createDroplets()
+	else
+		-- either run a style-named droplet or choose from list of styles
+		set styleNames to get_styles(styleDroplets)
+		set styleNames to sortList(styleNames)
+		
+		if styleNames contains filler then
+			set formatting to 0
+			repeat with position from 1 to count of styleNames
+				if item position of styleNames is filler then
+					set formatting to position
+				end if
+			end repeat
+			
+			if formatting is 1 then
+				set styleNames to items 2 thru (count of styleNames) of styleNames
+			end if
+			if formatting is (count of styleNames) then
+				set styleNames to items 1 thru -2 of styleNames
+			end if
+			if formatting is greater than 1 and formatting is less than (count of styleNames) then
+				set styleNames to items 1 thru (formatting - 1) of styleNames & items (formatting + 1) thru (count of styleNames) of styleNames
+			end if
+		end if
+		
+		set styleList to {} as list
+		if styleNames contains appBase then
+			-- if run as a style-named droplet, use that style name
+			set styleList to appBase as list
+		else
+			-- if run from Script Editor, choose from list of known styles
+			set styleList to choose from list styleNames with multiple selections allowed
+		end if
+		
+		-- styleList will be false if 'Cancel' pressed on choose from list
+		if styleList is not false then
+			-- styleList will be false if 'Cancel' pressed on choose from list
+			set selected_items to choose file with prompt "Select the images to decorate:" of type {"public.image"} with multiple selections allowed
+			
+			repeat with styleName in styleList
+				-- get desired frame_it options based on invoked app name
+				set frame_it_options to get_options(styleName)
+				process_items(selected_items, frame_it_options, styleName)
+			end repeat
+		end if
+	end if
+end run
+
+-- "on open" processes items dropped onto it in Finder or sent to it via "open app with parameters"
+on open dropped_items
+	set filler to "formatting"
+	
+	-- convert "path:to:me.app:" into "me" (note the trailing colon this -2 below)
+	set appPath to path to me as string
+	set appName to item -1 of splitText(appPath, ":")
+	if appName is "" then set appName to item -2 of splitText(appPath, ":")
+	set appBase to item 1 of splitText(appName, ".")
+	
+	-- either run a style-named droplet or choose from list of styles
+	set styleNames to get_styles(styleDroplets)
+	set styleNames to sortList(styleNames)
+	
+	if styleNames contains filler then
+		set formatting to 0
+		repeat with position from 1 to count of styleNames
+			if item position of styleNames is filler then
+				set formatting to position
+			end if
+		end repeat
+		
+		if formatting is 1 then
+			set styleNames to items 2 thru (count of styleNames) of styleNames
+		end if
+		if formatting is (count of styleNames) then
+			set styleNames to items 1 thru -2 of styleNames
+		end if
+		if formatting is greater than 1 and formatting is less than (count of styleNames) then
+			set styleNames to items 1 thru (formatting - 1) of styleNames & items (formatting + 1) thru (count of styleNames) of styleNames
+		end if
+	end if
+	
+	if styleNames contains appBase then
+		-- if run as a style-named droplet, use that style name
+		set styleList to appBase as list
+	else
+		-- if run from Script Editor, choose from list of known styles
+		set styleList to choose from list styleNames with multiple selections allowed
+	end if
+	
+	-- styleList will be false if 'Cancel' pressed on choose from list
+	if styleList is not false then
+		repeat with styleName in styleList
+			-- get desired frame_it options based on invoked app name
+			set frame_it_options to get_options(styleName)
+			process_items(dropped_items, frame_it_options, styleName)
+		end repeat
+	end if
+end open
+
+-- create the frame_it commands and execute them
+on process_items(the_items, frame_it_options, styleName)
+	
+	repeat with this_item in the_items
+		
+		set item_info to info for this_item
+		
+		-- get the name of the current file we are processing
+		try
+			set this_filename to name of item_info
+		on error
+			set this_filename to ""
+		end try
+		
+		-- get the extension of the current file we are processing
+		try
+			set this_extension to name extension of item_info
+		on error
+			set this_extension to ""
+		end try
+		
+		-- get the type of the current file we are processing
+		try
+			set this_filetype to file type of item_info
+		on error
+			set this_filetype to ""
+		end try
+		
+		-- get the type ID of the current file we are processing
+		try
+			set this_typeID to type identifier of item_info
+		on error
+			set this_typeID to ""
+		end try
+		
+		-- only process if we support the image type
+		if ((this_filetype is in type_list) or (this_extension is in extension_list) or (this_typeID is in typeIDs_list)) then
+			
+			-- get the POSIX path of the current file we are processing
+			set this_path to quoted form of POSIX path of this_item
+			
+			-- build the frame_it command line
+			set frame_it to "eval $(/usr/libexec/path_helper -s); frame_it " & frame_it_options & " -s=" & styleName & " " & this_path
+			
+			-- run frame_it on the named file
+			try
+				do shell script frame_it
+			on error errStr number errorNumber
+				display dialog "Droplet ERROR: " & errStr & ": " & (errorNumber as text) & "on file " & this_filename
+			end try
+			
+		end if
+	end repeat
+end process_items
+
+-- create the style droplets
+on createDroplets()
+	set filler to "formatting"
+	set unStyledDroplet to "StyleChooser"
 	
 	set styleNames to get_styles(styleDroplets)
 	set styleNames to sortList(styleNames)
@@ -128,12 +331,8 @@ on run
 	set dropletChoice to choose file with prompt "Select the Magick Frames StyleDroplet script" default location POSIX path of (path to me)
 	set dropletSource to the quoted form of (POSIX path of dropletChoice)
 	
-	-- add style droplet source as a non-styled droplet
-	set unStyled to dropletChoice as string
-	set styleName to item -1 of splitText(unStyled, ":")
-	if styleName is "" then set styleName to item -2 of splitText(unStyled, ":")
-	set styleName to item 1 of splitText(styleName, ".")
-	copy styleName to the end of styleNames
+	-- add unstyled droplet to list of droplet names
+	copy unStyledDroplet to the end of styleNames
 	
 	-- set the initial progress bar information
 	set dropletCount to length of styleNames
@@ -171,4 +370,4 @@ on run
 	-- tell the user how many droplets were created, where they were created, and their names
 	do shell script "open " & ("'" & dropletFolder & "'")
 	
-end run
+end createDroplets
