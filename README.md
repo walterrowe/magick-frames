@@ -4,9 +4,9 @@
 
 Are you looking for a faster, easier way of give your photography that impressive, professional look for your website, social media, and clients? Look no further!
 
-Magick Frames makes it fast and easy to add an optional picture frame, a 3-dimensional shadow, your own text or graphic logo, and a colorful or transparent matte around your photographs.
+Magick Frames makes it fast and easy to add an optional picture frame, a 3-dimensional shadow, your own text or graphic logo, and a colorful or transparent matte around your photographs. Best of all, you get this with a single drag-n-drop.
 
-Best of all, you get this with a single drag-n-drop. Select your photographs, drop them onto your preferred style applet, and move on to other tasks. Magick Frames will style your photographs and place the decorated versions as new files in the same folder as the files your selected. Each style applet adds its style name to the output filename so you never lose your original. You can create as many different styled looks as you want for any image, each with their own output file, and always have access to your original file.
+Select your photographs, drop them onto your preferred style applet, and move on to other tasks. Magick Frames will style your photographs and place the decorated versions as new files in the same folder as the files you selected. Each style applet adds its style name to the output filename. This makes it easy to identify what style was used. You can create as many different styled looks as you want for any image, each with their own output file, and always have access to your original file.
 
 Here are the many features you get with Magick Frames:
 
