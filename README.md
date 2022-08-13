@@ -29,7 +29,7 @@ You can download and set up Magick Frames in 5-10 minutes.
 
 If you need help, submit a request at my [1-on-1 support page on Buy Me A Coffee [dot] com](https://buymeacoffee.com/walterrowe/extras).
 
-If you want to support Magick Frames, make a donation and [buy me a coffee](https://buymeacoffee.com/walterrowe).
+If you want to support Magick Frames, make a donation and [buy me some coffee](https://buymeacoffee.com/walterrowe).
 
 # Assumptions
 
