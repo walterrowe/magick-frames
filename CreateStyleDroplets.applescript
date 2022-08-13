@@ -35,6 +35,16 @@ property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.
 -- CRITICAL -- continued lines must end with ampersand plus OPT+RETURN
 
 property styleDroplets : {formatting:"filler"} & Â
+	{logo_transparent:"-l -mc=transparent -w=~/Pictures/watermark_dark.png"} & Â
+	{logo_transparent_drop:"-l -d -mc=transparent -w=~/Pictures/watermark_dark.png"} & Â
+	{logo_transparent_pic:"-l -p -mc=transptransparentarent -w=~/Pictures/watermark_dark.png"} & Â
+	{logo_transparent_drop_pic:"-l -d -p -mc=transparent -w=~/Pictures/watermark_dark.png"} & Â
+	{formatting:"filler"} & Â
+	{logo_transparent_over:"-ol -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_transparent_over_drop:"-ol -d -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_transparent_over_pic:"-ol -p -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_transparent_over_drop_pic:"-ol -d -p -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{formatting:"filler"} & Â
 	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
 	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
 	{logo_light_pic:"-l -p -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
@@ -54,6 +64,16 @@ property styleDroplets : {formatting:"filler"} & Â
 	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
 	{logo_dark_over_pic:"-ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
 	{logo_dark_over_drop_pic:"-ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{formatting:"filler"} & Â
+	{text_transparent:"-t -mc=transparent -tc=#383838"} & Â
+	{text_transparent_drop:"-t -d -mc=transparent -tc=#383838"} & Â
+	{text_transparent_pic:"-t -p -mc=transparent -tc=#383838"} & Â
+	{text_transparent_drop_pic:"-t -d -p -mc=transparent -tc=#383838"} & Â
+	{formatting:"filler"} & Â
+	{text_transparent_over:"-ot -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
+	{text_transparent_over_drop:"-ot -d -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
+	{text_transparent_over_pic:"-ot -p -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
+	{text_transparent_over_drop_pic:"-ot -d -p -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
 	{formatting:"filler"} & Â
 	{text_light:"-t -mc=#ffffff -tc=#383838"} & Â
 	{text_light_drop:"-t -d -mc=#ffffff -tc=#383838"} & Â
@@ -75,6 +95,7 @@ property styleDroplets : {formatting:"filler"} & Â
 	{text_dark_over_pic:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{text_dark_over_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{formatting:"filler"} & Â
+	{logo_green_drop_pic:"-l -d -p -mc=#106330 -w=~/Pictures/watermark_light.png"} & Â
 	{text_light_academy:"-t -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & Â
 	{text_light_pic_academy:"-t -p -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & Â
 	{text_dark_academy:"-t -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0"} & Â
