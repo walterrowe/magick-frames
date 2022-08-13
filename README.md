@@ -1,40 +1,39 @@
 ![Magick Frames](assets/magick-frames.png)
 
-# Donations
-
-If you like this package and would like to donate to support it, buy me a coffee - as many coffees as you like! I really like coffee!!!
-
-[Buy Me A Coffee](https://buymeacoffee.com/walterrowe)
-
-Use the [Buy Me A Coffee 1-on-1 Assistance](https://buymeacoffee.com/walterrowe/extras) page to schedule one-on-one assistance with setting up and using this package.
-
 # Magick Frames
 
-Magick Frames adds a optional picture frame, a pleasing shadow, your own text or graphic logo, and a matte around your photographs of any color including transparent for that impressive, professional look. Best of all, this all happens with a single, simple drag-n-drop. Select your photographs, drop them onto your choice of style applet, and move on to other tasks while every selected photograph is styled.
+Are you looking for a faster, easier way of give your photography that impressive, professional look for your website, social media, and clients? Look for further! Magick Frames makes it fast and easy to add an optional picture frame, a 3-dimensional shadow, your own text or graphic logo, and a colorful or transparent matte around your photographs.
 
-Your original JPGs are not overwritten. Each style applet inserts its name into the output file before the file extension. Create as many different styled looks as you want for any image and always retain your original exported JPG.
+Best of all, you get this with a single drag-n-drop. Select your photographs, drop them onto your preferred style applet, and move on to other tasks. Magick Frames will style your photographs and place the decorated versions as new files in the same folder as the files your selected. Each style applet adds its style name to the output filename so you never lose your original. You can create as many different styled looks as you want for any image, each with their own output file, and always have access to your original file.
 
-Here are all the features you get with Magick Frames:
+Here are the many features you get with Magick Frames:
 
 - you choose whether or not to add a picture frame around your photographs
-- you choose between a shadow box or drop shadow for that 3-dimensional look
-- you choose a two-row text or any graphic logo to affix below or on your photographs
+- you choose between a shadow box surround or a drop shadow for that 3-dimensional look
+- you choose a two-row text logo or any graphic logo to affix below or on your photographs
 - you choose where on your photographs you want your text or graphic logo to appear
-- you choose any matte color including to go around the sides of your photographs
-- you choose your preferred color and font for your text-based logo
-- your text or graphic logo is scaled based on your photo's size and orientation
-- you get over 50 different preset styles installed as applets on macOS
-- you can craft your own custom styles and install them as applets on macOS
-- you can name any style applet in macOS Capture One Export recipes to style on export
-- your style applets work like native macOS apps - drag-n-drop or double-click and choose
+- you choose any background matte color including transparent for your photographs
+- you choose any color and font for your text-based logo
+- your text and graphic logos are scaled to each photograph's size and orientation
+- you get over 50 different style presets installed as macOS applets for fast, easy use
+- easily craft your own custom style presets and create your own macOS applets
+- all style applets are macOS apps - drag-n-drop photographs, or double-click and choose
+- create multiple Capture One Export recipes on macOS and style your photographs on export
+- use the StyleChooser applet to apply any or all of the presets to your selected photographs
 
-Magick Frames can be downloaded and set up in 5 minutes.
+You can download and set up Magick Frames in 5-10 minutes.
+
+# Assistance and Support
+
+If you need help, submit a request at my [1-on-1 support page on Buy Me A Coffee [dot] com](https://buymeacoffee.com/walterrowe/extras).
+
+If you want to support Magick Frames, make a donation and [buy me a coffee](https://buymeacoffee.com/walterrowe).
 
 # Assumptions
 
-This is not a one-click installable tool. Installation and configuration requires using a Terminal window to type in commands at a command prompt. You have to install the ImageMagick open source software suite, and edit and copy a Unix shell script. macOS users also will want to run an included AppleScript.
+You will need to open a Terminal window to type in commands at a command prompt. You will have to install the ImageMagick open source software suite, and edit and copy a script. macOS users have to run an AppleScript to create the style droplets.
 
-If these are unfamiliar terms, ask me for assistance. You can use my [Buy Me A Coffee 1-on-1 Assistance](https://buymeacoffee.com/walterrowe/extras) page to contact me and schedule one-on-one online video call. I have decades of experience with macOS and Unix and can help.
+If these are unfamiliar terms, use my [1-on-1 support page on Buy Me A Coffee [dot] com](https://buymeacoffee.com/walterrowe/extras) to set up a one-on-one video call. I have decades of experience helping users.
 
 # How Magick Frames Works
 
