@@ -10,23 +10,25 @@ Use the [Buy Me A Coffee 1-on-1 Assistance](https://buymeacoffee.com/walterrowe/
 
 # Magick Frames
 
-Magick Frames adds a pleasing outer shadow, a logo or text below or at a specified inside edge of the image, and adds a light or dark matte around all the edges for a professional presentation of your photography as illustrated above. A significant feature of Magick Frames is that it scales and positions your text or logo based on your image dimensions, aspect ratio, and orientation. Square, vertical, and horizontal images all look as expected. The script has been tested on images from as small as 300 pixels to as large as full size 45MP with over 8000 pixels on the long edge.
+Magick Frames adds a optional picture frame, a pleasing shadow, your own text or graphic logo, and a matte around your photographs of any color including transparent for that impressive, professional look. Best of all, this all happens with a single, simple drag-n-drop. Select your photographs, drop them onto your choice of style applet, and move on to other tasks while every selected photograph is styled.
 
-Options for decorating your image and applying text or a logo include:
+Your original JPGs are not overwritten. Each style applet inserts its name into the output file before the file extension. Create as many different styled looks as you want for any image and always retain your original exported JPG.
 
-- optionally add a picture frame of 1-pixel dark + 10-pixels light
-- choose either a shadow on all the edges or a drop shadow bottom right
-- choose either a two-row text-based label or an image-based logo
-- choose whether to place the text label or logo inside or below the image
-- choose where inside the image to place the text or image logo
-- choose the matte color of the background to use for the output file
-- choose the text color of the text-based label added to the output file
-- choose the font of the text-based label added to the output file
-- choose an alternate logo watermark file on the command line
+Here are all the features you get with Magick Frames:
 
-You must name a default logo file and enter the two-row label text in the “frame\_it” shell script. You can specify an alternate logo file on the command line or in different macOS droplet styles. The two-row label text cannot be overridden on the command line at this time.
+- you choose whether or not to add a picture frame around your photographs
+- you choose between a shadow box or drop shadow for that 3-dimensional look
+- you choose a two-row text or any graphic logo to affix below or on your photographs
+- you choose where on your photographs you want your text or graphic logo to appear
+- you choose any matte color including to go around the sides of your photographs
+- you choose your preferred color and font for your text-based logo
+- your text or graphic logo is scaled based on your photo's size and orientation
+- you get over 50 different preset styles installed as applets on macOS
+- you can craft your own custom styles and install them as applets on macOS
+- you can name any style applet in macOS Capture One Export recipes to style on export
+- your style applets work like native macOS apps - drag-n-drop or double-click and choose
 
-macOS users also get an AppleScript "droplet" that lets you create a macOS app for running the "frame\_it" script with a set of predefined styles that I include in the script. This droplet behaves like any other macOS app. You can double-click it, or you can drag-n-drop files into it. You also can name it in a Capture One Export Recipe in the "Open with" field to have images decorated automatically after export.
+Magick Frames can be downloaded and set up in 5 minutes.
 
 # Assumptions
 
@@ -168,6 +170,7 @@ Below is a list of all the styles included in the script and their options. See 
 - styles with `pic` in the name add the picture frame to the images (no picture frame is the default)
 - styles with `light` in the name use a light background (matte color) (light matte color is the default)
 - styles with `dark` in the name use a dark background (matte color)
+- styles with `transparent` in the name use a transparent background (matte color) allowing broader use
 - styles with `-g` use this "gravity" option to specify where inside them image (see `gravity` in "frame_it" options)
 - styles with a `watermark_light.png` use a transparent watermark with light logo for dark backgrounds
 - styles with a `watermark_dark.png` use a transparent watermark with dark logo for light backgrounds
