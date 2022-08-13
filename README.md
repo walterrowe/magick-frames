@@ -35,7 +35,7 @@ If you want to support Magick Frames, [make a donation and buy me some coffee](h
 
 You will need to open a Terminal window to type in commands at a command prompt. You will have to install the ImageMagick open source software suite, and edit and copy a script. macOS users have to run an AppleScript to create the style droplets.
 
-If these are unfamiliar terms, use my [1-on-1 support page on Buy Me A Coffee [dot] com](https://buymeacoffee.com/walterrowe/extras) to set up a one-on-one video call. I have decades of experience helping users.
+If these are unfamiliar terms, use my [1-on-1 support page on Buy Me A Coffee [dot] com](https://buymeacoffee.com/walterrowe/extras) to set up a one-on-one video call. You will be using Magick Frames in no time.
 
 # How Magick Frames Works
 
