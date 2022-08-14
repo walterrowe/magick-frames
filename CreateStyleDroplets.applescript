@@ -37,7 +37,7 @@ property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.
 property styleDroplets : {formatting:"filler"} & Â
 	{logo_transparent:"-l -mc=transparent -w=~/Pictures/watermark_dark.png"} & Â
 	{logo_transparent_drop:"-l -d -mc=transparent -w=~/Pictures/watermark_dark.png"} & Â
-	{logo_transparent_pic:"-l -p -mc=transptransparentarent -w=~/Pictures/watermark_dark.png"} & Â
+	{logo_transparent_pic:"-l -p -mc=transparent -w=~/Pictures/watermark_dark.png"} & Â
 	{logo_transparent_drop_pic:"-l -d -p -mc=transparent -w=~/Pictures/watermark_dark.png"} & Â
 	{formatting:"filler"} & Â
 	{logo_transparent_over:"-ol -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & Â
@@ -120,6 +120,14 @@ on get_options(appName)
 	end if
 	return appOptions
 end get_options
+
+-- split a string based on a specific delimiter
+on joinText(theText, theDelimiter)
+	set AppleScript's text item delimiters to theDelimiter
+	set theTextItems to every text item of theText as string
+	set AppleScript's text item delimiters to ""
+	return theTextItems
+end joinText
 
 -- split a string based on a specific delimiter
 on splitText(theText, theDelimiter)
@@ -350,7 +358,11 @@ on createDroplets()
 	-- select the droplet folder and droplet script with Finder 
 	set dropletFolder to POSIX path of (choose folder with prompt "Select the folder for your Magick Frames droplets:")
 	set dropletChoice to choose file with prompt "Select the Magick Frames StyleDroplet script" default location POSIX path of (path to me)
-	set dropletSource to the quoted form of (POSIX path of dropletChoice)
+	set dropletSource to the POSIX path of dropletChoice
+	
+	set iconSource to splitText(dropletSource, "/") as list
+	set iconSource to items 1 thru -2 of iconSource
+	set iconSource to joinText(iconSource, "/") & "/droplet.icns"
 	
 	-- add unstyled droplet to list of droplet names
 	copy unStyledDroplet to the end of styleNames
@@ -365,10 +377,13 @@ on createDroplets()
 	repeat with dropletNum from 1 to count of styleNames
 		-- set destination droplet name
 		set dropletName to item dropletNum of styleNames
-		set droplet to "'" & dropletFolder & dropletName & ".app'"
+		set droplet to dropletFolder & dropletName & ".app"
+		
+		set iconTarget to droplet & "/Contents/Resources/"
 		
 		-- set shell command to create the droplet
-		set createDroplet to "osacompile -x -o " & droplet & " " & dropletSource
+		set createDroplet to "osacompile -x -o " & quoted form of droplet & " " & quoted form of dropletSource
+		set copyIcon to "/bin/cp " & quoted form of iconSource & " " & quoted form of iconTarget
 		
 		-- Update the progress detail
 		set progress additional description to "Creating droplet " & dropletNum & " of " & dropletCount
@@ -376,6 +391,13 @@ on createDroplets()
 		-- execute the shell command to build the droplet
 		try
 			do shell script createDroplet
+		on error errStr number errorNumber
+			display dialog "Droplet ERROR: " & errStr & ": " & (errorNumber as text) & "on file " & droplet
+		end try
+		
+		-- execute the shell command to build the droplet
+		try
+			do shell script copyIcon
 		on error errStr number errorNumber
 			display dialog "Droplet ERROR: " & errStr & ": " & (errorNumber as text) & "on file " & droplet
 		end try
