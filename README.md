@@ -254,16 +254,16 @@ This is the `styleDroplets` property list included in the CreateStyleDroplets sc
 
 ```applescript
 property styleDroplets : {formatting:"filler"} & ¬
-	{logo_transparent:”-l -mc=transparent -w=~/Pictures/watermark_dark.png”} & ¬
-	{logo_transparent_drop:”-l -d -mc=transparent -w=~/Pictures/watermark_dark.png”} & ¬
-	{logo_transparent_pic:”-l -p -mc=transparent -w=~/Pictures/watermark_dark.png”} & ¬
-	{logo_transparent_drop_pic:”-l -d -p -mc=transparent -w=~/Pictures/watermark_dark.png”} & ¬
-	{formatting:”filler”} & ¬
-	{logo_transparent_over:”-ol -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png”} & ¬
-	{logo_transparent_over_drop:”-ol -d -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png”} & ¬
-	{logo_transparent_over_pic:”-ol -p -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png”} & ¬
-	{logo_transparent_over_drop_pic:”-ol -d -p -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png”} & ¬
-	{formatting:”filler”} & ¬
+	{logo_transparent:"-l -mc=transparent -w=~/Pictures/watermark_dark.png"} & ¬
+	{logo_transparent_drop:"-l -d -mc=transparent -w=~/Pictures/watermark_dark.png"} & ¬
+	{logo_transparent_pic:"-l -p -mc=transparent -w=~/Pictures/watermark_dark.png"} & ¬
+	{logo_transparent_drop_pic:"-l -d -p -mc=transparent -w=~/Pictures/watermark_dark.png"} & ¬
+	{formatting:"filler"} & ¬
+	{logo_transparent_over:"-ol -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_transparent_over_drop:"-ol -d -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_transparent_over_pic:"-ol -p -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_transparent_over_drop_pic:"-ol -d -p -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{formatting:"filler"} & ¬
 	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & ¬
 	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & ¬
 	{logo_light_pic:"-l -p -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & ¬
@@ -283,16 +283,16 @@ property styleDroplets : {formatting:"filler"} & ¬
 	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
 	{logo_dark_over_pic:"-ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
 	{logo_dark_over_drop_pic:"-ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
-	{formatting:”filler”} & ¬
-	{text_transparent:”-t -mc=transparent -tc=#383838”} & ¬
-	{text_transparent_drop:”-t -d -mc=transparent -tc=#383838”} & ¬
-	{text_transparent_pic:”-t -p -mc=transparent -tc=#383838”} & ¬
-	{text_transparent_drop_pic:”-t -d -p -mc=transparent -tc=#383838”} & ¬
-	{formatting:”filler”} & ¬
-	{text_transparent_over:”-ot -mc=transparent -g=south -d -tc=#E0E0E0”} & ¬
-	{text_transparent_over_drop:”-ot -d -mc=transparent -g=south -d -tc=#E0E0E0”} & ¬
-	{text_transparent_over_pic:”-ot -p -mc=transparent -g=south -d -tc=#E0E0E0”} & ¬
-	{text_transparent_over_drop_pic:”-ot -d -p -mc=transparent -g=south -d -tc=#E0E0E0”} & ¬
+	{formatting:"filler"} & ¬
+	{text_transparent:"-t -mc=transparent -tc=#383838"} & ¬
+	{text_transparent_drop:"-t -d -mc=transparent -tc=#383838"} & ¬
+	{text_transparent_pic:"-t -p -mc=transparent -tc=#383838"} & ¬
+	{text_transparent_drop_pic:"-t -d -p -mc=transparent -tc=#383838"} & ¬
+	{formatting:"filler"} & ¬
+	{text_transparent_over:"-ot -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
+	{text_transparent_over_drop:"-ot -d -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
+	{text_transparent_over_pic:"-ot -p -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
+	{text_transparent_over_drop_pic:"-ot -d -p -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
 	{formatting:"filler"} & ¬
 	{text_light:"-t -mc=#ffffff -tc=#383838"} & ¬
 	{text_light_drop:"-t -d -mc=#ffffff -tc=#383838"} & ¬
@@ -313,12 +313,12 @@ property styleDroplets : {formatting:"filler"} & ¬
 	{text_dark_over_drop:"-ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{text_dark_over_pic:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{text_dark_over_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
-	{formatting:”filler”} & ¬
-	{logo_green_drop_pic:”-l -d -p -mc=#106330 -w=~/Pictures/watermark_light.png”} & ¬
-	{text_light_academy:”-t -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0”} & ¬
-	{text_light_pic_academy:”-t -p -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0”} & ¬
-	{text_dark_academy:”-t -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0”} & ¬
-	{text_dark_pic_academy:”-t -p -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0”} & ¬
+	{formatting:"filler"} & ¬
+	{logo_green_drop_pic:"-l -d -p -mc=#106330 -w=~/Pictures/watermark_light.png"} & ¬
+	{text_light_academy:"-t -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & ¬
+	{text_light_pic_academy:"-t -p -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & ¬
+	{text_dark_academy:"-t -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0"} & ¬
+	{text_dark_pic_academy:"-t -p -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0"} & ¬
 	{formatting:"filler"}
 ```
 
