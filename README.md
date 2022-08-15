@@ -49,7 +49,9 @@ My logo image file is made with these specifications based on a 3000w x 2400h pi
 - make a light colored logo for dark mattes and image areas (`watermark_light.png`)
 - make a dark colored logo for light mattes and image areas (`watermark_dark.png`)
 - place your logos in your Pictures folder
-- DEFAULT: the default watermark logo filename in `frame_it` is `~/Pictures/watermark_dark.png`
+- DEFAULT: the default graphic logo file is `~/Pictures/watermarks/watermark_dark.png`
+
+You can create many different graphic logo files. I place mine in a Pictures/watermarks, and I create two for each style - one with dark text, one with light text.
 
 ## Install ImageMagick
 
@@ -101,7 +103,13 @@ The style droplets created on macOS are little apps that work like you expect:
 
 There are two ways to create the droplets for macOS.
 
-1. EASY: Open the CreateStyleDroplets AppleScript in Script Editor and run it. Choose the folder where you want the droplets and it creates one for every style.
+### The Easy Way
+
+1. Open the CreateStyleDroplets AppleScript in Script Editor and run it.
+1. Choose the folder where you want the droplets and it creates one for every style.
+
+### The Hard Way
+
 1. Open the CreateStyleDroplets AppleScript in Script Editor and export as individual apps named for specific styles.
 
 When a style droplet runs it looks for it's own name in the styles property list and runs the “frame\_it” script with the associated options to decorate your images. For example, if you double-click the logo_dark droplet, it looks for logo_dark in the style list and uses the logo_dark "frame_it" options to decorate your images.
