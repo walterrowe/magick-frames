@@ -35,35 +35,35 @@ property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.
 -- CRITICAL -- continued lines must end with ampersand plus OPT+RETURN
 
 property styleDroplets : {formatting:"filler"} & Â
-	{logo_transparent:"-l -mc=transparent -w=~/Pictures/watermark_dark.png"} & Â
-	{logo_transparent_drop:"-l -d -mc=transparent -w=~/Pictures/watermark_dark.png"} & Â
-	{logo_transparent_pic:"-l -p -mc=transparent -w=~/Pictures/watermark_dark.png"} & Â
-	{logo_transparent_drop_pic:"-l -d -p -mc=transparent -w=~/Pictures/watermark_dark.png"} & Â
+	{logo_transparent:"-l -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{logo_transparent_drop:"-l -d -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{logo_transparent_pic:"-l -p -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{logo_transparent_drop_pic:"-l -d -p -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & Â
 	{formatting:"filler"} & Â
-	{logo_transparent_over:"-ol -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & Â
-	{logo_transparent_over_drop:"-ol -d -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & Â
-	{logo_transparent_over_pic:"-ol -p -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & Â
-	{logo_transparent_over_drop_pic:"-ol -d -p -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_transparent_over:"-ol -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_transparent_over_drop:"-ol -d -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_transparent_over_pic:"-ol -p -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_transparent_over_drop_pic:"-ol -d -p -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{formatting:"filler"} & Â
-	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
-	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
-	{logo_light_pic:"-l -p -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
-	{logo_light_drop_pic:"-l -d -p -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & Â
+	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{logo_light_pic:"-l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{logo_light_drop_pic:"-l -d -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
 	{formatting:"filler"} & Â
-	{logo_light_over:"-ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & Â
-	{logo_light_over_drop:"-ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & Â
-	{logo_light_over_pic:"-ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & Â
-	{logo_light_over_drop_pic:"-ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_light_over:"-ol -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_light_over_drop:"-ol -d -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_light_over_pic:"-ol -p -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_light_over_drop_pic:"-ol -d -p -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{formatting:"filler"} & Â
-	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermark_light.png"} & Â
-	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermark_light.png"} & Â
-	{logo_dark_pic:"-l -p -mc=#383838 -w=~/Pictures/watermark_light.png"} & Â
-	{logo_dark_drop_pic:"-l -d -p -mc=#383838 -w=~/Pictures/watermark_light.png"} & Â
+	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_dark_pic:"-l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_dark_drop_pic:"-l -d -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{formatting:"filler"} & Â
-	{logo_dark_over:"-ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
-	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
-	{logo_dark_over_pic:"-ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
-	{logo_dark_over_drop_pic:"-ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & Â
+	{logo_dark_over:"-ol -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_dark_over_pic:"-ol -p -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_dark_over_drop_pic:"-ol -d -p -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{formatting:"filler"} & Â
 	{text_transparent:"-t -mc=transparent -tc=#383838"} & Â
 	{text_transparent_drop:"-t -d -mc=transparent -tc=#383838"} & Â
@@ -95,7 +95,13 @@ property styleDroplets : {formatting:"filler"} & Â
 	{text_dark_over_pic:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{text_dark_over_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{formatting:"filler"} & Â
-	{logo_green_drop_pic:"-l -d -p -mc=#106330 -w=~/Pictures/watermark_light.png"} & Â
+	{light_matte_dark_logo:"-l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{dark_matte_light_logo:"-l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{light_matte_light_logo_over:"-ol -g=southwest -p -mc=#ffffff -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{light_matte_dark_logo_over:"-ol -g=southwest -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{dark_matte_light_logo_over:"-ol -g=southwest -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{dark_matte_dark_logo_over:"-ol -g=southwest -p -mc=#383838 -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{logo_green_drop_pic:"-l -d -p -mc=#106330 -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{text_light_academy:"-t -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & Â
 	{text_light_pic_academy:"-t -p -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & Â
 	{text_dark_academy:"-t -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0"} & Â
