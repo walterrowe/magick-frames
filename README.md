@@ -41,21 +41,36 @@ If these are unfamiliar terms, use my [1-on-1 support page on Buy Me A Coffee [d
 
 ## Create Logo Watermarks
 
-My logo image file is made with these specifications based on a 3000w x 2400h pixel image file:
+These graphic logo specifications are based on sizing for a 3000w x 2400h pixel image file:
 
-- 900 pixels wide and 250 pixels tall
-- use a transparent background
-- save your logo image files as PNG files
-- make a light colored logo for dark mattes and image areas (`watermark_light.png`)
-- make a dark colored logo for light mattes and image areas (`watermark_dark.png`)
-- place your logos in your Pictures folder
-- DEFAULT: the default graphic logo file is `~/Pictures/watermarks/watermark_dark.png`
+- create a logo folder (e.g. Pictures/watermarks) and place your logos there
+- create your logo files and save them as PNG files in your logos folder
+- size your logos 1400 pixels wide and 500 pixels tall with a transparent background
+- make a light colored logo to use on dark mattes and place on dark images (`watermark_light.png`)
+- make a dark colored logo to use on light mattes and place on light images (`watermark_dark.png`)
+- DEFAULT: the default graphic logo file is in "Pictures/watermarks/watermark_dark.png"
 
-You can create many different graphic logo files. I place mine in a Pictures/watermarks, and I create two for each style - one with dark text, one with light text.
+You can create many different graphic logos. Always create two for each style - one dark and one light.
 
-## Install ImageMagick
+## Install ImageMagick on macOS
 
-Use the installation instructions on the [ImageMagick](https://imagemagick.org/) website. The package is available for macOS and many distributions of Linux.
+Use these installation instructions (from the [ImageMagick](https://imagemagick.org/) website). The package is available for macOS and many distributions of Linux.
+
+Open a Terminal window and copy/paste or type these commands:
+
+1. Install HomeBrew (this may will ask for your password .. that is OK)
+
+    ```shell
+    % /bin/bash -c "$(curl -fsSL https://raw githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+
+1. Install ImageMagick
+
+    ```shell
+	% brew install imagemagick
+	```
+
+Linux users can download the package from the ImageMagick website and follow their instructions for installation.
 
 ## Install The Shell Script
 
@@ -67,7 +82,7 @@ label1=“W  A  L  T  E  R     R  O  W  E     P  H  O  T  O  G  R  A  P  H  Y”
 label2=“w w w . w a l t e r r o w e . c o m”
 
 # default logo watermark file - graphic watermark (my logo watermark is 900wx250h pixels w/ transparent background)
-watermark=~/Pictures/watermark_dark.png
+watermark=$HOME/Pictures/watermarks/watermark_dark.png
 ```
 
 Change value after the “=“ sign for “label1” and “label2” to your desired text. Change the value after the “=“ for “watermark” to the folder and filename for your default logo image file.
