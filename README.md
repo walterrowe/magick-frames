@@ -161,33 +161,61 @@ Below is a list of all the styles included in the script and their options. See 
 - styles with a `watermark_light.png` use a transparent watermark with light logo for dark backgrounds
 - styles with a `watermark_dark.png` use a transparent watermark with dark logo for light backgrounds
 
+**Logo Below Image, Transparent Background, Dark Logo**
+
+- logo_transparent: -l -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png
+- logo_transparent_drop: -l -d -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png
+- logo_transparent_pic: -l -p -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png
+- logo_transparent_drop_pic: -l -d -p -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png
+
+**Logo Inside Image, Transparent Background, Light Logo (assumes logo goes in dark image area)**
+
+- logo_transparent_over: -ol -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png
+- logo_transparent_over_drop: -ol -d -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png
+- logo_transparent_over_pic: -ol -p -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png
+- logo_transparent_over_drop_pic: -ol -d -p -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png
+
 **Logo Inside Image, White Background, Light Logo (assumes logo goes in dark image area)**
 
-- logo_light_over: -ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png
-- logo_light_over_drop: -ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png
-- logo_light_over_pic: -ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png
-- logo_light_over_drop_pic: -ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png
+- logo_light_over: -ol -mc=#ffffff -g=southeast -w=~/Pictures/watermarks/watermark_light.png
+- logo_light_over_drop: -ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermarks/watermark_light.png
+- logo_light_over_pic: -ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermarks/watermark_light.png
+- logo_light_over_drop_pic: -ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermarks/watermark_light.png
 
 **Logo Inside Image, Gray Background, Light Logo (assumes logo goes in dark image area)**
 
-- logo_dark_over: -ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
-- logo_dark_over_drop: -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
-- logo_dark_over_pic: -ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
-- logo_dark_over_drop_pic: -ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png
+- logo_dark_over: -ol -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png
+- logo_dark_over_drop: -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png
+- logo_dark_over_pic: -ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png
+- logo_dark_over_drop_pic: -ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png
 
 **Logo Below Image, White Background, Dark Logo (for light matte color below image)**
 
-- logo_light: -l -mc=#ffffff -w=~/Pictures/watermark_dark.png
-- logo_light_drop: -l -d -mc=#ffffff -w=~/Pictures/watermark_dark.png
-- logo_light_pic: -l -p -mc=#ffffff -w=~/Pictures/watermark_dark.png
-- logo_light_drop_pic: -l -d -p -mc=#ffffff -w=~/Pictures/watermark_dark.png
+- logo_light: -l -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png
+- logo_light_drop: -l -d -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png
+- logo_light_pic: -l -p -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png
+- logo_light_drop_pic: -l -d -p -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png
 
 **Logo Below Image, Gray Background, Light Logo (for dark matte color below image)**
 
-- logo_dark: -l -mc=#383838 -w=~/Pictures/watermark_light.png
-- logo_dark_drop: -l -d -mc=#383838 -w=~/Pictures/watermark_light.png
-- logo_dark_pic: -l -p -mc=#383838 -w=~/Pictures/watermark_light.png
-- logo_dark_drop_pic: -l -d -p -mc=#383838 -w=~/Pictures/watermark_light.png
+- logo_dark: -l -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png
+- logo_dark_drop: -l -d -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png
+- logo_dark_pic: -l -p -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png
+- logo_dark_drop_pic: -l -d -p -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png
+
+**Text Below Image, White Background, Dark Text (for light matte color below image)**
+
+- text_transparent: -t -mc=transparent -tc=#383838
+- text_transparent_drop: -t -d -mc=transparent -tc=#383838
+- text_transparent_pic: -t -p -mc=transparent -tc=#383838
+- text_transparent_drop_pic: -t -d -p -mc=transparent -tc=#383838
+
+**Text Inside Image, Transparent Background, Light Text (assumes text goes in dark image area)**
+
+- text_transparent_over: -ot -mc=transparent -g=south -d -tc=#E0E0E0
+- text_transparent_over_drop: -ot -d -mc=transparent -g=south -d -tc=#E0E0E0
+- text_transparent_over_pic: -ot -p -mc=transparent -g=south -d -tc=#E0E0E0
+- text_transparent_over_drop_pic: -ot -d -p -mc=transparent -g=south -d -tc=#E0E0E0
 
 **Text Inside Image, White Background, Light Text (assumes text goes in dark image area)**
 
@@ -217,6 +245,24 @@ Below is a list of all the styles included in the script and their options. See 
 - text_dark_pic: -t -p -mc=#383838 -tc=#E0E0E0
 - text_dark_drop_pic: -t -d -p -mc=#383838 -tc=#E0E0E0
 
+**Custom Logo Style Variations w/ Custom Logo**
+
+- light_matte_dark_logo: -l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png
+- dark_matte_light_logo: -l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png
+- light_matte_light_logo_over: -ol -g=southwest -p -mc=#ffffff -w=~/Pictures/watermarks/alander_light.png
+- light_matte_dark_logo_over: -ol -g=southwest -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png
+- dark_matte_light_logo_over: -ol -g=southwest -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png
+- dark_matte_dark_logo_over: -ol -g=southwest -p -mc=#383838 -w=~/Pictures/watermarks/alander_dark.png
+- logo_green_drop_pic: -l -d -p -mc=#106330 -w=~/Pictures/watermarks/alander_light.png
+
+**Custom Text Styles with Academy Engraved Font**
+
+- text_light_academy: -t -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0
+- text_light_pic_academy: -t -p -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0
+- text_dark_academy: -t -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0
+- text_dark_pic_academy: -t -p -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0
+
+
 ### Create Custom Styles
 
 **WARNING**: You MUST use Script Editor to add custom styles. The `styleDroplets` property list uses OPT+[RETURN] to continue the list across multiple lines. Other code editing tools such as Visual Studio Code and Atom are unable to insert this special form of line continuation.
@@ -232,42 +278,42 @@ The property list uses `key:value` pairs where the style name is the key and the
 When you drop files onto or double-click the `logo_dark_over_drop` droplet, the droplet will construct a separate shell command line for each image file as follows:
 
 ```text
-% frame_it -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png <your image file>
+% frame_it -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png <your image file>
 ```
 
 This is the `styleDroplets` property list included in the CreateStyleDroplets script that represent all of the included styles described above.
 
 ```applescript
 property styleDroplets : {formatting:"filler"} & ¬
-	{logo_transparent:"-l -mc=transparent -w=~/Pictures/watermark_dark.png"} & ¬
-	{logo_transparent_drop:"-l -d -mc=transparent -w=~/Pictures/watermark_dark.png"} & ¬
-	{logo_transparent_pic:"-l -p -mc=transparent -w=~/Pictures/watermark_dark.png"} & ¬
-	{logo_transparent_drop_pic:"-l -d -p -mc=transparent -w=~/Pictures/watermark_dark.png"} & ¬
+	{logo_transparent:"-l -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_transparent_drop:"-l -d -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_transparent_pic:"-l -p -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_transparent_drop_pic:"-l -d -p -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{formatting:"filler"} & ¬
-	{logo_transparent_over:"-ol -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
-	{logo_transparent_over_drop:"-ol -d -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
-	{logo_transparent_over_pic:"-ol -p -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
-	{logo_transparent_over_drop_pic:"-ol -d -p -mc=transparent -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_transparent_over:"-ol -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_transparent_over_drop:"-ol -d -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_transparent_over_pic:"-ol -p -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_transparent_over_drop_pic:"-ol -d -p -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{formatting:"filler"} & ¬
-	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & ¬
-	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & ¬
-	{logo_light_pic:"-l -p -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & ¬
-	{logo_light_drop_pic:"-l -d -p -mc=#ffffff -w=~/Pictures/watermark_dark.png"} & ¬
+	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_light_pic:"-l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_light_drop_pic:"-l -d -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{formatting:"filler"} & ¬
-	{logo_light_over:"-ol -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
-	{logo_light_over_drop:"-ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
-	{logo_light_over_pic:"-ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
-	{logo_light_over_drop_pic:"-ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_light_over:"-ol -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_light_over_drop:"-ol -d -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_light_over_pic:"-ol -p -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_light_over_drop_pic:"-ol -d -p -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{formatting:"filler"} & ¬
-	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermark_light.png"} & ¬
-	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermark_light.png"} & ¬
-	{logo_dark_pic:"-l -p -mc=#383838 -w=~/Pictures/watermark_light.png"} & ¬
-	{logo_dark_drop_pic:"-l -d -p -mc=#383838 -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_pic:"-l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_drop_pic:"-l -d -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{formatting:"filler"} & ¬
-	{logo_dark_over:"-ol -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
-	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
-	{logo_dark_over_pic:"-ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
-	{logo_dark_over_drop_pic:"-ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermark_light.png"} & ¬
+	{logo_dark_over:"-ol -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_over_pic:"-ol -p -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_over_drop_pic:"-ol -d -p -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{formatting:"filler"} & ¬
 	{text_transparent:"-t -mc=transparent -tc=#383838"} & ¬
 	{text_transparent_drop:"-t -d -mc=transparent -tc=#383838"} & ¬
@@ -299,7 +345,13 @@ property styleDroplets : {formatting:"filler"} & ¬
 	{text_dark_over_pic:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{text_dark_over_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{formatting:"filler"} & ¬
-	{logo_green_drop_pic:"-l -d -p -mc=#106330 -w=~/Pictures/watermark_light.png"} & ¬
+	{light_matte_dark_logo:"-l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{dark_matte_light_logo:"-l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{light_matte_light_logo_over:"-ol -g=southwest -p -mc=#ffffff -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{light_matte_dark_logo_over:"-ol -g=southwest -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{dark_matte_light_logo_over:"-ol -g=southwest -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{dark_matte_dark_logo_over:"-ol -g=southwest -p -mc=#383838 -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_green_drop_pic:"-l -d -p -mc=#106330 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{text_light_academy:"-t -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & ¬
 	{text_light_pic_academy:"-t -p -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & ¬
 	{text_dark_academy:"-t -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0"} & ¬
