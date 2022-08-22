@@ -21,24 +21,39 @@
 #
 # -ot | --overlaytext       specifies to use a two-line text logo inside the image
 #
-# -tc=color |               specifies the color of the two-line text logo
-# --textcolor=color         default #383838 below image, #E0E0E0 inside image
-#
 # -l | --logo               specifies to place an image-based logo underneath the image
 #                           DEFAULT style when no options are specified
 #
 # -ol | --overlaylogo       specifies to place an image-based logo inside the image
 #
-#
-# -d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
-#                           the default that centers the image in an all-edges shadow
-#
 # -p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
 #
-# -f=font |                 specify the font to use for the two-row label text logo
-# --font=font
+# -b | --bevel              add an interior bevel between the image and surrounding matte.
+#                           this disables shadowboxing and picture frame. (default no bevel)
+#
+# -d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
+#
+# -bc=color |               specifies the color of the interior bevel (default #888888)
+# --bevelcolor=color
+#
 # -mc=color |               specifies the color of the matte background (default white)
 # --mattecolor=color
+#
+# -pc=color |               specifies the color of the picture frame (default white)
+# --picturecolor=color
+#                           the default that centers the image in an all-edges shadow
+# -sc=color |               specifies the color of the shadow (default black)
+# --shadowcolor=color
+#
+# -tc=color |               specifies the color of the two-line text logo
+# --textcolor=color         default #383838 below image, #E0E0E0 inside image
+#
+# -tf=font |                specify the font to use for the two-row label text logo
+# --textfont=font
+#
+# -a=ratio |                specify the desired aspect ratio of the final output file
+# --aspect=ratio            in x:y ratio format (eg. -a=3:2, -a=1:1). some social media
+#                           sites prefer specific aspect ratios for best display.
 #
 # -w=your_logo |            specifies the image-based logo to use as the watermark that
 # --watermark=your_logo     that is placed below or inside the image.
@@ -130,18 +145,25 @@ if [ $# -lt 1 ]; then
 fi
 
 # defaults
-suffix="framed"
-style='logo'
 overwrite='false'
+suffix='framed'
+style='logo'
+frame='false'
+framecolor='white'
+bevel='0'
+bevelpad='0'
+bevelcolor='#888888'
 dropshadow='false'
-picture='false'
-inner="0x0"
-outer="0x0"
+shadowcolor='black'
+inner='0x0'
+outer='0x0'
 logo_gravity='south'
 mattecolor='white'
 textcolor='#383838'
 overlaytextcolor='#E0E0E0'
 textfont='Copperplate'
+aspect='false'
+aspectratio=''
 
 # process command line options
 for opt in "$@"; do
@@ -150,34 +172,18 @@ for opt in "$@"; do
             usage
             exit 0
             ;;
-        -d|--dropshadow)
-            dropshadow='true'
-            shift
-            ;;
         -o|--overwrite)
             # do not overwrite the original files
             overwrite='true'
             shift
             ;;
-        -p|--picture)
-            inner="1x1"
-            outer="10x10"
-            picture='true'
+        -s=*|--suffix=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            suffix="${opt}"
             shift
             ;;
         -t|--text)
             style='text'
-            shift
-            ;;
-        -tc=*|--textcolor=*)
-            opt=$(echo ${opt} | cut -d= -f2)
-            textcolor="${opt}"
-            overlaytextcolor="${opt}"
-            shift
-            ;;
-        -f=*|--font=*)
-            opt=$(echo ${opt} | cut -d= -f2)
-            textfont="${opt}"
             shift
             ;;
         -ot|--overlaytext)
@@ -192,14 +198,61 @@ for opt in "$@"; do
             style='overlay_logo'
             shift
             ;;
-        -s=*|--suffix=*)
+        -p|--picture)
+            inner="1x1"
+            outer="10x10"
+            bevel="0"
+            bevelpad="0"
+            frame='true'
+            shift
+            ;;
+        -b|--bevel)
+            inner="0x0"
+            outer="0x0"
+            bevel="15"
+            bevelpad="45"
+            frame='false'
+            shift
+            ;;
+        -d|--dropshadow)
+            dropshadow='true'
+            shift
+            ;;
+        -bc=*|--bevelcolor=*)
             opt=$(echo ${opt} | cut -d= -f2)
-            suffix="${opt}"
+            bevelcolor="${opt}"
             shift
             ;;
         -mc=*|--mattecolor=*)
             opt=$(echo ${opt} | cut -d= -f2)
             mattecolor="${opt}"
+            shift
+            ;;
+        -pc=*|--picturecolor=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            framecolor="${opt}"
+            shift
+            ;;
+        -sc=*|--shadowcolor=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            shadowcolor="${opt}"
+            shift
+            ;;
+        -tc=*|--textcolor=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            textcolor="${opt}"
+            overlaytextcolor="${opt}"
+            shift
+            ;;
+        -tf=*|--textfont=*|-f=*|--font=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            textfont="${opt}"
+            shift
+            ;;
+        -a=*|--aspect=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            aspectratio="${opt}"
+            aspect=true
             shift
             ;;
         -w=*|--watermark=*)
@@ -276,8 +329,9 @@ for filename in "$@" ; do
     file_wide=$(identify -format %w "${source}")
     file_high=$(identify -format %h "${source}")
 
+
     # defaults based on 3000wx2400h source and 900wx250h logo
-    #   - no dropshadow w/ 100% opacity and 20-pixel feather
+    #   - no dropshadow w/ 100% opacity and 25-pixel feather
     #   - pad left/top edges w/ 10 pixels
     #   - center so equal shadow on all edges
 
@@ -330,6 +384,12 @@ for filename in "$@" ; do
         scaled_logo_lift=$(expr 30 \* ${file_high} / ${scale_high})
     fi
 
+    # if adding bevel, don't add shadowbox
+    if [ $bevel != 0 ]; then
+        shadow="0x0"
+        offset="+0+0"
+    fi
+
     # inset overlay logos from the nearest edge
     if [[ ${style} = overlay_text ]] || [[ ${style} = overlay_logo ]]; then
         case ${logo_gravity} in
@@ -374,13 +434,14 @@ for filename in "$@" ; do
         text)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} -mattecolor black -frame 1x1 \
-              \( +clone -background black -shadow ${shadow}${offset} \) \
+              -mattecolor "${bevelcolor}" -frame ${bevel}x${bevel}+0+${bevel} \
+              -mattecolor black -frame ${inner} -mattecolor ${framecolor} -frame ${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
+              \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
               +swap -background ${mattecolor} -layers merge +repage \
               -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
               -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
-              -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity South -append \
-              -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity South -append \
+              -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity south -append \
+              -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity south -append \
               -bordercolor ${mattecolor} -border 20x20 -gravity south -background ${mattecolor} -splice ${toppad} \
               -format ${filetype} "${target}"
             ;;
@@ -390,8 +451,9 @@ for filename in "$@" ; do
             magick "${source}" -auto-orient \
               -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} -geometry ${label1_inset} -composite \
               -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -geometry ${label2_inset} -composite \
-              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} -mattecolor black -frame 1x1 \
-              \( +clone -background black -shadow ${shadow}${offset} \) \
+              -mattecolor "${bevelcolor}" -frame ${bevel}x${bevel}+0+${bevel} \
+              -mattecolor black -frame ${inner} -mattecolor ${framecolor} -frame ${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
+              \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
               +swap -background ${mattecolor} -layers merge +repage \
               -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
               -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
@@ -402,13 +464,14 @@ for filename in "$@" ; do
         logo)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} -mattecolor black -frame 1x1 \
-              \( +clone -background black -shadow ${shadow}${offset} \) \
+              -mattecolor "${bevelcolor}" -frame ${bevel}x${bevel}+0+${bevel} \
+              -mattecolor black -frame ${inner} -mattecolor ${framecolor} -frame ${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
+              \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
               +swap -background ${mattecolor} -layers merge +repage \
               -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
               -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
-              -bordercolor ${mattecolor} -border 20x20 -gravity south -background ${mattecolor} -splice 0x${scaled_logo_high} \
-              \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity south -geometry +0+${scaled_logo_lift} \) -composite \
+              -bordercolor ${mattecolor} -border 20x20 -gravity ${logo_gravity} -background ${mattecolor} -splice 0x${scaled_logo_high} \
+              \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry +0+${scaled_logo_lift} \) -composite \
               -mattecolor ${mattecolor} -frame ${border_wide}x${border_high} \
               -format ${filetype} "${target}"
             ;;
@@ -417,8 +480,9 @@ for filename in "$@" ; do
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
               \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry ${logo_inset} \) -composite \
-              -mattecolor black -frame ${inner} -mattecolor white -frame ${outer} -mattecolor black -frame 1x1 \
-              \( +clone -background black -shadow ${shadow}${offset} \) \
+              -mattecolor "${bevelcolor}" -frame ${bevel}x${bevel}+0+${bevel} \
+              -mattecolor black -frame ${inner} -mattecolor ${framecolor} -frame ${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
+              \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
               +swap -background ${mattecolor} -layers merge +repage \
               -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
               -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
@@ -428,4 +492,8 @@ for filename in "$@" ; do
 
     esac
 
+    # if square 1:1 aspect ratio, pad to add width or height
+    if [ $aspect = true ]; then
+        magick "${target}" -background ${mattecolor} -gravity center -extent "${aspectratio}#" "${target}"
+    fi
 done
