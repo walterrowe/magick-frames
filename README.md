@@ -305,7 +305,7 @@ When you drop files onto or double-click the `logo_dark_over_drop` droplet, the 
 >
 > With logo styles ("-l") the gravity option can alter the placement of the logo
 >
-> - Centered Above: `-g=top`  OR `-g=north`
+> - Centered Above: `-g=north`
 > - Corner Above/Below: `-g=northwest` OR `-g=northeast` OR `-g=southwest` OR `-g=southeast`
 >
 > This only applies to logo styles ("-l").
