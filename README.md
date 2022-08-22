@@ -286,6 +286,7 @@ Below is a list of all the styles included in the script and their options. See 
 If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list. You will see entries for "formatting". These are simply fillers to make it easier to read and group together the defined styles with similar looks.
 
 > **WARNING**
+>
 > You MUST use Script Editor to add custom styles. The `styleDroplets` property list uses OPT+[RETURN] to continue the list across multiple lines. Other code editing tools such as Visual Studio Code and Atom are unable to insert this special form of line continuation.
 
 The property list uses `key:value` pairs where the style name is the key and the “frame\_it” style options is the value. Use “frame\_it” from the command line to test different options and develop your own custom style settings. Run “frame\_it” with NO options to see a complete list of style options. Once you have an options set you like, add a new entry to the property list with unique name and the options you choose, and export a new droplet named for your custom style(s).
@@ -300,8 +301,8 @@ When you drop files onto or double-click the `logo_dark_over_drop` droplet, the 
 % frame_it -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png <your image file>
 ```
 
-**Style Tip**
-
+> **Style Tip**
+>
 > With logo styles ("-l") the gravity option can alter the placement of the logo
 >
 > Centered Above: `-g=top`  OR `-g=north`
