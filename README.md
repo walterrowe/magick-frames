@@ -89,13 +89,18 @@ Change value after the “=“ sign for “label1” and “label2” to your de
 
 Copy the edited [frame_it](frame_it) shell script into your system’s /usr/local/bin folder.
 
-After installing ImageMagick and copying your edited “frame\_it” to /usr/local/bin, you need to test “frame\_it”. You will need a test image to use for this. Open a Terminal window to test the “frame\_it” script to ensure it can access the ImageMagick tools.
+After installing ImageMagick and copying your edited “frame\_it” to /usr/local/bin, you need to test “frame\_it”. You will need to use one of your images for testing.
 
-```shell
-% frame_it my-image.jpg
-```
+1. Copy a JPG picture to your Desktop and call it "my-image.jpg".
+1. Keep your Desktop folder open in Finder.
+1. Open a Terminal window and type the following commands.
 
-You should see an output file such as `my-image-framed.jpg` in the folder containing your test image.
+    ```shell
+    % cd $HOME/Desktop
+    % frame_it my-image.jpg
+    ```
+
+You should see a new file in your Desktop Finder window called `my-image-framed.jpg`. This confirms everything is working and you can skip to Create The Style Droplets.
 
 If the “frame\_it” script says it cannot find the `identify` or `magick` command, this indicates that the folder containing the ImageMagick tools is not in the script’s environment path. Locate the directory containing the ImageMagick tools, then edit the “frame\_it” script and look for these lines. Here you will add the folder containing the ImageMagic tools so the script can find them.
 
