@@ -39,6 +39,15 @@ If these are unfamiliar terms, use my [1-on-1 support page on Buy Me A Coffee [d
 
 # Installation and Configuration
 
+First you have to download Magick Frames to your computer.
+
+1. On the Magick Frames GitHub page press the green "Code" button.
+1. On the Code drop-down press choose the option to "Download ZIP".
+
+<img width=300px src="assets/github-download.png">
+
+The default download folder is "Downloads", but you can change that if you have configured your browser to ask. On your computer you may have to double-click the ZIP file in Finder to extract it into its own folder.
+
 ## Create Logo Watermarks
 
 These graphic logo specifications are based on sizing for a 3000w x 2400h pixel image file:
@@ -128,13 +137,19 @@ There are two ways to create the droplets for macOS.
 1. Open the CreateStyleDroplets AppleScript in Script Editor and run it.
 1. Choose the folder where you want the droplets and it creates one for every style.
 
+> **Bonus Feature**
+>
+> When you use this EASY option one SPECIAL style droplet is also created called "**Style Chooser**".
+>
+> Double-click "Style Chooser" or drop images onto it and it presents a list of all the defined styles. Select multiple styles to easily decorate a set of pictures in multiple looks in one easy step.
+>
+> If you have added your own custom styles to the CreateStyleDroplets AppleScript, and recreated all the style droplets, then Style Chooser also includes your own custom styles.
+
 ### The Hard Way
 
 1. Open the CreateStyleDroplets AppleScript in Script Editor and export as individual apps named for specific styles.
 
 When a style droplet runs it looks for it's own name in the styles property list and runs the “frame\_it” script with the associated options to decorate your images. For example, if you double-click the logo_dark droplet, it looks for logo_dark in the style list and uses the logo_dark "frame_it" options to decorate your images.
-
-**StyleChooser**: One special droplet called "StyleChooser" is also created if you use the EASY option . When you double-click "StyleChooser" or drop images onto it, it presents a list of all the defined styles and lets you choose as many of them as you like. Let makes it easy to decorate a select set of pictures in multiple styles at once. If you have added your own custom styles to run CreateStyleDroplets to create all the defined styles, then StyleChooser also offers your custom styles.
 
 ### Create Individual Style Droplets
 
@@ -146,25 +161,23 @@ You can create individual style droplets for only the styles you want to use.
 
 When you drop images onto or double-click a droplet named for one of the included styles, it decorates images in that named style.
 
-SPEED TIP: Once you create one droplet, use Finder to copy-n-paste as names of other defined styles. This is faster than exporting the script multiple times from the AppleScript Script Editor.
-
 ### Included Styles
 
 Below is a list of all the styles included in the script and their options. See the command line section at the bottom for a complete description of all the supported options.
 
-**NOTE**: the included styles preserve the source image. Edit the StyleDroplet AppleScript and add option `-o` or `--overwrite` to overwrite the source.
+**NOTE**: the included styles preserve the source image. Edit the CreateStyleDroplets AppleScript, add option `-o` or `--overwrite`, and run it again, to create droplets that overwrite the source image.
 
-- styles with `text` in the name use the two-row text-based labels for watermarking
-- styles with `logo` in the name use the image-based logo for watermarking (logo-based is the default)
-- styles with `over` in the name place the text or logo "over" (inside) the image (centered below is the default)
-- styles with `drop` in the name use a drop-shadow vs shadow on all edges (all edges is the default)
-- styles with `pic` in the name add the picture frame to the images (no picture frame is the default)
-- styles with `light` in the name use a light background (matte color) (light matte color is the default)
-- styles with `dark` in the name use a dark background (matte color)
-- styles with `transparent` in the name use a transparent background (matte color) allowing broader use
-- styles with `-g` use this "gravity" option to specify where inside them image (see `gravity` in "frame_it" options)
-- styles with a `watermark_light.png` use a transparent watermark with light logo for dark backgrounds
-- styles with a `watermark_dark.png` use a transparent watermark with dark logo for light backgrounds
+- style names with `text` use a two-row text-based label logo for watermarking
+- style names with `logo` use a graphic logo for watermarking (default is graphic logo)
+- style names with `over` place the text or logo "over" (inside) the image (default is centered below)
+- style names with `drop` use a drop-shadow vs shadow on all edges (defailt is all edges)
+- style names with `pic` add the picture frame to the images (default is no picture frame)
+- style names with `light` use a light background (matte color) (default is light matte)
+- style names with `dark` use a dark background (matte color)
+- style names with `transparent` use a transparent background (matte color) allowing broader use
+- styles with `-g` use "gravity" to designate where to place text or logo (see "frame_it" options below)
+- styles with `watermark_light.png` use a transparent watermark with light logo for dark backgrounds
+- styles with `watermark_dark.png` use a transparent watermark with dark logo for light backgrounds
 
 **Logo Below Image, Transparent Background, Dark Logo**
 
@@ -270,9 +283,10 @@ Below is a list of all the styles included in the script and their options. See 
 
 ### Create Custom Styles
 
-**WARNING**: You MUST use Script Editor to add custom styles. The `styleDroplets` property list uses OPT+[RETURN] to continue the list across multiple lines. Other code editing tools such as Visual Studio Code and Atom are unable to insert this special form of line continuation.
-
 If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list. You will see entries for "formatting". These are simply fillers to make it easier to read and group together the defined styles with similar looks.
+
+> **WARNING**
+> You MUST use Script Editor to add custom styles. The `styleDroplets` property list uses OPT+[RETURN] to continue the list across multiple lines. Other code editing tools such as Visual Studio Code and Atom are unable to insert this special form of line continuation.
 
 The property list uses `key:value` pairs where the style name is the key and the “frame\_it” style options is the value. Use “frame\_it” from the command line to test different options and develop your own custom style settings. Run “frame\_it” with NO options to see a complete list of style options. Once you have an options set you like, add a new entry to the property list with unique name and the options you choose, and export a new droplet named for your custom style(s).
 
@@ -285,6 +299,15 @@ When you drop files onto or double-click the `logo_dark_over_drop` droplet, the 
 ```text
 % frame_it -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png <your image file>
 ```
+
+**Style Tip**
+
+> With logo styles ("-l") the gravity option can alter the placement of the logo
+>
+> Centered Above: `-g=top`  OR `-g=north`
+> Corner Above/Below: `-g=northwest` OR `-g=northeast` OR `-g=southwest` OR `-g=southeast`
+>
+> This only applies to logo styles ("-l").
 
 This is the `styleDroplets` property list included in the CreateStyleDroplets script that represent all of the included styles described above.
 
@@ -432,24 +455,40 @@ OPTIONS:
 
 -ot | --overlaytext       specifies to use a two-line text logo inside the image
 
--tc=color |               specifies the color of the two-line text logo
---textcolor=color         default #383838 below image, #E0E0E0 inside image
-
 -l | --logo               specifies to place an image-based logo underneath the image
                           DEFAULT style when no options are specified
 
 -ol | --overlaylogo       specifies to place an image-based logo inside the image
 
+-p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
+
+-b | --bevel              add an interior bevel between the image and surrounding matte.
+                          this disables shadowboxing and picture frame. (default no bevel)
 
 -d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
                           the default that centers the image in an all-edges shadow
 
--p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
+-bc=color |               specifies the color of the interior bevel (default #888888)
+--bevelcolor=color
 
--f=font |                 specify the font to use for the two-row label text logo
---font=font
 -mc=color |               specifies the color of the matte background (default white)
 --mattecolor=color
+
+-pc=color |               specifies the color of the picture frame (default white)
+--picturecolor=color
+
+-sc=color |               specifies the color of the shadow (default black)
+--shadowcolor=color
+
+-tc=color |               specifies the color of the two-line text logo
+--textcolor=color         default #383838 below image, #E0E0E0 inside image
+
+-tf=font |                specify the font to use for the two-row label text logo
+--textfont=font
+
+-a=ratio |                specify the desired aspect ratio of the final output file
+--aspect=ratio            in x:y ratio format (eg. -a=3:2, -a=1:1). some social media
+                          sites prefer specific aspect ratios for best display.
 
 -w=your_logo |            specifies the image-based logo to use as the watermark that
 --watermark=your_logo     that is placed below or inside the image.
@@ -502,6 +541,8 @@ frame_it -t -f=Academy-Engraved-LET-Plain:1.0 my-image.jpg
 Note the `-t` option to specify a text-based logo.
 
 # How Magick Frames Works
+
+This section is primarily for those who want to understand the inner workings of this utility.
 
 The Magick Frames package includes a shell script I wrote called "frame\_it". This shell script uses a free software suite called [ImageMagick](https://imagemagick.org/) to add a picture frame, add a pleasing outer shadow, place a logo or text below or at a specified inside edge of the image, and add a light or dark matte all the way around the edges to create a professional presentation for your photography. This "frame\_it" script hides the complexities of using ImageMagick so you don't have to learn them. This script is where all the "**magick**" happens. You can use this script directly from a command prompt on macOS and Linux. All of the script options are described at the bottom of this page and are displayed if you run "frame\_it" script with no options. The "frame_\it" script by default saves decorated images in a new file with "-frame" inserted before the file extension.
 
