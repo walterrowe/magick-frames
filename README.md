@@ -388,7 +388,12 @@ property styleDroplets : {formatting:"filler"} & ¬
 	{formatting:"filler"}
 ```
 
-Carefully follow the instructions above the `styleDroplets` style list inside the CreateStyleDroplets script. Use the instructions above to create droplets for individual styles for all the styles including your own custom styles. Custom style droplets should produce the same behavior as the included styles.
+Carefully follow the instructions above the `styleDroplets` style list inside the CreateStyleDroplets script.
+
+- Use "The Easy Way" instructions to recreate all the style droplets including your own custom styles.
+- Use "The Hard Way" instructions to create style droplets of only your custom styles.
+
+Regardless of how you create them, custom style droplets behave the same as the included styles droplets.
 
 # How To Use
 
