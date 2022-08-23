@@ -26,7 +26,8 @@
 #
 # -ol | --overlaylogo       specifies to place an image-based logo inside the image
 #
-# -p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
+# -f | --frame              add a picture frame around the sides of the image
+#                           this disables bevel and enables shadowboxing (default no frame)
 #
 # -b | --bevel              add an interior bevel between the image and surrounding matte.
 #                           this disables shadowboxing and picture frame. (default no bevel)
@@ -36,11 +37,11 @@
 # -bc=color |               specifies the color of the interior bevel (default #888888)
 # --bevelcolor=color
 #
+# -fc=color |               specifies the color of the picture frame (default white)
+# --framecolor=color
+#
 # -mc=color |               specifies the color of the matte background (default white)
 # --mattecolor=color
-#
-# -pc=color |               specifies the color of the picture frame (default white)
-# --picturecolor=color
 #                           the default that centers the image in an all-edges shadow
 # -sc=color |               specifies the color of the shadow (default black)
 # --shadowcolor=color
@@ -198,7 +199,7 @@ for opt in "$@"; do
             style='overlay_logo'
             shift
             ;;
-        -p|--picture)
+        -f|--frame)
             inner="1x1"
             outer="10x10"
             bevel="0"
@@ -223,14 +224,14 @@ for opt in "$@"; do
             bevelcolor="${opt}"
             shift
             ;;
+        -fc=*|--framecolor=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            framecolor="${opt}"
+            shift
+            ;;
         -mc=*|--mattecolor=*)
             opt=$(echo ${opt} | cut -d= -f2)
             mattecolor="${opt}"
-            shift
-            ;;
-        -pc=*|--picturecolor=*)
-            opt=$(echo ${opt} | cut -d= -f2)
-            framecolor="${opt}"
             shift
             ;;
         -sc=*|--shadowcolor=*)
@@ -244,7 +245,7 @@ for opt in "$@"; do
             overlaytextcolor="${opt}"
             shift
             ;;
-        -tf=*|--textfont=*|-f=*|--font=*)
+        -tf=*|--textfont=*)
             opt=$(echo ${opt} | cut -d= -f2)
             textfont="${opt}"
             shift
