@@ -166,19 +166,19 @@ Once you have the style droplets created you are ready to use Magick Frames.
 # Examples
 
 - Bevel with colored matte and logo overlaid on southwest corner of the image
-<img bordercolor=#666666 border=2px width=500px src=assets/bevel-overlay.jpg>
+    <img bordercolor=#666666 border=2px width=500px src=assets/bevel-overlay.jpg>
 
 - Shadowed picture frame with graphic logo appearing above the picture
-<img bordercolor=#666666 border=2px width=500px src=assets/logo-above.jpg>
+    <img bordercolor=#666666 border=2px width=500px src=assets/logo-above.jpg>
 
 - Shadowed picture frame with graphic logo appearing in southeast corner below the image
-<img bordercolor=#666666 border=2px width=500px src=assets/logo-southeast.jpg>
+    <img bordercolor=#666666 border=2px width=500px src=assets/logo-southeast.jpg>
 
 - Beveled matte with graphic logo above the picture and aspect ratio 1:1 (square)
-<img bordercolor=#666666 border=2px width=500px src=assets/square-above.jpg>
+    <img bordercolor=#666666 border=2px width=500px src=assets/square-above.jpg>
 
 - Beveled matte with text logo below the picture and aspect ratio 1:1 (square)
-<img bordercolor=#666666 border=2px width=500px src=assets/square-text.jpg>
+    <img bordercolor=#666666 border=2px width=500px src=assets/square-text.jpg>
 
 # Included Styles
 
