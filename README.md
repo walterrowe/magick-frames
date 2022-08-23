@@ -161,7 +161,26 @@ You can create individual style droplets for only the styles you want to use.
 
 When you drop images onto or double-click a droplet named for one of the included styles, it decorates images in that named style.
 
-### Included Styles
+Once you have the style droplets created you are ready to use Magick Frames.
+
+# Examples
+
+- Bevel with colored matte and logo overlaid on southwest corner of the image
+<img bordercolor=#666666 border=2px width=500px src=assets/bevel-overlay.jpg>
+
+- Shadowed picture frame with graphic logo appearing above the picture
+<img bordercolor=#666666 border=2px width=500px src=assets/logo-above.jpg>
+
+- Shadowed picture frame with graphic logo appearing in southeast corner below the image
+<img bordercolor=#666666 border=2px width=500px src=assets/logo-southeast.jpg>
+
+- Beveled matte with graphic logo above the picture and aspect ratio 1:1 (square)
+<img bordercolor=#666666 border=2px width=500px src=assets/square-above.jpg>
+
+- Beveled matte with text logo below the picture and aspect ratio 1:1 (square)
+<img bordercolor=#666666 border=2px width=500px src=assets/square-text.jpg>
+
+# Included Styles
 
 Below is a list of all the styles included in the script and their options. See the command line section at the bottom for a complete description of all the supported options.
 
