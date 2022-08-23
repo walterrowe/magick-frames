@@ -329,7 +329,7 @@ Below is a list of all the styles included in the script and their options. See 
 - style names with `logo` use a graphic logo for watermarking (default is graphic logo)
 - style names with `over` place the text or logo "over" (inside) the image (default is centered below)
 - style names with `drop` use a drop-shadow vs shadow on all edges (defailt is all edges)
-- style names with `pic` add the picture frame to the images (default is no picture frame)
+- style names with `frame` add a picture frame to the images (default is no picture frame)
 - style names with `light` use a light background (matte color) (default is light matte)
 - style names with `dark` use a dark background (matte color)
 - style names with `transparent` use a transparent background (matte color) allowing broader use
