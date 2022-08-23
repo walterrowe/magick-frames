@@ -157,6 +157,150 @@ When a style droplet runs it looks for it's own name in the styles property list
 
 Once you have the style droplets created you are ready to use Magick Frames.
 
+# How To Use
+
+The scaling and placement of logos and text were developed using an image with dimensions 3000 wide by 2400 high pixels, a font of 64 points, and an image logo with dimensions 900 wide by 250 high pixels. When creating your own logo make one with dark text for light backgrounds and another with light text for dark backgrounds.
+
+## In macOS Finder
+
+The AppleScript droplet included with this package works like any other macOS application.
+
+- drag-n-drop files onto the droplet using Finder to decorate the selected files
+- double-click the droplet to open a file chooser and decorate the selected files
+- add to an export recipe of an image editing tool to decorate images on export
+
+The droplet name controls how the selected images are decorated as described above. The "StyleChooser" droplet will open a dialog where you can select one or more styles. The images will be decorated in the selected style(s) and each output filename will have the specific style's name inserted before the file extension.
+
+## In Capture One Export Recipes
+
+The droplet included with this package can configured into a Capture One Pro Export Recipe like any other application.
+
+1. Go to `Open With` field in a Capture One Export Recipe
+1. Choose `Other` from the `Open With` drop-down menu
+1. Navigate to and select one of your droplet applications
+1. Select and check the configured Export Recipe
+1. Select images to export and press `CMD + D` or the Export button
+
+The droplet name controls how the exported images are decorated.
+
+This is what really happens is on export.
+
+1. The Export Recipe exports your selected images to your designated folder
+1. The Export Recipe passes each output filename to the droplet named in "Open with"
+1. The droplet passes the correct options and output filename to the “frame\_it” shell script
+1. The “frame\_it” shell script decorates your output file using the chosen “frame\_it” options
+
+This process may seem complicated, but it works quickly and invisibly. Open your output folder in Finder icon view before you export, watch as the exported files appear in the folder, and then notice the previews change as they are decorated by “frame\_it”.
+
+## At The Command Line
+
+The [frame_it](frame_it) shell script can be used from the command line on macOS and Linux.
+
+Place the [frame_it](frame_it) shell script in /usr/local/bin and run it with no options to see a usage message showing all of the available styling options.
+
+```text
+usage: frame_it [ OPTIONS ] image [ .. ]
+
+OPTIONS:
+
+-h | --help               display a usage message with option descriptions
+
+-o | --overwrite          specifies to overwrite the original files vs the default
+                          of keeping them and writing new files with "-framed" inserted
+                          before the suffix
+
+-s=suffix |               suffix to append to decorated file names (default: "-framed")
+--suffix=suffix
+
+-t | --text               specifies to use a two-line text logo underneath the image
+
+-ot | --overlaytext       specifies to use a two-line text logo inside the image
+
+-l | --logo               specifies to place an image-based logo underneath the image
+                          DEFAULT style when no options are specified
+
+-ol | --overlaylogo       specifies to place an image-based logo inside the image
+
+-p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
+
+-b | --bevel              add an interior bevel between the image and surrounding matte.
+                          this disables shadowboxing and picture frame. (default no bevel)
+
+-d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
+                          the default that centers the image in an all-edges shadow
+
+-bc=color |               specifies the color of the interior bevel (default #888888)
+--bevelcolor=color
+
+-mc=color |               specifies the color of the matte background (default white)
+--mattecolor=color
+
+-pc=color |               specifies the color of the picture frame (default white)
+--picturecolor=color
+
+-sc=color |               specifies the color of the shadow (default black)
+--shadowcolor=color
+
+-tc=color |               specifies the color of the two-line text logo
+--textcolor=color         default #383838 below image, #E0E0E0 inside image
+
+-tf=font |                specify the font to use for the two-row label text logo
+--textfont=font
+
+-a=ratio |                specify the desired aspect ratio of the final output file
+--aspect=ratio            in x:y ratio format (eg. -a=3:2, -a=1:1). some social media
+                          sites prefer specific aspect ratios for best display.
+
+-w=your_logo |            specifies the image-based logo to use as the watermark that
+--watermark=your_logo     that is placed below or inside the image.
+
+-g=placement |            specifies which inside edge or corner of the image the logo
+--gravity=placement       or text should be nearest. The following are accepted values.
+                          The logo or text is inset from the specified edge or corner.
+                          DEFAULT edge is south/bottom.
+
+                            +----------------------------------------------------+
+                            | topleft               top                 topright |
+                            |                                                    |
+                            | left                 middle                  right |
+                            |                                                    |
+                            | bottomleft           bottom            bottomright |
+                            +----------------------------------------------------+
+
+                            +----------------------------------------------------+
+                            | northwest            north               northeast |
+                            |                                                    |
+                            | west                 center                   east |
+                            |                                                    |
+                            | southwest            south               southeast |
+                            +----------------------------------------------------+
+```
+
+Make test copies of image files and use the shell script from the command line to experiment with how different styles decorate your test images. This will help you choose which options you want to use in your droplet(s).
+
+You can see the names of fonts from which to choose for text-based labels using this command. In the output you will see lines beginning with "Font"
+
+```text
+% magick -list font
+
+... lots of output
+  Font: Academy-Engraved-LET-Plain:1.0
+    family: Academy Engraved LET
+    style: Normal
+    stretch: Normal
+    weight: 400
+    glyphs: /System/Library/Fonts/Supplemental/Academy Engraved LET Fonts.ttf
+...
+```
+
+If you want to use font "Academy Engraved LET" for a text-based logo then you would specify it as follows on the command line.
+
+```
+frame_it -t -tf=Academy-Engraved-LET-Plain:1.0 my-image.jpg
+```
+
+Note the `-t` option to specify a text-based logo.
+
 # Examples
 
 - Bevel with colored matte and logo overlaid on southwest corner of the image
@@ -415,150 +559,6 @@ Carefully follow the instructions above the `styleDroplets` style list inside th
 - Use "The Hard Way" instructions to create style droplets of only your custom styles.
 
 Regardless of how you create them, custom style droplets behave the same as the included styles droplets.
-
-# How To Use
-
-The scaling and placement of logos and text were developed using an image with dimensions 3000 wide by 2400 high pixels, a font of 64 points, and an image logo with dimensions 900 wide by 250 high pixels. When creating your own logo make one with dark text for light backgrounds and another with light text for dark backgrounds.
-
-## In macOS Finder
-
-The AppleScript droplet included with this package works like any other macOS application.
-
-- drag-n-drop files onto the droplet using Finder to decorate the selected files
-- double-click the droplet to open a file chooser and decorate the selected files
-- add to an export recipe of an image editing tool to decorate images on export
-
-The droplet name controls how the selected images are decorated as described above. The "StyleChooser" droplet will open a dialog where you can select one or more styles. The images will be decorated in the selected style(s) and each output filename will have the specific style's name inserted before the file extension.
-
-## In Capture One Export Recipes
-
-The droplet included with this package can configured into a Capture One Pro Export Recipe like any other application.
-
-1. Go to `Open With` field in a Capture One Export Recipe
-1. Choose `Other` from the `Open With` drop-down menu
-1. Navigate to and select one of your droplet applications
-1. Select and check the configured Export Recipe
-1. Select images to export and press `CMD + D` or the Export button
-
-The droplet name controls how the exported images are decorated.
-
-This is what really happens is on export.
-
-1. The Export Recipe exports your selected images to your designated folder
-1. The Export Recipe passes each output filename to the droplet named in "Open with"
-1. The droplet passes the correct options and output filename to the “frame\_it” shell script
-1. The “frame\_it” shell script decorates your output file using the chosen “frame\_it” options
-
-This process may seem complicated, but it works quickly and invisibly. Open your output folder in Finder icon view before you export, watch as the exported files appear in the folder, and then notice the previews change as they are decorated by “frame\_it”.
-
-## At The Command Line
-
-The [frame_it](frame_it) shell script can be used from the command line on macOS and Linux.
-
-Place the [frame_it](frame_it) shell script in /usr/local/bin and run it with no options to see a usage message showing all of the available styling options.
-
-```text
-usage: frame_it [ OPTIONS ] image [ .. ]
-
-OPTIONS:
-
--h | --help               display a usage message with option descriptions
-
--o | --overwrite          specifies to overwrite the original files vs the default
-                          of keeping them and writing new files with "-framed" inserted
-                          before the suffix
-
--s=suffix |               suffix to append to decorated file names (default: "-framed")
---suffix=suffix
-
--t | --text               specifies to use a two-line text logo underneath the image
-
--ot | --overlaytext       specifies to use a two-line text logo inside the image
-
--l | --logo               specifies to place an image-based logo underneath the image
-                          DEFAULT style when no options are specified
-
--ol | --overlaylogo       specifies to place an image-based logo inside the image
-
--p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
-
--b | --bevel              add an interior bevel between the image and surrounding matte.
-                          this disables shadowboxing and picture frame. (default no bevel)
-
--d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
-                          the default that centers the image in an all-edges shadow
-
--bc=color |               specifies the color of the interior bevel (default #888888)
---bevelcolor=color
-
--mc=color |               specifies the color of the matte background (default white)
---mattecolor=color
-
--pc=color |               specifies the color of the picture frame (default white)
---picturecolor=color
-
--sc=color |               specifies the color of the shadow (default black)
---shadowcolor=color
-
--tc=color |               specifies the color of the two-line text logo
---textcolor=color         default #383838 below image, #E0E0E0 inside image
-
--tf=font |                specify the font to use for the two-row label text logo
---textfont=font
-
--a=ratio |                specify the desired aspect ratio of the final output file
---aspect=ratio            in x:y ratio format (eg. -a=3:2, -a=1:1). some social media
-                          sites prefer specific aspect ratios for best display.
-
--w=your_logo |            specifies the image-based logo to use as the watermark that
---watermark=your_logo     that is placed below or inside the image.
-
--g=placement |            specifies which inside edge or corner of the image the logo
---gravity=placement       or text should be nearest. The following are accepted values.
-                          The logo or text is inset from the specified edge or corner.
-                          DEFAULT edge is south/bottom.
-
-                            +----------------------------------------------------+
-                            | topleft               top                 topright |
-                            |                                                    |
-                            | left                 middle                  right |
-                            |                                                    |
-                            | bottomleft           bottom            bottomright |
-                            +----------------------------------------------------+
-
-                            +----------------------------------------------------+
-                            | northwest            north               northeast |
-                            |                                                    |
-                            | west                 center                   east |
-                            |                                                    |
-                            | southwest            south               southeast |
-                            +----------------------------------------------------+
-```
-
-Make test copies of image files and use the shell script from the command line to experiment with how different styles decorate your test images. This will help you choose which options you want to use in your droplet(s).
-
-You can see the names of fonts from which to choose for text-based labels using this command. In the output you will see lines beginning with "Font"
-
-```text
-% magick -list font
-
-... lots of output
-  Font: Academy-Engraved-LET-Plain:1.0
-    family: Academy Engraved LET
-    style: Normal
-    stretch: Normal
-    weight: 400
-    glyphs: /System/Library/Fonts/Supplemental/Academy Engraved LET Fonts.ttf
-...
-```
-
-If you want to use font "Academy Engraved LET" for a text-based logo then you would specify it as follows on the command line.
-
-```
-frame_it -t -tf=Academy-Engraved-LET-Plain:1.0 my-image.jpg
-```
-
-Note the `-t` option to specify a text-based logo.
 
 # How Magick Frames Works
 
