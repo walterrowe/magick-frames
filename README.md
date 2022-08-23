@@ -10,20 +10,20 @@ Select your photographs, drop them onto your preferred style applet, and move on
 
 Here are the many features you get with Magick Frames:
 
-- you choose whether or not to add a picture frame around your photographs
-- you choose between a shadow box surround or a drop shadow for that 3-dimensional look
-- you choose a two-row text logo or any graphic logo to affix below or on your photographs
-- you choose where above, on, or below your photographs you want your graphic logo to appear
-- you choose which corner or edge on your photographs you want your text logo to appear
-- you choose any color for bevel, matte, shadow, and picture frame including transparent
-- you choose any aspect ratio for the output and it is padded with the matte color
-- you choose any color and font for your text-based logo
+- add a picture frame around your photographs
+- add a shadowbox, drop shadow, or matte bevel for that 3-D look
+- apply a two-row text logo or any of graphic logo for your photographs
+- choose where above, on, or below your images you want your graphic logo to appear
+- choose which corner or edge on your images you want your text logo to appear
+- choose any color for bevel, matte, shadow, and picture frame including transparent
+- choose any aspect ratio for the output and it is padded with the matte color
+- choose any color and font for your text-based logo
 - your text and graphic logos are scaled to each photograph's size and orientation
-- you get over 50 different style presets installed as macOS applets for fast, easy use
-- easily craft your own custom style presets and create your own macOS applets
-- all style applets are macOS apps - drag-n-drop photographs, or double-click and choose
-- create multiple Capture One Export recipes on macOS and style your photographs on export
-- use the StyleChooser applet to apply any or all of the presets to your selected photographs
+- you get over 60 different style presets installed as macOS droplets for fast, easy use
+- easily craft your own custom style presets and corresponding macOS style applets
+- all style applets are macOS apps - drag-n-drop onto them, or double-click them and choose
+- create multiple Capture One Export recipes and style your photographs on export
+- use the Style Chooser to apply multiple styles to selected images in a single action
 
 You can download and set up Magick Frames in 5-10 minutes.
 
@@ -221,7 +221,8 @@ OPTIONS:
 
 -ol | --overlaylogo       specifies to place an image-based logo inside the image
 
--p | --picture            add a 1-pixel black inner border + 10-pixel white outer border
+-f | --frame              add a thin picture frame around the edges of the image
+                          this disables bevel and enables shadowboxing (default no frame)
 
 -b | --bevel              add an interior bevel between the image and surrounding matte.
                           this disables shadowboxing and picture frame. (default no bevel)
@@ -232,11 +233,11 @@ OPTIONS:
 -bc=color |               specifies the color of the interior bevel (default #888888)
 --bevelcolor=color
 
+-fc=color |               specifies the color of the picture frame (default white)
+--framecolor=color
+
 -mc=color |               specifies the color of the matte background (default white)
 --mattecolor=color
-
--pc=color |               specifies the color of the picture frame (default white)
---picturecolor=color
 
 -sc=color |               specifies the color of the shadow (default black)
 --shadowcolor=color
@@ -340,102 +341,102 @@ Below is a list of all the styles included in the script and their options. See 
 
 - logo_transparent: -l -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png
 - logo_transparent_drop: -l -d -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png
-- logo_transparent_pic: -l -p -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png
-- logo_transparent_drop_pic: -l -d -p -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png
+- logo_transparent_frame: -l -d -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png
+- logo_transparent_drop_frame: -l -d -f -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png
 
 **Logo Inside Image, Transparent Background, Light Logo (assumes logo goes in dark image area)**
 
 - logo_transparent_over: -ol -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png
 - logo_transparent_over_drop: -ol -d -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png
-- logo_transparent_over_pic: -ol -p -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png
-- logo_transparent_over_drop_pic: -ol -d -p -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png
+- logo_transparent_over_frame: -ol -f -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png
+- logo_transparent_over_drop_frame: -ol -d -f -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png
 
 **Logo Inside Image, White Background, Light Logo (assumes logo goes in dark image area)**
 
 - logo_light_over: -ol -mc=#ffffff -g=southeast -w=~/Pictures/watermarks/watermark_light.png
 - logo_light_over_drop: -ol -d -mc=#ffffff -g=southeast -w=~/Pictures/watermarks/watermark_light.png
-- logo_light_over_pic: -ol -p -mc=#ffffff -g=southeast -w=~/Pictures/watermarks/watermark_light.png
-- logo_light_over_drop_pic: -ol -d -p -mc=#ffffff -g=southeast -w=~/Pictures/watermarks/watermark_light.png
+- logo_light_over_frame: -ol -f -mc=#ffffff -g=southeast -w=~/Pictures/watermarks/watermark_light.png
+- logo_light_over_drop_frame: -ol -d -f -mc=#ffffff -g=southeast -w=~/Pictures/watermarks/watermark_light.png
 
 **Logo Inside Image, Gray Background, Light Logo (assumes logo goes in dark image area)**
 
 - logo_dark_over: -ol -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png
 - logo_dark_over_drop: -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png
-- logo_dark_over_pic: -ol -p -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png
-- logo_dark_over_drop_pic: -ol -d -p -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png
+- logo_dark_over_frame: -ol -f -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png
+- logo_dark_over_drop_frame: -ol -d -f -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png
 
 **Logo Below Image, White Background, Dark Logo (for light matte color below image)**
 
 - logo_light: -l -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png
 - logo_light_drop: -l -d -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png
-- logo_light_pic: -l -p -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png
-- logo_light_drop_pic: -l -d -p -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png
+- logo_light_frame: -l -f -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png
+- logo_light_drop_frame: -l -d -f -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png
 
 **Logo Below Image, Gray Background, Light Logo (for dark matte color below image)**
 
 - logo_dark: -l -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png
 - logo_dark_drop: -l -d -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png
-- logo_dark_pic: -l -p -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png
-- logo_dark_drop_pic: -l -d -p -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png
+- logo_dark_frame: -l -f -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png
+- logo_dark_drop_frame: -l -d -f -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png
 
 **Text Below Image, White Background, Dark Text (for light matte color below image)**
 
 - text_transparent: -t -mc=transparent -tc=#383838
 - text_transparent_drop: -t -d -mc=transparent -tc=#383838
-- text_transparent_pic: -t -p -mc=transparent -tc=#383838
-- text_transparent_drop_pic: -t -d -p -mc=transparent -tc=#383838
+- text_transparent_frame: -t -f -mc=transparent -tc=#383838
+- text_transparent_drop_frame: -t -d -f -mc=transparent -tc=#383838
 
 **Text Inside Image, Transparent Background, Light Text (assumes text goes in dark image area)**
 
 - text_transparent_over: -ot -mc=transparent -g=south -d -tc=#E0E0E0
 - text_transparent_over_drop: -ot -d -mc=transparent -g=south -d -tc=#E0E0E0
-- text_transparent_over_pic: -ot -p -mc=transparent -g=south -d -tc=#E0E0E0
-- text_transparent_over_drop_pic: -ot -d -p -mc=transparent -g=south -d -tc=#E0E0E0
+- text_transparent_over_frame: -ot -f -mc=transparent -g=south -d -tc=#E0E0E0
+- text_transparent_over_drop_frame: -ot -d -f -mc=transparent -g=south -d -tc=#E0E0E0
 
 **Text Inside Image, White Background, Light Text (assumes text goes in dark image area)**
 
 - text_light_over: -ot -mc=#ffffff -g=south -d -tc=#E0E0E0
 - text_light_over_drop: -ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0
-- text_light_over_pic: -ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0
-- text_light_over_drop_pic: -ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0
+- text_light_over_frame: -ot -f -mc=#ffffff -g=south -d -tc=#E0E0E0
+- text_light_over_drop_frame: -ot -d -f -mc=#ffffff -g=south -d -tc=#E0E0E0
 
 **Text Inside Image, Gray Background, Light Text (assumes text goes in dark image area)**
 
 - text_dark_over: -ot -mc=#383838 -g=south -d -tc=#E0E0E0
 - text_dark_over_drop: -ot -d -mc=#383838 -g=south -d -tc=#E0E0E0
-- text_dark_over_pic: -ot -p -mc=#383838 -g=south -d -tc=#E0E0E0
-- text_dark_over_drop_pic: -ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0
+- text_dark_over_frame: -ot -f -mc=#383838 -g=south -d -tc=#E0E0E0
+- text_dark_over_drop_frame: -ot -d -f -mc=#383838 -g=south -d -tc=#E0E0E0
 
 **Text Below Image, White Background, Dark Text (for light matte color below image)**
 
 - text_light: -t -mc=#ffffff -tc=#383838
 - text_light_drop: -t -d -mc=#ffffff -tc=#383838
-- text_light_pic: -t -p -mc=#ffffff -tc=#383838
-- text_light_drop_pic: -t -d -p -mc=#ffffff -tc=#383838
+- text_light_frame: -t -f -mc=#ffffff -tc=#383838
+- text_light_drop_frame: -t -d -f -mc=#ffffff -tc=#383838
 
 **Text Below Image, Gray Background, Light Text (for dark matte color below image)**
 
 - text_dark: -t -mc=#383838 -tc=#E0E0E0
 - text_dark_drop: -t -d -mc=#383838 -tc=#E0E0E0
-- text_dark_pic: -t -p -mc=#383838 -tc=#E0E0E0
-- text_dark_drop_pic: -t -d -p -mc=#383838 -tc=#E0E0E0
+- text_dark_frame: -t -f -mc=#383838 -tc=#E0E0E0
+- text_dark_drop_frame: -t -d -f -mc=#383838 -tc=#E0E0E0
 
 **Custom Logo Style Variations w/ Custom Logo**
 
-- light_matte_dark_logo: -l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png
-- dark_matte_light_logo: -l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png
-- light_matte_light_logo_over: -ol -g=southwest -p -mc=#ffffff -w=~/Pictures/watermarks/alander_light.png
-- light_matte_dark_logo_over: -ol -g=southwest -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png
-- dark_matte_light_logo_over: -ol -g=southwest -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png
-- dark_matte_dark_logo_over: -ol -g=southwest -p -mc=#383838 -w=~/Pictures/watermarks/alander_dark.png
-- logo_green_drop_pic: -l -d -p -mc=#106330 -w=~/Pictures/watermarks/alander_light.png
+- light_matte_dark_logo: -l -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png
+- dark_matte_light_logo: -l -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png
+- light_matte_light_logo_over: -ol -g=southwest -f -mc=#ffffff -w=~/Pictures/watermarks/alander_light.png
+- light_matte_dark_logo_over: -ol -g=southwest -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png
+- dark_matte_light_logo_over: -ol -g=southwest -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png
+- dark_matte_dark_logo_over: -ol -g=southwest -f -mc=#383838 -w=~/Pictures/watermarks/alander_dark.png
+- logo_green_drop_frame: -l -d -f -mc=#106330 -w=~/Pictures/watermarks/alander_light.png
 
 **Custom Text Styles with Academy Engraved Font**
 
 - text_light_academy: -t -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0
-- text_light_pic_academy: -t -p -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0
+- text_light_frame_academy: -t -f -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0
 - text_dark_academy: -t -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0
-- text_dark_pic_academy: -t -p -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0
+- text_dark_frame_academy: -t -f -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0
 
 
 # Create Custom Styles
@@ -481,75 +482,75 @@ This is the `styleDroplets` property list included in the CreateStyleDroplets sc
 property styleDroplets : {formatting:"filler"} & ¬
 	{logo_transparent:"-l -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{logo_transparent_drop:"-l -d -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_transparent_pic:"-l -p -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_transparent_drop_pic:"-l -d -p -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_transparent_frame:"-l -f -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_transparent_drop_frame:"-l -d -f -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{formatting:"filler"} & ¬
 	{logo_transparent_over:"-ol -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_transparent_over_drop:"-ol -d -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_transparent_over_pic:"-ol -p -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_transparent_over_drop_pic:"-ol -d -p -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_transparent_over_frame:"-ol -f -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_transparent_over_drop_frame:"-ol -d -f -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{formatting:"filler"} & ¬
 	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_light_pic:"-l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_light_drop_pic:"-l -d -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_light_frame:"-l -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_light_drop_frame:"-l -d -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{formatting:"filler"} & ¬
 	{logo_light_over:"-ol -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_light_over_drop:"-ol -d -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_light_over_pic:"-ol -p -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_light_over_drop_pic:"-ol -d -p -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_light_over_frame:"-ol -f -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_light_over_drop_frame:"-ol -d -f -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{formatting:"filler"} & ¬
 	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_pic:"-l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_drop_pic:"-l -d -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_frame:"-l -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_drop_frame:"-l -d -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{formatting:"filler"} & ¬
 	{logo_dark_over:"-ol -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_over_pic:"-ol -p -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_over_drop_pic:"-ol -d -p -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_over_frame:"-ol -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_over_drop_frame:"-ol -d -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{formatting:"filler"} & ¬
 	{text_transparent:"-t -mc=transparent -tc=#383838"} & ¬
 	{text_transparent_drop:"-t -d -mc=transparent -tc=#383838"} & ¬
-	{text_transparent_pic:"-t -p -mc=transparent -tc=#383838"} & ¬
-	{text_transparent_drop_pic:"-t -d -p -mc=transparent -tc=#383838"} & ¬
+	{text_transparent_frame:"-t -f -mc=transparent -tc=#383838"} & ¬
+	{text_transparent_drop_frame:"-t -d -f -mc=transparent -tc=#383838"} & ¬
 	{formatting:"filler"} & ¬
 	{text_transparent_over:"-ot -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
 	{text_transparent_over_drop:"-ot -d -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
-	{text_transparent_over_pic:"-ot -p -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
-	{text_transparent_over_drop_pic:"-ot -d -p -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
+	{text_transparent_over_frame:"-ot -f -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
+	{text_transparent_over_drop_frame:"-ot -d -f -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
 	{formatting:"filler"} & ¬
 	{text_light:"-t -mc=#ffffff -tc=#383838"} & ¬
 	{text_light_drop:"-t -d -mc=#ffffff -tc=#383838"} & ¬
-	{text_light_pic:"-t -p -mc=#ffffff -tc=#383838"} & ¬
-	{text_light_drop_pic:"-t -d -p -mc=#ffffff -tc=#383838"} & ¬
+	{text_light_frame:"-t -f -mc=#ffffff -tc=#383838"} & ¬
+	{text_light_drop_frame:"-t -d -f -mc=#ffffff -tc=#383838"} & ¬
 	{formatting:"filler"} & ¬
 	{text_light_over:"-ot -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
 	{text_light_over_drop:"-ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
-	{text_light_over_pic:"-ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
-	{text_light_over_drop_pic:"-ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
+	{text_light_over_frame:"-ot -f -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
+	{text_light_over_drop_frame:"-ot -d -f -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
 	{formatting:"filler"} & ¬
 	{text_dark:"-t -mc=#383838 -tc=#E0E0E0"} & ¬
 	{text_dark_drop:"-t -d -mc=#383838 -tc=#E0E0E0"} & ¬
-	{text_dark_pic:"-t -p -mc=#383838 -tc=#E0E0E0"} & ¬
-	{text_dark_drop_pic:"-t -d -p -mc=#383838 -tc=#E0E0E0"} & ¬
+	{text_dark_frame:"-t -f -mc=#383838 -tc=#E0E0E0"} & ¬
+	{text_dark_drop_frame:"-t -d -f -mc=#383838 -tc=#E0E0E0"} & ¬
 	{formatting:"filler"} & ¬
 	{text_dark_over:"-ot -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{text_dark_over_drop:"-ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
-	{text_dark_over_pic:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
-	{text_dark_over_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
+	{text_dark_over_frame:"-ot -f -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
+	{text_dark_over_drop_frame:"-ot -d -f -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{formatting:"filler"} & ¬
-	{light_matte_dark_logo:"-l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{dark_matte_light_logo:"-l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{light_matte_light_logo_over:"-ol -g=southwest -p -mc=#ffffff -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{light_matte_dark_logo_over:"-ol -g=southwest -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{dark_matte_light_logo_over:"-ol -g=southwest -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{dark_matte_dark_logo_over:"-ol -g=southwest -p -mc=#383838 -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_green_drop_pic:"-l -d -p -mc=#106330 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{light_matte_dark_logo:"-l -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{dark_matte_light_logo:"-l -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{light_matte_light_logo_over:"-ol -g=southwest -f -mc=#ffffff -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{light_matte_dark_logo_over:"-ol -g=southwest -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{dark_matte_light_logo_over:"-ol -g=southwest -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{dark_matte_dark_logo_over:"-ol -g=southwest -f -mc=#383838 -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_green_drop_frame:"-l -d -f -mc=#106330 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{text_light_academy:"-t -mc=#ffffff -tc=#383838 -ttf=Academy-Engraved-LET-Plain:1.0"} & ¬
-	{text_light_pic_academy:"-t -p -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & ¬
+	{text_light_frame_academy:"-t -f -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & ¬
 	{text_dark_academy:"-t -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & ¬
-	{text_dark_pic_academy:"-t -p -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & ¬
+	{text_dark_frame_academy:"-t -f -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & ¬
 	{formatting:"filler"}
 ```
 
