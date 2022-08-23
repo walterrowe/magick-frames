@@ -13,8 +13,10 @@ Here are the many features you get with Magick Frames:
 - you choose whether or not to add a picture frame around your photographs
 - you choose between a shadow box surround or a drop shadow for that 3-dimensional look
 - you choose a two-row text logo or any graphic logo to affix below or on your photographs
-- you choose where on your photographs you want your text or graphic logo to appear
-- you choose any background matte color including transparent for your photographs
+- you choose where above, on, or below your photographs you want your graphic logo to appear
+- you choose which corner or edge on your photographs you want your text logo to appear
+- you choose any color for bevel, matte, shadow, and picture frame including transparent
+- you choose any aspect ratio for the output and it is padded with the matte color
 - you choose any color and font for your text-based logo
 - your text and graphic logos are scaled to each photograph's size and orientation
 - you get over 50 different style presets installed as macOS applets for fast, easy use
