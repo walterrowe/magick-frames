@@ -10,18 +10,18 @@ Select your photographs, drop them onto your preferred style applet, and move on
 
 Here are the many features you get with Magick Frames:
 
-- add a picture frame around your photographs
-- add a shadowbox, drop shadow, or matte bevel for that 3-D look
-- apply a two-row text logo or any of graphic logo for your photographs
-- choose where above, on, or below your images you want your graphic logo to appear
-- choose which corner or edge on your images you want your text logo to appear
-- choose any color for bevel, matte, shadow, and picture frame including transparent
-- choose any aspect ratio for the output and it is padded with the matte color
+- add a picture frame or matte bevel around your photographs
+- choose a shadowbox or a drop shadow for that 3-D look
+- apply a two-row text logo or any graphic logo to your photographs
+- apply any graphic logo at designated locations above, on, or below your images
+- apply your text logo at designated locations on or below your images
+- choose any color for bevel, frame, matte, shadow including transparent
 - choose any color and font for your text-based logo
-- your text and graphic logos are scaled to each photograph's size and orientation
-- you get over 60 different style presets installed as macOS droplets for fast, easy use
-- easily craft your own custom style presets and corresponding macOS style applets
-- all style applets are macOS apps - drag-n-drop onto them, or double-click them and choose
+- choose any aspect ratio for the final output file (padded with matte color)
+- text and graphic logos are scaled to each photograph's size and orientation
+- over 60 different style presets installed as macOS droplets for fast, easy use
+- easily craft your own custom styles and corresponding macOS style applets
+- all style droplets are macOS apps - drag-n-drop onto them, or double-click them and choose
 - create multiple Capture One Export recipes and style your photographs on export
 - use the Style Chooser to apply multiple styles to selected images in a single action
 
