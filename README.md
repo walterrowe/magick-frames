@@ -275,10 +275,10 @@ Below is a list of all the styles included in the script and their options. See 
 
 **Custom Text Styles with Academy Engraved Font**
 
-- text_light_academy: -t -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0
-- text_light_pic_academy: -t -p -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0
-- text_dark_academy: -t -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0
-- text_dark_pic_academy: -t -p -mc=#383838 -tc=#E0E0E0 -f=Academy-Engraved-LET-Plain:1.0
+- text_light_academy: -t -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0
+- text_light_pic_academy: -t -p -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0
+- text_dark_academy: -t -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0
+- text_dark_pic_academy: -t -p -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0
 
 
 ### Create Custom Styles
