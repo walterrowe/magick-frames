@@ -541,7 +541,7 @@ You can see the names of fonts from which to choose for text-based labels using 
 If you want to use font "Academy Engraved LET" for a text-based logo then you would specify it as follows on the command line.
 
 ```
-frame_it -t -f=Academy-Engraved-LET-Plain:1.0 my-image.jpg
+frame_it -t -tf=Academy-Engraved-LET-Plain:1.0 my-image.jpg
 ```
 
 Note the `-t` option to specify a text-based logo.
