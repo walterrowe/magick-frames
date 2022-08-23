@@ -28,7 +28,7 @@ property type_list : {"JPEG", "TIFF", "PNGf", "8BPS", "BMPf", "GIFf"}
 property extension_list : {"jpg", "jpeg", "tif", "tiff", "png", "psd", "bmp", "gif"}
 property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.photoshop-image", "com.microsoft.bmp", "com.compuserve.gif", "com.adobe.pdf", "com.apple.pict"}
 
--- save this script as an app named one of the items below (ig "logo_white_pic") it will use the selected options for frame_it
+-- save this script as an app named one of the items below (ig "logo_white_frame") it will use the selected options for frame_it
 --
 -- you can add your own styles names and options, and save as a new app named for your style to use your chosen options
 --
@@ -37,75 +37,75 @@ property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.
 property styleDroplets : {formatting:"filler"} & Â
 	{logo_transparent:"-l -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & Â
 	{logo_transparent_drop:"-l -d -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & Â
-	{logo_transparent_pic:"-l -p -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & Â
-	{logo_transparent_drop_pic:"-l -d -p -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{logo_transparent_frame:"-l -f -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{logo_transparent_drop_frame:"-l -d -f -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & Â
 	{formatting:"filler"} & Â
 	{logo_transparent_over:"-ol -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{logo_transparent_over_drop:"-ol -d -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
-	{logo_transparent_over_pic:"-ol -p -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
-	{logo_transparent_over_drop_pic:"-ol -d -p -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_transparent_over_frame:"-ol -f -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_transparent_over_drop_frame:"-ol -d -f -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{formatting:"filler"} & Â
 	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
 	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
-	{logo_light_pic:"-l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
-	{logo_light_drop_pic:"-l -d -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{logo_light_frame:"-l -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{logo_light_drop_frame:"-l -d -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
 	{formatting:"filler"} & Â
 	{logo_light_over:"-ol -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{logo_light_over_drop:"-ol -d -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
-	{logo_light_over_pic:"-ol -p -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
-	{logo_light_over_drop_pic:"-ol -d -p -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_light_over_frame:"-ol -f -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_light_over_drop_frame:"-ol -d -f -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{formatting:"filler"} & Â
 	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
-	{logo_dark_pic:"-l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
-	{logo_dark_drop_pic:"-l -d -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_dark_frame:"-l -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_dark_drop_frame:"-l -d -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{formatting:"filler"} & Â
 	{logo_dark_over:"-ol -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
-	{logo_dark_over_pic:"-ol -p -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
-	{logo_dark_over_drop_pic:"-ol -d -p -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_dark_over_frame:"-ol -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_dark_over_drop_frame:"-ol -d -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{formatting:"filler"} & Â
 	{text_transparent:"-t -mc=transparent -tc=#383838"} & Â
 	{text_transparent_drop:"-t -d -mc=transparent -tc=#383838"} & Â
-	{text_transparent_pic:"-t -p -mc=transparent -tc=#383838"} & Â
-	{text_transparent_drop_pic:"-t -d -p -mc=transparent -tc=#383838"} & Â
+	{text_transparent_frame:"-t -f -mc=transparent -tc=#383838"} & Â
+	{text_transparent_drop_frame:"-t -d -f -mc=transparent -tc=#383838"} & Â
 	{formatting:"filler"} & Â
 	{text_transparent_over:"-ot -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
 	{text_transparent_over_drop:"-ot -d -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
-	{text_transparent_over_pic:"-ot -p -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
-	{text_transparent_over_drop_pic:"-ot -d -p -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
+	{text_transparent_over_frame:"-ot -f -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
+	{text_transparent_over_drop_frame:"-ot -d -f -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
 	{formatting:"filler"} & Â
 	{text_light:"-t -mc=#ffffff -tc=#383838"} & Â
 	{text_light_drop:"-t -d -mc=#ffffff -tc=#383838"} & Â
-	{text_light_pic:"-t -p -mc=#ffffff -tc=#383838"} & Â
-	{text_light_drop_pic:"-t -d -p -mc=#ffffff -tc=#383838"} & Â
+	{text_light_frame:"-t -f -mc=#ffffff -tc=#383838"} & Â
+	{text_light_drop_frame:"-t -d -f -mc=#ffffff -tc=#383838"} & Â
 	{formatting:"filler"} & Â
 	{text_light_over:"-ot -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
 	{text_light_over_drop:"-ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
-	{text_light_over_pic:"-ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
-	{text_light_over_drop_pic:"-ot -d -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
+	{text_light_over_frame:"-ot -f -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
+	{text_light_over_drop_frame:"-ot -d -f -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
 	{formatting:"filler"} & Â
 	{text_dark:"-t -mc=#383838 -tc=#E0E0E0"} & Â
 	{text_dark_drop:"-t -d -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_dark_pic:"-t -p -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_dark_drop_pic:"-t -d -p -mc=#383838 -tc=#E0E0E0"} & Â
+	{text_dark_frame:"-t -f -mc=#383838 -tc=#E0E0E0"} & Â
+	{text_dark_drop_frame:"-t -d -f -mc=#383838 -tc=#E0E0E0"} & Â
 	{formatting:"filler"} & Â
 	{text_dark_over:"-ot -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{text_dark_over_drop:"-ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_dark_over_pic:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_dark_over_drop_pic:"-ot -d -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
+	{text_dark_over_frame:"-ot -f -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
+	{text_dark_over_drop_frame:"-ot -d -f -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{formatting:"filler"} & Â
-	{light_matte_dark_logo:"-l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
-	{dark_matte_light_logo:"-l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
-	{light_matte_light_logo_over:"-ol -g=southwest -p -mc=#ffffff -w=~/Pictures/watermarks/alander_light.png"} & Â
-	{light_matte_dark_logo_over:"-ol -g=southwest -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
-	{dark_matte_light_logo_over:"-ol -g=southwest -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
-	{dark_matte_dark_logo_over:"-ol -g=southwest -p -mc=#383838 -w=~/Pictures/watermarks/alander_dark.png"} & Â
-	{logo_green_drop_pic:"-l -d -p -mc=#106330 -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{light_matte_dark_logo:"-l -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{dark_matte_light_logo:"-l -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{light_matte_light_logo_over:"-ol -g=southwest -f -mc=#ffffff -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{light_matte_dark_logo_over:"-ol -g=southwest -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{dark_matte_light_logo_over:"-ol -g=southwest -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{dark_matte_dark_logo_over:"-ol -g=southwest -f -mc=#383838 -w=~/Pictures/watermarks/alander_dark.png"} & Â
+	{logo_green_drop_frame:"-l -d -f -mc=#106330 -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{text_light_academy:"-t -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
-	{text_light_pic_academy:"-t -p -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
+	{text_light_frame_academy:"-t -f -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
 	{text_dark_academy:"-t -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
-	{text_dark_pic_academy:"-t -p -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
+	{text_dark_frame_academy:"-t -f -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
 	{formatting:"filler"}
 
 -- get the list of style names
