@@ -149,19 +149,11 @@ There are two ways to create the droplets for macOS.
 
 ### The Hard Way
 
-1. Open the CreateStyleDroplets AppleScript in Script Editor and export as individual apps named for specific styles.
+1. Open the CreateStyleDroplets AppleScript in Script Editor.
+1. Look at the `styleDroplets` property of included styles and their associated options.
+1. File > Export, choose type Application, and save a droplet named as a desired style.
 
-When a style droplet runs it looks for it's own name in the styles property list and runs the “frame\_it” script with the associated options to decorate your images. For example, if you double-click the logo_dark droplet, it looks for logo_dark in the style list and uses the logo_dark "frame_it" options to decorate your images.
-
-### Create Individual Style Droplets
-
-You can create individual style droplets for only the styles you want to use.
-
-1. Open CreateStyleDroplets.applescript script in the macOS Script Editor
-1. Look at the `styleDroplets` property of included styles and their associated options
-1. Use File > Export, choose type Application, and save a droplet as each of your desired style names
-
-When you drop images onto or double-click a droplet named for one of the included styles, it decorates images in that named style.
+When a style droplet runs it looks for it's own name in the styles property list and runs the “frame\_it” script with the associated options to decorate your images. For example, if you double-click or drop images onto the the logo_dark droplet, it looks for logo_dark in the style list and passes the logo_dark options to "frame_it" to decorate your images.
 
 Once you have the style droplets created you are ready to use Magick Frames.
 
@@ -302,9 +294,17 @@ Below is a list of all the styles included in the script and their options. See 
 - text_dark_pic_academy: -t -p -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0
 
 
-### Create Custom Styles
+# Create Custom Styles
 
 If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list. You will see entries for "formatting". These are simply fillers to make it easier to read and group together the defined styles with similar looks.
+
+DEFAULTS: When no options are provided to "frame\_it", the default behavior is:
+
+- light matte background
+- your picture centered over a shadowbox
+- no picture frame around the image
+- your graphic logo centered beneath the image
+- styled version written to a separate file
 
 > **WARNING**
 >
@@ -454,13 +454,6 @@ This process may seem complicated, but it works quickly and invisibly. Open your
 ## At The Command Line
 
 The [frame_it](frame_it) shell script can be used from the command line on macOS and Linux.
-
-DEFAULTS: When no options are provided, the default behavior is:
-
-- center the image over a shadow on light background
-- do not apply a picture frame around the image
-- place an image-based logo beneath the image
-- write the decorated output to a separate file
 
 Place the [frame_it](frame_it) shell script in /usr/local/bin and run it with no options to see a usage message showing all of the available styling options.
 
