@@ -164,7 +164,7 @@ textcolor='#383838'
 overlaytextcolor='#E0E0E0'
 textfont='Copperplate'
 aspect='false'
-aspectratio=''
+aspectratio='0'                     # zero means no change to aspect ratio
 
 # process command line options
 for opt in "$@"; do
@@ -444,6 +444,7 @@ for filename in "$@" ; do
               -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity south -append \
               -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity south -append \
               -bordercolor ${mattecolor} -border 20x20 -gravity south -background ${mattecolor} -splice ${toppad} \
+              -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
               -format ${filetype} "${target}"
             ;;
 
@@ -459,6 +460,7 @@ for filename in "$@" ; do
               -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
               -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
               -bordercolor ${mattecolor} -border 20x20 -gravity south -background ${mattecolor} -splice ${toppad} \
+              -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
               -format ${filetype} "${target}"
             ;;
 
@@ -474,6 +476,7 @@ for filename in "$@" ; do
               -bordercolor ${mattecolor} -border 20x20 -gravity ${logo_gravity} -background ${mattecolor} -splice 0x${scaled_logo_high} \
               \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry +0+${scaled_logo_lift} \) -composite \
               -mattecolor ${mattecolor} -frame ${border_wide}x${border_high} \
+              -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
               -format ${filetype} "${target}"
             ;;
 
@@ -488,13 +491,10 @@ for filename in "$@" ; do
               -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
               -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
               -mattecolor ${mattecolor} -frame 20x20 \
+              -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
               -format ${filetype} "${target}"
             ;;
 
     esac
 
-    # if square 1:1 aspect ratio, pad to add width or height
-    if [ $aspect = true ]; then
-        magick "${target}" -background ${mattecolor} -gravity center -extent "${aspectratio}#" "${target}"
-    fi
 done
