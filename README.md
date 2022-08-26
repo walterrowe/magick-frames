@@ -503,7 +503,7 @@ When you drop files onto or double-click the `logo_dark_over_drop` droplet, the 
 > 
 > You can use this online color picker to choose colors for bevel, frame, matte, shadow, text.
 >
-> https://imagecolorpicker.com/color-code/
+> https://htmlcolorcodes.com/color-picker/
 
 > **Style Tip**
 >
