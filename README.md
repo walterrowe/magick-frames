@@ -14,10 +14,11 @@ Here are the many features you get with Magick Frames:
 - choose a shadowbox, a drop shadow, or **(NEW) matte bevel** for that 3-D look
 - apply a two-row text logo or any graphic logo to your photographs
 - place any graphic logo at designated locations below, on, **(NEW) above**
-- place your text logo at designated locations on or below your image
-- choose colors (or "transparent") for matte, **(NEW) - bevel, frame, shadow**
+- place your text logo at designated locations on **(NEW) or below** your image
+- choose colors (or "transparent") for matte, **(NEW) - bevel, frame, wall picture frame, shadow**
 - choose color and font for your text-based logo
 - **(NEW) choose any aspect ratio for your output file (filled using matte color)**
+- **(NEW) choose to add a wall picture frame to the outer edge of your image**
 - text and graphic logos are scaled to each photograph's size and orientation
 - over 60 different style presets installed as macOS droplets for fast, easy use
 - easily craft your own custom styles and corresponding macOS style applets
@@ -46,11 +47,15 @@ This update includes new and changed options for "frame\_it" for even more style
 - (NEW) With option `-a` you can choose a specific aspect ratio for your output file (fills in with matte color).
 - (NEW) With option `-b` you can choose a bevel between the picture and matte.
 - (NEW) With option `-bc=color` you can choose a "bevel color" for your bevel.
-- (CHANGE) With option `-f` you can add a thin frame around your picture (formerly `-p`).
+- (CHANGE) With option `-f` you can add a print frame around your picture (formerly `-p`).
 - (NEW) With option `-fc=color` you can choose a "frame color" other than white.
 - (CHANGE) With option `-g` now you can place your logo anywhere above or below the picture.
+- (CHANGE) With option `-g` now you can place your text bottom left, bottom center, or bottom right below the picture.
+- (NEW) With option `-p` now you can add an extra matte and wall frame as the outer border to your picture.
+- (NEW) With option `-pc=color` you can choose a "wall frame color" for your wall picture frame.
 - (NEW) With option `-sc=color` you can choose a "shadow color" for your shadows.
 - (CHANGE) With option `-tf` you can choose an alternate font for text based logos.
+- (CHANGE) Separated styles into "presetDroplets" and "customDroplets" property lists in CreateStyleDroplets.
 
 Before you upgrade preserve your modified "frame\_it" and CreateStyleDroplet scripts.
 
@@ -171,6 +176,7 @@ There are two ways to create the droplets for macOS.
 1. Open the CreateStyleDroplets AppleScript in Script Editor and run it.
 1. Choose the folder where you want the droplets and it creates one for every style.
 
+> &nbsp;
 > **Bonus Feature**
 >
 > When you use this EASY option one SPECIAL style droplet is also created called "**Style Chooser**".
@@ -178,6 +184,7 @@ There are two ways to create the droplets for macOS.
 > Double-click "Style Chooser" or drop images onto it and it presents a list of all the defined styles. Select multiple styles to easily decorate a set of pictures in multiple looks in one easy step.
 >
 > If you have added your own custom styles to the CreateStyleDroplets AppleScript, and recreated all the style droplets, then Style Chooser also includes your own custom styles.
+> &nbsp;
 
 ### The Hard Way
 
@@ -253,11 +260,14 @@ OPTIONS:
 
 -ol | --overlaylogo       specifies to place an image-based logo inside the image
 
--f | --frame              add a thin picture frame around the edges of the image
+-f | --frame              add a picture frame around the sides of the image
                           this disables bevel and enables shadowboxing (default no frame)
 
 -b | --bevel              add an interior bevel between the image and surrounding matte.
                           this disables shadowboxing and picture frame. (default no bevel)
+
+-p | --picture            add a wall picture frame outer border for that wall mounted look.
+                          this disables shadowboxing and thin frame. (default no bevel)
 
 -d | --dropshadow         specifies a drop shadow (offset bottom and right) vs
                           the default that centers the image in an all-edges shadow
@@ -265,11 +275,14 @@ OPTIONS:
 -bc=color |               specifies the color of the interior bevel (default #888888)
 --bevelcolor=color
 
--fc=color |               specifies the color of the picture frame (default white)
+-fc=color |               specifies the color of the inner picture frame (default white)
 --framecolor=color
 
 -mc=color |               specifies the color of the matte background (default white)
 --mattecolor=color
+
+-pc=color |               specifies the color of the wall picture frame (default #222222)
+--picturecolor=color
 
 -sc=color |               specifies the color of the shadow (default black)
 --shadowcolor=color
@@ -483,9 +496,11 @@ DEFAULTS: When no options are provided to "frame\_it", the default behavior is:
 - your graphic logo centered beneath the image
 - styled version written to a separate file
 
+> &nbsp;
 > **WARNING**
 >
-> You MUST use Script Editor to add custom styles. The `styleDroplets` property list uses OPT+[RETURN] to continue the list across multiple lines. Other code editing tools such as Visual Studio Code and Atom are unable to insert this special form of line continuation.
+> You MUST use Script Editor to add custom styles. The `customDroplets` property list uses OPT+[RETURN] to continue the list across multiple lines. Other code editing tools such as Visual Studio Code and Atom are unable to insert this special form of line continuation.
+> &nbsp;
 
 The property list uses `key:value` pairs where the style name is the key and the “frame\_it” style options is the value. Use “frame\_it” from the command line to test different options and develop your own custom style settings. Run “frame\_it” with NO options to see a complete list of style options. Once you have an options set you like, add a new entry to the property list with unique name and the options you choose, and export a new droplet named for your custom style(s).
 
@@ -499,100 +514,104 @@ When you drop files onto or double-click the `logo_dark_over_drop` droplet, the 
 % frame_it -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png <your image file>
 ```
 
-> **Style Tip**
+> &nbsp;
+> **Style Tip - Colors**
 > 
-> You can use this online color picker to choose colors for bevel, frame, matte, shadow, text.
+> You can use this online color picker to choose colors for your bevel, frame, matte, shadow, and text.
 >
 > https://htmlcolorcodes.com/color-picker/
+> &nbsp;
 
-> **Style Tip**
+> &nbsp;
+> **Style Tip - Gravity**
 >
 > With logo styles ("-l") the gravity option can alter the placement of the logo
 >
 > - Centered Above: `-g=north`
 > - Corner Above/Below: `-g=northwest` OR `-g=northeast` OR `-g=southwest` OR `-g=southeast`
 >
-> This only applies to logo styles ("-l").
+> With text styles ("-t") the gravity option can alter the placement of the text
+>
+> - Centered Below: `-g=south`
+> - Corner Below: `-g=southwest` OR `-g=southeast`
+> &nbsp;
 
-This is the `styleDroplets` property list included in the CreateStyleDroplets script that represent all of the included styles described above.
+There are two style lists in CreateStyleDroplets.
+
+- The "presetDroplets" property list is for included styles and should not be altered.
+- The "customDroplets" property list is for crafting your own styles for style droplets.
+
+This is the `presetDroplets` style list included in the CreateStyleDroplets script. It represent all of the included styles described above. The `customDroplets` style list is formatted in the exact same manner as the `presetDroplets` style list and appears directly below it in the CreateStyleDroplets script.
 
 ```applescript
-property styleDroplets : {formatting:"filler"} & ¬
+property presetDroplets : {} & ¬
 	{logo_transparent:"-l -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{logo_transparent_drop:"-l -d -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{logo_transparent_frame:"-l -f -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{logo_transparent_drop_frame:"-l -d -f -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{formatting:"filler"} & ¬
+	{} & ¬
 	{logo_transparent_over:"-ol -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_transparent_over_drop:"-ol -d -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_transparent_over_frame:"-ol -f -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_transparent_over_drop_frame:"-ol -d -f -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{formatting:"filler"} & ¬
+	{} & ¬
 	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{logo_light_frame:"-l -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{logo_light_drop_frame:"-l -d -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{formatting:"filler"} & ¬
+	{logo_light_picture:"-l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{} & ¬
 	{logo_light_over:"-ol -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_light_over_drop:"-ol -d -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_light_over_frame:"-ol -f -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_light_over_drop_frame:"-ol -d -f -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{formatting:"filler"} & ¬
+	{} & ¬
 	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_frame:"-l -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_drop_frame:"-l -d -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{formatting:"filler"} & ¬
+	{logo_dark_picture:"-l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{} & ¬
 	{logo_dark_over:"-ol -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_over_frame:"-ol -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_over_drop_frame:"-ol -d -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{formatting:"filler"} & ¬
+	{} & ¬
 	{text_transparent:"-t -mc=transparent -tc=#383838"} & ¬
 	{text_transparent_drop:"-t -d -mc=transparent -tc=#383838"} & ¬
 	{text_transparent_frame:"-t -f -mc=transparent -tc=#383838"} & ¬
 	{text_transparent_drop_frame:"-t -d -f -mc=transparent -tc=#383838"} & ¬
-	{formatting:"filler"} & ¬
+	{} & ¬
 	{text_transparent_over:"-ot -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
 	{text_transparent_over_drop:"-ot -d -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
 	{text_transparent_over_frame:"-ot -f -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
 	{text_transparent_over_drop_frame:"-ot -d -f -mc=transparent -g=south -d -tc=#E0E0E0"} & ¬
-	{formatting:"filler"} & ¬
+	{} & ¬
 	{text_light:"-t -mc=#ffffff -tc=#383838"} & ¬
 	{text_light_drop:"-t -d -mc=#ffffff -tc=#383838"} & ¬
 	{text_light_frame:"-t -f -mc=#ffffff -tc=#383838"} & ¬
 	{text_light_drop_frame:"-t -d -f -mc=#ffffff -tc=#383838"} & ¬
-	{formatting:"filler"} & ¬
+	{text_light_picture:"-t -p -mc=#ffffff -tc=#333333"} & ¬
+	{} & ¬
 	{text_light_over:"-ot -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
 	{text_light_over_drop:"-ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
 	{text_light_over_frame:"-ot -f -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
 	{text_light_over_drop_frame:"-ot -d -f -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
-	{formatting:"filler"} & ¬
+	{} & ¬
 	{text_dark:"-t -mc=#383838 -tc=#E0E0E0"} & ¬
 	{text_dark_drop:"-t -d -mc=#383838 -tc=#E0E0E0"} & ¬
 	{text_dark_frame:"-t -f -mc=#383838 -tc=#E0E0E0"} & ¬
 	{text_dark_drop_frame:"-t -d -f -mc=#383838 -tc=#E0E0E0"} & ¬
-	{formatting:"filler"} & ¬
+	{text_dark_picture:"-t -p -mc=#383838 -tc=#E0E0E0"} & ¬
+	{} & ¬
 	{text_dark_over:"-ot -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{text_dark_over_drop:"-ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{text_dark_over_frame:"-ot -f -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{text_dark_over_drop_frame:"-ot -d -f -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
-	{formatting:"filler"} & ¬
-	{light_matte_dark_logo:"-l -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{dark_matte_light_logo:"-l -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{light_matte_light_logo_over:"-ol -g=southwest -f -mc=#ffffff -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{light_matte_dark_logo_over:"-ol -g=southwest -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{dark_matte_light_logo_over:"-ol -g=southwest -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{dark_matte_dark_logo_over:"-ol -g=southwest -f -mc=#383838 -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_green_drop_frame:"-l -d -f -mc=#106330 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{text_light_academy:"-t -mc=#ffffff -tc=#383838 -ttf=Academy-Engraved-LET-Plain:1.0"} & ¬
-	{text_light_frame_academy:"-t -f -mc=#ffffff -tc=#383838 -f=Academy-Engraved-LET-Plain:1.0"} & ¬
-	{text_dark_academy:"-t -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & ¬
-	{text_dark_frame_academy:"-t -f -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & ¬
-	{formatting:"filler"}
+	{}
 ```
 
-Carefully follow the instructions above the `styleDroplets` style list inside the CreateStyleDroplets script.
+Carefully follow the instructions inside the CreateStyleDroplets script when adding or modifying style definitions.
 
 - Use "The Easy Way" instructions to recreate all the style droplets including your own custom styles.
 - Use "The Hard Way" instructions to create style droplets of only your custom styles.
