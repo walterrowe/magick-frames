@@ -350,21 +350,27 @@ Note the `-t` option to specify a text-based logo.
 # Examples
 
 - Bevel with colored matte and logo overlaid on southwest corner of the image
+
     <img bordercolor=#aaaaaa border=2px width=500px src=assets/bevel-overlay.jpg>
 
 - Shadowed print frame with graphic logo appearing above the picture
+
     <img bordercolor=#aaaaaa border=2px width=500px src=assets/logo-above.jpg>
 
 - Shadowed print frame with graphic logo appearing in southeast corner below the image
+
     <img bordercolor=#aaaaaa border=2px width=500px src=assets/logo-southeast.jpg>
 
 - Beveled matte with graphic logo above the picture and aspect ratio 1:1 (square)
+
     <img bordercolor=#aaaaaa border=2px width=500px src=assets/square-above.jpg>
 
 - Beveled matte with text logo below the picture and aspect ratio 1:1 (square)
+
     <img bordercolor=#aaaaaa border=2px width=500px src=assets/square-text.jpg>
 
 - Wall picture frame and matte with graphic logo below the picture
+
     <img bordercolor=#aaaaaa border=2px width=500px src=assets/logo_light_picture.jpg>
 
 # Included Styles
