@@ -106,7 +106,11 @@ property styleDroplets : {formatting:"filler"} & Â
 	{text_light_frame_academy:"-t -f -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
 	{text_dark_academy:"-t -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
 	{text_dark_frame_academy:"-t -f -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
+	{logo_frame_mauve_north:"-f -fc=#958898 -mc=#453848 -l -g=north -w=~/Pictures/watermarks/alander_light.png"} & Â
+	{logo_frame_mauve_south:"-f -fc=#958898 -mc=#453848 -l -g=south -w=~/Pictures/watermarks/alander_light.png"} & Â
 	{formatting:"filler"}
+
+
 
 -- get the list of style names
 on get_styles(styleList)
