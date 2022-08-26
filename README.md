@@ -10,18 +10,18 @@ Select your photographs, drop them onto your preferred style applet, and move on
 
 Here are the many features you get with Magick Frames:
 
-- add a picture frame or matte bevel around your photographs
-- choose a shadowbox or a drop shadow for that 3-D look
+- add a picture frame around your photographs
+- choose a shadowbox, a drop shadow, or **(NEW) matte bevel** for that 3-D look
 - apply a two-row text logo or any graphic logo to your photographs
-- apply any graphic logo at designated locations above, on, or below your images
-- apply your text logo at designated locations on or below your images
-- choose any color for bevel, frame, matte, shadow including transparent
-- choose any color and font for your text-based logo
-- choose any aspect ratio for the final output file (padded with matte color)
+- place any graphic logo at designated locations below, on, **(NEW) above**
+- place your text logo at designated locations on or below your image
+- choose colors (or "transparent") for matte, **(NEW) - bevel, frame, shadow**
+- choose color and font for your text-based logo
+- **(NEW) choose any aspect ratio for your output file (filled using matte color)**
 - text and graphic logos are scaled to each photograph's size and orientation
 - over 60 different style presets installed as macOS droplets for fast, easy use
 - easily craft your own custom styles and corresponding macOS style applets
-- all style droplets are macOS apps - drag-n-drop onto them, or double-click them and choose
+- all style droplets are apps - drag-n-drop onto them, double-click them and choose
 - create multiple Capture One Export recipes and style your photographs on export
 - use the Style Chooser to apply multiple styles to selected images in a single action
 
@@ -38,6 +38,38 @@ If you want to support Magick Frames, [make a donation and buy me some coffee](h
 You will need to open a Terminal window to type in commands at a command prompt. You will have to install the ImageMagick open source software suite, and edit and copy a script. macOS users have to run an AppleScript to create the style droplets.
 
 If these are unfamiliar terms, use my [1-on-1 support page on Buy Me A Coffee [dot] com](https://buymeacoffee.com/walterrowe/extras) to set up a one-on-one video call. You will be using Magick Frames in no time.
+
+# Upgrading Magick Frames
+
+This update includes new and changed options for "frame\_it" for even more style tailoring choices.
+
+- (NEW) With option `-a` you can choose a specific aspect ratio for your output file (fills in with matte color).
+- (NEW) With option `-b` you can choose a bevel between the picture and matte.
+- (NEW) With option `-bc=color` you can choose a "bevel color" for your bevel.
+- (CHANGE) With option `-f` you can add a thin frame around your picture (formerly `-p`).
+- (NEW) With option `-fc=color` you can choose a "frame color" other than white.
+- (CHANGE) With option `-g` now you can place your logo anywhere above or below the picture.
+- (NEW) With option `-sc=color` you can choose a "shadow color" for your shadows.
+- (CHANGE) With option `-tf` you can choose an alternate font for text based logos.
+
+Before you upgrade preserve your modified "frame\_it" and CreateStyleDroplet scripts.
+
+1. Save a copy of your "frame\_it" script to set your labels, watermark, and custom path setting in the new version.
+1. Save a copy of your CreateStyleDroplets AppleScript to copy your custom styles to the new CreateStyleDroplets.
+1. The option for specifying a text font has changed from "-f" to "-tf" for "text font".
+1. The option for adding a picture frame has changed from "-p" to "-f" for "frame".
+
+You are now ready to update.
+
+1. Download Magick Frames again from GitHub.
+1. Set your "label1", "label2", watermark, and custom path values in "frame\_it"
+1. Copy the new version of "frame\_it" it to /usr/local/bin folder.
+1. Copy your saved custom styles into the new CreateStyleDroplets AppleScript.
+1. Change any custom styles that add a frame to use "-f" instead of "-p".
+1. Run the CreateStyleDroplets AppleScript to recreate all the style droplets.
+1. Check any Capture One export recipes to make sure they still see your droplets.
+
+You should now be upgraded to the latest version.
 
 # Installation and Configuration
 
