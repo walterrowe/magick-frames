@@ -455,7 +455,7 @@ There is a pattern to the preset style names.
 - style names with `text` use a two-row text-based label logo for watermarking
 - style names with `logo` use a graphic logo for watermarking (default is graphic logo)
 - style names with `over` place the text or logo "over" (inside) the image (default is centered below)
-- style names with `drop` use a drop-shadow vs shadow on all edges (defailt is all edges)
+- style names with `drop` use a drop-shadow vs shadow on all edges (default is all edges)
 - style names with `frame` add a thin print-like border around images (default is no frame)
 - style names with `bevel` add a thin beveled border around images (default is no bevel)
 - style names with `picture` add a matte and wall picture frame around images (default is no picture frame)
