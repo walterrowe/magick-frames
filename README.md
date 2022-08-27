@@ -375,13 +375,12 @@ Note the `-t` option to specify a text-based logo.
 
 # Included Styles
 
-The list below is the `presetDroplets` style list included in the CreateStyleDroplets script. It represent all of the included styles described above. See the command line section at the bottom for a complete description of all the supported options.
+The list below is the `presetDroplets` style list included in the CreateStyleDroplets script. It represent all of the included styles. See the command line section above for a complete description of all the options.
 
-- The "presetDroplets" property list is for included styles and should not be altered.
-- The "customDroplets" property list is for crafting your own styles for style droplets.
-- The "{}" lines in the list are there only for readability.
-- The "&" character in AppleScript is a way to join two things together.
-- The "¬" character in AppleScript is used to make a line "continued on the next line".
+- The "presetDroplets" property list in CreateStyleDroplets is for included styles and should not be altered.
+- The "customDroplets" property list in CreateStyleDroplets is for crafting your own styles for style droplets.
+- The "{} & ¬" lines in the list are there only for readability.
+- The "& ¬" characters in AppleScript are a way to join two lines together.
 
 ```applescript
 property presetDroplets : {} & ¬
