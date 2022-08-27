@@ -470,13 +470,7 @@ There is a pattern to the preset style names.
 
 If you feel comfortable with the AppleScript Script Editor, you can add your own styles to the style list. You will see entries for "formatting". These are simply fillers to make it easier to read and group together the defined styles with similar looks.
 
-DEFAULTS: When no options are provided to "frame\_it", the default behavior is:
-
-- light matte background
-- your picture centered over a shadowbox
-- no picture frame around the image
-- your graphic logo centered beneath the image
-- styled version written to a separate file
+**DEFAULT**: With no options your picture is centered over a shadowbox on a light matte with your graphic logo centered below it.
 
 > &nbsp;
 > **WARNING**
@@ -487,13 +481,13 @@ DEFAULTS: When no options are provided to "frame\_it", the default behavior is:
 The property list uses `key:value` pairs where the style name is the key and the “frame\_it” options string is the value. Use “frame\_it” from the command line to test different options and develop your own custom style settings. Run “frame\_it” with NO options to see a complete list of style options. Once you have an options set you like, add a new entry to the property list with unique name and the options you choose, and export a new droplet named for your custom style(s).
 
 ```applescript
-	{your_style_name:"-your -style -options"} & ¬
+	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
 ```
 
-When you drop files onto or double-click the `logo_dark_over_drop` droplet, the droplet will construct a separate shell command line for each image file as follows:
+When you drop files onto or double-click the `logo_dark_over_drop` droplet, the droplet will construct a shell command for each image file as follows:
 
 ```text
-% frame_it -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png <your image file>
+% frame_it -ol -d -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png <your file>
 ```
 
 Here are some notes for creating your own styles with the "frame\_it" script options.
