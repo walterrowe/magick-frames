@@ -511,7 +511,7 @@ DEFAULTS: When no options are provided to "frame\_it", the default behavior is:
 > You MUST use Script Editor to add custom styles. The `customDroplets` property list uses OPT+[RETURN] to continue the list across multiple lines. Other code editing tools such as Visual Studio Code and Atom are unable to insert this special form of line continuation.
 > &nbsp;
 
-The property list uses `key:value` pairs where the style name is the key and the “frame\_it” style options is the value. Use “frame\_it” from the command line to test different options and develop your own custom style settings. Run “frame\_it” with NO options to see a complete list of style options. Once you have an options set you like, add a new entry to the property list with unique name and the options you choose, and export a new droplet named for your custom style(s).
+The property list uses `key:value` pairs where the style name is the key and the “frame\_it” options string is the value. Use “frame\_it” from the command line to test different options and develop your own custom style settings. Run “frame\_it” with NO options to see a complete list of style options. Once you have an options set you like, add a new entry to the property list with unique name and the options you choose, and export a new droplet named for your custom style(s).
 
 ```applescript
 	{your_style_name:"-your -style -options"} & ¬
@@ -523,34 +523,41 @@ When you drop files onto or double-click the `logo_dark_over_drop` droplet, the 
 % frame_it -ol -d -mc=#383838 -g=southeast -w=~/Pictures/watermarks/watermark_light.png <your image file>
 ```
 
-> &nbsp;
-> **Style Tip - Colors**
-> 
-> You can use this online color picker to choose colors for your bevel, frame, matte, shadow, and text.
->
-> https://htmlcolorcodes.com/color-picker/
-> &nbsp;
+Here are some notes for creating your own styles with the "frame\_it" script options.
 
-> &nbsp;
-> **Style Tip - Gravity**
->
-> With logo styles ("-l") the gravity option can alter the placement of the logo
->
-> - Centered Above: `-g=north`
-> - Corner Above/Below: `-g=northwest` OR `-g=northeast` OR `-g=southwest` OR `-g=southeast`
->
-> With text styles ("-t") the gravity option can alter the placement of the text
->
-> - Centered Below: `-g=south`
-> - Corner Below: `-g=southwest` OR `-g=southeast`
-> &nbsp;
+- The wall picture frame ("-p") and bevel ("-b") looks disable shadowboxing and thin inner frame.
+- The wall picture frame ("-p") look always includes a bevel between the picture and the matte.
+- Using "frame\_it" from the command line will accelerate developing your own custom styles.
+- The [HTML Color Codes](https://htmlcolorcodes.com/color-picker/) page is great for picking colors for bevel, frame, matte, shadow, wall frame, and text.
+
+The gravity ("-g") option offers great flexibility in placing your logo along the top, middle, or bottom. It uses compass direction terms to specify the location.
+
+- Across the Top: `-g=northwest` OR `-g=north` OR `-g=northeast`
+- Across the Middle: `-g=west` OR `-g=center` OR `-g=east`
+- Across the Bottom: `-g=southwest` OR `-g=south` OR `-g=southeast`
+
+Here are some useful tips for using gravity to place your logo.
+
+- With logo styles ("-l") you can use the gravity ("-g") option to place the logo above or below the picture.
+    - Centered Above or Below: `-g=north` OR `-g=south`
+    - Any Corner Above/Below: `-g=northwest` OR `-g=northeast` OR `-g=southwest` OR `-g=southeast`
+- With text styles ("-t") you can use the gravity ("-g") to place the logo above or below the picture.
+    - Centered Below: `-g=south`
+	- Either Corner Below: `-g=southwest` OR `-g=southeast`
+- With the overlay styles ("-ol" and "-ot") you can use the gravity ("-g") option to place the logo anywhere on the picture.
+    - Across the Top: `-g=northwest` OR `-g=north` OR `-g=northeast`
+    - Across the Middle: `-g=west` OR `-g=center` OR `-g=east`
+    - Across the Bottom: `-g=southwest` OR `-g=south` OR `-g=southeast`
 
 There are two style lists in CreateStyleDroplets.
 
 - The "presetDroplets" property list is for included styles and should not be altered.
 - The "customDroplets" property list is for crafting your own styles for style droplets.
+- The "{}" lines in the list are there only for readability.
+- The "&" character in AppleScript is a way to join two things together.
+- The "¬" character in AppleScript is used to make a line "continued on the next line".
 
-This is the `presetDroplets` style list included in the CreateStyleDroplets script. It represent all of the included styles described above. The `customDroplets` style list is formatted in the exact same manner as the `presetDroplets` style list and appears directly below it in the CreateStyleDroplets script.
+The list below is the `presetDroplets` style list included in the CreateStyleDroplets script. It represent all of the included styles described above.
 
 ```applescript
 property presetDroplets : {} & ¬
@@ -620,12 +627,14 @@ property presetDroplets : {} & ¬
 	{}
 ```
 
-Carefully follow the instructions inside the CreateStyleDroplets script when adding or modifying style definitions.
+The `customDroplets` style list is formatted the same as the `presetDroplets` style list and appears directly below it in the CreateStyleDroplets script.
+
+Carefully follow the instructions inside the CreateStyleDroplets script when adding or modifying style definitions. Any formatting errors will prevent the script from running properly.
 
 - Use "The Easy Way" instructions to recreate all the style droplets including your own custom styles.
 - Use "The Hard Way" instructions to create style droplets of only your custom styles.
 
-Regardless of how you create them, custom style droplets behave the same as the included styles droplets.
+Regardless of how you create them, your custom style droplets behave the same as the included styles droplets.
 
 # How Magick Frames Works
 
