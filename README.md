@@ -462,7 +462,7 @@ There is a pattern to the preset style names.
 - style names with `light` use a light background (matte color) (default is light matte)
 - style names with `dark` use a dark background (matte color)
 - style names with `transparent` use a transparent background (matte color) allowing broader use
-- styles with `-g` use "gravity" to designate where to place text or logo (see "frame_it" options below)
+- styles with `-g` use "gravity" to specify where to place your text or graphic logo (default is south)
 - styles with `watermark_light.png` use a transparent watermark with light logo for dark backgrounds
 - styles with `watermark_dark.png` use a transparent watermark with dark logo for light backgrounds
 
