@@ -398,23 +398,29 @@ property presetDroplets : {} & ¬
 	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{logo_light_frame:"-l -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{logo_light_drop_frame:"-l -d -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_light_bevel:"-l -b -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{logo_light_picture:"-l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
 	{} & ¬
 	{logo_light_over:"-ol -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_light_over_drop:"-ol -d -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_light_over_frame:"-ol -f -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_light_over_drop_frame:"-ol -d -f -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_light_over_bevel:"-ol -b -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_light_over_picture:"-ol -p -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{} & ¬
 	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_frame:"-l -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_drop_frame:"-l -d -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_bevel:"-l -b -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_picture:"-l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{} & ¬
 	{logo_dark_over:"-ol -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_over_frame:"-ol -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{logo_dark_over_drop_frame:"-ol -d -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_over_bevel:"-ol -b -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_over_picture:"-ol -p -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
 	{} & ¬
 	{text_transparent:"-t -mc=transparent -tc=#383838"} & ¬
 	{text_transparent_drop:"-t -d -mc=transparent -tc=#383838"} & ¬
@@ -430,23 +436,29 @@ property presetDroplets : {} & ¬
 	{text_light_drop:"-t -d -mc=#ffffff -tc=#383838"} & ¬
 	{text_light_frame:"-t -f -mc=#ffffff -tc=#383838"} & ¬
 	{text_light_drop_frame:"-t -d -f -mc=#ffffff -tc=#383838"} & ¬
+	{text_light_bevel:"-t -b -mc=#ffffff -tc=#333333"} & ¬
 	{text_light_picture:"-t -p -mc=#ffffff -tc=#333333"} & ¬
 	{} & ¬
 	{text_light_over:"-ot -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
 	{text_light_over_drop:"-ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
 	{text_light_over_frame:"-ot -f -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
 	{text_light_over_drop_frame:"-ot -d -f -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
+	{text_light_over_bevel:"-ot -b -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
+	{text_light_over_picture:"-ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & ¬
 	{} & ¬
 	{text_dark:"-t -mc=#383838 -tc=#E0E0E0"} & ¬
 	{text_dark_drop:"-t -d -mc=#383838 -tc=#E0E0E0"} & ¬
 	{text_dark_frame:"-t -f -mc=#383838 -tc=#E0E0E0"} & ¬
 	{text_dark_drop_frame:"-t -d -f -mc=#383838 -tc=#E0E0E0"} & ¬
+	{text_dark_bevel:"-t -b -mc=#383838 -tc=#E0E0E0"} & ¬
 	{text_dark_picture:"-t -p -mc=#383838 -tc=#E0E0E0"} & ¬
 	{} & ¬
 	{text_dark_over:"-ot -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{text_dark_over_drop:"-ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{text_dark_over_frame:"-ot -f -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{text_dark_over_drop_frame:"-ot -d -f -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
+	{text_dark_over_bevel:"-ot -b -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
+	{text_dark_over_picture:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & ¬
 	{}
 ```
 
