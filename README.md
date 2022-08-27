@@ -458,7 +458,7 @@ There is a pattern to the preset style names.
 - style names with `drop` use a drop-shadow vs shadow on all edges (default is all edges)
 - style names with `frame` add a thin print-like border around images (default is no frame)
 - style names with `bevel` add a thin beveled border around images (default is no bevel)
-- style names with `picture` add a matte and wall picture frame around images (default is no picture frame)
+- style names with `picture` add a matte and wall frame around images (default is no wall frame)
 - style names with `light` use a light background (matte color) (default is light matte)
 - style names with `dark` use a dark background (matte color)
 - style names with `transparent` use a transparent background (matte color) allowing broader use
