@@ -49,8 +49,7 @@ This update includes new and changed options for "frame\_it" for even more style
 - (NEW) With option `-bc=color` you can choose a "bevel color" for your bevel.
 - (CHANGE) With option `-f` you can add a print frame around your picture (formerly `-p`).
 - (NEW) With option `-fc=color` you can choose a "frame color" other than white.
-- (CHANGE) With option `-g` now you can place your logo anywhere above or below the picture.
-- (CHANGE) With option `-g` now you can place your text bottom left, bottom center, or bottom right below the picture.
+- (NEW) With option `-g` now you can place your text or graphic logo anywhere above or below the picture.
 - (NEW) With option `-p` now you can add an extra matte and wall frame as the outer border to your picture.
 - (NEW) With option `-pc=color` you can choose a "wall frame color" for your wall picture frame.
 - (NEW) With option `-sc=color` you can choose a "shadow color" for your shadows.
