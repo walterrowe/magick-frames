@@ -96,7 +96,7 @@ These graphic logo specifications are based on sizing for a 3000w x 2400h pixel 
 - size your logos 1400 pixels wide and 500 pixels tall with a transparent background
 - make a light colored logo to use on dark mattes and place on dark images (`watermark_light.png`)
 - make a dark colored logo to use on light mattes and place on light images (`watermark_dark.png`)
-- DEFAULT: the default graphic logo file is in "Pictures/watermarks/watermark_dark.png"
+- place your graphic logos in a folder called "watermarks" under your Pictures folder.
 
 You can create many different graphic logos. Always create two for each style - one dark and one light.
 
