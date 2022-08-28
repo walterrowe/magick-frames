@@ -384,43 +384,43 @@ The list below is the `presetDroplets` style list included in the CreateStyleDro
 
 ```applescript
 property presetDroplets : {} & ¬
-	{logo_transparent:"-l -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_transparent_drop:"-l -d -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_transparent_frame:"-l -f -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_transparent_drop_frame:"-l -d -f -mc=transparent -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_transparent:"-l -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png"} & ¬
+	{logo_transparent_drop:"-l -d -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png"} & ¬
+	{logo_transparent_frame:"-l -f -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png"} & ¬
+	{logo_transparent_drop_frame:"-l -d -f -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png"} & ¬
 	{} & ¬
-	{logo_transparent_over:"-ol -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_transparent_over_drop:"-ol -d -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_transparent_over_frame:"-ol -f -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_transparent_over_drop_frame:"-ol -d -f -mc=transparent -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_transparent_over:"-ol -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_transparent_over_drop:"-ol -d -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_transparent_over_frame:"-ol -f -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_transparent_over_drop_frame:"-ol -d -f -mc=transparent -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
 	{} & ¬
-	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_light_frame:"-l -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_light_drop_frame:"-l -d -f -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_light_bevel:"-l -b -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
-	{logo_light_picture:"-l -p -mc=#ffffff -w=~/Pictures/watermarks/alander_dark.png"} & ¬
+	{logo_light:"-l -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png"} & ¬
+	{logo_light_drop:"-l -d -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png"} & ¬
+	{logo_light_frame:"-l -f -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png"} & ¬
+	{logo_light_drop_frame:"-l -d -f -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png"} & ¬
+	{logo_light_bevel:"-l -b -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png"} & ¬
+	{logo_light_picture:"-l -p -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png"} & ¬
 	{} & ¬
-	{logo_light_over:"-ol -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_light_over_drop:"-ol -d -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_light_over_frame:"-ol -f -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_light_over_drop_frame:"-ol -d -f -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_light_over_bevel:"-ol -b -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_light_over_picture:"-ol -p -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_light_over:"-ol -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_light_over_drop:"-ol -d -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_light_over_frame:"-ol -f -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_light_over_drop_frame:"-ol -d -f -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_light_over_bevel:"-ol -b -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_light_over_picture:"-ol -p -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
 	{} & ¬
-	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_frame:"-l -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_drop_frame:"-l -d -f -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_bevel:"-l -b -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_picture:"-l -p -mc=#383838 -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_dark_frame:"-l -f -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_dark_drop_frame:"-l -d -f -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_dark_bevel:"-l -b -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_dark_picture:"-l -p -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & ¬
 	{} & ¬
-	{logo_dark_over:"-ol -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_over_frame:"-ol -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_over_drop_frame:"-ol -d -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_over_bevel:"-ol -b -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
-	{logo_dark_over_picture:"-ol -p -mc=#383838 -g=southwest -w=~/Pictures/watermarks/alander_light.png"} & ¬
+	{logo_dark_over:"-ol -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_dark_over_frame:"-ol -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_dark_over_drop_frame:"-ol -d -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_dark_over_bevel:"-ol -b -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
+	{logo_dark_over_picture:"-ol -p -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & ¬
 	{} & ¬
 	{text_transparent:"-t -mc=transparent -tc=#383838"} & ¬
 	{text_transparent_drop:"-t -d -mc=transparent -tc=#383838"} & ¬
