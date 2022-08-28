@@ -13,8 +13,8 @@ Here are the many features you get with Magick Frames:
 - add a picture frame around your photographs
 - choose a shadowbox, a drop shadow, or **(NEW) matte bevel** for that 3-D look
 - apply a two-row text logo or any graphic logo to your photographs
-- place any graphic logo at designated locations below, on, **(NEW) above**
-- place your text logo at designated locations on **(NEW) or below** your image
+- place any graphic logo at designated locations below, on, **(NEW) or above**
+- place your text logo at designated locations below, on, **(NEW) or above**
 - choose colors (or "transparent") for matte, **(NEW) - bevel, frame, wall picture frame, shadow**
 - choose color and font for your text-based logo
 - **(NEW) choose any aspect ratio for your output file (filled using matte color)**
@@ -517,12 +517,9 @@ The gravity ("-g") option offers great flexibility in placing your logo along th
 
 Here are some useful tips for using gravity to place your logo.
 
-- With logo styles ("-l") you can use the gravity ("-g") option to place the logo above or below the picture.
+- With text ("-t") and logo ("-l") styles you can use the gravity ("-g") option to place the logo above or below the picture.
     - Centered Above or Below: `-g=north` OR `-g=south`
     - Any Corner Above/Below: `-g=northwest` OR `-g=northeast` OR `-g=southwest` OR `-g=southeast`
-- With text styles ("-t") you can use the gravity ("-g") to place the logo above or below the picture.
-    - Centered Below: `-g=south`
-	- Either Corner Below: `-g=southwest` OR `-g=southeast`
 - With the overlay styles ("-ol" and "-ot") you can use the gravity ("-g") option to place the logo anywhere on the picture.
     - Across the Top: `-g=northwest` OR `-g=north` OR `-g=northeast`
     - Across the Middle: `-g=west` OR `-g=center` OR `-g=east`
