@@ -28,6 +28,19 @@ Here are the many features you get with Magick Frames:
 
 You can download and set up Magick Frames in 5-10 minutes.
 
+# Copyrights and Terms of Use
+
+All of the content provided here is written by and the intellectual property of Walter Rowe.
+
+Copyright © 2022 Walter Rowe.
+
+- You may use this utility free of charge.
+- No warranties are provided for use of this utility.
+- You **may not** incorporate it into any other product.
+- You **may not** redistribute it in whole or in part in any way.
+
+Referenced trademarks are the property of their owners.
+
 # Assistance and Support
 
 If you need help, submit a request at my [1-on-1 support page on Buy Me A Coffee [dot] com](https://buymeacoffee.com/walterrowe/extras).
