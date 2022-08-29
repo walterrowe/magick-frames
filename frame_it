@@ -395,6 +395,8 @@ for filename in "$@" ; do
         shadow="100x${shaded_area}"
         offset='+0+0'
         scaled_logo_lift=$(expr 30 \* ${file_high} / ${scale_high})
+        # half of delta (30) between reference padded_high/wide w/ and w/o drop shadow (10 vs 40)
+        label_shadow_shift="15"
     else
         # shift drop shadow layer down and right by 20 pixels, pad left/top edges w/ 40/30 pixels
         padded_high=$(expr 40 \* ${file_high} / ${scale_high})
@@ -407,6 +409,7 @@ for filename in "$@" ; do
         shadow="100x${shaded_area}"
         offset="+${shaded_area}+${shaded_area}"
         scaled_logo_lift=$(expr 30 \* ${file_high} / ${scale_high})
+        label_shadow_shift="0"
     fi
 
     # if adding bevel, don't add shadowbox
@@ -492,10 +495,10 @@ for filename in "$@" ; do
             # text above and below need horizontal padding when placed at west/east corners
             label_padding=0
             if echo ${logo_gravity} | egrep -q 'east|west' && test ${picture} = false ; then
-                label_padding=$(expr 20 + ${inner} + ${outer} + ${shaded_area} + ${padded_wide} + ${bevelpad})
+                label_padding=$(expr 20 + ${inner} + ${outer} + ${shaded_area} + ${padded_wide} + ${bevelpad} + ${label_shadow_shift})
             fi
             if echo ${logo_gravity} | egrep -q 'east|west' && test ${picture} = true ; then
-                label_padding=$(expr 20 + ${inner} + ${outer} + ${shaded_area} + ${padded_wide} + ${bevelpad} - ${scaled_innerbevel1})
+                label_padding=$(expr 20 + ${inner} + ${outer} + ${shaded_area} + ${padded_wide} + ${bevelpad} + ${label_shadow_shift} - ${scaled_innerbevel1})
             fi
 
             # use "+swap" to swap layer order before layer merge when placing text above the image
@@ -507,71 +510,71 @@ for filename in "$@" ; do
 
             # convert source file into decorated target file
             magick \
-            "${source}" -auto-orient \
-            -mattecolor "${bevelcolor}" -frame ${bevel} \
-            -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
-            \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
-            +swap -background ${mattecolor} -layers merge +repage \
-            -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
-            -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
-            \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} \
-                -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -append \
-                -mattecolor ${mattecolor} -frame ${label_padding}x10 -append \) \
-            ${swap} -append -layers merge +repage \
-            -bordercolor ${mattecolor} -border 20x20 -gravity ${logo_gravity} -background ${mattecolor} -splice ${toppad} \
-            -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
-            -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
-            -format ${filetype} "${target}"
+                "${source}" -auto-orient \
+                -mattecolor "${bevelcolor}" -frame ${bevel} \
+                -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
+                \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
+                +swap -background ${mattecolor} -layers merge +repage \
+                -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
+                -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
+                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} \
+                   -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -append \
+                   -mattecolor ${mattecolor} -frame ${label_padding}x1 -append \) \
+                ${swap} -append -layers merge +repage \
+                -bordercolor ${mattecolor} -border 20x20 -gravity ${logo_gravity} -background ${mattecolor} -splice ${toppad} \
+                -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
+                -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
+                -format ${filetype} "${target}"
             ;;
 
         overlay_text)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-              -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} -geometry ${label1_inset} -composite \
-              -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -geometry ${label2_inset} -composite \
-              -mattecolor "${bevelcolor}" -frame ${bevel} \
-              -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
-              \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
-              +swap -background ${mattecolor} -layers merge +repage \
-              -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
-              -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
-              -bordercolor ${mattecolor} -border 20x20 -gravity south -background ${mattecolor} -splice ${toppad} \
-              -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
-              -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
-              -format ${filetype} "${target}"
+                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} -geometry ${label1_inset} -composite \
+                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -geometry ${label2_inset} -composite \
+                -mattecolor "${bevelcolor}" -frame ${bevel} \
+                -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
+                \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
+                +swap -background ${mattecolor} -layers merge +repage \
+                -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
+                -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
+                -bordercolor ${mattecolor} -border 20x20 -gravity south -background ${mattecolor} -splice ${toppad} \
+                -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
+                -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
+                -format ${filetype} "${target}"
             ;;
 
         logo)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-              -mattecolor "${bevelcolor}" -frame ${bevel} \
-              -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
-              \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
-              +swap -background ${mattecolor} -layers merge +repage \
-              -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
-              -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
-              -bordercolor ${mattecolor} -border 20x20 -gravity ${logo_gravity} -background ${mattecolor} -splice 0x${scaled_logo_high} \
-              \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry +0+${scaled_logo_lift} \) -composite \
-              -mattecolor ${mattecolor} -frame ${border_wide}x${border_high} \
-              -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
-              -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
-              -format ${filetype} "${target}"
+                -mattecolor "${bevelcolor}" -frame ${bevel} \
+                -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
+                \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
+                +swap -background ${mattecolor} -layers merge +repage \
+                -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
+                -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
+                -bordercolor ${mattecolor} -border 20x20 -gravity ${logo_gravity} -background ${mattecolor} -splice 0x${scaled_logo_high} \
+                \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry +0+${scaled_logo_lift} \) -composite \
+                -mattecolor ${mattecolor} -frame ${border_wide}x${border_high} \
+                -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
+                -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
+                -format ${filetype} "${target}"
             ;;
 
         overlay_logo)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-              \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry ${logo_inset} \) -composite \
-              -mattecolor "${bevelcolor}" -frame ${bevel} \
-              -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
-              \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
-              +swap -background ${mattecolor} -layers merge +repage \
-              -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
-              -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
-              -mattecolor ${mattecolor} -frame 20x20 \
-              -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
-              -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
-              -format ${filetype} "${target}"
+                \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry ${logo_inset} \) -composite \
+                -mattecolor "${bevelcolor}" -frame ${bevel} \
+                -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
+                \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
+                +swap -background ${mattecolor} -layers merge +repage \
+                -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
+                -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
+                -mattecolor ${mattecolor} -frame 20x20 \
+                -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
+                -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
+                -format ${filetype} "${target}"
             ;;
 
     esac
