@@ -452,17 +452,17 @@ for filename in "$@" ; do
     # inset overlay logos from the nearest edge
     if echo ${style} | egrep -q 'overlay'; then
         case ${logo_gravity} in
-            north|south)
-                logo_inset="+0+${scaled_logo_lift}"
-                ;;
-            northwest|northeast|southwest|southeast)
-                logo_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
-                ;;
             center)
                 logo_inset="+0+0"
                 ;;
+            north|south)
+                logo_inset="+0+${scaled_logo_lift}"
+                ;;
             west|east)
                 logo_inset="+${scaled_logo_lift}+0"
+                ;;
+            northwest|northeast|southwest|southeast)
+                logo_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
                 ;;
             *)
                 echo "ERROR !!! WE SHOULD NEVER GET HERE !!!"
