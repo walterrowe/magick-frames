@@ -18,7 +18,6 @@ Here are the many features you get with Magick Frames:
 - choose a shadowbox or a drop shadow for that floating-above-the-page 3-D look
 - apply your two-row text or any graphic logo below, on, or above your photographs
 - text and graphic logos are scaled to each photograph's size and orientation
-- place your text logo at designated locations below, on, or above
 - choose any color (or "transparent") for matte, bevel, print frame, wall frame, shadow
 - choose any color and font for your text-based logo
 - choose any aspect ratio for your output file (edges are filled using matte color)
