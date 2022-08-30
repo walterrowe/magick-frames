@@ -163,6 +163,7 @@ framecolor='white'
 bevel='0x0'
 bevelpad='0'
 bevelcolor='#888888'
+bevel_frame='0x0'
 picture='false'
 picturebevelinner='0x0'
 picturebevelouter='0x0'
@@ -226,7 +227,7 @@ for opt in "$@"; do
             inner="0"
             outer="0"
             bevel="18x18+0+16"
-            bevelpad="20"
+            bevelpad="18"
             frame='false'
             shift
             ;;
@@ -374,7 +375,7 @@ for filename in "$@" ; do
         scale_high=$(expr 3000 \* ${file_high} / ${file_wide})
     fi
 
-    # scale font size (64 pts looks good on 2048wx1638h images)
+    # scale font size (64 pts looks good on 3000wx2400h images)
     font_pnts=$(expr 64 \* $file_high / $scale_high)
 
     # scale logo for other images sizes
@@ -390,13 +391,14 @@ for filename in "$@" ; do
         shaded_area=$(expr 25 \* ${file_wide} / ${scale_wide})
         border_high=$(expr 20 \* ${file_high} / ${scale_high})
         border_wide=$(expr 20 \* ${file_wide} / ${scale_wide})
-        border="${padded_wide}x0"
+        border_west="${padded_wide}x0"
+        border_east="$(expr ${shaded_area} / 2)x0"
         toppad="0x${padded_high}"
         shadow="100x${shaded_area}"
         offset='+0+0'
         scaled_logo_lift=$(expr 30 \* ${file_high} / ${scale_high})
         # half of delta (30) between reference padded_high/wide w/ and w/o drop shadow (10 vs 40)
-        label_shadow_shift="15"
+        label_shadow_shift="10"
     else
         # shift drop shadow layer down and right by 20 pixels, pad left/top edges w/ 40/30 pixels
         padded_high=$(expr 40 \* ${file_high} / ${scale_high})
@@ -404,22 +406,26 @@ for filename in "$@" ; do
         shaded_area=$(expr 25 \* ${file_wide} / ${scale_wide})
         border_high=$(expr 20 \* ${file_high} / ${scale_high})
         border_wide=$(expr 20 \* ${file_wide} / ${scale_wide})
-        border="${padded_wide}x0"
+        border_west="${padded_wide}x0"
+        border_east="0x0"
         toppad="0x${padded_high}"
         shadow="100x${shaded_area}"
         offset="+${shaded_area}+${shaded_area}"
         scaled_logo_lift=$(expr 30 \* ${file_high} / ${scale_high})
-        label_shadow_shift="0"
+        label_shadow_shift="30"
     fi
 
-    # if adding bevel, don't add shadowbox
+    # if adding bevel, don't add shadowbox or right border matte padding
     if [ $bevel != '0x0' ]; then
+        border_east="0x0"
+        bevel_frame="${shaded_area}x${shaded_area}"
         shadow="0x0"
         offset="+0+0"
     fi
 
     if [ $picture = true ]; then
         # turn off shadowboxing and print frame
+        bevel_frame="0x0"
         shadow="0x0"
         offset="+0+0"
         inner="0"
@@ -439,6 +445,7 @@ for filename in "$@" ; do
 
         # set scaled inner bevel
         bevel="${scaled_innerbevel1}x${scaled_innerbevel1}+0+${scaled_innerbevel2}"
+        bevelpad=${scaled_innerbevel1}
         # set scaled matte width
         mattewidth="${scaled_mattewidth}x${scaled_mattewidth}"
         # set wall frame inner bevel - note +0+${scaled_picturebev2}
@@ -464,10 +471,6 @@ for filename in "$@" ; do
             northwest|northeast|southwest|southeast)
                 logo_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
                 ;;
-            *)
-                echo "ERROR !!! WE SHOULD NEVER GET HERE !!!"
-                exit 1
-                ;;
         esac
     fi
 
@@ -477,10 +480,10 @@ for filename in "$@" ; do
             # text above and below need horizontal padding when placed at west/east corners
             label_padding=0
             if echo ${logo_gravity} | egrep -q 'east|west' && test ${picture} = false ; then
-                label_padding=$(expr 20 + ${inner} + ${outer} + ${shaded_area} + ${padded_wide} + ${bevelpad} + ${label_shadow_shift})
+                label_padding=$(expr 20 + ${inner} + ${outer} + ${shaded_area} + ${label_shadow_shift})
             fi
             if echo ${logo_gravity} | egrep -q 'east|west' && test ${picture} = true ; then
-                label_padding=$(expr 20 + ${inner} + ${outer} + ${shaded_area} + ${padded_wide} + ${bevelpad} + ${label_shadow_shift} - ${scaled_innerbevel1})
+                label_padding=$(expr 20 + ${inner} + ${outer} + ${shaded_area} + ${label_shadow_shift} - ${scaled_innerbevel1})
             fi
 
             # use "+swap" to swap layer order before layer merge when placing text above the image
@@ -498,11 +501,14 @@ for filename in "$@" ; do
                 \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
                 +swap -background ${mattecolor} -layers merge +repage \
                 -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
-                -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
+                -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border_west} \
                 \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} -gravity ${logo_gravity} label:"${label1}\n${label2}" \
                    -mattecolor ${mattecolor} -frame ${label_padding}x1 -append \) \
                 ${swap} -append -layers merge +repage \
+                -gravity east -background ${mattecolor} -splice ${border_east} \
+                -mattecolor ${mattecolor} -frame x${border_high} \
                 -bordercolor ${mattecolor} -border 20x20 -gravity ${logo_gravity} -background ${mattecolor} -splice ${toppad} \
+                -mattecolor ${mattecolor} -frame ${bevel_frame} \
                 -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
                 -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
                 -format ${filetype} "${target}"
@@ -517,8 +523,10 @@ for filename in "$@" ; do
                 \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
                 +swap -background ${mattecolor} -layers merge +repage \
                 -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
-                -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
+                -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border_west} \
+                -gravity east -background ${mattecolor} -splice ${border_east} \
                 -bordercolor ${mattecolor} -border 20x20 -gravity south -background ${mattecolor} -splice ${toppad} \
+                -mattecolor ${mattecolor} -frame ${bevel_frame} \
                 -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
                 -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
                 -format ${filetype} "${target}"
@@ -532,10 +540,12 @@ for filename in "$@" ; do
                 \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
                 +swap -background ${mattecolor} -layers merge +repage \
                 -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
-                -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
+                -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border_west} \
+                -gravity east -background ${mattecolor} -splice ${border_east} \
                 -bordercolor ${mattecolor} -border 20x20 -gravity ${logo_gravity} -background ${mattecolor} -splice 0x${scaled_logo_high} \
                 \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry +0+${scaled_logo_lift} \) -composite \
                 -mattecolor ${mattecolor} -frame ${border_wide}x${border_high} \
+                -mattecolor ${mattecolor} -frame ${bevel_frame} \
                 -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
                 -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
                 -format ${filetype} "${target}"
@@ -550,8 +560,10 @@ for filename in "$@" ; do
                 \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
                 +swap -background ${mattecolor} -layers merge +repage \
                 -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
-                -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
+                -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border_west} \
+                -gravity east -background ${mattecolor} -splice ${border_east} \
                 -mattecolor ${mattecolor} -frame 20x20 \
+                -mattecolor ${mattecolor} -frame ${bevel_frame} \
                 -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
                 -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
                 -format ${filetype} "${target}"
