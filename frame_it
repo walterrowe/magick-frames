@@ -452,35 +452,17 @@ for filename in "$@" ; do
     # inset overlay logos from the nearest edge
     if echo ${style} | egrep -q 'overlay'; then
         case ${logo_gravity} in
-            north)
+            north|south)
                 logo_inset="+0+${scaled_logo_lift}"
-                label1_inset="+0+${scaled_logo_lift}"
-                label2_inset="+0+$(expr ${font_pnts} + ${scaled_logo_lift})"
                 ;;
-            northwest|northeast)
+            northwest|northeast|southwest|southeast)
                 logo_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
-                label1_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
-                label2_inset="+${scaled_logo_lift}+$(expr ${font_pnts} + ${scaled_logo_lift})"
                 ;;
             center)
                 logo_inset="+0+0"
-                label1_inset="+0-$(expr ${font_pnts} / 2)"
-                label2_inset="+0+$(expr ${font_pnts} / 2)"
                 ;;
             west|east)
                 logo_inset="+${scaled_logo_lift}+0"
-                label1_inset="+${scaled_logo_lift}-$(expr ${font_pnts} / 2)"
-                label2_inset="+${scaled_logo_lift}+$(expr ${font_pnts} / 2)"
-                ;;
-            south)
-                logo_inset="+0+${scaled_logo_lift}"
-                label1_inset="+0+$(expr ${font_pnts} + ${scaled_logo_lift})"
-                label2_inset="+0+${scaled_logo_lift}"
-                ;;
-            southwest|southeast)
-                logo_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
-                label1_inset="+${scaled_logo_lift}+$(expr ${font_pnts} + ${scaled_logo_lift})"
-                label2_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
                 ;;
             *)
                 echo "ERROR !!! WE SHOULD NEVER GET HERE !!!"
@@ -517,8 +499,7 @@ for filename in "$@" ; do
                 +swap -background ${mattecolor} -layers merge +repage \
                 -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
                 -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border} \
-                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} \
-                   -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -append \
+                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} -gravity ${logo_gravity} label:"${label1}\n${label2}" \
                    -mattecolor ${mattecolor} -frame ${label_padding}x1 -append \) \
                 ${swap} -append -layers merge +repage \
                 -bordercolor ${mattecolor} -border 20x20 -gravity ${logo_gravity} -background ${mattecolor} -splice ${toppad} \
@@ -530,8 +511,7 @@ for filename in "$@" ; do
         overlay_text)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label1}" -gravity ${logo_gravity} -geometry ${label1_inset} -composite \
-                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} label:"${label2}" -gravity ${logo_gravity} -geometry ${label2_inset} -composite \
+                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} -gravity ${logo_gravity} label:"${label1}\n${label2}" -geometry ${logo_inset} -composite \
                 -mattecolor "${bevelcolor}" -frame ${bevel} \
                 -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
                 \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
