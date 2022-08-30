@@ -375,8 +375,8 @@ for filename in "$@" ; do
         scale_high=$(expr 3000 \* ${file_high} / ${file_wide})
     fi
 
-    # scale font size (64 pts looks good on 3000wx2400h images)
-    font_pnts=$(expr 64 \* $file_high / $scale_high)
+    # scale label (60% width of image looks good)
+    label_width=$(expr $file_wide \* 3 / 5)
 
     # scale logo for other images sizes
     logo_wide=$(identify -format %w "${watermark}")
@@ -502,7 +502,7 @@ for filename in "$@" ; do
                 +swap -background ${mattecolor} -layers merge +repage \
                 -bordercolor ${mattecolor} -border x${border_high} -gravity north -background ${mattecolor} -splice ${toppad} \
                 -bordercolor ${mattecolor} -border ${border_wide}x -gravity west -background ${mattecolor} -splice ${border_west} \
-                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${font_pnts} -gravity ${logo_gravity} label:"${label1}\n${label2}" \
+                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -size ${label_width}x -gravity ${logo_gravity} label:"${label1}\n${label2}" \
                    -mattecolor ${mattecolor} -frame ${label_padding}x1 -append \) \
                 ${swap} -append -layers merge +repage \
                 -gravity east -background ${mattecolor} -splice ${border_east} \
@@ -517,7 +517,7 @@ for filename in "$@" ; do
         overlay_text)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${font_pnts} -gravity ${logo_gravity} label:"${label1}\n${label2}" -geometry ${logo_inset} -composite \
+                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -size ${label_width} -gravity ${logo_gravity} label:"${label1}\n${label2}" -geometry ${logo_inset} -composite \
                 -mattecolor "${bevelcolor}" -frame ${bevel} \
                 -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
                 \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
