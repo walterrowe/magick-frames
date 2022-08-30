@@ -15,7 +15,7 @@ Here are the many features you get with Magick Frames:
 - easily craft your own custom styles with corresponding macOS style applets
 - all style applets are apps - drag-n-drop onto them, double-click them and choose
 - add a print frame, matte bevel, or matted wall frame around your photographs
-- choose a shadowbox or a drop shadow floating-above-the-page 3-D look
+- choose a shadowbox or a drop shadow for that floating-above-the-page 3-D look
 - apply your two-row text or any graphic logo below, on, or above your photographs
 - text and graphic logos are scaled to each photograph's size and orientation
 - place your text logo at designated locations below, on, or above
