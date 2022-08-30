@@ -226,7 +226,7 @@ for opt in "$@"; do
             inner="0"
             outer="0"
             bevel="18x18+0+16"
-            bevelpad="15"
+            bevelpad="20"
             frame='false'
             shift
             ;;
