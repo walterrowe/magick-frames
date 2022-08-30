@@ -4,27 +4,27 @@
 
 Are you looking for a faster, easier way of give your photography that impressive, professional look for your website, social media, and clients? Look no further!
 
-Magick Frames makes it fast and easy to add an optional picture frame, a 3-dimensional shadow, your own text or graphic logo, and a colorful or transparent matte around your photographs. Best of all, you get this with a single drag-n-drop.
+Magick Frames makes it fast and easy to add an optional print border or matte bevel or matted wall frame, a 3-dimensional shadow, your own text or graphic logo, and a colorful or transparent matte around your photographs. Best of all, you get this with a single drag-n-drop.
 
 Select your photographs, drop them onto your preferred style applet, and move on to other tasks. Magick Frames will style your photographs and place the decorated versions as new files in the same folder as the files you selected. Each style applet adds its style name to the output filename. This makes it easy to identify what style was used. You can create as many different styled looks as you want for any image, each with their own output file, and always have access to your original file.
 
 Here are the many features you get with Magick Frames:
 
 - add a picture frame around your photographs
-- choose a shadowbox, a drop shadow, or **(NEW) matte bevel** for that 3-D look
+- choose a shadowbox, a drop shadow, or matte bevel for that 3-D look
 - apply a two-row text logo or any graphic logo to your photographs
-- place any graphic logo at designated locations below, on, **(NEW) or above**
-- place your text logo at designated locations below, on, **(NEW) or above**
-- choose colors (or "transparent") for matte, **(NEW) - bevel, frame, wall picture frame, shadow**
+- place any graphic logo at designated locations below, on, or above
+- place your text logo at designated locations below, on, or above
+- choose colors (or "transparent") for matte, bevel, frame, wall picture frame, shadow
 - choose color and font for your text-based logo
-- **(NEW) choose any aspect ratio for your output file (filled using matte color)**
-- **(NEW) choose to add a wall picture frame to the outer edge of your image**
+- choose any aspect ratio for your output file (filled using matte color)
+- choose to add a wall picture frame to the outer edge of your image
 - text and graphic logos are scaled to each photograph's size and orientation
-- over 60 different style presets installed as macOS droplets for fast, easy use
-- easily craft your own custom styles and corresponding macOS style applets
-- all style droplets are apps - drag-n-drop onto them, double-click them and choose
-- create multiple Capture One Export recipes and style your photographs on export
+- over 80 different style variations installed as macOS droplets for fast, easy use
 - use the Style Chooser to apply multiple styles to selected images in a single action
+- easily craft your own custom styles with corresponding macOS style applets
+- all style applets are apps - drag-n-drop onto them, double-click them and choose
+- create multiple Capture One Export recipes and style your photographs on export
 
 You can download and set up Magick Frames in 5-10 minutes.
 
