@@ -8,6 +8,8 @@ Magick Frames makes it fast and easy to add an optional print border or matte be
 
 Select your photographs, drop them onto your preferred style applet, and move on to other tasks. Magick Frames will style your photographs and place the decorated versions as new files in the same folder as the files you selected. Each style applet adds its style name to the output filename. This makes it easy to identify what style was used. You can create as many different styled looks as you want for any image, each with their own output file, and always have access to your original file.
 
+Watch this [2-minute introduction video](https://youtu.be/PkRCjbNo11M) to see just how easy it is to use Magick Frames.
+
 Here are the many features you get with Magick Frames:
 
 - over 80 different style variations installed as macOS droplets for fast, easy use
@@ -24,12 +26,6 @@ Here are the many features you get with Magick Frames:
 - create multiple Capture One Export recipes and style your photographs on export
 
 You can download and set up Magick Frames in 5-10 minutes.
-
-# Intro Video
-
-You can watch a 2-minute video here that demonstrates how easy it is to use Magick Frames.
-
-[![](https://i9.ytimg.com/vi/PkRCjbNo11M/mq3.jpg?sqp=CJymvZgG&rs=AOn4CLDv_3EjKhDBApXuLJgIG_U0Ztb82Q)](https://youtu.be/PkRCjbNo11M)
 
 # Copyrights and Terms of Use
 
