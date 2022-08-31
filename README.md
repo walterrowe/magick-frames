@@ -25,6 +25,12 @@ Here are the many features you get with Magick Frames:
 
 You can download and set up Magick Frames in 5-10 minutes.
 
+# Intro Video
+
+You can watch a 2-minute video here that demonstrates how easy it is to use Magick Frames.
+
+[![](https://i9.ytimg.com/vi/PkRCjbNo11M/mq3.jpg?sqp=CJymvZgG&rs=AOn4CLDv_3EjKhDBApXuLJgIG_U0Ztb82Q)](https://youtu.be/PkRCjbNo11M)
+
 # Copyrights and Terms of Use
 
 All of the content provided here is written by and the intellectual property of Walter Rowe.
