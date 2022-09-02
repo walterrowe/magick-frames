@@ -59,34 +59,34 @@ property presetDroplets : {} & Â
 	{logo_light_over_bevel:"-ol -b -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{logo_light_over_picture:"-ol -p -mc=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{} & Â
-	{logo_dark:"-l -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_dark_drop:"-l -d -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_dark_frame:"-l -f -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_dark_drop_frame:"-l -d -f -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_dark_bevel:"-l -b -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_dark_picture:"-l -p -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_dark:"-l -mc=#313131 -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_dark_drop:"-l -d -mc=#313131 -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_dark_frame:"-l -f -mc=#313131 -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_dark_drop_frame:"-l -d -f -mc=#313131 -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_dark_bevel:"-l -b -mc=#313131 -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_dark_picture:"-l -p -mc=#313131 -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{} & Â
-	{logo_dark_over:"-ol -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_dark_over_drop:"-ol -d -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_dark_over_frame:"-ol -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_dark_over_drop_frame:"-ol -d -f -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_dark_over_bevel:"-ol -b -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_dark_over_picture:"-ol -p -mc=#383838 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_dark_over:"-ol -mc=#313131 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_dark_over_drop:"-ol -d -mc=#313131 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_dark_over_frame:"-ol -f -mc=#313131 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_dark_over_drop_frame:"-ol -d -f -mc=#313131 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_dark_over_bevel:"-ol -b -mc=#313131 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_dark_over_picture:"-ol -p -mc=#313131 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{} & Â
-	{text_transparent:"-t -mc=transparent -tc=#383838"} & Â
-	{text_transparent_drop:"-t -d -mc=transparent -tc=#383838"} & Â
-	{text_transparent_frame:"-t -f -mc=transparent -tc=#383838"} & Â
-	{text_transparent_drop_frame:"-t -d -f -mc=transparent -tc=#383838"} & Â
+	{text_transparent:"-t -mc=transparent -tc=#313131"} & Â
+	{text_transparent_drop:"-t -d -mc=transparent -tc=#313131"} & Â
+	{text_transparent_frame:"-t -f -mc=transparent -tc=#313131"} & Â
+	{text_transparent_drop_frame:"-t -d -f -mc=transparent -tc=#313131"} & Â
 	{} & Â
 	{text_transparent_over:"-ot -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
 	{text_transparent_over_drop:"-ot -d -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
 	{text_transparent_over_frame:"-ot -f -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
 	{text_transparent_over_drop_frame:"-ot -d -f -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
 	{} & Â
-	{text_light:"-t -mc=#ffffff -tc=#383838"} & Â
-	{text_light_drop:"-t -d -mc=#ffffff -tc=#383838"} & Â
-	{text_light_frame:"-t -f -mc=#ffffff -tc=#383838"} & Â
-	{text_light_drop_frame:"-t -d -f -mc=#ffffff -tc=#383838"} & Â
+	{text_light:"-t -mc=#ffffff -tc=#313131"} & Â
+	{text_light_drop:"-t -d -mc=#ffffff -tc=#313131"} & Â
+	{text_light_frame:"-t -f -mc=#ffffff -tc=#313131"} & Â
+	{text_light_drop_frame:"-t -d -f -mc=#ffffff -tc=#313131"} & Â
 	{text_light_bevel:"-t -b -mc=#ffffff -tc=#333333"} & Â
 	{text_light_picture:"-t -p -mc=#ffffff -tc=#333333"} & Â
 	{} & Â
@@ -97,19 +97,19 @@ property presetDroplets : {} & Â
 	{text_light_over_bevel:"-ot -b -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
 	{text_light_over_picture:"-ot -p -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
 	{} & Â
-	{text_dark:"-t -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_dark_drop:"-t -d -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_dark_frame:"-t -f -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_dark_drop_frame:"-t -d -f -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_dark_bevel:"-t -b -mc=#383838 -tc=#E0E0E0"} & Â
-	{text_dark_picture:"-t -p -mc=#383838 -tc=#E0E0E0"} & Â
+	{text_dark:"-t -mc=#313131 -tc=#E0E0E0"} & Â
+	{text_dark_drop:"-t -d -mc=#313131 -tc=#E0E0E0"} & Â
+	{text_dark_frame:"-t -f -mc=#313131 -tc=#E0E0E0"} & Â
+	{text_dark_drop_frame:"-t -d -f -mc=#313131 -tc=#E0E0E0"} & Â
+	{text_dark_bevel:"-t -b -mc=#313131 -tc=#E0E0E0"} & Â
+	{text_dark_picture:"-t -p -mc=#313131 -tc=#E0E0E0"} & Â
 	{} & Â
-	{text_dark_over:"-ot -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_dark_over_drop:"-ot -d -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_dark_over_frame:"-ot -f -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_dark_over_drop_frame:"-ot -d -f -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_dark_over_bevel:"-ot -b -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
-	{text_dark_over_picture:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
+	{text_dark_over:"-ot -mc=#313131 -g=south -d -tc=#E0E0E0"} & Â
+	{text_dark_over_drop:"-ot -d -mc=#313131 -g=south -d -tc=#E0E0E0"} & Â
+	{text_dark_over_frame:"-ot -f -mc=#313131 -g=south -d -tc=#E0E0E0"} & Â
+	{text_dark_over_drop_frame:"-ot -d -f -mc=#313131 -g=south -d -tc=#E0E0E0"} & Â
+	{text_dark_over_bevel:"-ot -b -mc=#313131 -g=south -d -tc=#E0E0E0"} & Â
+	{text_dark_over_picture:"-ot -p -mc=#313131 -g=south -d -tc=#E0E0E0"} & Â
 	{}
 
 property colorDroplets : {} & Â
@@ -156,25 +156,30 @@ property colorDroplets : {} & Â
 	{logo_chestnut_frame_below:"-f -l -mc=#583C2D -bc=#6D5447 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{logo_chestnut_below:"-l -mc=#583C2D -bc=#6D5447 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{logo_chestnut_on_sw:"-ol -mc=#583C2D -bc=#6D5447 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_goldenrod_picture_on_sw:"-p -ol -mc=#E3BC21 -bc=#E3BC21 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_goldenrod_frame_on_sw:"-f -ol -mc=#E3BC21 -bc=#E3BC21 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_goldenrod_frame_below:"-f -l -mc=#E3BC21 -bc=#E3BC21 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_goldenrod_on_sw:"-ol -mc=#E3BC21 -bc=#E3BC21 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_goldenrod_below:"-l -mc=#E3BC21 -bc=#E3BC21 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_goldenrod_picture_on_sw:"-p -ol -bc=#EDD290 -mc=#DAA520 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_goldenrod_frame_on_sw:"-f -ol -bc=#EDD290 -mc=#DAA520 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_goldenrod_frame_below:"-f -l -bc=#EDD290 -mc=#DAA520 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_goldenrod_on_sw:"-ol -bc=#EDD290 -mc=#DAA520 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_goldenrod_below:"-l -bc=#EDD290 -mc=#DAA520 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{text_seashell_picture_on_south:"-p -ot -tc=#FFE5F3 -bc=#BFB8B3 -mc=#FFF5EE -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{text_seashell_frame_on_south:"-f -ot -tc=#FFE5F3 -bc=#BFB8B3 -mc=#FFF5EE -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{text_seashell_frame_below:"-f -t -tc=#807A77 -mc=#FFF5EE -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{text_seashell_on_south:"-ot -tc=#FFE5F3 -bc=#BFB8B3 -mc=#FFF5EE -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{text_seashell_below:"-t -tc=#807A77-mc=#FFF5EE -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{}
 
 property customDroplets : {} & Â
 	{light_matte_dark_logo:"-l -f -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png"} & Â
-	{dark_matte_light_logo:"-l -f -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{dark_matte_light_logo:"-l -f -mc=#313131 -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{light_matte_light_logo_over:"-ol -g=southwest -f -mc=#ffffff -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{light_matte_dark_logo_over:"-ol -g=southwest -f -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png"} & Â
-	{dark_matte_light_logo_over:"-ol -g=southwest -f -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{dark_matte_dark_logo_over:"-ol -g=southwest -f -mc=#383838 -w=~/Pictures/watermarks/watermark_dark.png"} & Â
+	{dark_matte_light_logo_over:"-ol -g=southwest -f -mc=#313131 -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{dark_matte_dark_logo_over:"-ol -g=southwest -f -mc=#313131 -w=~/Pictures/watermarks/watermark_dark.png"} & Â
 	{} & Â
-	{text_light_academy:"-t -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
-	{text_light_frame_academy:"-t -f -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
-	{text_dark_academy:"-t -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
-	{text_dark_frame_academy:"-t -f -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
+	{text_light_academy:"-t -mc=#ffffff -tc=#313131 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
+	{text_light_frame_academy:"-t -f -mc=#ffffff -tc=#313131 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
+	{text_dark_academy:"-t -mc=#313131 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
+	{text_dark_frame_academy:"-t -f -mc=#313131 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
 	{}
 
 property styleDroplets : presetDroplets & colorDroplets & customDroplets
