@@ -112,6 +112,57 @@ property presetDroplets : {} & Â
 	{text_dark_over_picture:"-ot -p -mc=#383838 -g=south -d -tc=#E0E0E0"} & Â
 	{}
 
+property colorDroplets : {} & Â
+	{logo_green_drop_frame:"-l -d -f -mc=#106043 -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_green_picture:"-l -p -mc=#106043 -bc=#106043 -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_green_picture_on_sw:"-ol -p -mc=#106043 -bc=#106043 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_green_frame_on_sw:"-ol -f -mc=#106043 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_mauve_frame_north:"-f -fc=#958898 -mc=#453848 -l -g=north -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_mauve_frame_south:"-f -fc=#958898 -mc=#453848 -l -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_mauve_picture_south:"-p -bc=#958898 -mc=#453848 -l -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{text_mauve_frame_south:"-f -fc=#958898 -mc=#453848 -t -tc=#958898 -g=south"} & Â
+	{text_mauve_picture_south:"-p -bc=#958898 -mc=#453848 -t -tc=#958898 -g=south"} & Â
+	{logo_teal_picture_on_sw:"-p -ol -bc=#17342E -mc=#17342E -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_teal_picture_below:"-p -l -bc=#17342E -mc=#17342E -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_teal_frame_on_sw:"-f -ol -bc=#17342E -mc=#17342E -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_teal_frame_below:"-f -l -bc=#17342E -mc=#17342E -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_khaki_on_sw:"-ol -bc=#A1815B -mc=#A1815B -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_khaki_below:"-l -bc=#A1815B -mc=#A1815B -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_khaki_frame_on_sw:"-f -ol -bc=#A1815B -mc=#A1815B -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_khaki_frame_below:"-f -l -bc=#A1815B -mc=#A1815B -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_khaki_picture_on_sw:"-p -ol -bc=#A1815B -mc=#A1815B -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_khaki_picture_below:"-p -l -bc=#A1815B -mc=#A1815B -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_pink_on_sw:"-ol -bc=#FBE7EC -mc=#FBE7EC -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_pink_below:"-l -bc=#FBE7EC -mc=#FBE7EC -g=south -w=~/Pictures/watermarks/watermark_dark.png"} & Â
+	{logo_pink_frame_on_sw:"-f -ol -bc=#FBE7EC -mc=#FBE7EC -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_pink_frame_below:"-f -l -bc=#FBE7EC -mc=#FBE7EC -g=south -w=~/Pictures/watermarks/watermark_dark.png"} & Â
+	{logo_pink_picture_on_sw:"-p -ol -bc=#FBE7EC -mc=#FBE7EC -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_pink_picture_below:"-p -l -bc=#FBE7EC -mc=#FBE7EC -g=south -w=~/Pictures/watermarks/watermark_dark.png"} & Â
+	{logo_blue_on_sw:"-ol -bc=#7194AE -mc=#DCEDF7 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_blue_below:"-l -bc=#7194AE -mc=#DCEDF7 -g=south -w=~/Pictures/watermarks/watermark_dark.png"} & Â
+	{logo_blue_frame_on_sw:"-f -ol -bc=#7194AE -mc=#DCEDF7 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_blue_frame_below:"-f -l -bc=#7194AE -mc=#DCEDF7 -g=south -w=~/Pictures/watermarks/watermark_dark.png"} & Â
+	{logo_blue_picture_on_sw:"-p -ol -bc=#7194AE -mc=#DCEDF7 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_blue_picture_below:"-p -l -bc=#7194AE -mc=#DCEDF7 -g=south -w=~/Pictures/watermarks/watermark_dark.png"} & Â
+	{logo_slate_on_sw:"-ol -bc=#4C6578 -mc=#34546A -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_slate_below:"-l -bc=#4C6578 -mc=#34546A -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_slate_frame_on_sw:"-f -ol -bc=#4C6578 -mc=#34546A -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_slate_frame_below:"-f -l -bc=#4C6578 -mc=#34546A -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_slate_picture_on_sw:"-p -ol -bc=#4C6578 -mc=#34546A -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_slate_picture_below:"-p -l -bc=#4C6578 -mc=#34546A -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_chestnut_picture_below:"-p -l -mc=#583C2D -bc=#6D5447 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_chestnut_picture_on_sw:"-p -ol -mc=#583C2D -bc=#6D5447 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_chestnut_frame_on_sw:"-f -ol -mc=#583C2D -bc=#6D5447 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_chestnut_frame_below:"-f -l -mc=#583C2D -bc=#6D5447 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_chestnut_below:"-l -mc=#583C2D -bc=#6D5447 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_chestnut_on_sw:"-ol -mc=#583C2D -bc=#6D5447 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_goldenrod_picture_on_sw:"-p -ol -mc=#E3BC21 -bc=#E3BC21 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_goldenrod_frame_on_sw:"-f -ol -mc=#E3BC21 -bc=#E3BC21 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_goldenrod_frame_below:"-f -l -mc=#E3BC21 -bc=#E3BC21 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_goldenrod_on_sw:"-ol -mc=#E3BC21 -bc=#E3BC21 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_goldenrod_below:"-l -mc=#E3BC21 -bc=#E3BC21 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{}
+
 property customDroplets : {} & Â
 	{light_matte_dark_logo:"-l -f -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png"} & Â
 	{dark_matte_light_logo:"-l -f -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & Â
@@ -120,22 +171,13 @@ property customDroplets : {} & Â
 	{dark_matte_light_logo_over:"-ol -g=southwest -f -mc=#383838 -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{dark_matte_dark_logo_over:"-ol -g=southwest -f -mc=#383838 -w=~/Pictures/watermarks/watermark_dark.png"} & Â
 	{} & Â
-	{logo_green_drop_frame:"-l -d -f -mc=#106330 -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_green_picture:"-l -p -mc=#106330 -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{} & Â
 	{text_light_academy:"-t -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
 	{text_light_frame_academy:"-t -f -mc=#ffffff -tc=#383838 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
 	{text_dark_academy:"-t -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
 	{text_dark_frame_academy:"-t -f -mc=#383838 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} & Â
-	{} & Â
-	{logo_frame_mauve_north:"-f -fc=#958898 -mc=#453848 -l -g=north -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_frame_mauve_south:"-f -fc=#958898 -mc=#453848 -l -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{logo_picture_mauve_south:"-p -bc=#958898 -mc=#453848 -l -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{text_frame_mauve_south:"-f -fc=#958898 -mc=#453848 -t -tc=#958898 -g=south"} & Â
-	{text_picture_mauve_south:"-p -bc=#958898 -mc=#453848 -t -tc=#958898 -g=south"} & Â
 	{}
 
-property styleDroplets : presetDroplets & customDroplets
+property styleDroplets : presetDroplets & colorDroplets & customDroplets
 
 
 -- get the list of style names
