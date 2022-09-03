@@ -156,6 +156,12 @@ property colorDroplets : {} & Â
 	{logo_chestnut_frame_below:"-f -l -mc=#583C2D -bc=#6D5447 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{logo_chestnut_below:"-l -mc=#583C2D -bc=#6D5447 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{logo_chestnut_on_sw:"-ol -mc=#583C2D -bc=#6D5447 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_autumn_picture_below:"-p -l -mc=#AE4B11 -bc=#8E4220 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_autumn_picture_on_sw:"-p -ol -mc=#AE4B11 -bc=#8E4220 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_autumn_frame_on_sw:"-f -ol -mc=#AE4B11 -bc=#8E4220 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_autumn_frame_below:"-f -l -mc=#AE4B11 -bc=#8E4220 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_autumn_below:"-l -mc=#AE4B11 -bc=#8E4220 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_autumn_on_sw:"-ol -mc=#AE4B11 -bc=#8E4220 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{logo_goldenrod_picture_on_sw:"-p -ol -bc=#EDD290 -mc=#DAA520 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{logo_goldenrod_frame_on_sw:"-f -ol -bc=#EDD290 -mc=#DAA520 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{logo_goldenrod_frame_below:"-f -l -bc=#EDD290 -mc=#DAA520 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
