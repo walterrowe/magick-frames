@@ -167,11 +167,23 @@ property colorDroplets : {} & Â
 	{logo_goldenrod_frame_below:"-f -l -bc=#EDD290 -mc=#DAA520 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{logo_goldenrod_on_sw:"-ol -bc=#EDD290 -mc=#DAA520 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
 	{logo_goldenrod_below:"-l -bc=#EDD290 -mc=#DAA520 -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{text_seashell_picture_on_south:"-p -ot -tc=#FFE5F3 -bc=#BFB8B3 -mc=#FFF5EE -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{text_seashell_frame_on_south:"-f -ot -tc=#FFE5F3 -bc=#BFB8B3 -mc=#FFF5EE -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{text_seashell_frame_below:"-f -t -tc=#807A77 -mc=#FFF5EE -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{text_seashell_on_south:"-ot -tc=#FFE5F3 -bc=#BFB8B3 -mc=#FFF5EE -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
-	{text_seashell_below:"-t -tc=#807A77-mc=#FFF5EE -g=south -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{text_seashell_picture_on_south:"-p -ot -tc=#FFE5F3 -bc=#BFB8B3 -mc=#FFF5EE -g=south"} & Â
+	{text_seashell_frame_on_south:"-f -ot -tc=#FFE5F3 -bc=#BFB8B3 -mc=#FFF5EE -g=south"} & Â
+	{text_seashell_frame_below:"-f -t -tc=#807A77 -mc=#FFF5EE -g=south"} & Â
+	{text_seashell_on_south:"-ot -tc=#FFE5F3 -bc=#BFB8B3 -mc=#FFF5EE -g=south"} & Â
+	{text_seashell_below:"-t -tc=#807A77 -mc=#FFF5EE -g=south"} & Â
+	{logo_babyblue_picture_on_sw:"-p -ol -bc=#BFB8B3 -mc=#B5C8D7 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_babyblue_picture_below:"-p -l -bc=#BFB8B3 -mc=#B5C8D7 -g=south -w=~/Pictures/watermarks/watermark_dark.png"} & Â
+	{logo_babyblue_frame_on_sw:"-f -ol -mc=#B5C8D7 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_babyblue_frame_below:"-f -l -mc=#B5C8D7 -g=south -w=~/Pictures/watermarks/watermark_dark.png"} & Â
+	{logo_babyblue_on_sw:"-ol -mc=#B5C8D7 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"} & Â
+	{logo_babyblue_below:"-l -mc=#B5C8D7 -g=south -w=~/Pictures/watermarks/watermark_dark.png"} & Â
+	{text_babyblue_picture_on_south:"-p -ot -tc=#FFE5F3 -bc=#BFB8B3 -mc=#B5C8D7 -g=south"} & Â
+	{text_babyblue_picture_below:"-p -t -tc=#434949 -mc=#B5C8D7 -g=south"} & Â
+	{text_babyblue_frame_on_south:"-f -ot -tc=#FFE5F3 -mc=#B5C8D7 -g=south"} & Â
+	{text_babyblue_frame_below:"-f -t -tc=#434949 -mc=#B5C8D7 -g=south"} & Â
+	{text_babyblue_on_south:"-ot -tc=#FFE5F3 -mc=#B5C8D7 -g=south"} & Â
+	{text_babyblue_below:"-t -tc=#434949 -mc=#B5C8D7 -g=south"} & Â
 	{}
 
 property customDroplets : {} & Â
