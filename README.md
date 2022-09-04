@@ -187,7 +187,6 @@ There are two ways to create the droplets for macOS.
 1. Open the CreateStyleDroplets AppleScript in Script Editor and run it.
 1. Choose the folder where you want the droplets and it creates one for every style.
 
-> &nbsp;
 > **Bonus Feature**
 >
 > When you use this EASY option one SPECIAL style droplet is also created called "**Style Chooser**".
@@ -195,7 +194,6 @@ There are two ways to create the droplets for macOS.
 > Double-click "Style Chooser" or drop images onto it and it presents a list of all the defined styles. Select multiple styles to easily decorate a set of pictures in multiple looks in one easy step.
 >
 > If you have added your own custom styles to the CreateStyleDroplets AppleScript, and recreated all the style droplets, then Style Chooser also includes your own custom styles.
-> &nbsp;
 
 Magick Frames includes a large number of style variation droplets. Use the Style Chooser with one of your pictures and select all of the styles. Using your example image you can delete any style droplets you want.
 
