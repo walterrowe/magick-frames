@@ -12,7 +12,7 @@ Watch this [2-minute introduction video](https://youtu.be/PkRCjbNo11M) to see ju
 
 Here are the many features you get with Magick Frames:
 
-- over 80 different style variations installed as macOS droplets for fast, easy use
+- over 140 different style variations installed as macOS droplets for fast, easy use
 - use the Style Chooser to apply multiple styles to selected images in a single action
 - easily craft your own custom styles with corresponding macOS style applets
 - all style applets are apps - drag-n-drop onto them, double-click them and choose
