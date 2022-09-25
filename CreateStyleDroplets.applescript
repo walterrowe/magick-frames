@@ -91,9 +91,9 @@ property presetDroplets : {} & Â
 	{text_light_picture:"-t -p -mc=#ffffff -tc=#333333"} & Â
 	{} & Â
 	{text_light_over:"-ot -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
-	{text_light_over_drop:"-ot -d -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
-	{text_light_over_frame:"-ot -f -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
-	{text_light_over_drop_frame:"-ot -d -f -mc=#ffffff -g=south -d -tc=#E0E0E0"} & Â
+	{text_light_over_drop:"-ot -d -mc=#ffffff -g=south -tc=#E0E0E0"} & Â
+	{text_light_over_frame:"-ot -f -mc=#ffffff -g=south -tc=#E0E0E0"} & Â
+	{text_light_over_drop_frame:"-ot -d -f -mc=#ffffff -g=south -tc=#E0E0E0"} & Â
 	{text_light_over_bevel:"-ot -b -mc=#ffffff -g=south -tc=#E0E0E0"} & Â
 	{text_light_over_picture:"-ot -p -mc=#ffffff -g=south -tc=#E0E0E0"} & Â
 	{} & Â
