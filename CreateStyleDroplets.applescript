@@ -78,10 +78,10 @@ property presetDroplets : {} & Â
 	{text_transparent_frame:"-t -f -mc=transparent -tc=#313131"} & Â
 	{text_transparent_drop_frame:"-t -d -f -mc=transparent -tc=#313131"} & Â
 	{} & Â
-	{text_transparent_over:"-ot -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
-	{text_transparent_over_drop:"-ot -d -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
-	{text_transparent_over_frame:"-ot -f -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
-	{text_transparent_over_drop_frame:"-ot -d -f -mc=transparent -g=south -d -tc=#E0E0E0"} & Â
+	{text_transparent_over:"-ot -mc=transparent -g=south -tc=#E0E0E0"} & Â
+	{text_transparent_over_drop:"-ot -d -mc=transparent -g=south -tc=#E0E0E0"} & Â
+	{text_transparent_over_frame:"-ot -f -mc=transparent -g=south -tc=#E0E0E0"} & Â
+	{text_transparent_over_drop_frame:"-ot -d -f -mc=transparent -g=south -tc=#E0E0E0"} & Â
 	{} & Â
 	{text_light:"-t -mc=#ffffff -tc=#313131"} & Â
 	{text_light_drop:"-t -d -mc=#ffffff -tc=#313131"} & Â
@@ -108,7 +108,7 @@ property presetDroplets : {} & Â
 	{text_dark_over_drop:"-ot -d -mc=#313131 -g=south -tc=#E0E0E0"} & Â
 	{text_dark_over_frame:"-ot -f -mc=#313131 -g=south -tc=#E0E0E0"} & Â
 	{text_dark_over_drop_frame:"-ot -d -f -mc=#313131 -g=south -tc=#E0E0E0"} & Â
-	{text_dark_over_bevel:"-ot -b -mc=#313131 -g=south -d -tc=#E0E0E0"} & Â
+	{text_dark_over_bevel:"-ot -b -mc=#313131 -g=south -tc=#E0E0E0"} & Â
 	{text_dark_over_picture:"-ot -p -mc=#313131 -g=south -tc=#E0E0E0"} & Â
 	{}
 
