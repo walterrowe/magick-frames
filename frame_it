@@ -386,6 +386,7 @@ for filename in "$@" ; do
 
     # scale padding, borders, shadow, logo placement
     if [ ${dropshadow} = false ]; then
+        padding="11x11"
         shaded_area=$(expr 25 \* ${file_wide} / ${scale_wide})
         shadow="100x${shaded_area}"
         offset="+0+0"
@@ -394,7 +395,8 @@ for filename in "$@" ; do
         # half of delta (30) between reference padded_high/wide w/ and w/o drop shadow (10 vs 40)
         label_shadow_shift="10"
     else
-        # shift drop shadow layer down and right by 20 pixels, pad left/top edges w/ 40/30 pixels
+        padding="0x0"
+        # shift drop shadow layer down and right by 25 pixels, extend left/top matte to equalize matte width
         shaded_area=$(expr 25 \* ${file_wide} / ${scale_wide})
         border_area=$(expr 2 \* ${shaded_area})
         shadow="100x${shaded_area}"
@@ -407,6 +409,7 @@ for filename in "$@" ; do
     # if adding bevel, don't add shadowbox or right border matte padding
     if [ $bevel != '0x0' ]; then
         bevel_frame="${shaded_area}x${shaded_area}"
+        padding="0x0"
         shadow="0x0"
         offset="+0+0"
         offset_border="0x0"
@@ -414,6 +417,7 @@ for filename in "$@" ; do
 
     if [ $picture = true ]; then
         # turn off shadowboxing and print frame
+        padding="0x0"
         bevel_frame="0x0"
         shadow="0x0"
         offset="+0+0"
@@ -462,14 +466,6 @@ for filename in "$@" ; do
                 logo_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
                 ;;
         esac
-    fi
-
-    # when frames are added without dropshadow we need to extend the matte
-    # to account for the matte width and extra black border the frame adds
-    if [ ${dropshadow} = false ] && [ ${frame} = true ]; then
-        padding="11x11"
-    else
-        padding="0x0"
     fi
 
     # decorate image file
