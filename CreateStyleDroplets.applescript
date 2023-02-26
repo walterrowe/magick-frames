@@ -376,56 +376,17 @@ end open
 
 -- create the frame_it commands and execute them
 on process_items(the_items, frame_it_options, styleName)
-	
 	repeat with this_item in the_items
-		
-		set item_info to info for this_item
-		
-		-- get the name of the current file we are processing
+		-- get the POSIX path of the current file we are processing
+		set this_path to quoted form of POSIX path of this_item
+		-- build the frame_it command line
+		set frame_it to "eval $(/usr/libexec/path_helper -s); frame_it " & frame_it_options & " -s=" & styleName & " " & this_path
+		-- run frame_it on the named file
 		try
-			set this_filename to name of item_info
-		on error
-			set this_filename to ""
+			do shell script frame_it
+		on error errStr number errorNumber
+			display dialog "Droplet ERROR: " & errStr & ": " & (errorNumber as text) & "on file " & this_filename
 		end try
-		
-		-- get the extension of the current file we are processing
-		try
-			set this_extension to name extension of item_info
-		on error
-			set this_extension to ""
-		end try
-		
-		-- get the type of the current file we are processing
-		try
-			set this_filetype to file type of item_info
-		on error
-			set this_filetype to ""
-		end try
-		
-		-- get the type ID of the current file we are processing
-		try
-			set this_typeID to type identifier of item_info
-		on error
-			set this_typeID to ""
-		end try
-		
-		-- only process if we support the image type
-		if ((this_filetype is in type_list) or (this_extension is in extension_list) or (this_typeID is in typeIDs_list)) then
-			
-			-- get the POSIX path of the current file we are processing
-			set this_path to quoted form of POSIX path of this_item
-			
-			-- build the frame_it command line
-			set frame_it to "eval $(/usr/libexec/path_helper -s); frame_it " & frame_it_options & " -s=" & styleName & " " & this_path
-			
-			-- run frame_it on the named file
-			try
-				do shell script frame_it
-			on error errStr number errorNumber
-				display dialog "Droplet ERROR: " & errStr & ": " & (errorNumber as text) & "on file " & this_filename
-			end try
-			
-		end if
 	end repeat
 end process_items
 
