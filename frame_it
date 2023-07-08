@@ -390,6 +390,7 @@ for filename in "$@" ; do
 
     # scale padding, borders, shadow, logo placement
     if [ ${dropshadow} = false ]; then
+        # settings for equal shadow around all edges of the image
         padding="11x11"
         shaded_area=$(expr 25 \* ${file_wide} / ${scale_wide})
         shadow="100x${shaded_area}"
@@ -399,6 +400,7 @@ for filename in "$@" ; do
         # half of delta (30) between reference padded_high/wide w/ and w/o drop shadow (10 vs 40)
         label_shadow_shift="10"
     else
+        # settings for bottom right drop shadow below the image
         padding="0x0"
         # shift drop shadow layer down and right by 25 pixels, extend left/top matte to equalize matte width
         shaded_area=$(expr 25 \* ${file_wide} / ${scale_wide})
@@ -419,6 +421,7 @@ for filename in "$@" ; do
         offset_border="0x0"
     fi
 
+    # picture frame settings
     if [ $picture = true ]; then
         # turn off shadowboxing and print frame
         padding="0x0"
@@ -454,7 +457,7 @@ for filename in "$@" ; do
         picturesurface="${scaled_picturesurf}x${scaled_picturesurf}"
     fi
 
-    # inset overlay logos from the nearest edge
+    # inset overlay logos from the nearest edge based on gravity
     if echo ${style} | egrep -q 'overlay'; then
         case ${logo_gravity} in
             center)
@@ -472,7 +475,7 @@ for filename in "$@" ; do
         esac
     fi
 
-    # decorate image file
+    # decorate the image file
     case ${style} in
         text)
             # text above and below need horizontal padding when placed at west/east corners
