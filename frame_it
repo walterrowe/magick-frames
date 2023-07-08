@@ -80,11 +80,11 @@
 #                             +----------------------------------------------------+
 #
 #                             +----------------------------------------------------+
-#                             | northwest            north               northeast |
+#                             | northwest(nw)        north           northeast(ne) |
 #                             |                                                    |
 #                             | west                 center                   east |
 #                             |                                                    |
-#                             | southwest            south               southeast |
+#                             | southwest(sw)        south           southeast(se) |
 #                             +----------------------------------------------------+
 ###
 
@@ -135,6 +135,10 @@ declare -A logo_gravity_opts=(
     [bottomleft]=southwest
     [bottom]=south
     [bottomright]=southeast
+    [nw]=northwest
+    [ne]=northeast
+    [sw]=southwest
+    [se]=southeast
 )
 
 # make an egrep expression for the keys and values
