@@ -2,6 +2,8 @@
 
 # Magick Frames
 
+**Donations**: if you like this tool and want to support me [buy me a coffee](buymeacoffee.com/walterrowe).
+
 Are you looking for a faster, easier way of give your photography that impressive, professional look for your website, social media, and clients? Look no further!
 
 Magick Frames makes it fast and easy to add an optional print border or matte bevel or matted wall frame, a 3-dimensional shadow, your own text or graphic logo, and a colorful or transparent matte around your photographs. Best of all, you get this with a single drag-n-drop.
