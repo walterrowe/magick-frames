@@ -2,7 +2,7 @@
 
 # Magick Frames
 
-**Donations**: if you like this tool and want to support me [buy me a coffee](buymeacoffee.com/walterrowe).
+**Donations**: if you like this utility and want to support me [buy me a coffee](https://buymeacoffee.com/walterrowe).
 
 Are you looking for a faster, easier way of give your photography that impressive, professional look for your website, social media, and clients? Look no further!
 
