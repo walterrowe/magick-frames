@@ -19,7 +19,9 @@
 
 *)
 
-use AppleScript version "2.7"
+property version : "5.0"
+
+use AppleScript version "2.8"
 use scripting additions
 use framework "Foundation"
 
@@ -268,13 +270,11 @@ on run
 	set createStyleDroplets to "CreateStyleDroplets"
 	
 	-- convert "path:to:me.app:" into "me" (apps are folders so note the trailing colon thus the -2 below)
-	set appPath to path to me as string
-	set appName to item -1 of splitText(appPath, ":")
-	if appName is "" then set appName to item -2 of splitText(appPath, ":")
-	set appBase to item 1 of splitText(appName, ".")
+	set appPath to path to me as string -- "path:to:me.app:" alias format
+	set appName to name
 	
 	-- if we are running as the name "CreateStyleDroplets", create a droplet for all the known styles
-	if appBase is createStyleDroplets then
+	if appName is createStyleDroplets then
 		createDroplets()
 	else
 		-- either run a style-named droplet or choose from list of styles
@@ -289,21 +289,17 @@ on run
 				end if
 			end repeat
 			
-			if formatting is 1 then
-				set styleNames to items 2 thru (count of styleNames) of styleNames
-			end if
-			if formatting is (count of styleNames) then
-				set styleNames to items 1 thru -2 of styleNames
-			end if
+			if formatting is 1 then set styleNames to items 2 thru (count of styleNames) of styleNames
+			if formatting is (count of styleNames) then set styleNames to items 1 thru -2 of styleNames
 			if formatting is greater than 1 and formatting is less than (count of styleNames) then
 				set styleNames to items 1 thru (formatting - 1) of styleNames & items (formatting + 1) thru (count of styleNames) of styleNames
 			end if
 		end if
 		
 		set styleList to {} as list
-		if styleNames contains appBase then
+		if styleNames contains appName then
 			-- if run as a style-named droplet, use that style name
-			set styleList to appBase as list
+			set styleList to appName as list
 		else
 			-- if run from Script Editor, choose from list of known styles
 			set styleList to choose from list styleNames with multiple selections allowed
@@ -328,10 +324,8 @@ on open dropped_items
 	set filler to "formatting"
 	
 	-- convert "path:to:me.app:" into "me" (note the trailing colon this -2 below)
-	set appPath to path to me as string
-	set appName to item -1 of splitText(appPath, ":")
-	if appName is "" then set appName to item -2 of splitText(appPath, ":")
-	set appBase to item 1 of splitText(appName, ".")
+	set appPath to path to me as string -- "path:to:me.app:" alias format
+	set appName to name
 	
 	-- either run a style-named droplet or choose from list of styles
 	set styleNames to get_styles(styleDroplets)
@@ -345,20 +339,16 @@ on open dropped_items
 			end if
 		end repeat
 		
-		if formatting is 1 then
-			set styleNames to items 2 thru (count of styleNames) of styleNames
-		end if
-		if formatting is (count of styleNames) then
-			set styleNames to items 1 thru -2 of styleNames
-		end if
+		if formatting is 1 then set styleNames to items 2 thru (count of styleNames) of styleNames
+		if formatting is (count of styleNames) then set styleNames to items 1 thru -2 of styleNames
 		if formatting is greater than 1 and formatting is less than (count of styleNames) then
 			set styleNames to items 1 thru (formatting - 1) of styleNames & items (formatting + 1) thru (count of styleNames) of styleNames
 		end if
 	end if
 	
-	if styleNames contains appBase then
+	if styleNames contains appName then
 		-- if run as a style-named droplet, use that style name
-		set styleList to appBase as list
+		set styleList to appName as list
 	else
 		-- if run from Script Editor, choose from list of known styles
 		set styleList to choose from list styleNames with multiple selections allowed
@@ -385,7 +375,7 @@ on process_items(the_items, frame_it_options, styleName)
 		try
 			do shell script frame_it
 		on error errStr number errorNumber
-			display dialog "Droplet ERROR: " & errStr & ": " & (errorNumber as text) & "on file " & this_filename
+			display dialog "Droplet ERROR: " & errStr & ": " & (errorNumber as text) & "on file " & POSIX path of this_item
 		end try
 	end repeat
 end process_items
@@ -406,25 +396,19 @@ on createDroplets()
 			end if
 		end repeat
 		
-		if formatting is 1 then
-			set styleNames to items 2 thru (count of styleNames) of styleNames
-		end if
-		if formatting is (count of styleNames) then
-			set styleNames to items 1 thru -2 of styleNames
-		end if
+		if formatting is 1 then set styleNames to items 2 thru (count of styleNames) of styleNames
+		if formatting is (count of styleNames) then set styleNames to items 1 thru -2 of styleNames
 		if formatting is greater than 1 and formatting is less than (count of styleNames) then
 			set styleNames to items 1 thru (formatting - 1) of styleNames & items (formatting + 1) thru (count of styleNames) of styleNames
 		end if
 	end if
 	
 	-- select the droplet folder and droplet script with Finder 
-	set dropletFolder to POSIX path of (choose folder with prompt "Select the folder for your Magick Frames droplets:")
-	set dropletChoice to choose file with prompt "Select the Magick Frames StyleDroplet script" default location POSIX path of (path to me)
-	set dropletSource to the POSIX path of dropletChoice
-	
-	set iconSource to splitText(dropletSource, "/") as list
-	set iconSource to items 1 thru -2 of iconSource
-	set iconSource to joinText(iconSource, "/") & "/droplet.icns"
+	tell application "Finder"
+		set dropletFolder to POSIX path of (choose folder with prompt "Select the folder for your Magick Frames droplets:")
+		set dropletSource to POSIX path of (path to me)
+		set iconSource to (POSIX path of ((folder of (path to me)) as string)) & "/droplet.icns"
+	end tell
 	
 	-- add unstyled droplet to list of droplet names
 	copy unStyledDroplet to the end of styleNames
@@ -468,11 +452,10 @@ on createDroplets()
 		set progress completed steps to dropletNum
 		
 	end repeat
-	display dialog "Created " & ((count of styleNames) as string) & " droplets in:
-
-" & dropletFolder
 	
 	-- tell the user how many droplets were created, where they were created, and their names
-	do shell script "open " & ("'" & dropletFolder & "'")
+	display dialog "Created " & ((count of styleNames) as string) & " droplets in:" & return & dropletFolder
+	-- open the droplet folder for the user
+	tell application "finder" to open (POSIX file dropletFolder as alias)
 	
 end createDroplets
