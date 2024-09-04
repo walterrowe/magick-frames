@@ -1,25 +1,37 @@
 (*
+	AUTHOR
 
-  Original: Walter Rowe in 2022
+	Author: Walter Rowe
+	Contact: walter@walterrowe.com
 
-  The droplets created from this AppleScript work like any other macOS app. You
-  can drag-n-drop onto them in Finder,  double-click them to choose files to decorate,
-  and as a named app in an export configuration in image editing tools.
+	Created: 25-Jul-2022
+	Updated: 04-Sep-2024
 
-  Modifying The Styles List:
-  * Look below for the property "styleDroplets" to create your own styles for droplets
-  * Read the frame_it shell script to see the options available for styling your images
-  * The included styles create NEW files with "-" and the style name inserted before
-   the extension.
-      * example: my-image.jpg -> my-image-logo_light.jpg
+	DESCRIPTION
 
-  Use the CreateStyleDroplets script to create droplets for all the included styles.
+	The droplets created from this AppleScript work like any other macOS app. You
+	can drag-n-drop onto them in Finder,  double-click them to choose files to decorate,
+	and as a named app in an export configuration in image editing tools.
 
-  See the README.md markdown file for detailed instructions on installation and use
+	Modifying The Styles List:
 
+	* Look below for the property "styleDroplets" to create your own styles for droplets
+	* Read the frame_it shell script to see the options available for styling your images
+	* The included styles create NEW files with "-" and style name appended to the name.
+		* example: my-image.jpg -> my-image-logo_light.jpg
+
+	Use the CreateStyleDroplets script to create droplets for all the included styles.
+
+	PREREQUISITES
+
+	See the README.md markdown file for detailed instructions on installation and use
+
+	1) install ImageMagick (install with homebrew)
+	2) copy the frame_it script to /usr/local/bin	
 *)
 
 property version : "5.0"
+
 
 use AppleScript version "2.8"
 use scripting additions
@@ -276,7 +288,9 @@ on run
 	-- if we are running as the name "CreateStyleDroplets", create a droplet for all the known styles
 	if appName is createStyleDroplets then
 		createDroplets()
-	else
+		return
+	end if
+
 		-- either run a style-named droplet or choose from list of styles
 		set styleNames to get_styles(styleDroplets)
 		set styleNames to sortList(styleNames)
@@ -316,7 +330,6 @@ on run
 				process_items(selected_items, frame_it_options, styleName)
 			end repeat
 		end if
-	end if
 end run
 
 -- "on open" processes items dropped onto it in Finder or sent to it via "open app with parameters"
