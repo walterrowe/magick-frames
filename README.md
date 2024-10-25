@@ -122,7 +122,7 @@ Open a Terminal window and copy/paste or type these commands:
 1. Install HomeBrew (this may ask for your password .. that is OK)
 
     ```shell
-    % /bin/bash -c "$(curl -fsSL https://raw githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    % /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     ```
 
 1. Install ImageMagick
