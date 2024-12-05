@@ -5,7 +5,7 @@
 	Contact: walter@walterrowe.com
 
 	Created: 25-Jul-2022
-	Updated: 04-Sep-2024
+	Updated: 04-Dec-2024
 
 	DESCRIPTION
 
@@ -30,7 +30,7 @@
 	2) copy the frame_it script to /usr/local/bin	
 *)
 
-property version : "5.0"
+property version : "6.0"
 
 
 use AppleScript version "2.8"
@@ -114,6 +114,44 @@ property presetDroplets : {Â
 	{styleName:"text_dark_over_picture", styleOptions:"-ot -p -mc=#313131 -g=south -tc=#E0E0E0"} Â
 		}
 
+property solidDroplets : {Â
+	{styleName:"solid_dark", styleOptions:"-so -oc=#313131 -ic=#ffffff -g=south -tc=#F0F0F0"}, Â
+	{styleName:"solid_dark_logo", styleOptions:"-sl -oc=#313131 -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_dark_darklogo_overlay", styleOptions:"-slo -oc=#222222 -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_dark_lightlogo_overlay", styleOptions:"-slo -oc=#222222 -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_dark_text", styleOptions:"-st -oc=#222222 -ic=#ffffff -g=south -tc=#F0F0F0"}, Â
+	{styleName:"solid_dark_darktext_over", styleOptions:"-sto -oc=#222222 -ic=#ffffff -g=south -tc=#222222"}, Â
+	{styleName:"solid_dark_lighttext_over", styleOptions:"-sto -oc=#222222 -ic=#ffffff -g=south -tc=#F0F0F0"}, Â
+	{styleName:"solid_light", styleOptions:"-so -oc=#ffffff -ic=#222222 -g=south "}, Â
+	{styleName:"solid_light_logo", styleOptions:"-sl -oc=#ffffff -ic=#222222 -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_light_darklogo_overlay", styleOptions:"-slo -oc=#ffffff -ic=#222222 -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_light_lightlogo_overlay", styleOptions:"-slo -oc=#ffffff -ic=#222222 -g=south -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_light_text", styleOptions:"-st -oc=#ffffff -ic=#222222 -g=south -tc=#222222"}, Â
+	{styleName:"solid_light_darktext_over", styleOptions:"-sto -oc=#ffffff -ic=#222222 -g=south -tc=#222222"}, Â
+	{styleName:"solid_light_lighttext_over", styleOptions:"-sto -oc=#ffffff -ic=#222222 -g=south -tc=#F0F0F0"}, Â
+	{styleName:"solid_pink", styleOptions:"-so -oc=#FBE7EC -ic=#ffffff -g=south"}, Â
+	{styleName:"solid_pink_logo", styleOptions:"-sl -oc=#FBE7EC -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_pink_darklogo_overlay", styleOptions:"-slo -oc=#FBE7EC -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_pink_lightlogo_overlay", styleOptions:"-slo -oc=#FBE7EC -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_pink_text", styleOptions:"-st -oc=#FBE7EC -ic=#ffffff -g=south -tc=#222222"}, Â
+	{styleName:"solid_pink_lighttext_over", styleOptions:"-sto -oc=#FBE7EC -ic=#ffffff -g=south -tc=#F0F0F0"}, Â
+	{styleName:"solid_pink_darktext_over", styleOptions:"-sto -oc=#FBE7EC -ic=#ffffff -g=south -tc=#222222"}, Â
+	{styleName:"solid_babyblue", styleOptions:"-so -oc=#B5C8D7 -ic=#222222 -g=south"}, Â
+	{styleName:"solid_babyblue_logo", styleOptions:"-sl -oc=#B5C8D7 -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_babyblue_darklogo_overlay", styleOptions:"-slo -oc=#B5C8D7 -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_babyblue_lightlogo_overlay", styleOptions:"-slo -oc=#B5C8D7 -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_babyblue_text", styleOptions:"-st -oc=#B5C8D7 -ic=#ffffff -g=south -tc=#222222"}, Â
+	{styleName:"solid_babyblue_darktext_over", styleOptions:"-sto -oc=#B5C8D7 -ic=#ffffff -g=south -tc=#222222"}, Â
+	{styleName:"solid_babyblue_lighttext_over", styleOptions:"-sto -oc=#B5C8D7 -ic=#ffffff -g=south -tc=#F0F0F0"}, Â
+	{styleName:"solid_teal", styleOptions:"-so -oc=#17342E -ic=#ffffff -g=south"}, Â
+	{styleName:"solid_teal_logo", styleOptions:"-sl -oc=#17342E -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_teal_darklogo_overlay", styleOptions:"-slo -oc=#17342E -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_teal_lightlogo_overlay", styleOptions:"-slo -oc=#17342E -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_teal_text", styleOptions:"-st -oc=#17342E -ic=#ffffff -g=south -tc=#F0F0F0"}, Â
+	{styleName:"solid_teal_darktext_over", styleOptions:"-sto -oc=#17342E -ic=#ffffff -g=south -tc=#222222"}, Â
+	{styleName:"solid_teal_lighttext_over", styleOptions:"-sto -oc=#17342E -ic=#ffffff -g=south -tc=#F0F0F0"} Â
+		}
+
 property colorDroplets : {Â
 	{styleName:"logo_green_drop_frame", styleOptions:"-l -d -f -mc=#106043 -w=~/Pictures/watermarks/watermark_light.png"}, Â
 	{styleName:"logo_green_picture", styleOptions:"-l -p -mc=#106043 -bc=#106043 -w=~/Pictures/watermarks/watermark_light.png"}, Â
@@ -140,6 +178,12 @@ property colorDroplets : {Â
 	{styleName:"logo_pink_frame_below", styleOptions:"-f -l -bc=#FBE7EC -mc=#FBE7EC -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
 	{styleName:"logo_pink_picture_on_sw", styleOptions:"-p -ol -bc=#FBE7EC -mc=#FBE7EC -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
 	{styleName:"logo_pink_picture_below", styleOptions:"-p -l -bc=#FBE7EC -mc=#FBE7EC -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"text_pink_on_sw", styleOptions:"-ot -bc=#FBE7EC -mc=#FBE7EC -g=southwest -tc=#e0e0e0"}, Â
+	{styleName:"text_pink_below", styleOptions:"-t -bc=#FBE7EC -mc=#FBE7EC -g=south -tc=#222222"}, Â
+	{styleName:"text_pink_frame_on_sw", styleOptions:"-f -ot -bc=#FBE7EC -mc=#FBE7EC -g=southwest -tc=#e0e0e0"}, Â
+	{styleName:"text_pink_frame_below", styleOptions:"-f -t -bc=#FBE7EC -mc=#FBE7EC -g=south -tc=#222222"}, Â
+	{styleName:"text_pink_picture_on_sw", styleOptions:"-p -ot -bc=#FBE7EC -mc=#FBE7EC -g=southwest -tc=#e0e0e0"}, Â
+	{styleName:"text_pink_picture_below", styleOptions:"-p -t -bc=#FBE7EC -mc=#FBE7EC -g=south -tc=#222222"}, Â
 	{styleName:"logo_blue_on_sw", styleOptions:"-ol -bc=#7194AE -mc=#DCEDF7 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
 	{styleName:"logo_blue_below", styleOptions:"-l -bc=#7194AE -mc=#DCEDF7 -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
 	{styleName:"logo_blue_frame_on_sw", styleOptions:"-f -ol -bc=#7194AE -mc=#DCEDF7 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
@@ -201,7 +245,7 @@ property customDroplets : {Â
 	{styleName:"text_dark_frame_academy", styleOptions:"-t -f -mc=#313131 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} Â
 		}
 
-property styleDroplets : presetDroplets & colorDroplets & customDroplets
+property styleDroplets : presetDroplets & solidDroplets & colorDroplets & customDroplets
 
 
 -- get the list of style names
