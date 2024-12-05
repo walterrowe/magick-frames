@@ -26,6 +26,16 @@
 #
 # -ol | --overlaylogo       specifies to place an image-based logo inside the image
 #
+# -so | --solid             specifies a plain solid border style without any watermark
+#
+# -sl | --solid_logo         specifies a plain solid border with logo watermark underneath
+#
+# -slo | --solid_logo_overlay   specifies a plain solid border with logo watermark overlayed on image
+#
+# -st | --solid_text         specifies a plain solid border with text watermark underneath
+#
+# -sto | --solid_text_overlay   specifies a plain solid border with text watermark overlayed on image
+#
 # -f | --frame              add a picture frame around the sides of the image
 #                           this disables bevel and enables shadowboxing (default no frame)
 #
@@ -44,8 +54,14 @@
 # -fc=color |               specifies the color of the inner picture frame (default white)
 # --framecolor=color
 #
+# -ic=color |               specifies the color of the inner solid border (default #000000)
+# --innercolor=color
+#
 # -mc=color |               specifies the color of the matte background (default white)
 # --mattecolor=color
+#
+# -oc=color |               specifies the color of the outer solid border (default #ffffff)
+# --outercolor=color
 #
 # -pc=color |               specifies the color of the wall picture frame (default #0a0a0a)
 # --picturecolor=color
@@ -59,9 +75,9 @@
 # -tf=font |                specify the font to use for the two-row label text logo
 # --textfont=font
 #
-# -a=ratio |                specify the desired aspect ratio of the final output file
-# --aspect=ratio            in x:y ratio format (eg. -a=3:2, -a=1:1). some social media
-#                           sites prefer specific aspect ratios for best display.
+# -a=ratio |                specify the desired aspect ratio of the final output file in
+# --aspect=ratio            width:height format (eg. -a=3:2, -a=4:5 -a=1:1). some social
+#                           media sites prefer specific aspect ratios for best display.
 #
 # -w=your_logo |            specifies the image-based logo to use as the watermark that
 # --watermark=your_logo     that is placed below or inside the image.
@@ -125,7 +141,7 @@ usage()
 
 # allow specifying logo placement by common terms or imagemagick terms
 # e.g. a person can specify --bottom or --south and it is translated to -gravity south
-declare -A logo_gravity_opts=(
+declare -A gravity_opts=(
     [topleft]=northwest
     [top]=north
     [topright]=northeast
@@ -141,9 +157,9 @@ declare -A logo_gravity_opts=(
     [se]=southeast
 )
 
-# make an egrep expression for the keys and values
-logo_gravity_keys=$(echo ${(k)logo_gravity_opts} | sed -e 's; ;|;g')
-logo_gravity_vals=$(echo ${(v)logo_gravity_opts} | sed -e 's; ;|;g')
+# make egrep regex-es from the gravity options keys and values
+gravity_keys=$(echo ${(k)gravity_opts} | sed -e 's; ;|;g')
+gravity_vals=$(echo ${(v)gravity_opts} | sed -e 's; ;|;g')
 
 
 # get name of script
@@ -177,14 +193,16 @@ dropshadow='false'
 shadowcolor='black'
 inner='0'
 outer='0'
-logo_gravity='south'
+gravity='south'
 mattecolor='white'
 mattewidth='0x0'
-textcolor='#383838'
+textcolor='#222222'
 overlaytextcolor='#E0E0E0'
 textfont='Copperplate'
 aspect='false'
 aspectratio='0'                     # zero means no change to aspect ratio
+innercolor='#ffffff'
+outercolor='#000000'
 
 # process command line options
 for opt in "$@"; do
@@ -217,6 +235,26 @@ for opt in "$@"; do
             ;;
         -ol|--overlaylogo)
             style='overlay_logo'
+            shift
+            ;;
+        -so|--solid)
+            style='solid'
+            shift
+            ;;
+        -sl|--solid_logo)
+            style='solid_logo'
+            shift
+            ;;
+        -slo|--solid_logo_overlay)
+            style='solid_logo_overlay'
+            shift
+            ;;
+        -st|--solid_text)
+            style='solid_text'
+            shift
+            ;;
+        -sto|--solid_text_overlay)
+            style='solid_text_overlay'
             shift
             ;;
         -f|--frame)
@@ -253,9 +291,19 @@ for opt in "$@"; do
             framecolor="${opt}"
             shift
             ;;
+        -ic=*|--innercolor=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            innercolor="${opt}"
+            shift
+            ;;
         -mc=*|--mattecolor=*)
             opt=$(echo ${opt} | cut -d= -f2)
             mattecolor="${opt}"
+            shift
+            ;;
+        -oc=*|--outercolor=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            outercolor="${opt}"
             shift
             ;;
         -pc=*|--picturecolor=*)
@@ -299,18 +347,18 @@ for opt in "$@"; do
         -g=*|--gravity=*)
             opt=$(echo ${opt} | cut -d= -f2)
             # validate gravity location
-            echo ${opt} | egrep -wq "${logo_gravity_keys}|${logo_gravity_vals}"
+            echo ${opt} | egrep -wq "${gravity_keys}|${gravity_vals}"
             if [ $? -ne 0 ]; then
                 usage invalid gravity placement \'${opt}\' specified
                 exit 1
             fi
-            echo ${opt} | egrep -wq "${logo_gravity_keys}"
+            echo ${opt} | egrep -wq "${gravity_keys}"
             if [ $? -eq 0 ]; then
                 # gravity specified as top, bottomleft, etc
-                logo_gravity="${logo_gravity_opts[${opt}]}"
+                gravity="${gravity_opts[${opt}]}"
             else
                 # gravity specified as north, southwest, etc
-                logo_gravity=${opt}
+                gravity=${opt}
             fi
             shift
             ;;
@@ -359,56 +407,53 @@ for filename in "$@" ; do
     file_wide=$(identify -format %w "${source}")
     file_high=$(identify -format %h "${source}")
 
-
-    # defaults based on 3000wx2400h source and 900wx250h logo
+    # defaults based on 3000wx2000h source and 900wx250h logo
     #   - no dropshadow w/ 100% opacity and 25-pixel feather
     #   - pad left/top edges w/ 10 pixels
     #   - center so equal shadow on all edges
 
-    # convert 5x4 aspect ratio scaling to file's aspect ratio
+    # convert 3000:2000, 2000:3000, or 3000:3000 reference ratios to file's actual ratio
     if [ ${file_wide} -gt ${file_high} ]; then
-        scale_wide=$(expr 3000 \* ${file_wide} / ${file_high})
-        scale_high=$(expr 2400 \* ${file_wide} / ${file_high})
-    fi
-    if [ ${file_high} -gt ${file_wide} ]; then
-        scale_wide=$(expr 2400 \* ${file_high} / ${file_wide})
-        scale_high=$(expr 3000 \* ${file_high} / ${file_wide})
-    fi
-    if [ ${file_high} -eq ${file_wide} ]; then
-        scale_wide=$(expr 3000 \* ${file_high} / ${file_wide})
-        scale_high=$(expr 3000 \* ${file_high} / ${file_wide})
+        scale_wide=$((3000 * ${file_wide} / ${file_high}))
+        scale_high=$((2000 * ${file_wide} / ${file_high}))
+    elif [ ${file_high} -gt ${file_wide} ]; then
+        scale_wide=$((2000 * ${file_high} / ${file_wide}))
+        scale_high=$((3000 * ${file_high} / ${file_wide}))
+    else
+        scale_wide=$((3000 * ${file_high} / ${file_wide}))
+        scale_high=$((3000 * ${file_high} / ${file_wide}))
     fi
 
-    # scale label (60% width of image looks good)
-    label_width=$(expr $file_wide \* 3 / 5)
+    # scale label (40% width of image looks good)
+    label_width=$(($file_wide * 2 / 5))
 
     # scale logo for other images sizes
     logo_wide=$(identify -format %w "${watermark}")
     logo_high=$(identify -format %h "${watermark}")
-    scaled_logo_wide=$(expr ${logo_wide} \* ${file_wide} / ${scale_wide})
-    scaled_logo_high=$(expr ${logo_high} \* ${file_high} / ${scale_high})
+    scaled_logo_wide=$((${logo_wide} * ${file_wide} / ${scale_wide}))
+    scaled_logo_high=$((${logo_high} * ${file_high} / ${scale_high}))
 
     # scale padding, borders, shadow, logo placement
     if [ ${dropshadow} = false ]; then
         # settings for equal shadow around all edges of the image
         padding="11x11"
-        shaded_area=$(expr 25 \* ${file_wide} / ${scale_wide})
+        shaded_area=$((25 * ${file_wide} / ${scale_wide}))
         shadow="100x${shaded_area}"
         offset="+0+0"
         offset_border="0x0"
-        scaled_logo_lift=$(expr 30 \* ${file_high} / ${scale_high})
+        logo_inset=$((30 * ${file_high} / ${scale_high}))
         # half of delta (30) between reference padded_high/wide w/ and w/o drop shadow (10 vs 40)
         label_shadow_shift="10"
     else
         # settings for bottom right drop shadow below the image
         padding="0x0"
         # shift drop shadow layer down and right by 25 pixels, extend left/top matte to equalize matte width
-        shaded_area=$(expr 25 \* ${file_wide} / ${scale_wide})
-        border_area=$(expr 2 \* ${shaded_area})
+        shaded_area=$((25 * ${file_wide} / ${scale_wide}))
+        border_area=$((2 * ${shaded_area}))
         shadow="100x${shaded_area}"
         offset="+${shaded_area}+${shaded_area}"
         offset_border="${border_area}x${border_area}"
-        scaled_logo_lift=$(expr 30 \* ${file_high} / ${scale_high})
+        scaled_logo_lift=$((30 * ${file_high} / ${scale_high}))
         label_shadow_shift="30"
     fi
 
@@ -434,15 +479,15 @@ for filename in "$@" ; do
         frame='false'
 
         # calculate scaled value for inside bevel
-        scaled_innerbevel1=$(expr 18 \* ${file_wide} / ${scale_wide})
-        scaled_innerbevel2=$(expr ${scaled_innerbevel1} - 2)
+        scaled_innerbevel1=$((18 * ${file_wide} / ${scale_wide}))
+        scaled_innerbevel2=$((${scaled_innerbevel1} - 2))
         # calculate scaled value for wall frame bevel
-        scaled_picturebev1=$(expr 8 \* ${file_wide} / ${scale_wide})
-        scaled_picturebev2=$(expr ${scaled_picturebev1} - 2)
+        scaled_picturebev1=$((8 * ${file_wide} / ${scale_wide}))
+        scaled_picturebev2=$((${scaled_picturebev1} - 2))
         # calculate scaled value for wall frame surface
-        scaled_picturesurf=$(expr 75 \* ${file_wide} / ${scale_wide})
+        scaled_picturesurf=$((75 * ${file_wide} / ${scale_wide}))
         # calculate scaled value for matte width between image bevel and wall frame
-        scaled_mattewidth=$(expr 300 \* ${file_wide} / ${scale_wide})
+        scaled_mattewidth=$((300 * ${file_wide} / ${scale_wide}))
 
         # set scaled inner bevel
         bevel="${scaled_innerbevel1}x${scaled_innerbevel1}+0+${scaled_innerbevel2}"
@@ -457,9 +502,23 @@ for filename in "$@" ; do
         picturesurface="${scaled_picturesurf}x${scaled_picturesurf}"
     fi
 
+    # solid border styles have inner and outer borders (outer border = 1.5% of longest edge)
+    if echo ${style} | egrep -q 'solid'; then
+        inner=2
+        if [ ${file_high} -gt ${file_wide} ]; then
+            outer=$((${file_high} * 3 / 200))
+            # calculate scaled_logo_lift and overlayed logo / text inset based on half of outer border width
+            scaled_logo_lift=$((${outer} / 2 * ${file_high} / ${scale_high}))
+        else
+            outer=$((${file_wide} * 3 / 200))
+            # calculate scaled_logo_lift and overlayed logo / text inset based on half of outer border width
+            scaled_logo_lift=$((${outer} / 2 * ${file_wide} / ${scale_wide}))
+        fi
+    fi
+
     # inset overlay logos from the nearest edge based on gravity
     if echo ${style} | egrep -q 'overlay'; then
-        case ${logo_gravity} in
+        case ${gravity} in
             center)
                 logo_inset="+0+0"
                 ;;
@@ -477,18 +536,10 @@ for filename in "$@" ; do
 
     # decorate the image file
     case ${style} in
+        # text decorated border with text watermark outside the image
         text)
-            # text above and below need horizontal padding when placed at west/east corners
-            label_padding=0
-            if echo ${logo_gravity} | egrep -q 'east|west' && test ${picture} = false ; then
-                label_padding=$(expr 20 + ${inner} + ${outer} + ${shaded_area} + ${label_shadow_shift})
-            fi
-            if echo ${logo_gravity} | egrep -q 'east|west' && test ${picture} = true ; then
-                label_padding=$(expr 20 + ${inner} + ${outer} + ${shaded_area} + ${label_shadow_shift} - ${scaled_innerbevel1})
-            fi
-
             # use "+swap" to swap layer order before layer merge when placing text above the image
-            if echo ${logo_gravity} | egrep -q 'north' ; then
+            if echo ${gravity} | egrep -q 'north' ; then
                 swap="+swap"
             else
                 swap=""
@@ -503,7 +554,7 @@ for filename in "$@" ; do
                 +swap -background ${mattecolor} -layers merge +repage \
                 -gravity northwest -background ${mattecolor} -splice ${offset_border} \
                 -mattecolor ${mattecolor} -frame ${padding} \
-                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -size ${label_width}x -gravity ${logo_gravity} label:"${label1}\n${label2}" \
+                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -size ${label_width}x -gravity ${gravity} label:"${label1}\n${label2}" \
                    -append \) \
                 ${swap} -append -layers merge +repage \
                 -bordercolor ${mattecolor} -border 20x20 \
@@ -513,10 +564,11 @@ for filename in "$@" ; do
                 -format ${filetype} "${target}"
             ;;
 
+        # overlay_text decorated border with text watermark overlaid on the image
         overlay_text)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -size ${label_width} -gravity ${logo_gravity} label:"${label1}\n${label2}" -geometry ${logo_inset} -composite \
+                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -size ${label_width} -gravity ${gravity} label:"${label1}\n${label2}" -geometry ${logo_inset} -composite \
                 -mattecolor "${bevelcolor}" -frame ${bevel} \
                 -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
                 \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
@@ -530,6 +582,7 @@ for filename in "$@" ; do
                 -format ${filetype} "${target}"
             ;;
 
+        # logo decorated border with logo watermark outside the image
         logo)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
@@ -538,8 +591,8 @@ for filename in "$@" ; do
                 \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
                 +swap -background ${mattecolor} -layers merge +repage \
                 -gravity northwest -background ${mattecolor} -splice ${offset_border} \
-                -gravity ${logo_gravity} -background ${mattecolor} -splice 0x${scaled_logo_high} \
-                \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry +0+${scaled_logo_lift} \) -composite \
+                -gravity ${gravity} -background ${mattecolor} -splice 0x${scaled_logo_high} \
+                \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${gravity} -geometry +0+${scaled_logo_lift} \) -composite \
                 -mattecolor ${mattecolor} -frame ${padding} \
                 -mattecolor ${mattecolor} -frame 20x20 \
                 -mattecolor ${mattecolor} -frame ${bevel_frame} \
@@ -548,10 +601,11 @@ for filename in "$@" ; do
                 -format ${filetype} "${target}"
             ;;
 
+        # overlay_logo decorated border with logo watermark overlaid on the image
         overlay_logo)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-                \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${logo_gravity} -geometry ${logo_inset} \) -composite \
+                \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${gravity} -geometry ${logo_inset} \) -composite \
                 -mattecolor "${bevelcolor}" -frame ${bevel} \
                 -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
                 \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
@@ -563,6 +617,66 @@ for filename in "$@" ; do
                 -background ${mattecolor} -gravity center -extent "${aspectratio}#" \
                 -mattecolor ${mattecolor} -frame ${mattewidth} -mattecolor '#6b6b6b' -frame ${picturebevelinner} -mattecolor ${picturecolor} -frame ${picturesurface} -mattecolor '#333333' -frame ${picturebevelouter} \
                 -format ${filetype} "${target}"
+            ;;
+
+        # solid is a plain inner/outer border with NO WATERMARK
+        solid)
+            # convert source file into decorated target file
+            magick "${source}" -auto-orient \
+            -mattecolor ${innercolor} -frame ${inner}x${inner} -mattecolor ${outercolor} -frame ${outer}x${outer} \
+            -background ${outercolor} -gravity center -extent "${aspectratio}#" \
+            -format ${filetype} "${target}"
+            ;;
+
+        # solid is a plain inner/outer border with logo watermark outside the image
+        solid_logo)
+            # convert source file into decorated target file
+            magick "${source}" -auto-orient \
+            -mattecolor ${innercolor} -frame ${inner}x${inner} -mattecolor ${outercolor} -frame 0x$((${outer} / 2)) \
+            -gravity ${gravity} -background ${outercolor} -splice 0x${scaled_logo_high} \
+            \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${gravity} -geometry +0+${scaled_logo_lift} \) -composite \
+            -mattecolor ${outercolor} -frame ${outer}x$((${outer} / 2)) \
+            -background ${outercolor} -gravity center -extent "${aspectratio}#" \
+            -format ${filetype} "${target}"
+            ;;
+
+        # solid is a plain inner/outer border with logo watermark overlaid on the image
+        solid_logo_overlay)
+            # convert source file into decorated target file
+            magick "${source}" -auto-orient \
+            \( ${watermark} -resize ${scaled_logo_wide}x${scaled_logo_high}\> -gravity ${gravity} -geometry ${logo_inset} \) -composite \
+            -mattecolor ${innercolor} -frame ${inner}x${inner} -mattecolor ${outercolor} -frame ${outer}x${outer} \
+            -background ${outercolor} -gravity center -extent "${aspectratio}#" \
+            -format ${filetype} "${target}"
+            ;;
+
+        # solid is a plain inner/outer border with text watermark outside the image
+        solid_text)
+            # use "+swap" to swap layer order before layer merge when placing text above the image
+            if echo ${gravity} | egrep -q 'north' ; then
+                swap="+swap"
+            else
+                swap=""
+            fi
+
+            # convert source file into decorated target file
+            magick "${source}" -auto-orient \
+            -mattecolor ${innercolor} -frame ${inner}x${inner} -mattecolor ${outercolor} -frame 0x$((${outer} / 2)) \
+            \( -background ${outercolor} -fill "${textcolor}" -font "${textfont}" -size ${label_width}x -gravity ${gravity} label:"${label1}\n${label2}" -append \) \
+            ${swap} -append -layers merge +repage \
+            -mattecolor ${outercolor} -frame ${outer}x$((${outer} / 2)) \
+            -background ${outercolor} -gravity center -extent "${aspectratio}#" \
+            -format ${filetype} "${target}"
+            ;;
+
+        # solid is a plain inner/outer border with text watermark overlaid on the image
+        solid_text_overlay)
+            # convert source file into decorated target file
+            magick "${source}" -auto-orient \
+            -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -size ${label_width} -gravity ${gravity} label:"${label1}\n${label2}" -geometry ${logo_inset} -composite \
+            -mattecolor ${innercolor} -frame ${inner}x${inner} -mattecolor ${outercolor} -frame ${outer}x${outer} \
+            -background ${outercolor} -gravity center -extent "${aspectratio}#" \
+            -format ${filetype} "${target}"
             ;;
 
     esac
