@@ -27,8 +27,6 @@ Select your photographs, drop them onto your preferred style applet, and move on
 
 Watch this [2-minute introduction video](https://youtu.be/PkRCjbNo11M) to see just how easy it is to use Magick Frames.
 
-If you are adventurous you can omit any or all of the styles provided and design your own.
-
 You can download and set up Magick Frames in 5-10 minutes.
 
 # December 2024 Update
@@ -130,6 +128,8 @@ You are now ready to upgrade.
 You should now be upgraded to the latest version.
 
 # Installation and Configuration
+
+Installation will ask you to select a folder where you want the included styles installed. After they are installed you can delete any styles you don't want by dragging them into the macOS Trash.
 
 First you have to download Magick Frames to your computer.
 
