@@ -31,6 +31,21 @@ If you are adventurous you can omit any or all of the styles provided and design
 
 You can download and set up Magick Frames in 5-10 minutes.
 
+# December 2024 Update
+
+The following new options add solid border styles.
+
+The width of the solid border will be 1.5 percent in pixels of the length of the longest edge of the picture (ie. a 3000px long edge will have a 45px border). The interior pin-stripe will be 2 pixels wide. If a watermark is added to a solid border then the border on the watermarked edge will be extended to include the watermark.
+
+- (NEW) Option ` -so ` applies a plain solid border with pin-stripe between picture and border
+- (NEW) Option ` -sl ` places an image-based watermark to the plain solid border
+- (NEW) Option ` -st ` places an text-based watermark to the plain solid border
+- (NEW) Option ` -slo ` places an image-based watermark on an inside edge of the picture
+- (NEW) Option ` -sto ` places an text-based watermark on an inside edge of the picture
+- (NEW) Option ` -ic ` specifies the color of the interior pin-stripe for solid borders
+- (NEW) Option ` -oc ` specifies the color of the exterior border for solid borders
+- (CHANGE) Add new styles in the property lists in CreateStyleDroplets.
+
 ## Examples
 
 - (NEW) Solid frame and interior pin-stripe without any watermark
@@ -95,21 +110,6 @@ If you want to make a donation to support Magick Frames, you can [Buy Me A Coffe
 - You will have to run an AppleScript to create the built-in style droplets.
 
 If these are unfamiliar terms, use my [Buy Me A Coffee](https://buymeacoffee.com/walterrowe/extras) 1-on-1 support page to set up a one-on-one video call. You will be using Magick Frames in no time.
-
-# December 2024 Update
-
-The following new options add solid border styles.
-
-The width of the solid border will be 1.5 percent in pixels of the length of the longest edge of the picture (ie. a 3000px long edge will have a 45px border). The interior pin-stripe will be 2 pixels wide. If a watermark is added to a solid border then the border on the watermarked edge will be extended to include the watermark.
-
-- (NEW) Option ` -so ` applies a plain solid border with pin-stripe between picture and border
-- (NEW) Option ` -sl ` places an image-based watermark to the plain solid border
-- (NEW) Option ` -st ` places an text-based watermark to the plain solid border
-- (NEW) Option ` -slo ` places an image-based watermark on an inside edge of the picture
-- (NEW) Option ` -sto ` places an text-based watermark on an inside edge of the picture
-- (NEW) Option ` -ic ` specifies the color of the interior pin-stripe for solid borders
-- (NEW) Option ` -oc ` specifies the color of the exterior border for solid borders
-- (CHANGE) Add new styles in the property lists in CreateStyleDroplets.
 
 # Upgrading Magick Frames
 
