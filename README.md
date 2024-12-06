@@ -9,19 +9,19 @@ Are you looking for a faster, easier way of give your photographs that polished,
 Magick Frames makes it fast and easy to apply various styles of elegant borders from clean and simple to 3-dimensional shadowed borders and frames to a beautiful picture frame:
 
 - (NEW) Plain solid borders have an internal pin-stripe that separates border from picture
-- Matted borders have a shadow on all edges, a drop shado, or a beveled inside matte edge
-- Picture frames include an outer "frame", matte, and internel beveled edge
+- Matted borders have a shadow on all edges, a drop shadow, or a beveled inside matte edge
+- Picture frames have an outer "frame", a matte, and an interior beveled edge around your picture
 - Matted borders can also be transparent for multi-purpose use
 
 You also have multiple options for applying watermarks:
 
-- (NEW) Plain solid borders can be added with no watermark
-- You can apply a text- or image-based watermark
-- You can place the watermark on the matte outside the picture, or on the picture itself
+- (NEW) Plain solid borders can be added with and without watermarks
+- You can apply a text- or image-based watermark in all the styles
+- You can place watermark on the matte surrounding the picture, or on the picture itself
 - Watermarks on the matte can appear above or below the picture, and be left, center, or right justified
-- Watermarks on the picture can appear inside the top or bottom edge, and be left, center, or right justified
+- Watermarks on the picture can appear in the center, against any edge, and be left, center, or right justified
 
-Best of all, I get you started with nearly 200 predefined looks accessed right from macOS Finder with an easy double-click or drag-n-drop.
+Best of all, Magick Frames comes with over 180 predefined looks you can access right from macOS Finder by double-clicking them or drag-n-dropping pictures onto them.
 
 Select your photographs, drop them onto your preferred style applet, and move on to other tasks. Magick Frames will style your photographs and place the decorated versions as new files in the same folder as the files you selected. Each style applet adds its style name to the output filename. This makes it easy to identify what style was used. You can create as many different styled looks as you want for any image, each with their own output file, and always have access to your original file.
 
@@ -30,6 +30,40 @@ Watch this [2-minute introduction video](https://youtu.be/PkRCjbNo11M) to see ju
 If you are adventurous you can omit any or all of the styles provided and design your own.
 
 You can download and set up Magick Frames in 5-10 minutes.
+
+## Examples
+
+- Beveled matte frame with image watermark placed on southwest corner of the image
+
+    <img bordercolor=#aaaaaa border=2px width=500px src=assets/bevel-overlay.jpg>
+
+- Shadowed frame with image watermark placed above the picture
+
+    <img bordercolor=#aaaaaa border=2px width=500px src=assets/logo-above.jpg>
+
+- Shadowed frame with image watermark placed in southeast corner below the image
+
+    <img bordercolor=#aaaaaa border=2px width=500px src=assets/logo-southeast.jpg>
+
+- Beveled matte frame with image watermark placed above the picture and aspect ratio 1:1 (square)
+
+    <img bordercolor=#aaaaaa border=2px width=500px src=assets/square-above.jpg>
+
+- Beveled matte frame with text watermark placed below the picture and aspect ratio 1:1 (square)
+
+    <img bordercolor=#aaaaaa border=2px width=500px src=assets/square-text.jpg>
+
+- Picture frame and beveled matte with image watermark placed below the picture
+
+    <img bordercolor=#aaaaaa border=2px width=500px src=assets/logo_light_picture.jpg>
+
+- Solid frame and interior pin-stripe with text watermark justified bottom left on the picture
+
+    <img bordercolor=#aaaaaa border=2px width=500px src=assets/WPR-20050521-0305-solid_teal_darktext_over.jpg>
+
+- Solid frame and interior pin-stripe with image watermark centered below the picture
+
+    <img bordercolor=#aaaaaa border=2px width=500px src=assets/WPR-20050521-0305-solid_teal_logo.jpg>
 
 # Copyrights and Terms of Use
 
@@ -58,9 +92,11 @@ If you want to make a donation to support Magick Frames, you can [Buy Me A Coffe
 
 If these are unfamiliar terms, use my [Buy Me A Coffee](https://buymeacoffee.com/walterrowe/extras) 1-on-1 support page to set up a one-on-one video call. You will be using Magick Frames in no time.
 
-# December 2024 Updates
+# December 2024 Update
 
-The following options support the new solid border style choices.
+The following new options add solid border styles.
+
+The width of the solid border will be 1.5 percent in pixels of the length of the longest edge of the picture (ie. a 3000px long edge will have a 45px border). The interior pin-stripe will be 2 pixels wide. If a watermark is added to a solid border then the border on the watermarked edge will be extended to include the watermark.
 
 - (NEW) Option ` -so ` applies a plain solid border with pin-stripe between picture and border
 - (NEW) Option ` -sl ` places an image-based watermark to the plain solid border
@@ -163,13 +199,6 @@ After installing ImageMagick and copying your edited "frame\_it" to /usr/local/b
 
 You should see a new file in your Desktop Finder window called ` my-image-framed.jpg `. This confirms everything is working and you can skip to Create The Style Droplets.
 
-If the "frame\_it"script says it cannot find the ` identify ` or ` magick ` command, this indicates that the folder containing the ImageMagick tools is not in the script’s environment path. Locate the directory containing the ImageMagick tools, then edit the “frame\_it" script and look for these lines. Here you will add the folder containing the ImageMagic tools so the script can find them.
-
-```shell
-# ADD IMAGEMAGICK BINARY PATH HERE and uncomment
-# export PATH=/path/to/your/imagemagick:$PATH
-```
-
 In the line above containing ` export `, replace ` /path/to/your/imagemagick ` with the folder containing the ImageMagick tools, uncomment the line (remove the `# ` at the beginning), and re-save the file. You will need to re-copy the script to the /usr/local/bin folder.
 
 ## Create The Style Droplets
@@ -198,6 +227,12 @@ There are two ways to create the droplets for macOS.
 > If you have added your own custom styles to the CreateStyleDroplets AppleScript, and recreated all the style droplets, then Style Chooser also includes your own custom styles.
 
 Magick Frames includes a large number of style variation droplets. Use the Style Chooser with one of your pictures and select all of the styles. Using your example image you can delete any style droplets you want.
+
+You can customize which sets of styles are automatically created by modifying this line in ` CreateStyleDroplets.applescript `. This line names lists of styles defined above it to include during automatic installation. You can remove any of the items from this definition before running the script to omit them from being installed.
+
+```applescript
+property styleDroplets : presetDroplets & solidDroplets & colorDroplets & customDroplets
+```
 
 ### The Hard Way
 
@@ -375,32 +410,6 @@ frame_it -t -tf=Academy-Engraved-LET-Plain:1.0 my-image.jpg
 ```
 
 Note the ` -t ` option to specify a text-based logo.
-
-# Examples
-
-- Bevel with colored matte and logo overlaid on southwest corner of the image
-
-    <img bordercolor=#aaaaaa border=2px width=500px src=assets/bevel-overlay.jpg>
-
-- Shadowed print frame with graphic logo appearing above the picture
-
-    <img bordercolor=#aaaaaa border=2px width=500px src=assets/logo-above.jpg>
-
-- Shadowed print frame with graphic logo appearing in southeast corner below the image
-
-    <img bordercolor=#aaaaaa border=2px width=500px src=assets/logo-southeast.jpg>
-
-- Beveled matte with graphic logo above the picture and aspect ratio 1:1 (square)
-
-    <img bordercolor=#aaaaaa border=2px width=500px src=assets/square-above.jpg>
-
-- Beveled matte with text logo below the picture and aspect ratio 1:1 (square)
-
-    <img bordercolor=#aaaaaa border=2px width=500px src=assets/square-text.jpg>
-
-- Wall picture frame and matte with graphic logo below the picture
-
-    <img bordercolor=#aaaaaa border=2px width=500px src=assets/logo_light_picture.jpg>
 
 # Included Styles
 

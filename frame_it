@@ -430,6 +430,8 @@ for filename in "$@" ; do
     # convert 3000:2000, 2000:3000, or 3000:3000 reference ratios to file's actual ratio
     scale_wide=$((3000 * ${longEdge} / ${shortEdge}))
     scale_high=$((2000 * ${longEdge} / ${shortEdge}))
+    scaledLong=$((3000 * ${longEdge} / ${shortEdge}))
+    scaledShort=$((2000 * ${longEdge} / ${shortEdge}))
 
     # scale label (40% width of image looks good)
     label_width=$((${file_wide} * 2 / 5))
@@ -512,15 +514,19 @@ for filename in "$@" ; do
     # solid border styles have inner and outer borders (outer border = 1.5% of longest edge)
     if echo ${style} | egrep -q 'solid'; then
         inner=2
-        if [ ${file_high} -gt ${file_wide} ]; then
-            outer=$((${file_high} * 3 / 200))
-            # calculate scaled_logo_lift and overlayed logo / text inset based on half of outer border width
-            scaled_logo_lift=$((${outer} / 2 * ${file_high} / ${scale_high}))
-        else
-            outer=$((${file_wide} * 3 / 200))
-            # calculate scaled_logo_lift and overlayed logo / text inset based on half of outer border width
-            scaled_logo_lift=$((${outer} / 2 * ${file_wide} / ${scale_wide}))
-        fi
+        # calculate solid border as 1.5% of longest edge
+        outer=$((${longEdge} * 0.015))
+        # calculate scaled_logo_lift and overlayed logo / text inset based on half of outer border width
+        scaled_logo_lift=$((${outer} / 2 * ${longEdge} / ${scaledLong}))
+        # if [ ${file_high} -gt ${file_wide} ]; then
+        #     outer=$((${file_high} * 3 / 200))
+        #     # calculate scaled_logo_lift and overlayed logo / text inset based on half of outer border width
+        #     scaled_logo_lift=$((${outer} / 2 * ${file_high} / ${scale_high}))
+        # else
+        #     outer=$((${file_wide} * 3 / 200))
+        #     # calculate scaled_logo_lift and overlayed logo / text inset based on half of outer border width
+        #     scaled_logo_lift=$((${outer} / 2 * ${file_wide} / ${scale_wide}))
+        # fi
     fi
 
     # inset overlay logos from the nearest edge based on gravity
