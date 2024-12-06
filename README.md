@@ -42,7 +42,7 @@ The following new options add solid border styles.
 - (NEW) Option ` -oc ` specifies the color of the exterior border for solid borders
 - (CHANGE) Add new styles in the property lists in CreateStyleDroplets.
 
-The width of the solid border will be 1.5 percent in pixels of the length of the longest edge of the picture (ie. a 3000px long edge will have a 45px border). The interior pin-stripe will be 2 pixels wide. You can eliminate the pen-stripe by setting the value for inner and outer color. If a watermark is added to a solid border then the border on the watermarked edge will be extended to include the watermark.
+The width of the solid border will be 1.5 percent in pixels of the length of the longest edge of the picture (ie. a 3000px long edge will have a 45px border). The interior pin-stripe will be 2 pixels wide. You can eliminate the pen-stripe by setting the same value for inner and outer color. If a watermark is added to a solid border then the border on the watermarked edge will be extended to include the watermark.
 
 ## Examples
 
