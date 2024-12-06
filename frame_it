@@ -124,9 +124,6 @@ if [ -x /usr/local/bin/brew ]; then
     eval $(/usr/local/bin/brew shellenv)
 fi
 
-# ADD IMAGEMAGICK BINARY PATH HERE and uncomment
-# export PATH=/path/to/your/imagemagick:$PATH
-
 # usage
 usage()
 {
@@ -422,7 +419,7 @@ for filename in "$@" ; do
     #   - center so equal shadow on all edges
 
     # get longest/shortest edge
-    if [ ${file_wide} -gt ${file_high} ]; then
+    if [ ${file_wide} -ge ${file_high} ]; then
         longEdge=${file_wide}
         shortEdge=${file_high}
     else
