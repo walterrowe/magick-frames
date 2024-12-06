@@ -57,6 +57,10 @@ You can download and set up Magick Frames in 5-10 minutes.
 
     <img bordercolor=#aaaaaa border=2px width=500px src=assets/logo_light_picture.jpg>
 
+- Solid frame and interior pin-stripe without any watermark
+
+    <img bordercolor=#aaaaaa border=2px width=500px src=assets/WPR-20050521-0305-solid_teal.jpg>
+
 - Solid frame and interior pin-stripe with text watermark justified bottom left on the picture
 
     <img bordercolor=#aaaaaa border=2px width=500px src=assets/WPR-20050521-0305-solid_teal_darktext_over.jpg>
