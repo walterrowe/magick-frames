@@ -47,7 +47,7 @@ property typeIDs_list : {"public.jpeg", "public.tiff", "public.png", "com.adobe.
 --
 -- CRITICAL -- continued lines must end with ampersand plus OPT+RETURN
 
-property presetDroplets : {Â
+property monochromeStyles : {Â
 	{styleName:"logo_transparent", styleOptions:"-l -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png"}, Â
 	{styleName:"logo_transparent_drop", styleOptions:"-l -d -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png"}, Â
 	{styleName:"logo_transparent_frame", styleOptions:"-l -f -mc=transparent -w=~/Pictures/watermarks/watermark_dark.png"}, Â
@@ -114,45 +114,7 @@ property presetDroplets : {Â
 	{styleName:"text_dark_over_picture", styleOptions:"-ot -p -mc=#313131 -g=south -tc=#E0E0E0"} Â
 		}
 
-property solidDroplets : {Â
-	{styleName:"solid_dark", styleOptions:"-so -oc=#313131 -ic=#ffffff -g=south -tc=#F0F0F0"}, Â
-	{styleName:"solid_dark_logo", styleOptions:"-sl -oc=#313131 -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_light.png"}, Â
-	{styleName:"solid_dark_darklogo_overlay", styleOptions:"-slo -oc=#222222 -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_dark.png"}, Â
-	{styleName:"solid_dark_lightlogo_overlay", styleOptions:"-slo -oc=#222222 -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
-	{styleName:"solid_dark_text", styleOptions:"-st -oc=#222222 -ic=#ffffff -g=south -tc=#F0F0F0"}, Â
-	{styleName:"solid_dark_darktext_over", styleOptions:"-sto -oc=#222222 -ic=#ffffff -g=southwest -tc=#222222"}, Â
-	{styleName:"solid_dark_lighttext_over", styleOptions:"-sto -oc=#222222 -ic=#ffffff -g=southwest -tc=#F0F0F0"}, Â
-	{styleName:"solid_light", styleOptions:"-so -oc=#ffffff -ic=#222222 -g=south "}, Â
-	{styleName:"solid_light_logo", styleOptions:"-sl -oc=#ffffff -ic=#222222 -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
-	{styleName:"solid_light_darklogo_overlay", styleOptions:"-slo -oc=#ffffff -ic=#222222 -g=southwest -w=~/Pictures/watermarks/watermark_dark.png"}, Â
-	{styleName:"solid_light_lightlogo_overlay", styleOptions:"-slo -oc=#ffffff -ic=#222222 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
-	{styleName:"solid_light_text", styleOptions:"-st -oc=#ffffff -ic=#222222 -g=south -tc=#222222"}, Â
-	{styleName:"solid_light_darktext_over", styleOptions:"-sto -oc=#ffffff -ic=#222222 -g=southwest -tc=#222222"}, Â
-	{styleName:"solid_light_lighttext_over", styleOptions:"-sto -oc=#ffffff -ic=#222222 -g=southwest -tc=#F0F0F0"}, Â
-	{styleName:"solid_pink", styleOptions:"-so -oc=#FBE7EC -ic=#ffffff -g=south"}, Â
-	{styleName:"solid_pink_logo", styleOptions:"-sl -oc=#FBE7EC -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
-	{styleName:"solid_pink_darklogo_overlay", styleOptions:"-slo -oc=#FBE7EC -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_dark.png"}, Â
-	{styleName:"solid_pink_lightlogo_overlay", styleOptions:"-slo -oc=#FBE7EC -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
-	{styleName:"solid_pink_text", styleOptions:"-st -oc=#FBE7EC -ic=#ffffff -g=south -tc=#222222"}, Â
-	{styleName:"solid_pink_lighttext_over", styleOptions:"-sto -oc=#FBE7EC -ic=#ffffff -g=southwest -tc=#F0F0F0"}, Â
-	{styleName:"solid_pink_darktext_over", styleOptions:"-sto -oc=#FBE7EC -ic=#ffffff -g=southwest -tc=#222222"}, Â
-	{styleName:"solid_babyblue", styleOptions:"-so -oc=#B5C8D7 -ic=#222222 -g=south"}, Â
-	{styleName:"solid_babyblue_logo", styleOptions:"-sl -oc=#B5C8D7 -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
-	{styleName:"solid_babyblue_darklogo_overlay", styleOptions:"-slo -oc=#B5C8D7 -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_dark.png"}, Â
-	{styleName:"solid_babyblue_lightlogo_overlay", styleOptions:"-slo -oc=#B5C8D7 -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
-	{styleName:"solid_babyblue_text", styleOptions:"-st -oc=#B5C8D7 -ic=#ffffff -g=south -tc=#222222"}, Â
-	{styleName:"solid_babyblue_darktext_over", styleOptions:"-sto -oc=#B5C8D7 -ic=#ffffff -g=southwest -tc=#222222"}, Â
-	{styleName:"solid_babyblue_lighttext_over", styleOptions:"-sto -oc=#B5C8D7 -ic=#ffffff -g=southwest -tc=#F0F0F0"}, Â
-	{styleName:"solid_teal", styleOptions:"-so -oc=#17342E -ic=#ffffff -g=south"}, Â
-	{styleName:"solid_teal_logo", styleOptions:"-sl -oc=#17342E -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_light.png"}, Â
-	{styleName:"solid_teal_darklogo_overlay", styleOptions:"-slo -oc=#17342E -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_dark.png"}, Â
-	{styleName:"solid_teal_lightlogo_overlay", styleOptions:"-slo -oc=#17342E -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
-	{styleName:"solid_teal_text", styleOptions:"-st -oc=#17342E -ic=#ffffff -g=south -tc=#F0F0F0"}, Â
-	{styleName:"solid_teal_darktext_over", styleOptions:"-sto -oc=#17342E -ic=#ffffff -g=southwest -tc=#222222"}, Â
-	{styleName:"solid_teal_lighttext_over", styleOptions:"-sto -oc=#17342E -ic=#ffffff -g=southwest -tc=#F0F0F0"} Â
-		}
-
-property colorDroplets : {Â
+property colorStyles : {Â
 	{styleName:"logo_green_drop_frame", styleOptions:"-l -d -f -mc=#106043 -w=~/Pictures/watermarks/watermark_light.png"}, Â
 	{styleName:"logo_green_picture", styleOptions:"-l -p -mc=#106043 -bc=#106043 -w=~/Pictures/watermarks/watermark_light.png"}, Â
 	{styleName:"logo_green_picture_on_sw", styleOptions:"-ol -p -mc=#106043 -bc=#106043 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
@@ -232,7 +194,45 @@ property colorDroplets : {Â
 	{styleName:"text_babyblue_below", styleOptions:"-t -tc=#434949 -mc=#B5C8D7 -g=south"} Â
 		}
 
-property customDroplets : {Â
+property solidBorderStyles : {Â
+	{styleName:"solid_dark", styleOptions:"-so -oc=#313131 -ic=#ffffff -g=south -tc=#F0F0F0"}, Â
+	{styleName:"solid_dark_logo", styleOptions:"-sl -oc=#313131 -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_dark_darklogo_overlay", styleOptions:"-slo -oc=#222222 -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_dark_lightlogo_overlay", styleOptions:"-slo -oc=#222222 -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_dark_text", styleOptions:"-st -oc=#222222 -ic=#ffffff -g=south -tc=#F0F0F0"}, Â
+	{styleName:"solid_dark_darktext_over", styleOptions:"-sto -oc=#222222 -ic=#ffffff -g=southwest -tc=#222222"}, Â
+	{styleName:"solid_dark_lighttext_over", styleOptions:"-sto -oc=#222222 -ic=#ffffff -g=southwest -tc=#F0F0F0"}, Â
+	{styleName:"solid_light", styleOptions:"-so -oc=#ffffff -ic=#222222 -g=south "}, Â
+	{styleName:"solid_light_logo", styleOptions:"-sl -oc=#ffffff -ic=#222222 -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_light_darklogo_overlay", styleOptions:"-slo -oc=#ffffff -ic=#222222 -g=southwest -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_light_lightlogo_overlay", styleOptions:"-slo -oc=#ffffff -ic=#222222 -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_light_text", styleOptions:"-st -oc=#ffffff -ic=#222222 -g=south -tc=#222222"}, Â
+	{styleName:"solid_light_darktext_over", styleOptions:"-sto -oc=#ffffff -ic=#222222 -g=southwest -tc=#222222"}, Â
+	{styleName:"solid_light_lighttext_over", styleOptions:"-sto -oc=#ffffff -ic=#222222 -g=southwest -tc=#F0F0F0"}, Â
+	{styleName:"solid_pink", styleOptions:"-so -oc=#FBE7EC -ic=#ffffff -g=south"}, Â
+	{styleName:"solid_pink_logo", styleOptions:"-sl -oc=#FBE7EC -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_pink_darklogo_overlay", styleOptions:"-slo -oc=#FBE7EC -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_pink_lightlogo_overlay", styleOptions:"-slo -oc=#FBE7EC -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_pink_text", styleOptions:"-st -oc=#FBE7EC -ic=#ffffff -g=south -tc=#222222"}, Â
+	{styleName:"solid_pink_lighttext_over", styleOptions:"-sto -oc=#FBE7EC -ic=#ffffff -g=southwest -tc=#F0F0F0"}, Â
+	{styleName:"solid_pink_darktext_over", styleOptions:"-sto -oc=#FBE7EC -ic=#ffffff -g=southwest -tc=#222222"}, Â
+	{styleName:"solid_babyblue", styleOptions:"-so -oc=#B5C8D7 -ic=#222222 -g=south"}, Â
+	{styleName:"solid_babyblue_logo", styleOptions:"-sl -oc=#B5C8D7 -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_babyblue_darklogo_overlay", styleOptions:"-slo -oc=#B5C8D7 -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_babyblue_lightlogo_overlay", styleOptions:"-slo -oc=#B5C8D7 -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_babyblue_text", styleOptions:"-st -oc=#B5C8D7 -ic=#ffffff -g=south -tc=#222222"}, Â
+	{styleName:"solid_babyblue_darktext_over", styleOptions:"-sto -oc=#B5C8D7 -ic=#ffffff -g=southwest -tc=#222222"}, Â
+	{styleName:"solid_babyblue_lighttext_over", styleOptions:"-sto -oc=#B5C8D7 -ic=#ffffff -g=southwest -tc=#F0F0F0"}, Â
+	{styleName:"solid_teal", styleOptions:"-so -oc=#17342E -ic=#ffffff -g=south"}, Â
+	{styleName:"solid_teal_logo", styleOptions:"-sl -oc=#17342E -ic=#ffffff -g=south -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_teal_darklogo_overlay", styleOptions:"-slo -oc=#17342E -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_dark.png"}, Â
+	{styleName:"solid_teal_lightlogo_overlay", styleOptions:"-slo -oc=#17342E -ic=#ffffff -g=southwest -w=~/Pictures/watermarks/watermark_light.png"}, Â
+	{styleName:"solid_teal_text", styleOptions:"-st -oc=#17342E -ic=#ffffff -g=south -tc=#F0F0F0"}, Â
+	{styleName:"solid_teal_darktext_over", styleOptions:"-sto -oc=#17342E -ic=#ffffff -g=southwest -tc=#222222"}, Â
+	{styleName:"solid_teal_lighttext_over", styleOptions:"-sto -oc=#17342E -ic=#ffffff -g=southwest -tc=#F0F0F0"} Â
+		}
+
+property myCustomStyles : {Â
 	{styleName:"light_matte_dark_logo", styleOptions:"-l -f -mc=#ffffff -w=~/Pictures/watermarks/watermark_dark.png"}, Â
 	{styleName:"dark_matte_light_logo", styleOptions:"-l -f -mc=#313131 -w=~/Pictures/watermarks/watermark_light.png"}, Â
 	{styleName:"light_matte_light_logo_over", styleOptions:"-ol -g=southwest -f -mc=#ffffff -w=~/Pictures/watermarks/watermark_light.png"}, Â
@@ -245,7 +245,7 @@ property customDroplets : {Â
 	{styleName:"text_dark_frame_academy", styleOptions:"-t -f -mc=#313131 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} Â
 		}
 
-property styleDroplets : presetDroplets & solidDroplets & colorDroplets & customDroplets
+property styleDroplets : monochromeStyles & colorStyles & solidBorderStyles & myCustomStyles
 
 
 -- get the list of style names
