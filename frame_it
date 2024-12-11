@@ -463,6 +463,7 @@ for filename in "$@" ; do
         shadow="100x${shaded_area}"
         offset="+${shaded_area}+${shaded_area}"
         offset_border="${border_area}x${border_area}"
+        logo_inset=$((30 * ${file_high} / ${scale_high}))
         label_shadow_shift="30"
     fi
 
