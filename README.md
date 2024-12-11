@@ -22,7 +22,6 @@ You also have multiple options for applying watermarks:
 - Watermarks on the picture can appear in the center, against any edge, and be left, center, or right justified
 
 Best of all, Magick Frames comes with over 180 predefined looks you can access right from macOS Finder by double-clicking them or drag-n-dropping pictures onto them.
-
 Select your photographs, drop them onto your preferred style applet, and move on to other tasks. Magick Frames will style your photographs and place the decorated versions as new files in the same folder as the files you selected. Each style applet adds its style name to the output filename. This makes it easy to identify what style was used. You can create as many different styled looks as you want for any image, each with their own output file, and always have access to your original file.
 
 Watch this [2-minute introduction video](https://youtu.be/PkRCjbNo11M) to see just how easy it is to use Magick Frames.
