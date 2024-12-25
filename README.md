@@ -141,16 +141,16 @@ The default download folder is "Downloads", but you can change that if you have 
 
 ## Create Logo Watermarks
 
-These graphic logo specifications are based on sizing for a 3000w x 2400h pixel image file:
+These graphic watermark specifications are based on sizing for a 3000w x 2000h pixel image file:
 
-- create a logo folder (e.g. Pictures/watermarks) and place your logos there
-- create your logo files and save them as PNG files in your logos folder
-- size your logos 1400 pixels wide and 500 pixels tall with a transparent background
-- make a light colored logo to use on dark mattes and place on dark images (` watermark_light.png `)
-- make a dark colored logo to use on light mattes and place on light images (` watermark_dark.png `)
-- place your graphic logos in a folder called "watermarks" under your Pictures folder.
+- create a watermark folder (e.g. Pictures/watermarks) and place your watermarks there
+- create your watermark files and save them as PNG files in your watermark folder
+- size your watermarks 1400 pixels wide and 500 pixels tall with a transparent background
+- make a light colored watermark to use on dark mattes and place on dark images (` watermark_light.png `)
+- make a dark colored watermark to use on light mattes and place on light images (` watermark_dark.png `)
+- place your graphic watermarks in a folder called "watermarks" under your Pictures folder.
 
-You can create many different graphic logos. Always create two for each style - one dark and one light.
+You can create many different graphic watermarks. Always create two for each style - one dark and one light.
 
 ## Install ImageMagick on macOS
 
@@ -174,18 +174,18 @@ Linux users can download the package from the ImageMagick website and follow the
 
 ## Install The Shell Script
 
-Use a text editor to edit the [frame_it](frame_it) shell script. You need to set the values for your text-based logo (called ` label1 ` and ` label2 `), and the location and file name for your default graphic logo file ( ` watermark `). Look for these lines in the “frame_it" shell script.
+Use a text editor to edit the [frame_it](frame_it) shell script. You need to set the values for your text-based watermark (called ` label1 ` and ` label2 `), and the location and file name for your default graphic watermark file ( ` watermark `). Look for these lines in the “frame_it" shell script.
 
 ```shell
 # text option - two text label lines
 label1=“W  A  L  T  E  R     R  O  W  E     P  H  O  T  O  G  R  A  P  H  Y"
 label2=“w w w . w a l t e r r o w e . c o m"
 
-# default logo watermark file - graphic watermark (my logo watermark is 900wx250h pixels w/ transparent background)
+# default graphic watermark file - graphic watermark (my graphic watermark is 900wx250h pixels w/ transparent background)
 watermark=$HOME/Pictures/watermarks/watermark_dark.png
 ```
 
-Change value after the “=“ sign for “label1" and “label2" to your desired text. Change the value after the “=“ for “watermark" to the folder and filename for your default logo image file.
+Change value after the “=“ sign for “label1" and “label2" to your desired text. Change the value after the “=“ for “watermark" to the folder and filename for your default watermark image file.
 
 Copy the edited [frame_it](frame_it) shell script into your system’s /usr/local/bin folder.
 
@@ -249,7 +249,7 @@ Once you have the style droplets created you are ready to use Magick Frames.
 
 # How To Use
 
-The scaling and placement of logos and text were developed using an image with dimensions 3000 wide by 2000 high pixels, a font of 64 points, and an image logo with dimensions 900 wide by 250 high pixels. When creating your own logo make one with dark text for light backgrounds and another with light text for dark backgrounds.
+The scaling and placement of watermarks and text were developed using an image with dimensions 3000 wide by 2000 high pixels, a font of 64 points, and an image watermark with dimensions 900 wide by 250 high pixels. When creating your own watermark make one with dark text for light backgrounds and another with light text for dark backgrounds.
 
 ## In macOS Finder
 
@@ -302,20 +302,20 @@ OPTIONS:
 -s=suffix |               suffix to append to decorated file names (default: "-framed")
 --suffix=suffix
 
--t | --text               specifies to use a two-line text logo underneath the image
+-t | --text               specifies to use a two-line text watermark underneath the image
 
--ot | --overlaytext       specifies to use a two-line text logo inside the image
+-ot | --overlaytext       specifies to use a two-line text watermark inside the image
 
--l | --logo               specifies to place an image-based logo underneath the image
+-l | --logo               specifies to place an image-based watermark underneath the image
                           DEFAULT style when no options are specified
 
--ol | --overlaylogo       specifies to place an image-based logo inside the image
+-ol | --overlaylogo       specifies to place an image-based watermark inside the image
 
 -so | --solid             specifies a plain solid border style without any watermark
 
--sl | --solid_logo         specifies a plain solid border with logo watermark underneath
+-sl | --solid_logo         specifies a plain solid border with graphic watermark underneath
 
--slo | --solid_logo_overlay   specifies a plain solid border with logo watermark overlayed on image
+-slo | --solid_logo_overlay   specifies a plain solid border with graphic watermark overlayed on image
 
 -st | --solid_text         specifies a plain solid border with text watermark underneath
 
@@ -354,18 +354,18 @@ OPTIONS:
 -sc=color |               specifies the color of the shadow (default black)
 --shadowcolor=color
 
--tc=color |               specifies the color of the two-line text logo
+-tc=color |               specifies the color of the two-line text watermark
 --textcolor=color         default #383838 below image, #E0E0E0 inside image
 
--tf=font |                specify the font to use for the two-row label text logo
+-tf=font |                specify the font to use for the two-row label text watermark
 --textfont=font
 
 -a=ratio |                specify the desired aspect ratio of the final output file in
 --aspect=ratio            width:height format (eg. -a=3:2, -a=4:5 -a=1:1). some social
                           media sites prefer specific aspect ratios for best display.
 
--w=your_logo |            specifies the image-based logo to use as the watermark that
---watermark=your_logo     that is placed below or inside the image.
+-w=your_watermark |            specifies the image-based watermark to use as the watermark that
+--watermark=your_watermark     that is placed below or inside the image.
 
 -g=placement |            specifies which inside edge or corner of the image the logo
 --gravity=placement       or text should be nearest. The following are accepted values.
@@ -387,6 +387,12 @@ OPTIONS:
                             |                                                    |
                             | southwest(sw)        south           southeast(se) |
                             +----------------------------------------------------+
+
+-l1=text/iptc item |      text or metadata field name to extract and use for line 1
+--label1=text/iptc item   of a text sourced watermark
+
+-l2=text/iptc item |      text or metadata field name to extract and use for line 2
+--label2=text/iptc item   of a text sourced watermark
 ```
 
 Make test copies of image files and use the shell script from the command line to experiment with how different styles decorate your test images. This will help you choose which options you want to use in your droplet(s).
@@ -406,13 +412,13 @@ You can see the names of fonts from which to choose for text-based labels using 
 ...
 ```
 
-If you want to use font "Academy Engraved LET" for a text-based logo then you would specify it as follows on the command line.
+If you want to use font "Academy Engraved LET" for a text-based watermark then you would specify it as follows on the command line.
 
 ```
 frame_it -t -tf=Academy-Engraved-LET-Plain:1.0 my-image.jpg
 ```
 
-Note the ` -t ` option to specify a text-based logo.
+Note the ` -t ` option to specify a text-based watermark.
 
 # Included Styles
 

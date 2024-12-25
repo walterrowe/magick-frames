@@ -102,14 +102,21 @@
 #                             |                                                    |
 #                             | southwest(sw)        south           southeast(se) |
 #                             +----------------------------------------------------+
+#
+# -l1=text/metadata |       text or metadata field name to extract and use for line 1
+# --label1=text/metadata    of a text sourced watermark
+#
+# -l2=text/metadata |       text or metadata field name to extract and use for line 2
+# --label2=text/metadata    of a text sourced watermark
+#
 ###
 
 # load math functions
 zmodload zsh/mathfunc
 
 # text option - two text label lines
-label1="W  A  L  T  E  R     R  O  W  E     P  H  O  T  O  G  R  A  P  H  Y"
-label2="w w w . w a l t e r r o w e . c o m"
+label1="WALTER ROWE PHOTOGRAPHY"
+label2="www.walterrowe.com"
 
 # default logo watermark file - graphic watermark (my logo watermark is 900wx250h pixels w/ transparent background)
 watermark=$HOME/Pictures/watermarks/watermark_dark.png
@@ -157,72 +164,39 @@ declare -A gravity_opts=(
     [se]=southeast
 )
 
-# identify -format "%[IPTC:${metadata_code[${metadata_name}]}]"
-declare -A metadata_code=(
-  [Destination]="1:05"
-  [FileFormat]="1:20"
-  [FileFormatVersion]="1:22"
-  [ServiceIdentifier]="1:30"
-  [EnvelopeNumber]="1:40"
-  [ProductID]="1:50"
-  [EnvelopePriority]="1:60"
-  [DateSent]="1:70"
-  [TimeSent]="1:80"
-  [CharacterSet]="1:90"
-  [UNO]="1:100"
-  [ARMIdentifier]="1:120"
-  [ARMVersion]="1:122"
-  [RecordVersion]="2:00"
-  [ObjectTypeReference]="2:03"
-  [ObjectNameTitle]="2:05"
-  [EditStatus]="2:07"
-  [EditorialUpdate]="2:08"
-  [Urgency]="2:10"
-  [SubjectReference]="2:12"
-  [Category]="2:15"
-  [SupplementalCategory]="2:20"
-  [FixtureIdentifier]="2:22"
-  [Keywords]="2:25"
-  [LocationCode]="2:26"
-  [LocationName]="2:27"
-  [ReleaseDate]="2:30"
-  [ReleaseTime]="2:35"
-  [ExpirationDate]="2:37"
-  [ExpirationTime]="2:38"
-  [SpecialInstructions]="2:40"
-  [ActionAdvised]="2:42"
-  [ReferenceService]="2:45"
-  [ReferenceDate]="2:47"
-  [ReferenceNumber]="2:50"
+# identify -format "%[IPTC:${iptc_code[${iptc_name}]}]"
+metadata='false'
+declare -A iptc_code=(
   [DateCreated]="2:55"
   [TimeCreated]="2:60"
   [DigitalCreationDate]="2:62"
   [DigitalCreationTime]="2:63"
-  [OriginatingProgram]="2:65"
-  [ProgramVersion]="2:70"
-  [ObjectCycle]="2:75"
+  [Title]="2:05"
+  [Headline]="2:105"
+  [Caption]="2:120"
+  [Keywords]="2:25"
+  [Location]="2:92"
+  [City]="2:90"
+  [ProvinceState]="2:95"
+  [Country]="2:101"
+  [CountryCode]="2:100"
   [Author]="2:80"
   [AuthorTitle]="2:85"
-  [City]="2:90"
-  [SubLocation]="2:92"
-  [ProvinceState]="2:95"
-  [CountryCode]="2:100"
-  [CountryName]="2:101"
-  [Headline]="2:105"
   [Credit]="2:110"
   [Source]="2:115"
   [Copyright]="2:116"
   [Contact]="2:118"
-  [Caption]="2:120"
   [CaptionWriter]="2:122"
-  [ImageType]="2:130"
-  [ImageOrientation]="2:131"
-  [Language]="2:135"
+  [Category]="2:15"
+  [SupplementalCategory]="2:20"
+  [Instructions]="2:40"
 )
 
 # make egrep regex-es from the gravity options keys and values
 gravity_keys=$(echo ${(k)gravity_opts} | sed -e 's; ;|;g')
 gravity_vals=$(echo ${(v)gravity_opts} | sed -e 's; ;|;g')
+iptc_keys=$(echo ${(k)iptc_code} | sed -e 's; ;|;g')
+iptc_vals=$(echo ${(v)iptc_code} | sed -e 's; ;|;g')
 
 
 # get name of script
@@ -425,6 +399,30 @@ for opt in "$@"; do
             fi
             shift
             ;;
+        -l1=*|--label1=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            # validate gravity location
+            echo ${opt} | egrep -wq "${iptc_keys}"
+            if [ $? -eq 0 ]; then
+                label1="${iptc_code[${opt}]}"
+                metadata='true'
+            else
+                label1="${opt}"
+            fi
+            shift
+            ;;
+        -l2=*|--label2=*)
+            opt=$(echo ${opt} | cut -d= -f2)
+            # validate gravity location
+            echo ${opt} | egrep -wq "${iptc_keys}"
+            if [ $? -eq 0 ]; then
+                label2="${iptc_code[${opt}]}"
+                metadata='true'
+            else
+                label2="${opt}"
+            fi
+            shift
+            ;;
         -*)
             usage invalid option \'${opt}\' specified
             exit 1
@@ -510,28 +508,32 @@ for filename in "$@" ; do
     if [ ${dropshadow} = false ]; then
         # settings for equal shadow around all edges of the image
         padding="11x11"
-        shaded_area=$((25 * ${file_wide} / ${scale_wide}))
+        shaded_area=$((25 * ${shortEdge} / ${scaledShort}))
         shadow="100x${shaded_area}"
         offset="+0+0"
         offset_border="0x0"
-        logo_inset=$((30 * ${file_high} / ${scale_high}))
+        logo_inset=$((30 * ${shortEdge} / ${scaledShort}))
         # half of delta (30) between reference padded_high/wide w/ and w/o drop shadow (10 vs 40)
         label_shadow_shift="10"
     else
         # settings for bottom right drop shadow below the image
         padding="0x0"
         # shift drop shadow layer down and right by 25 pixels, extend left/top matte to equalize matte width
-        shaded_area=$((25 * ${file_wide} / ${scale_wide}))
+        shaded_area=$((25 * ${shortEdge} / ${scaledShort}))
         border_area=$((2 * ${shaded_area}))
         shadow="100x${shaded_area}"
         offset="+${shaded_area}+${shaded_area}"
         offset_border="${border_area}x${border_area}"
-        logo_inset=$((30 * ${file_high} / ${scale_high}))
+        logo_inset=$((30 * ${shortEdge} / ${scaledShort}))
         label_shadow_shift="30"
     fi
 
     # if adding bevel, don't add shadowbox or right border matte padding
     if [ $bevel != '0x0' ]; then
+        bevelWidth=$((18 * ${shortEdge} / ${scaledShort}))
+        bevelOffset=$((16 * ${shortEdge} / ${scaledShort}))
+        bevel="${bevelWidth}x${bevelWidth}+0+${bevelOffset}"
+        bevelpad="${bevelWidth}"
         bevel_frame="${shaded_area}x${shaded_area}"
         padding="0x0"
         shadow="0x0"
@@ -552,15 +554,15 @@ for filename in "$@" ; do
         frame='false'
 
         # calculate scaled value for inside bevel
-        scaled_innerbevel1=$((18 * ${file_wide} / ${scale_wide}))
+        scaled_innerbevel1=$((18 * ${shortEdge} / ${scaledShort}))
         scaled_innerbevel2=$((${scaled_innerbevel1} - 2))
         # calculate scaled value for wall frame bevel
-        scaled_picturebev1=$((8 * ${file_wide} / ${scale_wide}))
+        scaled_picturebev1=$((8 * ${shortEdge} / ${scaledShort}))
         scaled_picturebev2=$((${scaled_picturebev1} - 2))
         # calculate scaled value for wall frame surface
-        scaled_picturesurf=$((75 * ${file_wide} / ${scale_wide}))
+        scaled_picturesurf=$((75 * ${shortEdge} / ${scaledShort}))
         # calculate scaled value for matte width between image bevel and wall frame
-        scaled_mattewidth=$((300 * ${file_wide} / ${scale_wide}))
+        scaled_mattewidth=$((300 * ${shortEdge} / ${scaledShort}))
 
         # set scaled inner bevel
         bevel="${scaled_innerbevel1}x${scaled_innerbevel1}+0+${scaled_innerbevel2}"
@@ -582,15 +584,6 @@ for filename in "$@" ; do
         outer=$((${longEdge} * 0.015))
         # calculate scaled_logo_lift and overlayed logo / text inset based on half of outer border width
         scaled_logo_lift=$((${outer} / 2 * ${longEdge} / ${scaledLong}))
-        # if [ ${file_high} -gt ${file_wide} ]; then
-        #     outer=$((${file_high} * 3 / 200))
-        #     # calculate scaled_logo_lift and overlayed logo / text inset based on half of outer border width
-        #     scaled_logo_lift=$((${outer} / 2 * ${file_high} / ${scale_high}))
-        # else
-        #     outer=$((${file_wide} * 3 / 200))
-        #     # calculate scaled_logo_lift and overlayed logo / text inset based on half of outer border width
-        #     scaled_logo_lift=$((${outer} / 2 * ${file_wide} / ${scale_wide}))
-        # fi
     fi
 
     # inset overlay logos from the nearest edge based on gravity
@@ -609,6 +602,33 @@ for filename in "$@" ; do
                 logo_inset="+${scaled_logo_lift}+${scaled_logo_lift}"
                 ;;
         esac
+    fi
+
+    # see if a text style is selected and metadata is requested
+    if echo ${style} | egrep -q 'text' ; then
+        textsize=$((120 * ${shortEdge} / 2000))
+        kerning=$((25 * ${shortEdge} / 2000))
+        spacing=$((30 * ${shortEdge} / 2000))
+
+        if [ ${metadata} = 'true' ]; then
+            metacode=""
+
+            if echo ${label1} | egrep -wq "${iptc_vals}"; then
+                metacode="%[IPTC:${label1}]"
+                label1=$(identify -format "${metacode}" ${source} 2>/dev/null)
+                if [ $? -ne 0 ]; then
+                    echo "ERROR: ${filename} does not contain metadata for ${label1}."
+                fi
+            fi
+
+            if echo ${label2} | egrep -wq "${iptc_vals}"; then
+                metacode="%[IPTC:${label2}]"
+                label2=$(identify -format "${metacode}" ${source} 2>/dev/null)
+                if [ $? -ne 0 ]; then
+                    echo "ERROR: ${filename} does not contain metadata for ${label2}."
+                fi
+            fi
+        fi
     fi
 
     # decorate the image file
@@ -630,7 +650,7 @@ for filename in "$@" ; do
                 +swap -background ${mattecolor} -layers merge +repage \
                 -gravity northwest -background ${mattecolor} -splice ${offset_border} \
                 -mattecolor ${mattecolor} -frame ${padding} \
-                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -size ${label_width}x -gravity ${gravity} label:"${label1}\n${label2}" -mattecolor ${mattecolor} -frame $((2 * ${logo_inset}))x \
+                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -kerning ${kerning} -interword-spacing ${spacing} -size x${textsize} -gravity ${gravity} label:"${label1}\n${label2}" -mattecolor ${mattecolor} -frame $((2 * ${logo_inset}))x \
                    -append \) \
                 ${swap} -append -layers merge +repage \
                 -bordercolor ${mattecolor} -border 20x20 \
@@ -644,7 +664,7 @@ for filename in "$@" ; do
         overlay_text)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -size ${label_width} -gravity ${gravity} label:"${label1}\n${label2}" -geometry ${logo_inset} -composite \
+                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -kerning ${kerning} -interword-spacing ${spacing} -size x${textsize} -gravity ${gravity} label:"${label1}\n${label2}" -geometry ${logo_inset} -composite \
                 -mattecolor "${bevelcolor}" -frame ${bevel} \
                 -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
                 \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
