@@ -103,11 +103,11 @@
 #                             | southwest(sw)        south           southeast(se) |
 #                             +----------------------------------------------------+
 #
-# -l1=text/metadata |       text or metadata field name to extract and use for line 1
-# --label1=text/metadata    of a text sourced watermark
+# -l1=text/iptc |           text or iptc field name to extract and use for line 1
+# --label1=text/iptc        of a text sourced watermark
 #
-# -l2=text/metadata |       text or metadata field name to extract and use for line 2
-# --label2=text/metadata    of a text sourced watermark
+# -l2=text/iptc |           text or iptc field name to extract and use for line 2
+# --label2=text/iptc        of a text sourced watermark
 #
 ###
 
