@@ -613,29 +613,34 @@ for filename in "$@" ; do
     # set initial label text to two lines from label1/label2
     labeltext="${label1}\n${label2}"
 
-    # see if a text style is selected and metadata is requested
+    # for text watermarks replace exif / iptc placeholders with values
     if echo ${style} | egrep -q 'text' ; then
-        textsize=$((120 * ${shortEdge} / 2000))
-        kerning=$((25 * ${shortEdge} / 2000))
-        spacing=$((30 * ${shortEdge} / 2000))
+        # set text size and spacing
+        textsize=${file_wide} # 100% of image width
+        fontsize=$((50 * ${file_wide} / 3000)) # scaled from 40 points for 3000x2000 image
+        kerning=$((20 * ${file_wide} / 3000))
+        spacing=$((30 * ${file_wide} / 3000))
 
         # enable perl compatible regular expression matching
         set -o rematchpcre
 
-        # replace metadata keys with values in label string 1
+        # replace metadata placeholders with metadata values in label string 1
         while [[ "${labeltext}" =~ "%(\w+)" ]]
         do
+            # validate the placeholder is a known exif / iptc metadata tag
             if ! echo ${match} | egrep -wq "${exif_keys}|${iptc_keys}"; then
                 echo "ERROR: undefined metadata tag [%${match}] in labeltext:\n[${labeltext}]"
                 echo "EXIF tags: ${exif_keys}"
                 echo "IPTC tags: ${iptc_keys}"
                 exit 1
             fi
+
+            # extract exif placeholder data
             if echo ${match} | egrep -wq "${exif_keys}"; then
                 metakey="%[EXIF:${exif_tags[${match}]}]"
                 metaval=$(identify -format "${metakey}" ${source} 2>/dev/null)
                 # convert integer aperture to fraction w/ 1 decimal place
-                if [[ $match = "Aperture" ]]; then
+                if [[ $match = "Aperture" && ! -z ${metaval} ]]; then
                     metaval=$(printf '%.1f' $((1.0 * sqrt(2.0 ** (1.0 * ${metaval})))))
                 fi
                 # convert focal length to mm
@@ -643,6 +648,8 @@ for filename in "$@" ; do
                     metaval=$(printf '%d' $((${metaval})))
                 fi
             fi
+
+            # extract iptc placeholder data
             if echo ${match} | egrep -wq "${iptc_keys}"; then
                 metakey="%[IPTC:${iptc_tags[${match}]}]"
                 metaval=$(identify -format "${metakey}" ${source} 2>/dev/null)
@@ -679,7 +686,9 @@ for filename in "$@" ; do
                 +swap -background ${mattecolor} -layers merge +repage \
                 -gravity northwest -background ${mattecolor} -splice ${offset_border} \
                 -mattecolor ${mattecolor} -frame ${padding} \
-                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -kerning ${kerning} -interword-spacing ${spacing} -size x${textsize} -gravity ${gravity} label:"${labeltext}" -mattecolor ${mattecolor} -frame $((2 * ${logo_inset}))x \
+                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${fontsize} -kerning ${kerning} \
+                -interword-spacing ${spacing} -size ${textsize}x -gravity ${gravity} caption:"${labeltext}" \
+                -mattecolor ${mattecolor} -frame $((2 * ${logo_inset}))x \
                    -append \) \
                 ${swap} -append -layers merge +repage \
                 -bordercolor ${mattecolor} -border 20x20 \
@@ -693,7 +702,7 @@ for filename in "$@" ; do
         overlay_text)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -kerning ${kerning} -interword-spacing ${spacing} -size x${textsize} -gravity ${gravity} label:"${labeltext}" -geometry ${logo_inset} -composite \
+                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${fontsize} -kerning ${kerning} -interword-spacing ${spacing} -size ${textsize}x -gravity ${gravity} caption:"${labeltext}" -geometry ${logo_inset} -composite \
                 -mattecolor "${bevelcolor}" -frame ${bevel} \
                 -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
                 \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
@@ -775,7 +784,7 @@ for filename in "$@" ; do
                 -format ${filetype} "${target}"
             ;;
 
-        # solid is a plain inner/outer border with text watermark outside the image
+        # solid is a plain inner/outer border with text watermark outside the image 
         solid_text)
             # use "+swap" to swap layer order before layer merge when placing text above the image
             if echo ${gravity} | egrep -q 'north' ; then
@@ -787,8 +796,8 @@ for filename in "$@" ; do
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
                 -mattecolor ${innercolor} -frame ${inner}x${inner} -mattecolor ${outercolor} -frame 0x$((${outer} / 2)) \
-                \( -background ${outercolor} -fill "${textcolor}" -font "${textfont}" -size ${label_width}x \
-                -gravity ${gravity} label:"${labelext}" -append \) \
+                \( -background ${outercolor} -fill "${textcolor}" -font "${textfont}" -pointsize ${fontsize} -kerning ${kerning} \
+                -interword-spacing ${spacing} -size ${textsize}x -gravity ${gravity} caption:"${labeltext}" -append \) \
                 ${swap} -append -layers merge +repage \
                 -mattecolor ${outercolor} -frame ${outer}x$((${outer} / 2)) \
                 -background ${outercolor} -gravity center -extent "${aspectratio}#" \
@@ -799,8 +808,8 @@ for filename in "$@" ; do
         solid_text_overlay)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -size ${label_width} \
-                -gravity ${gravity} label:"${labeltext}" -geometry ${logo_inset} -composite \
+                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -pointsize ${fontsize} -size ${textsize}x \
+                -gravity ${gravity} caption:"${labeltext}" -geometry ${logo_inset} -composite \
                 -mattecolor ${innercolor} -frame ${inner}x${inner} -mattecolor ${outercolor} -frame ${outer}x${outer} \
                 -background ${outercolor} -gravity center -extent "${aspectratio}#" \
                 -format ${filetype} "${target}"
