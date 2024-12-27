@@ -638,13 +638,25 @@ for filename in "$@" ; do
                 if [[ $match = "Aperture" ]]; then
                     metaval=$(printf '%.1f' $((1.0 * sqrt(2.0 ** (1.0 * ${metaval})))))
                 fi
-                labeltext=$(echo "${labeltext}" | sed -e "s:%$match:$metaval:g")
+                # convert focal length to mm
+                if [[ $match = "FocalLength" ]]; then
+                    metaval=$(printf '%d' $((${metaval})))
+                fi
             fi
             if echo ${match} | egrep -wq "${iptc_keys}"; then
                 metakey="%[IPTC:${iptc_tags[${match}]}]"
                 metaval=$(identify -format "${metakey}" ${source} 2>/dev/null)
-                labeltext=$(echo "${labeltext}" | sed -e "s:%$match:$metaval:g")
             fi
+
+            # make sure sed parameter separator is not in the metadata value
+            if echo "${metaval}" | egrep -q ":" ; then
+                sedstring="s;%$match;$metaval;g"
+            else
+                sedstring="s:%$match:$metaval:g"
+            fi
+
+            # replace metadata place holder with metadata value
+            labeltext=$(echo "${labeltext}" | sed -e "${sedstring}")
         done
     fi
 
