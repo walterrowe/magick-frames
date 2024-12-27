@@ -177,7 +177,6 @@ declare -A exif_tags=(
     [FocalLength]="FocalLength"
     [SubjectDistance]="SubjectDistance"
     [DateTimeOriginal]="DateTimeOriginal"
-    [GPS]="GPSInfo"
 )
 
 # identify -format "%[IPTC:${iptc_tags[${iptc_key}]}]"
