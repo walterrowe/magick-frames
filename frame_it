@@ -611,6 +611,9 @@ for filename in "$@" ; do
         esac
     fi
 
+    # set initial label text to two lines from label1/label2
+    labeltext="${label1}\n${label2}"
+
     # see if a text style is selected and metadata is requested
     if echo ${style} | egrep -q 'text' ; then
         textsize=$((120 * ${shortEdge} / 2000))
@@ -621,10 +624,10 @@ for filename in "$@" ; do
         set -o rematchpcre
 
         # replace metadata keys with values in label string 1
-        while [[ "${label1}" =~ "%(\w+)" ]]
+        while [[ "${labeltext}" =~ "%(\w+)" ]]
         do
             if ! echo ${match} | egrep -wq "${exif_keys}|${iptc_keys}"; then
-                echo "ERROR: undefined metadata tag [%${match}] in label1: [${label1}]"
+                echo "ERROR: undefined metadata tag [%${match}] in labeltext:\n[${labeltext}]"
                 echo "EXIF tags: ${exif_keys}"
                 echo "IPTC tags: ${iptc_keys}"
                 exit 1
@@ -636,40 +639,14 @@ for filename in "$@" ; do
                 if [[ $match = "Aperture" ]]; then
                     metaval=$(printf '%.1f' $((1.0 * sqrt(2.0 ** (1.0 * ${metaval})))))
                 fi
-                label1=$(echo "${label1}" | sed -e "s:%$match:$metaval:g")
+                labeltext=$(echo "${labeltext}" | sed -e "s:%$match:$metaval:g")
             fi
             if echo ${match} | egrep -wq "${iptc_keys}"; then
                 metakey="%[IPTC:${iptc_tags[${match}]}]"
                 metaval=$(identify -format "${metakey}" ${source} 2>/dev/null)
-                label1=$(echo "${label1}" | sed -e "s:%$match:$metaval:g")
+                labeltext=$(echo "${labeltext}" | sed -e "s:%$match:$metaval:g")
             fi
         done
-
-        # replace metadata keys with values in label string 2
-        while [[ "${label2}" =~ "%(\w+)" ]]
-        do
-            if ! echo ${match} | egrep -wq "${exif_keys}|${iptc_keys}"; then
-                echo "ERROR: undefined metadata tag [%${match}] in label2: [${label2}]"
-                echo "EXIF tags: ${exif_keys}"
-                echo "IPTC tags: ${iptc_keys}"
-                exit 1
-            fi
-            if echo ${match} | egrep -wq "${exif_keys}"; then
-                metakey="%[EXIF:${exif_tags[${match}]}]"
-                metaval=$(identify -format "${metakey}" ${source} 2>/dev/null)
-                # convert integer aperture to fraction w/ 1 decimal place
-                if [[ $match = "Aperture" ]]; then
-                    metaval=$(printf '%.1f' $((1.0 * sqrt(2.0 ** (1.0 * ${metaval})))))
-                fi
-                label2=$(echo "${label2}" | sed -e "s:%$match:$metaval:g")
-            fi
-            if echo ${match} | egrep -wq "${iptc_keys}"; then
-                metakey="%[IPTC:${iptc_tags[${match}]}]"
-                metaval=$(identify -format "${metakey}" ${source} 2>/dev/null)
-                label2=$(echo "${label2}" | sed -e "s:%$match:$metaval:g")
-            fi
-        done
-
     fi
 
     # decorate the image file
@@ -691,7 +668,7 @@ for filename in "$@" ; do
                 +swap -background ${mattecolor} -layers merge +repage \
                 -gravity northwest -background ${mattecolor} -splice ${offset_border} \
                 -mattecolor ${mattecolor} -frame ${padding} \
-                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -kerning ${kerning} -interword-spacing ${spacing} -size x${textsize} -gravity ${gravity} label:"${label1}\n${label2}" -mattecolor ${mattecolor} -frame $((2 * ${logo_inset}))x \
+                \( -background ${mattecolor} -fill "${textcolor}" -font "${textfont}" -kerning ${kerning} -interword-spacing ${spacing} -size x${textsize} -gravity ${gravity} label:"${labeltext}" -mattecolor ${mattecolor} -frame $((2 * ${logo_inset}))x \
                    -append \) \
                 ${swap} -append -layers merge +repage \
                 -bordercolor ${mattecolor} -border 20x20 \
@@ -705,7 +682,7 @@ for filename in "$@" ; do
         overlay_text)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -kerning ${kerning} -interword-spacing ${spacing} -size x${textsize} -gravity ${gravity} label:"${label1}\n${label2}" -geometry ${logo_inset} -composite \
+                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -kerning ${kerning} -interword-spacing ${spacing} -size x${textsize} -gravity ${gravity} label:"${labeltext}" -geometry ${logo_inset} -composite \
                 -mattecolor "${bevelcolor}" -frame ${bevel} \
                 -mattecolor black -frame ${inner}x${inner} -mattecolor ${framecolor} -frame ${outer}x${outer} -mattecolor black -frame 1x1 -mattecolor ${mattecolor} -frame ${bevelpad}x${bevelpad} \
                 \( +clone -background ${shadowcolor} -shadow ${shadow}${offset} \) \
