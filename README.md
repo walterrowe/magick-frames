@@ -9,10 +9,14 @@ Are you looking for a faster, easier way of give your photographs that polished,
 Magick Frames makes it fast and easy to apply various styles of elegant borders from clean and simple to 3-dimensional shadowed borders and frames to a beautiful picture frame:
 
 - (NEW) Plain solid borders have an internal pin-stripe that separates border from picture
-- (NEW) Support for some common EXIF / IPTC placeholders in text watermarks ("%tag") using -l1="some string" and -l2="some string" label options
+- (NEW) Support for some common EXIF / IPTC placeholders in text watermarks ("%tag") using -l1="some string" and -l2="some string" label options (see script for full list of supported tags)
+	```
+	frame_it -t -l1="Location: %City, %ProvinceState, %CountryCode" -l2="Exposure: ISO %ISO, ƒ/%Aperture, %ShutterSpeed sec"
+	```
 	- %ISO
 	- %ShutterSpeed
 	- %Aperture
+	- %FocalLength
 	- %City
 	- %ProvinceState
 	- %CountryCode
