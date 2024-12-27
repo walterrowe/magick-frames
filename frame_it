@@ -111,8 +111,9 @@
 #
 ###
 
-# load math functions
+# load math functions, regex support
 zmodload zsh/mathfunc
+zmodload zsh/regex
 
 # text option - two text label lines
 label1="WALTER ROWE PHOTOGRAPHY"
@@ -164,9 +165,23 @@ declare -A gravity_opts=(
     [se]=southeast
 )
 
-# identify -format "%[IPTC:${iptc_code[${iptc_name}]}]"
-metadata='false'
-declare -A iptc_code=(
+# identify -format "%[EXIF:${exif_tags[${exif_key}]}]"
+declare -A exif_tags=(
+    [ISO]="PhotographicSensitivity"
+    [ShutterSpeed]="ExposureTime"
+    [Aperture]="ApertureValue"
+    [ExposureBias]="ExposureBiasValue"
+    [MeteringMode]="MeteringMode"
+    [LightSource]="LightSource"
+    [Flash]="Flash"
+    [FocalLength]="FocalLength"
+    [SubjectDistance]="SubjectDistance"
+    [DateTimeOriginal]="DateTimeOriginal"
+    [GPS]="GPSInfo"
+)
+
+# identify -format "%[IPTC:${iptc_tags[${iptc_key}]}]"
+declare -A iptc_tags=(
   [DateCreated]="2:55"
   [TimeCreated]="2:60"
   [DigitalCreationDate]="2:62"
@@ -195,8 +210,10 @@ declare -A iptc_code=(
 # make egrep regex-es from the gravity options keys and values
 gravity_keys=$(echo ${(k)gravity_opts} | sed -e 's; ;|;g')
 gravity_vals=$(echo ${(v)gravity_opts} | sed -e 's; ;|;g')
-iptc_keys=$(echo ${(k)iptc_code} | sed -e 's; ;|;g')
-iptc_vals=$(echo ${(v)iptc_code} | sed -e 's; ;|;g')
+iptc_keys=$(echo ${(k)iptc_tags} | sed -e 's; ;|;g')
+iptc_vals=$(echo ${(v)iptc_tags} | sed -e 's; ;|;g')
+exif_keys=$(echo ${(k)exif_tags} | sed -e 's; ;|;g')
+exif_vals=$(echo ${(v)exif_tags} | sed -e 's; ;|;g')
 
 
 # get name of script
@@ -400,27 +417,17 @@ for opt in "$@"; do
             shift
             ;;
         -l1=*|--label1=*)
-            opt=$(echo ${opt} | cut -d= -f2)
+            opt=$(echo "${opt}" | cut -d= -f2)
             # validate gravity location
             echo ${opt} | egrep -wq "${iptc_keys}"
-            if [ $? -eq 0 ]; then
-                label1="${iptc_code[${opt}]}"
-                metadata='true'
-            else
-                label1="${opt}"
-            fi
+            label1="${opt}"
             shift
             ;;
         -l2=*|--label2=*)
-            opt=$(echo ${opt} | cut -d= -f2)
+            opt=$(echo "${opt}" | cut -d= -f2)
             # validate gravity location
             echo ${opt} | egrep -wq "${iptc_keys}"
-            if [ $? -eq 0 ]; then
-                label2="${iptc_code[${opt}]}"
-                metadata='true'
-            else
-                label2="${opt}"
-            fi
+            label2="${opt}"
             shift
             ;;
         -*)
@@ -610,25 +617,59 @@ for filename in "$@" ; do
         kerning=$((25 * ${shortEdge} / 2000))
         spacing=$((30 * ${shortEdge} / 2000))
 
-        if [ ${metadata} = 'true' ]; then
-            metacode=""
+        # enable perl compatible regular expression matching
+        set -o rematchpcre
 
-            if echo ${label1} | egrep -wq "${iptc_vals}"; then
-                metacode="%[IPTC:${label1}]"
-                label1=$(identify -format "${metacode}" ${source} 2>/dev/null)
-                if [ $? -ne 0 ]; then
-                    echo "ERROR: ${filename} does not contain metadata for ${label1}."
-                fi
+        # replace metadata keys with values in label string 1
+        while [[ "${label1}" =~ "%(\w+)" ]]
+        do
+            if ! echo ${match} | egrep -wq "${exif_keys}|${iptc_keys}"; then
+                echo "ERROR: undefined metadata tag [%${match}] in label1: [${label1}]"
+                echo "EXIF tags: ${exif_keys}"
+                echo "IPTC tags: ${iptc_keys}"
+                exit 1
             fi
+            if echo ${match} | egrep -wq "${exif_keys}"; then
+                metakey="%[EXIF:${exif_tags[${match}]}]"
+                metaval=$(identify -format "${metakey}" ${source} 2>/dev/null)
+                # convert integer aperture to fraction w/ 1 decimal place
+                if [[ $match = "Aperture" ]]; then
+                    metaval=$(printf '%.1f' $((1.0 * sqrt(2.0 ** (1.0 * ${metaval})))))
+                fi
+                label1=$(echo "${label1}" | sed -e "s:%$match:$metaval:g")
+            fi
+            if echo ${match} | egrep -wq "${iptc_keys}"; then
+                metakey="%[IPTC:${iptc_tags[${match}]}]"
+                metaval=$(identify -format "${metakey}" ${source} 2>/dev/null)
+                label1=$(echo "${label1}" | sed -e "s:%$match:$metaval:g")
+            fi
+        done
 
-            if echo ${label2} | egrep -wq "${iptc_vals}"; then
-                metacode="%[IPTC:${label2}]"
-                label2=$(identify -format "${metacode}" ${source} 2>/dev/null)
-                if [ $? -ne 0 ]; then
-                    echo "ERROR: ${filename} does not contain metadata for ${label2}."
-                fi
+        # replace metadata keys with values in label string 2
+        while [[ "${label2}" =~ "%(\w+)" ]]
+        do
+            if ! echo ${match} | egrep -wq "${exif_keys}|${iptc_keys}"; then
+                echo "ERROR: undefined metadata tag [%${match}] in label2: [${label2}]"
+                echo "EXIF tags: ${exif_keys}"
+                echo "IPTC tags: ${iptc_keys}"
+                exit 1
             fi
-        fi
+            if echo ${match} | egrep -wq "${exif_keys}"; then
+                metakey="%[EXIF:${exif_tags[${match}]}]"
+                metaval=$(identify -format "${metakey}" ${source} 2>/dev/null)
+                # convert integer aperture to fraction w/ 1 decimal place
+                if [[ $match = "Aperture" ]]; then
+                    metaval=$(printf '%.1f' $((1.0 * sqrt(2.0 ** (1.0 * ${metaval})))))
+                fi
+                label2=$(echo "${label2}" | sed -e "s:%$match:$metaval:g")
+            fi
+            if echo ${match} | egrep -wq "${iptc_keys}"; then
+                metakey="%[IPTC:${iptc_tags[${match}]}]"
+                metaval=$(identify -format "${metakey}" ${source} 2>/dev/null)
+                label2=$(echo "${label2}" | sed -e "s:%$match:$metaval:g")
+            fi
+        done
+
     fi
 
     # decorate the image file
