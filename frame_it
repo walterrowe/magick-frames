@@ -776,7 +776,8 @@ for filename in "$@" ; do
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
                 -mattecolor ${innercolor} -frame ${inner}x${inner} -mattecolor ${outercolor} -frame 0x$((${outer} / 2)) \
-                \( -background ${outercolor} -fill "${textcolor}" -font "${textfont}" -size ${label_width}x -gravity ${gravity} label:"${label1}\n${label2}" -append \) \
+                \( -background ${outercolor} -fill "${textcolor}" -font "${textfont}" -size ${label_width}x \
+                -gravity ${gravity} label:"${labelext}" -append \) \
                 ${swap} -append -layers merge +repage \
                 -mattecolor ${outercolor} -frame ${outer}x$((${outer} / 2)) \
                 -background ${outercolor} -gravity center -extent "${aspectratio}#" \
@@ -787,7 +788,8 @@ for filename in "$@" ; do
         solid_text_overlay)
             # convert source file into decorated target file
             magick "${source}" -auto-orient \
-                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -size ${label_width} -gravity ${gravity} label:"${label1}\n${label2}" -geometry ${logo_inset} -composite \
+                -background transparent -fill "${overlaytextcolor}" -font "${textfont}" -size ${label_width} \
+                -gravity ${gravity} label:"${labeltext}" -geometry ${logo_inset} -composite \
                 -mattecolor ${innercolor} -frame ${inner}x${inner} -mattecolor ${outercolor} -frame ${outer}x${outer} \
                 -background ${outercolor} -gravity center -extent "${aspectratio}#" \
                 -format ${filetype} "${target}"
