@@ -242,7 +242,9 @@ property myCustomStyles : {Â
 	{styleName:"text_light_academy", styleOptions:"-t -mc=#ffffff -tc=#313131 -tf=Academy-Engraved-LET-Plain:1.0"}, Â
 	{styleName:"text_light_frame_academy", styleOptions:"-t -f -mc=#ffffff -tc=#313131 -tf=Academy-Engraved-LET-Plain:1.0"}, Â
 	{styleName:"text_dark_academy", styleOptions:"-t -mc=#313131 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"}, Â
-	{styleName:"text_dark_frame_academy", styleOptions:"-t -f -mc=#313131 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"} Â
+	{styleName:"text_dark_frame_academy", styleOptions:"-t -f -mc=#313131 -tc=#E0E0E0 -tf=Academy-Engraved-LET-Plain:1.0"}, Â
+	{styleName:"text_light_exif_iptc", styleOptions:"-t --label1=\"%Location, %City, %ProvinceState\" --label2=\"%ISO | %Aperture | %ShutterSpeed | %FocalLength\" -g=sw"}, Â
+	{styleName:"text_dark_exif_iptc", styleOptions:"-t --label1=\"%Location, %City, %ProvinceState\" --label2=\"%ISO | %Aperture | %ShutterSpeed | %FocalLength\" -g=sw -mc=#313131 -tc=#fff"} Â
 		}
 
 property styleDroplets : monochromeStyles & colorStyles & solidBorderStyles & myCustomStyles
