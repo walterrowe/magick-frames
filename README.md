@@ -24,10 +24,10 @@ Magick Frames makes it fast and easy to apply various styles of elegant borders 
 	The following command produced the image example below it. 
 
 	```
-	frame_it -t --label1="Location: %City, %ProvinceState, %CountryCode" --label2="Exposure: ISO %ISO, ƒ/%Aperture, %ShutterSpeed sec" yourfile.jpg
+	% ./frame_it -t --label1="%Location, %City, %ProvinceState" --label2="%ISO | %Aperture | %ShutterSpeed | %FocalLength" -g=sw ~/Pictures/Walter_Rowe/WPR-20070520-7946.jpg
 	```
 
-	<img src=assets/WPR-20070520-7946-framed.jpg border=1 margin=10px padding=10px>
+	<img src=assets/WPR-20070520-7946-framed.jpg border=1px margin=10px padding=10px>
 
 - (NEW) Simple solid borders have an internal pin-stripe that separates border from picture
 - Matted borders have a shadow on all edges, a drop shadow, or a beveled inside matte edge
