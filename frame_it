@@ -243,14 +243,14 @@ declare -A light_source=(
 )
 
 declare -A flash=(
-    [0x0	]="No Flash"
-    [0x1	]="Fired"
-    [0x5	]="Fired, Return not detected"
-    [0x7	]="Fired, Return detected"
+    [0x0]="No Flash"
+    [0x1]="Fired"
+    [0x5]="Fired, Return not detected"
+    [0x7]="Fired, Return detected"
     [0x8]="On, Did not fire"
-    [0x9	]="On, Fired"
-    [0xd	]="On, Return not detected"
-    [0xf	]="On, Return detected"
+    [0x9]="On, Fired"
+    [0xd]="On, Return not detected"
+    [0xf]="On, Return detected"
     [0x10]="Off, Did not fire"
     [0x14]="Off, Did not fire, Return not detected"
     [0x18]="Auto, Did not fire"
