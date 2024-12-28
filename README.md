@@ -8,7 +8,8 @@ Are you looking for a faster, easier way of give your photographs that polished,
 
 Magick Frames makes it fast and easy to apply various styles of elegant borders from clean and simple to 3-dimensional shadowed borders and frames to a beautiful picture frame:
 
-- (NEW) Support for some common EXIF / IPTC placeholders in text watermarks ("%tag") using -l1="some string" and -l2="some string" label options (see script for full list of supported tags)
+- (NEW) Support for some common EXIF / IPTC placeholders ("%tag") in text watermarks (see script for full list of supported tags). With this update text labels will auto-wrap when they extend further than the image width (for example with long captions or keyword lists).
+ 
 	- %ISO
 	- %ShutterSpeed
 	- %Aperture
@@ -20,20 +21,22 @@ Magick Frames makes it fast and easy to apply various styles of elegant borders 
 	- %Caption
 	- %Keywords
 
+	The following command produced the image example below it. 
+
 	```
-	frame_it -t -l1="Location: %City, %ProvinceState, %CountryCode" -l2="Exposure: ISO %ISO, ƒ/%Aperture, %ShutterSpeed sec" yourfile.jpg
+	frame_it -t --label1="Location: %City, %ProvinceState, %CountryCode" --label2="Exposure: ISO %ISO, ƒ/%Aperture, %ShutterSpeed sec" yourfile.jpg
 	```
 
-	<img src=assets/WPR-20070520-7946-framed.jpg border=1 margin=10px>
+	<img src=assets/WPR-20070520-7946-framed.jpg border=1 margin=10px padding=10px>
 
-- Plain solid borders have an internal pin-stripe that separates border from picture
+- (NEW) Simple solid borders have an internal pin-stripe that separates border from picture
 - Matted borders have a shadow on all edges, a drop shadow, or a beveled inside matte edge
 - Picture frames have an outer "frame", a matte, and an interior beveled edge around your picture
 - Matted borders can also be transparent for multi-purpose use
 
 You also have multiple options for applying watermarks:
 
-- (NEW) Plain solid borders can be added with and without watermarks
+- (NEW) Simple solid borders can be added with and without watermarks
 - You can apply a text- or image-based watermark in all the styles
 - You can place watermark on the matte surrounding the picture, or on the picture itself
 - Watermarks on the matte can appear above or below the picture, and be left, center, or right justified
@@ -47,6 +50,8 @@ Watch this [2-minute introduction video](https://youtu.be/PkRCjbNo11M) to see ju
 You can download and set up Magick Frames in 5-10 minutes.
 
 # December 2024 Update
+
+Support is added for EXIF / IPTC placeholders in text-based watermarks.
 
 The following new options add solid border styles.
 
