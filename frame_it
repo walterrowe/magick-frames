@@ -206,7 +206,7 @@ declare -A iptc_tags=(
     [Instructions]="2:40"
 )
 
-declare -A meter_mode=(
+declare -A meter=(
     [0]="Unknown"
     [1]="Average"
     [2]="Center-Weighted Average"
@@ -217,7 +217,7 @@ declare -A meter_mode=(
     [255]="Other"
 )
 
-declare -A light_source=(
+declare -A light=(
     [0]="Unknown"
     [1]="Daylight"
     [2]="Fluorescent"
@@ -273,13 +273,19 @@ declare -A flash=(
 )
 
 
-# make egrep regex-es from the gravity options keys and values
+# make egrep regex-es from array keys and values
 gravity_keys=$(echo ${(k)gravity_opts} | sed -e 's; ;|;g')
 gravity_vals=$(echo ${(v)gravity_opts} | sed -e 's; ;|;g')
 iptc_keys=$(echo ${(k)iptc_tags} | sed -e 's; ;|;g')
 iptc_vals=$(echo ${(v)iptc_tags} | sed -e 's; ;|;g')
 exif_keys=$(echo ${(k)exif_tags} | sed -e 's; ;|;g')
 exif_vals=$(echo ${(v)exif_tags} | sed -e 's; ;|;g')
+meter_keys=$(echo ${(k)meter_tags} | sed -e 's; ;|;g')
+meter_vals=$(echo ${(v)meter_tags} | sed -e 's; ;|;g')
+light_keys=$(echo ${(k)light_tags} | sed -e 's; ;|;g')
+light_vals=$(echo ${(v)light_tags} | sed -e 's; ;|;g')
+flash_keys=$(echo ${(k)flash_tags} | sed -e 's; ;|;g')
+flash_vals=$(echo ${(v)flash_tags} | sed -e 's; ;|;g')
 
 
 # get name of script
@@ -706,13 +712,39 @@ for filename in "$@" ; do
             if echo ${match} | egrep -wq "${exif_keys}"; then
                 metakey="%[EXIF:${exif_tags[${match}]}]"
                 metaval=$(identify -format "${metakey}" ${source} 2>/dev/null)
-                # convert integer aperture to fraction w/ 1 decimal place
-                if [[ $match = "Aperture" && ! -z ${metaval} ]]; then
-                    metaval=$(printf '%.1f' $((1.0 * sqrt(2.0 ** (1.0 * ${metaval})))))
-                fi
-                # convert focal length to mm
-                if [[ $match = "FocalLength" ]]; then
-                    metaval=$(printf '%d' $((${metaval})))
+
+                # if an exif tag is not present the value will be empty string
+                if [[ ! -z ${metaval} ]]; then
+                    case ${match} in
+                        ISO)
+                            # add "ISO" prefix to ISO value
+                            metaval=$(printf 'ISO %d' $((${metaval})))
+                            ;;
+                        Aperture)
+                            # convert integer to aperture f/stop
+                            metaval=$(printf 'ƒ/%.1f' $((1.0 * sqrt(2.0 ** (1.0 * ${metaval})))))
+                            ;;
+                        ShutterSpeed)
+                            # add "s" (seconds) after shutter speed
+                            metaval=$(printf '%ss' ${metaval})
+                            ;;
+                        FocalLength)
+                            # add "mm" (millimeter) to focal length
+                            metaval=$(printf '%dmm' $((${metaval})))
+                            ;;
+                        MeteringMode)
+                            # map metering mode code to text
+                            metaval=${meter[$(printf '%d' ${metaval})]}
+                            ;;
+                        LightSource)
+                            # map lighting source code to text
+                            metaval=${light[$(printf '%d' ${metaval})]}
+                            ;;
+                        Flash)
+                            # map flash code to text
+                            metaval=${flash[$(printf '0x%x' ${metaval})]}
+                            ;;
+                    esac
                 fi
             fi
 
