@@ -1,3 +1,8 @@
 site_name: Magick Frames
 nav:
   - Home: README.md
+  - Styles: Styles.md
+  - Examples: Examples.md
+  - Command Line: CLI.md
+  - How It Works: HowItWorks.md
+  
