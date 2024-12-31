@@ -22,34 +22,34 @@ This has a pin-stripe interior border with a plain solid outer border and a text
 
 This has an interior bevel and solid outer border with image-based watermark placed on southwest corner of the image.
 
-    <img bordercolor=#aaaaaa border=2px width=90% src="../assets/bevel-overlay.jpg">
+<img bordercolor=#aaaaaa border=2px width=90% src="../assets/bevel-overlay.jpg">
 
 ## Drop-shadow frame with Image Watermark
 
 This has an interior frame with shadow on all edges and solid outer border. It has an image-based watermark centered on the border above of the image.
 
-    <img bordercolor=#aaaaaa border=2px width=500px src="../assets/logo-above.jpg">
+<img bordercolor=#aaaaaa border=2px width=500px src="../assets/logo-above.jpg">
 
 ## Shadowed frame with image watermark placed in southeast corner below the image
 
 This has an interior frame with shadow on all edges and solid outer border. It has an image-based watermark placed bottom right of the border below the image.
 
-    <img bordercolor=#aaaaaa border=2px width=90% src="../assets/logo-southeast.jpg">
+<img bordercolor=#aaaaaa border=2px width=90% src="../assets/logo-southeast.jpg">
 
 ## Beveled matte frame with image watermark placed above the picture and aspect ratio 1:1 (square)
 
 This has an interior bevel and solid outer border with image-based watermark centered on the border above the image.
 
-    <img bordercolor=#aaaaaa border=2px width=90% src="../assets/square-above.jpg">
+<img bordercolor=#aaaaaa border=2px width=90% src="../assets/square-above.jpg">
 
 ## Beveled matte frame with text watermark placed below the picture and aspect ratio 1:1 (square)
 
 This has an interior bevel and solid outer border with text-based watermark centered on the border below the image and a 1:1 aspect ratio.
 
-    <img bordercolor=#aaaaaa border=2px width=500px src="../assets/square-text.jpg">
+<img bordercolor=#aaaaaa border=2px width=500px src="../assets/square-text.jpg">
 
 ## Picture frame and beveled matte with image watermark placed below the picture
 
 This has a interior beveled matte and picture frame border with image-based watermark centered on the matte below the picture.
 
-    <img bordercolor=#aaaaaa border=2px width=90% src="../assets/logo_light_picture.jpg">
+<img bordercolor=#aaaaaa border=2px width=90% src="../assets/logo_light_picture.jpg">
