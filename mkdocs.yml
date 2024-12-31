@@ -4,10 +4,6 @@ site_url: https://magick-frames.readthedocs.io/
 plugins:
   - search
   - mermaid2
-  - smarty
-  - toc:
-      permalink: true
-  - sane_lists
 
 nav:
   - Home: README.md
