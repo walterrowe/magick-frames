@@ -1,7 +1,7 @@
 site_name: Magick Frames
 site_url: https://magick-frames.readthedocs.io/
 
-markdown_extensions:
+plugins:
   - search
   - mermaid
   - smarty
