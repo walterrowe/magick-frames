@@ -1,12 +1,13 @@
 site_name: Magick Frames
+site_url: https://magick-frames.readthedocs.io/
 
 markdown_extensions:
-  - pymdownx.superfences:
-    # make exceptions to highlighting of code:
-    custom_fences:
-      - name: mermaid
-        class: mermaid
-        format: !!python/name:mermaid2.fence_mermaid_custom
+  - search
+  - mermaid
+  - smarty
+  - toc:
+      permalink: true
+  - sane_lists
 
 nav:
   - Home: README.md
