@@ -3,7 +3,7 @@ site_url: https://magick-frames.readthedocs.io/
 
 plugins:
   - search
-  - mermaid
+  - mermaid2
   - smarty
   - toc:
       permalink: true
