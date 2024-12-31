@@ -4,19 +4,19 @@
 
 This has a pin-stripe interior border with a plain solid outer border and no watermark.
 
-    <img bordercolor=#aaaaaa border=2px width=90% src="../assets/WPR-20050521-0305-solid_teal.jpg">
+<img bordercolor=#aaaaaa border=2px width=90% src="../assets/WPR-20050521-0305-solid_teal.jpg">
 
 ## (NEW) Simple solid frame with Text Watermark on Image
 
 This has a pin-stripe interior border with a plain solid outer border and a text-based watermark placed on the lower left corner of the image.
 
-    <img bordercolor=#aaaaaa border=2px width=90% src="../assets/WPR-20050521-0305-solid_teal_darktext_over.jpg">
+<img bordercolor=#aaaaaa border=2px width=90% src="../assets/WPR-20050521-0305-solid_teal_darktext_over.jpg">
 
 ## (NEW) Simple solid frame with Text Watermark on Border
 
 This has a pin-stripe interior border with a plain solid outer border and a text-based watermark on the border centered below the image.
 
-    <img bordercolor=#aaaaaa border=2px width=90% src="../assets/WPR-20050521-0305-solid_teal_logo.jpg">
+<img bordercolor=#aaaaaa border=2px width=90% src="../assets/WPR-20050521-0305-solid_teal_logo.jpg">
 
 ## Beveled matte frame with Image Watermark
 
