@@ -1,10 +1,13 @@
 site_name: Magick Frames
+
 markdown_extensions:
-  - mermaid2
-  - smarty
-  - toc:
-      permalink: true
-  - sane_lists
+  - pymdownx.superfences:
+    # make exceptions to highlighting of code:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:mermaid2.fence_mermaid_custom
+
 nav:
   - Home: README.md
   - Styles: Styles.md
